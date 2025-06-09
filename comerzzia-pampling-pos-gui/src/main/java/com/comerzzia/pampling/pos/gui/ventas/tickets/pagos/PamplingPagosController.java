@@ -89,14 +89,14 @@ public class PamplingPagosController extends PagosController {
 
 	@Override
 	protected void selectCustomPaymentMethod(PaymentSelectEvent paymentSelectEvent) {
-		PaymentMethodManager paymentManager = (PaymentMethodManager) paymentSelectEvent.getSource();
-		if (paymentManager instanceof ContadoManager) {
-			anotarPago(eventualPaymentAmount());
-		}
-		else {
-			BigDecimal importe = FormatUtil.getInstance().desformateaImporte(tfImporte.getText());
-			anotarPago(importe);
-		}
+               PaymentMethodManager paymentManager = (PaymentMethodManager) paymentSelectEvent.getSource();
+               if (paymentManager instanceof ContadoManager || paymentManager instanceof CashlogyManager) {
+                       anotarPago(eventualPaymentAmount());
+               }
+               else {
+                       BigDecimal importe = FormatUtil.getInstance().desformateaImporte(tfImporte.getText());
+                       anotarPago(importe);
+               }
 	}
 
 	/**
@@ -152,22 +152,42 @@ public class PamplingPagosController extends PagosController {
 	}
 
 	@Override
-	public void initializeForm() throws InitializeGuiException {
-		super.initializeForm();
+        public void initializeForm() throws InitializeGuiException {
+                super.initializeForm();
 
 		boolean cashlogyActivo = ((PamplingPaymentsManagerImpl) paymentsManager).isCashlogyEnable();
 		log.debug("Inicializando formulario, cashlogyActivo=" + cashlogyActivo);
 
-		if (cashlogyActivo) {
-			if (panelPagos.getTabs().contains(panelPestanaPagoEfectivo)) {
-				panelPagos.getTabs().remove(panelPestanaPagoEfectivo);
-			}
-		}
-		else {
-			if (!panelPagos.getTabs().contains(panelPestanaPagoEfectivo)) {
-				panelPagos.getTabs().add(0, panelPestanaPagoEfectivo);
-			}
-			panelPagos.getSelectionModel().select(panelPestanaPagoEfectivo);
-		}
-	}
+               if (cashlogyActivo) {
+                       if (panelPagos.getTabs().contains(panelPestanaPagoEfectivo)) {
+                               panelPagos.getTabs().remove(panelPestanaPagoEfectivo);
+                       }
+                       hideCashDenominationButtons();
+               }
+               else {
+                       if (!panelPagos.getTabs().contains(panelPestanaPagoEfectivo)) {
+                               panelPagos.getTabs().add(0, panelPestanaPagoEfectivo);
+                       }
+                       panelPagos.getSelectionModel().select(panelPestanaPagoEfectivo);
+                }
+        }
+
+       /**
+        * Oculta los botones de denominaciones de efectivo cuando el pago se
+        * gestiona mediante Cashlogy. Estos componentes pertenecen al controlador
+        * padre y pueden no existir en todas las versiones, por lo que se
+        * envuelven en un bloque try/catch para evitar fallos en tiempo de
+        * ejecución si no están presentes.
+        */
+       private void hideCashDenominationButtons() {
+               try {
+                       if (panelPestanaPagoEfectivo != null) {
+                               panelPestanaPagoEfectivo.getChildren().clear();
+                               panelPestanaPagoEfectivo.getChildren().add(btAnotarPago);
+                       }
+               }
+               catch (Exception e) {
+                       log.debug("No se pudieron ocultar los botones de denominaciones: " + e.getMessage());
+               }
+       }
 }
