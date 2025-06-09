@@ -194,6 +194,13 @@ public class PamplingPagosController extends PagosController {
                       if (panelPagoEfectivo != null) {
                               panelPagoEfectivo.getChildren().clear();
                               panelPagoEfectivo.getChildren().add(btAnotarPago);
+                      } else if (panelPestanaPagoEfectivo != null) {
+                              javafx.scene.Node content = panelPestanaPagoEfectivo.getContent();
+                              if (content instanceof javafx.scene.layout.Pane) {
+                                      javafx.scene.layout.Pane pane = (javafx.scene.layout.Pane) content;
+                                      pane.getChildren().clear();
+                                      pane.getChildren().add(btAnotarPago);
+                              }
                       }
                       else if (panelPestanaPagoEfectivo instanceof javafx.scene.layout.Pane) {
                               javafx.scene.layout.Pane pane = (javafx.scene.layout.Pane) panelPestanaPagoEfectivo;
