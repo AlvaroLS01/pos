@@ -14,7 +14,7 @@ import com.comerzzia.pos.services.payments.methods.PaymentMethodManager;
 @Scope("prototype")
 public class PamplingPaymentsManagerImpl extends PaymentsManagerImpl {
 
-	public boolean isCashlogyEnable() {
+        public boolean isCashlogyEnable() {
 		//Por si no esta definido el medio de pago por defecto que me coja el EFECTIVO
 		String key = (MediosPagosService.medioPagoDefecto == null) ? "0000" : MediosPagosService.medioPagoDefecto.getCodMedioPago();
 
@@ -24,7 +24,16 @@ public class PamplingPaymentsManagerImpl extends PaymentsManagerImpl {
 			return ((CashlogyManager) paymentMethodManager).isCashlogyActivo();
 		}
 
-		return false;
-	}
+                return false;
+        }
+
+       public CashlogyManager getCashlogyManager() {
+               String key = (MediosPagosService.medioPagoDefecto == null) ? "0000" : MediosPagosService.medioPagoDefecto.getCodMedioPago();
+               PaymentMethodManager paymentMethodManager = paymentsAvailable.get(key);
+               if (paymentMethodManager instanceof CashlogyManager) {
+                       return (CashlogyManager) paymentMethodManager;
+               }
+               return null;
+       }
 
 }
