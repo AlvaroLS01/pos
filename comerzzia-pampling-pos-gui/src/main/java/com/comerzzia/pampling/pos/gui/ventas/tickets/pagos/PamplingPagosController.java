@@ -202,11 +202,9 @@ public class PamplingPagosController extends PagosController {
                                       pane.getChildren().add(btAnotarPago);
                               }
                       }
-                      else if (panelPestanaPagoEfectivo instanceof javafx.scene.layout.Pane) {
-                              javafx.scene.layout.Pane pane = (javafx.scene.layout.Pane) panelPestanaPagoEfectivo;
-                              pane.getChildren().clear();
-                              pane.getChildren().add(btAnotarPago);
-                      }
+                        // panelPestanaPagoEfectivo es un Tab. Este bloque nunca se ejecuta
+                        // ya que un Tab no es instancia de Pane. Se mantiene la limpieza del
+                        // contenido únicamente sobre el Panel contenido en la pestaña.
               }
               catch (Exception e) {
                       log.debug("No se pudieron ocultar los botones de denominaciones: " + e.getMessage());
