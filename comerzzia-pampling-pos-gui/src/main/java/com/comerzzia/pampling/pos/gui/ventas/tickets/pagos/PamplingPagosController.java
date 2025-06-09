@@ -179,15 +179,15 @@ public class PamplingPagosController extends PagosController {
         * envuelven en un bloque try/catch para evitar fallos en tiempo de
         * ejecución si no están presentes.
         */
-       private void hideCashDenominationButtons() {
-               try {
-                       if (panelPestanaPagoEfectivo != null) {
-                               panelPestanaPagoEfectivo.getChildren().clear();
-                               panelPestanaPagoEfectivo.getChildren().add(btAnotarPago);
-                       }
-               }
-               catch (Exception e) {
-                       log.debug("No se pudieron ocultar los botones de denominaciones: " + e.getMessage());
-               }
-       }
+      private void hideCashDenominationButtons() {
+              try {
+                      if (panelPagoEfectivo != null) {
+                              panelPagoEfectivo.getChildren().clear();
+                              panelPagoEfectivo.getChildren().add(btAnotarPago);
+                      }
+              }
+              catch (Exception e) {
+                      log.debug("No se pudieron ocultar los botones de denominaciones: " + e.getMessage());
+              }
+      }
 }
