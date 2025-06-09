@@ -24,6 +24,7 @@ import com.comerzzia.pos.services.payments.events.PaymentSelectEvent;
 import com.comerzzia.pos.services.payments.methods.PaymentMethodManager;
 import com.comerzzia.pos.services.payments.methods.types.ContadoManager;
 import com.comerzzia.pos.services.payments.methods.types.GiftCardManager;
+import com.comerzzia.pos.services.payments.PaymentException;
 import com.comerzzia.pos.services.ticket.pagos.PagoTicket;
 import com.comerzzia.pos.services.ticket.tarjetaRegalo.TarjetaRegaloException;
 import com.comerzzia.pos.util.format.FormatUtil;
@@ -89,14 +90,14 @@ public class PamplingPagosController extends PagosController {
 
 	@Override
 	protected void selectCustomPaymentMethod(PaymentSelectEvent paymentSelectEvent) {
-		PaymentMethodManager paymentManager = (PaymentMethodManager) paymentSelectEvent.getSource();
-		if (paymentManager instanceof ContadoManager) {
-			anotarPago(eventualPaymentAmount());
-		}
-		else {
-			BigDecimal importe = FormatUtil.getInstance().desformateaImporte(tfImporte.getText());
-			anotarPago(importe);
-		}
+               PaymentMethodManager paymentManager = (PaymentMethodManager) paymentSelectEvent.getSource();
+               if (paymentManager instanceof ContadoManager || paymentManager instanceof CashlogyManager) {
+                       anotarPago(eventualPaymentAmount());
+               }
+               else {
+                       BigDecimal importe = FormatUtil.getInstance().desformateaImporte(tfImporte.getText());
+                       anotarPago(importe);
+               }
 	}
 
 	/**
@@ -107,22 +108,32 @@ public class PamplingPagosController extends PagosController {
 		return FormatUtil.getInstance().desformateaImporte(tfImporte.getText());
 	}
 
-	@Override
-	public void anotarPago(BigDecimal importe) {
-		try {
-			IPrinter printer = Dispositivos.getInstance().getImpresora1();
-			if (printer instanceof GermanyFiscalPrinter && !((GermanyFiscalPrinter) printer).compruebaAutoTest()) {
-				VentanaDialogoComponent.crearVentanaError(I18N.getTexto("No se ha podido realizar la conexión con el TSE"), getStage());
-				return;
-			}
-		}
-		catch (Exception e) {
-			log.error("anotarPago() - " + e.getClass().getName() + " - " + e.getLocalizedMessage(), e);
-			VentanaDialogoComponent.crearVentanaError(I18N.getTexto("No se ha podido realizar la conexión con el TSE"), getStage());
-			return;
-		}
-		super.anotarPago(importe);
-	}
+       @Override
+       public void anotarPago(BigDecimal importe) {
+               try {
+                       IPrinter printer = Dispositivos.getInstance().getImpresora1();
+                       if (printer instanceof GermanyFiscalPrinter && !((GermanyFiscalPrinter) printer).compruebaAutoTest()) {
+                               VentanaDialogoComponent.crearVentanaError(I18N.getTexto("No se ha podido realizar la conexión con el TSE"), getStage());
+                               return;
+                       }
+
+                       PamplingPaymentsManagerImpl pm = (PamplingPaymentsManagerImpl) paymentsManager;
+                       if (pm.isCashlogyEnable()) {
+                               CashlogyManager manager = pm.getCashlogyManager();
+                               if (manager != null) {
+                                       manager.pay(importe);
+                                       return;
+                               }
+                       }
+               }
+               catch (Exception e) {
+                       log.error("anotarPago() - " + e.getClass().getName() + " - " + e.getLocalizedMessage(), e);
+                       VentanaDialogoComponent.crearVentanaError(I18N.getTexto("No se ha podido realizar la conexión con el TSE"), getStage());
+                       return;
+               }
+
+               super.anotarPago(importe);
+       }
 
 	@Override
 	public void aceptar() throws DocumentoException {
@@ -152,22 +163,42 @@ public class PamplingPagosController extends PagosController {
 	}
 
 	@Override
-	public void initializeForm() throws InitializeGuiException {
-		super.initializeForm();
+        public void initializeForm() throws InitializeGuiException {
+                super.initializeForm();
 
 		boolean cashlogyActivo = ((PamplingPaymentsManagerImpl) paymentsManager).isCashlogyEnable();
 		log.debug("Inicializando formulario, cashlogyActivo=" + cashlogyActivo);
 
-		if (cashlogyActivo) {
-			if (panelPagos.getTabs().contains(panelPestanaPagoEfectivo)) {
-				panelPagos.getTabs().remove(panelPestanaPagoEfectivo);
-			}
-		}
-		else {
-			if (!panelPagos.getTabs().contains(panelPestanaPagoEfectivo)) {
-				panelPagos.getTabs().add(0, panelPestanaPagoEfectivo);
-			}
-			panelPagos.getSelectionModel().select(panelPestanaPagoEfectivo);
-		}
-	}
+               if (cashlogyActivo) {
+                       if (panelPagos.getTabs().contains(panelPestanaPagoEfectivo)) {
+                               panelPagos.getTabs().remove(panelPestanaPagoEfectivo);
+                       }
+                       hideCashDenominationButtons();
+               }
+               else {
+                       if (!panelPagos.getTabs().contains(panelPestanaPagoEfectivo)) {
+                               panelPagos.getTabs().add(0, panelPestanaPagoEfectivo);
+                       }
+                       panelPagos.getSelectionModel().select(panelPestanaPagoEfectivo);
+                }
+        }
+
+       /**
+        * Oculta los botones de denominaciones de efectivo cuando el pago se
+        * gestiona mediante Cashlogy. Estos componentes pertenecen al controlador
+        * padre y pueden no existir en todas las versiones, por lo que se
+        * envuelven en un bloque try/catch para evitar fallos en tiempo de
+        * ejecución si no están presentes.
+        */
+       private void hideCashDenominationButtons() {
+               try {
+                       if (panelPestanaPagoEfectivo != null) {
+                               panelPestanaPagoEfectivo.getChildren().clear();
+                               panelPestanaPagoEfectivo.getChildren().add(btAnotarPago);
+                       }
+               }
+               catch (Exception e) {
+                       log.debug("No se pudieron ocultar los botones de denominaciones: " + e.getMessage());
+               }
+       }
 }
