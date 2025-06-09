@@ -116,8 +116,8 @@ public class PamplingPagosController extends PagosController {
                                return;
                        }
 
-                       PamplingPaymentsManagerImpl pm = (PamplingPaymentsManagerImpl) paymentsManager;
-                       if (pm.isCashlogyEnable()) {
+                       if (isCashlogyActivated()) {
+                               PamplingPaymentsManagerImpl pm = (PamplingPaymentsManagerImpl) paymentsManager;
                                CashlogyManager manager = pm.getCashlogyManager();
                                if (manager != null) {
                                        manager.pay(importe);
@@ -156,30 +156,33 @@ public class PamplingPagosController extends PagosController {
 		return Dispositivos.getInstance().getImpresora1() instanceof IFiscalPrinter;
 	}
 
-	private boolean isImpresoraFiscalAlemania() {
-		IPrinter printer = Dispositivos.getInstance().getImpresora1();
-		return (printer != null && printer instanceof GermanyFiscalPrinter);
-	}
+        private boolean isImpresoraFiscalAlemania() {
+                IPrinter printer = Dispositivos.getInstance().getImpresora1();
+                return (printer != null && printer instanceof GermanyFiscalPrinter);
+        }
+
+       private boolean isCashlogyActivated() {
+               PamplingPaymentsManagerImpl pm = (PamplingPaymentsManagerImpl) paymentsManager;
+               CashlogyManager manager = pm.getCashlogyManager();
+               return manager != null && manager.isCashlogyActivo();
+       }
 
 	@Override
         public void initializeForm() throws InitializeGuiException {
                 super.initializeForm();
 
-		boolean cashlogyActivo = ((PamplingPaymentsManagerImpl) paymentsManager).isCashlogyEnable();
-		log.debug("Inicializando formulario, cashlogyActivo=" + cashlogyActivo);
+               boolean cashlogyActivo = isCashlogyActivated();
+               log.debug("Inicializando formulario, cashlogyActivo=" + cashlogyActivo);
 
                if (cashlogyActivo) {
-                       if (panelPagos.getTabs().contains(panelPestanaPagoEfectivo)) {
-                               panelPagos.getTabs().remove(panelPestanaPagoEfectivo);
-                       }
+                       panelPagos.getTabs().removeIf(tab -> tab != panelPestanaPagoEfectivo);
                        hideCashDenominationButtons();
-               }
-               else {
+               } else {
                        if (!panelPagos.getTabs().contains(panelPestanaPagoEfectivo)) {
                                panelPagos.getTabs().add(0, panelPestanaPagoEfectivo);
                        }
                        panelPagos.getSelectionModel().select(panelPestanaPagoEfectivo);
-                }
+               }
         }
 
        /**
