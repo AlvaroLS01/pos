@@ -107,22 +107,32 @@ public class PamplingPagosController extends PagosController {
 		return FormatUtil.getInstance().desformateaImporte(tfImporte.getText());
 	}
 
-	@Override
-	public void anotarPago(BigDecimal importe) {
-		try {
-			IPrinter printer = Dispositivos.getInstance().getImpresora1();
-			if (printer instanceof GermanyFiscalPrinter && !((GermanyFiscalPrinter) printer).compruebaAutoTest()) {
-				VentanaDialogoComponent.crearVentanaError(I18N.getTexto("No se ha podido realizar la conexión con el TSE"), getStage());
-				return;
-			}
-		}
-		catch (Exception e) {
-			log.error("anotarPago() - " + e.getClass().getName() + " - " + e.getLocalizedMessage(), e);
-			VentanaDialogoComponent.crearVentanaError(I18N.getTexto("No se ha podido realizar la conexión con el TSE"), getStage());
-			return;
-		}
-		super.anotarPago(importe);
-	}
+       @Override
+       public void anotarPago(BigDecimal importe) {
+               try {
+                       IPrinter printer = Dispositivos.getInstance().getImpresora1();
+                       if (printer instanceof GermanyFiscalPrinter && !((GermanyFiscalPrinter) printer).compruebaAutoTest()) {
+                               VentanaDialogoComponent.crearVentanaError(I18N.getTexto("No se ha podido realizar la conexión con el TSE"), getStage());
+                               return;
+                       }
+
+                       PamplingPaymentsManagerImpl pm = (PamplingPaymentsManagerImpl) paymentsManager;
+                       if (pm.isCashlogyEnable()) {
+                               CashlogyManager manager = pm.getCashlogyManager();
+                               if (manager != null) {
+                                       manager.pay(importe);
+                                       return;
+                               }
+                       }
+               }
+               catch (Exception e) {
+                       log.error("anotarPago() - " + e.getClass().getName() + " - " + e.getLocalizedMessage(), e);
+                       VentanaDialogoComponent.crearVentanaError(I18N.getTexto("No se ha podido realizar la conexión con el TSE"), getStage());
+                       return;
+               }
+
+               super.anotarPago(importe);
+       }
 
 	@Override
 	public void aceptar() throws DocumentoException {
@@ -184,6 +194,11 @@ public class PamplingPagosController extends PagosController {
                       if (panelPagoEfectivo != null) {
                               panelPagoEfectivo.getChildren().clear();
                               panelPagoEfectivo.getChildren().add(btAnotarPago);
+                      }
+                      else if (panelPestanaPagoEfectivo instanceof javafx.scene.layout.Pane) {
+                              javafx.scene.layout.Pane pane = (javafx.scene.layout.Pane) panelPestanaPagoEfectivo;
+                              pane.getChildren().clear();
+                              pane.getChildren().add(btAnotarPago);
                       }
               }
               catch (Exception e) {
