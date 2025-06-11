@@ -31,8 +31,9 @@ public class BricoEmailValidator extends EmailValidator {
 		String localPart = parts[0];
 		String domainPart = parts[1];
 
-		boolean advancedOk = localPart.length() <= 64 && domainPart.length() <= 255 && localPart.matches(LOCAL_PART_REGEX) && domainPart.matches(DOMAIN_REGEX)
-		        && Arrays.stream(domainPart.split("\\.")).allMatch(label -> label.matches(DOMAIN_LABEL_REGEX)) && INSTANCE.isValid(email, (ConstraintValidatorContext) null);
+                boolean advancedOk = localPart.length() <= 64 && domainPart.length() <= 255 && localPart.matches(LOCAL_PART_REGEX)
+                                && domainPart.matches(DOMAIN_REGEX)
+                                && Arrays.stream(domainPart.split("\\.")).allMatch(label -> label.matches(DOMAIN_LABEL_REGEX));
 
 		if (!advancedOk) {
 			return I18N.getTexto("El formato del email no es válido");
