@@ -320,7 +320,13 @@ public class BricodepotMantenimientoClienteController extends MantenimientoClien
 		lbError.setText("");
 
 		// Validamos el formulario de login
-		Set<ConstraintViolation<FormularioMantenimientoClientesBean>> constraintViolations = ValidationUI.getInstance().getValidator().validate(frDatosCliente);
+                Set<ConstraintViolation<FormularioMantenimientoClientesBean>> constraintViolations = ValidationUI.getInstance().getValidator().validate(frDatosCliente);
+
+                // El validador estándar limita el campo email a 60 caracteres. Se
+                // elimina esta violación para aplicar la validación propia de
+                // BricoEmailValidator que permite dominios de hasta 255
+                // caracteres.
+                constraintViolations.removeIf(v -> "email".equals(v.getPropertyPath().toString()));
 		
 		/* BRICO-253 hacer obligatorios CP y Población */
 		tfCP.setStyle("-fx-background-color: #f4f4f4;");
