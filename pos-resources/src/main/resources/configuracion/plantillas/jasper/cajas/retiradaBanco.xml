@@ -1,4 +1,0 @@
-<plantilla>
-	<documento salida="impresora2" titulo="Retirada Banco" procesador="JASPER" fichero="cajas/retiradaBanco">		
-	</documento>
-</plantilla>

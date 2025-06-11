@@ -1,0 +1,59 @@
+<plantilla> 
+    <documento>
+		<logo></logo>  
+		<linea> <texto> </texto> </linea>
+		#set( $imprimirDatosFacturacion =  false)
+		#parse("./plantillas/datos_cabecera.xml")
+
+		<linea><texto size="39" align="left">Data e hora:${ticket.getCabecera().getFechaAsLocale()}</texto></linea>  
+	    <linea><texto size="39" align="left">Documento:${ticket.getCabecera().getCodTicket()}</texto></linea>  
+
+	    #if($ticket.getCabecera().getDatosDocOrigen())
+	      <linea><texto align="left">Referencias:$ticket.getCabecera().getDatosDocOrigen().getCodTicket()</texto></linea>
+	    #end 
+	
+	    <!--<linea><texto size="39" align="left">Assistido por:${ticket.getCabecera().getCajero().getUsuario()}</texto></linea>-->  
+	    <linea><texto size="39" align="left">Assistido por:${ticket.getCabecera().getCajero().getDesusuario()}</texto></linea>  
+		
+		<linea> <texto> </texto> </linea>
+		<linea> <texto>CANT DESCRIPCION                        </texto> </linea>
+		<linea> <texto>----------------------------------------</texto> </linea>
+		## LINEAS
+		#foreach ($linea in $ticket.getLineas())   
+			#if(${linea.isImprimirTicketRegalo()}) 
+				<!-- Para entornos FOOD -->
+				<linea> 
+					 <texto size="2" align="right" fontsize="4">${linea.getCantidad().intValue().toString().toString()}</texto>
+			         <texto size="1" align="left" fontsize="4"> </texto>
+					 <!--<texto size="11" align="left" fontsize="4">${linea.getArticulo().getCodArticulo()}</texto>-->			 
+					 <!--<texto size="30" align="left" fontsize="4">${linea.getArticulo().getDesArticulo()}</texto>-->
+					 <texto size="41" align="left" fontsize="4">${linea.getArticulo().getDesArticulo()}</texto>
+				</linea>   
+			#end  
+		#end
+		<linea> <texto>----------------------------------------</texto> </linea>
+
+		<linea><texto> </texto></linea>
+   
+
+        <linea><texto size="39" align="center">${ticket.getCabecera().getFirma().getFirma().charAt(0)}${ticket.getCabecera().getFirma().getFirma().charAt(10)}${ticket.getCabecera().getFirma().getFirma().charAt(20)}${ticket.getCabecera().getFirma().getFirma().charAt(30)}-Processado por programa</texto></linea>
+	    <linea><texto size="39" align="center">certificado n.?2175/AT</texto></linea>
+	
+		<linea><texto size="39" align="center">Os servicios e/ou bens foram realizados</texto></linea>
+		<linea><texto size="39" align="center">e/ou colocados a disposicao do</texto></linea>
+		<linea><texto size="39" align="center">adquirente nesta data (Art. 36 do CIVA,</texto></linea> 
+		<linea><texto size="39" align="center">No5 alInea F)</texto></linea>
+		
+		<linea><texto> </texto></linea>
+		
+		<linea><texto size="39" align="center">Licenca: Porteromania Unipessonal, Lda</texto></linea>
+		<linea><texto size="39" align="center">Contribuinte: 514967625</texto></linea>
+		
+		<linea><codbar align="center" tipo-leyenda="0" >${ticket.getCabecera().getLocalizador()}</codbar></linea>
+		
+        <linea><texto> </texto></linea>
+		<linea><texto> </texto></linea>
+		<linea><texto> </texto></linea>
+		<corte></corte>
+	</documento>
+</plantilla>
