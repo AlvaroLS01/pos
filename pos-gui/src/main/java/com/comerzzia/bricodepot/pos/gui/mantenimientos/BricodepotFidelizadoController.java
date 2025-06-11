@@ -538,12 +538,7 @@ public class BricodepotFidelizadoController extends FidelizadoController {
 		// Limpiamos el posible error anterior
 		lbError.setText("");
 
-                Set<ConstraintViolation<FormularioFidelizadoBean>> constraintViolations = ValidationUI.getInstance().getValidator().validate(formFidelizado);
-
-                // El validador base impone un límite de longitud al email. Se
-                // eliminan las violaciones de dicho campo para aplicar la
-                // validación personalizada de BricoEmailValidator.
-                constraintViolations.removeIf(v -> "email".equals(v.getPropertyPath().toString()));
+		Set<ConstraintViolation<FormularioFidelizadoBean>> constraintViolations = ValidationUI.getInstance().getValidator().validate(formFidelizado);
 		/*
 		 * BRICO-146 Hacer obligatorios: CP y Colectivo Quitar obligatorios: provincia, poblacion, domicilio
 		 */
