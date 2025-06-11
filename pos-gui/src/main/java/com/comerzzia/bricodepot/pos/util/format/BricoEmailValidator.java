@@ -13,7 +13,11 @@ public class BricoEmailValidator extends EmailValidator {
 
 	private static final String LOCAL_PART_REGEX = "^[A-Za-z0-9]+(?:[\\.\\-][A-Za-z0-9]+)*$";
 	private static final String DOMAIN_LABEL_REGEX = "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$";
-	private static final String DOMAIN_REGEX = "^(?=.{1,255}$)(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\\.)+[A-Za-z]{2,}$";
+       // Allow domains up to 255 characters without restricting the length of each
+       // label. Each label must still start and end with an alphanumeric character
+       // and may contain hyphens inside. At least one dot is required and the
+       // top-level domain must be alphabetic.
+       private static final String DOMAIN_REGEX = "^(?=.{1,255}$)(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z]{2,}$";
 
 	private static final BricoEmailValidator INSTANCE = new BricoEmailValidator();
 
