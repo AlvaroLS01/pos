@@ -31,6 +31,7 @@ import com.comerzzia.pos.util.i18n.I18N;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.application.Platform;
 
 @Primary
 @Component
@@ -95,11 +96,13 @@ public class PamplingPagosController extends PagosController {
 
                 if (autoAceptarEfectivo && eventOk.getSource() instanceof ContadoManager) {
                         autoAceptarEfectivo = false;
-                        try {
-                                aceptar();
-                        } catch (DocumentoException e) {
-                                VentanaDialogoComponent.crearVentanaError(getStage(), e.getMessage(), e);
-                        }
+                        Platform.runLater(() -> {
+                                try {
+                                        aceptar();
+                                } catch (DocumentoException e) {
+                                        VentanaDialogoComponent.crearVentanaError(getStage(), e.getMessage(), e);
+                                }
+                        });
                 }
         }
 
