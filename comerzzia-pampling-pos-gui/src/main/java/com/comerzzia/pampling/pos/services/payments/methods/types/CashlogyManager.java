@@ -26,6 +26,7 @@ import com.comerzzia.tier.librerias.cashlogyclient.model.SaleResponse;
 import com.comerzzia.tier.librerias.cashlogyclient.model.StatusSaleResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.web.client.ResourceAccessException;
 
 @Component
 @Scope("prototype")
@@ -94,14 +95,26 @@ public class CashlogyManager extends ContadoManager {
 	    } catch (JsonProcessingException e) {
 	        log.warn("No se pudo serializar SaleRequest a JSON para debug", e);
 	    }
-	    String saleUrl = cashlogyBaseUrl + "/api/MiddlewareCommand/Sale";
-	    log.debug("→ POST a " + saleUrl + " con payload: " + saleJson);
+            String saleUrl = cashlogyBaseUrl + "/api/MiddlewareCommand/Sale";
+            log.debug("→ POST a " + saleUrl + " con payload: " + saleJson);
 
-	    // 4) Enviar venta
-	    SaleResponse saleResp = client.sale(saleReq, token);
-	    log.debug("← saleResp.result=" + saleResp.getResult()
-	        + " deposited=" + saleResp.getTotalDeposited()
-	        + " dispensed=" + saleResp.getTotalDispensed());
+            // 4) Enviar venta con gestión de timeout
+            SaleResponse saleResp;
+            try {
+                saleResp = client.sale(saleReq, token);
+            } catch (ResourceAccessException timeoutEx) {
+                log.error("Timeout en llamada Sale, intentando cancelSale", timeoutEx);
+                CancelSaleRequest cancelReq = new CancelSaleRequest(deviceId, operationId, posId);
+                try {
+                    client.cancelSale(cancelReq, token);
+                } catch (Exception cancelEx) {
+                    log.warn("Error al llamar a cancelSale tras el timeout", cancelEx);
+                }
+                throw new PaymentException("Timeout de comunicacion con Cashlogy", timeoutEx);
+            }
+            log.debug("← saleResp.result=" + saleResp.getResult()
+                + " deposited=" + saleResp.getTotalDeposited()
+                + " dispensed=" + saleResp.getTotalDispensed());
 
 	    // 5) Si está en progreso, hacer polling hasta OK o error
 	    if ("TRANSACTION_IN_PROGRESS".equalsIgnoreCase(saleResp.getResult())) {
