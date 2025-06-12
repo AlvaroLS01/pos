@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.comerzzia.bricodepot.pos.util.format.BricoEmailValidator;
 import com.comerzzia.pos.core.gui.componentes.dialogos.VentanaDialogoComponent;
+import org.apache.commons.lang3.StringUtils;
 import javafx.fxml.FXML;
 
 @Primary
@@ -17,11 +18,13 @@ public class BricoBusquedaFidelizadoController extends BusquedaFidelizadoControl
     @FXML
     public void accionAceptar() {
         String email = tfEmail.getText();
-        
-        String error = BricoEmailValidator.getValidationErrorKey(email);
-        if (error != null) {
-            VentanaDialogoComponent.crearVentanaConfirmacionUnBoton(error, getStage());
-            return;
+
+        if (StringUtils.isNotBlank(email)) {
+            String error = BricoEmailValidator.getValidationErrorKey(email);
+            if (error != null) {
+                VentanaDialogoComponent.crearVentanaConfirmacionUnBoton(error, getStage());
+                return;
+            }
         }
         
         super.accionAceptar();
