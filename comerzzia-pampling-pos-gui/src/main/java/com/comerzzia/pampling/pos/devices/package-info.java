@@ -1,1 +1,0 @@
-package com.comerzzia.pampling.pos.devices;
