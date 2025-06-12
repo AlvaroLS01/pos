@@ -28,13 +28,20 @@ import com.comerzzia.pos.services.ticket.pagos.PagoTicket;
 import com.comerzzia.pos.services.ticket.tarjetaRegalo.TarjetaRegaloException;
 import com.comerzzia.pos.util.format.FormatUtil;
 import com.comerzzia.pos.util.i18n.I18N;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
 @Primary
 @Component
 public class PamplingPagosController extends PagosController {
 
-	@Autowired
-	protected GermanyFiscalPrinterService germanyFiscalPrinterService;
+        @Autowired
+        protected GermanyFiscalPrinterService germanyFiscalPrinterService;
+
+        @FXML
+        private Button btEfectivoCashlogy;
+
+        private boolean autoAceptarEfectivo = false;
 
 	@Override
 	protected void accionSalvarTicketOnFailure(Exception e) {
@@ -84,8 +91,17 @@ public class PamplingPagosController extends PagosController {
 		else {
 			addCustomPaymentData(eventOk, payment);
 		}
-		ticketManager.guardarCopiaSeguridadTicket();
-	}
+                ticketManager.guardarCopiaSeguridadTicket();
+
+                if (autoAceptarEfectivo && eventOk.getSource() instanceof ContadoManager) {
+                        autoAceptarEfectivo = false;
+                        try {
+                                aceptar();
+                        } catch (DocumentoException e) {
+                                VentanaDialogoComponent.crearVentanaError(getStage(), e.getMessage(), e);
+                        }
+                }
+        }
 
 	@Override
 	protected void selectCustomPaymentMethod(PaymentSelectEvent paymentSelectEvent) {
@@ -103,12 +119,12 @@ public class PamplingPagosController extends PagosController {
 	 * Método auxiliar que devuelve el importe actual ingresado en tfImporte.
 	 */
 
-	private BigDecimal eventualPaymentAmount() {
-		return FormatUtil.getInstance().desformateaImporte(tfImporte.getText());
-	}
+        private BigDecimal eventualPaymentAmount() {
+                return FormatUtil.getInstance().desformateaImporte(tfImporte.getText());
+        }
 
-	@Override
-	public void anotarPago(BigDecimal importe) {
+        @Override
+        public void anotarPago(BigDecimal importe) {
 		try {
 			IPrinter printer = Dispositivos.getInstance().getImpresora1();
 			if (printer instanceof GermanyFiscalPrinter && !((GermanyFiscalPrinter) printer).compruebaAutoTest()) {
@@ -121,8 +137,16 @@ public class PamplingPagosController extends PagosController {
 			VentanaDialogoComponent.crearVentanaError(I18N.getTexto("No se ha podido realizar la conexión con el TSE"), getStage());
 			return;
 		}
-		super.anotarPago(importe);
-	}
+                super.anotarPago(importe);
+        }
+
+        @FXML
+        private void accionBtEfectivoCashlogy() {
+                BigDecimal pendiente = ticketManager.getTicket().getTotales().getPendiente();
+                tfImporte.setText(FormatUtil.getInstance().formateaImporte(pendiente));
+                autoAceptarEfectivo = true;
+                anotarPago(pendiente);
+        }
 
 	@Override
 	public void aceptar() throws DocumentoException {
@@ -155,19 +179,27 @@ public class PamplingPagosController extends PagosController {
 	public void initializeForm() throws InitializeGuiException {
 		super.initializeForm();
 
-		boolean cashlogyActivo = ((PamplingPaymentsManagerImpl) paymentsManager).isCashlogyEnable();
-		log.debug("Inicializando formulario, cashlogyActivo=" + cashlogyActivo);
+                boolean cashlogyActivo = ((PamplingPaymentsManagerImpl) paymentsManager).isCashlogyEnable();
+                log.debug("Inicializando formulario, cashlogyActivo=" + cashlogyActivo);
 
-		if (cashlogyActivo) {
-			if (panelPagos.getTabs().contains(panelPestanaPagoEfectivo)) {
-				panelPagos.getTabs().remove(panelPestanaPagoEfectivo);
-			}
-		}
-		else {
-			if (!panelPagos.getTabs().contains(panelPestanaPagoEfectivo)) {
-				panelPagos.getTabs().add(0, panelPestanaPagoEfectivo);
-			}
-			panelPagos.getSelectionModel().select(panelPestanaPagoEfectivo);
-		}
-	}
+                if (cashlogyActivo) {
+                        if (panelPagos.getTabs().contains(panelPestanaPagoEfectivo)) {
+                                panelPagos.getTabs().remove(panelPestanaPagoEfectivo);
+                        }
+                        btAnotarPago.setVisible(false);
+                        btAnotarPago.setManaged(false);
+                        btEfectivoCashlogy.setVisible(true);
+                        btEfectivoCashlogy.setManaged(true);
+                }
+                else {
+                        if (!panelPagos.getTabs().contains(panelPestanaPagoEfectivo)) {
+                                panelPagos.getTabs().add(0, panelPestanaPagoEfectivo);
+                        }
+                        panelPagos.getSelectionModel().select(panelPestanaPagoEfectivo);
+                        btAnotarPago.setVisible(true);
+                        btAnotarPago.setManaged(true);
+                        btEfectivoCashlogy.setVisible(false);
+                        btEfectivoCashlogy.setManaged(false);
+                }
+        }
 }

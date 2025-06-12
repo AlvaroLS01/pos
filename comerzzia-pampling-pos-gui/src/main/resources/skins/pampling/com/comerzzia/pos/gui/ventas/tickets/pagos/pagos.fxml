@@ -117,9 +117,14 @@
                                 <AnchorPane fx:id="panelMediosPago" minHeight="169.0" prefHeight="191.0" 
                                             prefWidth="751.0">
                                   <children>
-                                    <TabPane fx:id="panelPagos" disable="false" focusTraversable="false" 
-                                             layoutX="0.0" layoutY="-1.0" minHeight="169.0" pickOnBounds="false" 
-                                             prefHeight="188.0" prefWidth="754.0" rotateGraphic="false" side="BOTTOM" 
+                                    <Button fx:id="btEfectivoCashlogy" mnemonicParsing="false"
+                                            onAction="#accionBtEfectivoCashlogy" text="%Efectivo"
+                                            visible="false" managed="false"
+                                            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                            AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <TabPane fx:id="panelPagos" disable="false" focusTraversable="false"
+                                             layoutX="0.0" layoutY="-1.0" minHeight="169.0" pickOnBounds="false"
+                                             prefHeight="188.0" prefWidth="754.0" rotateGraphic="false" side="BOTTOM"
                                              styleClass="tab-forma-pago" tabClosingPolicy="UNAVAILABLE" visible="true">
                                       <tabs>
                                         <Tab fx:id="panelPestanaPagoEfectivo" text="%Efectivo">
