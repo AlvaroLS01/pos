@@ -30,6 +30,7 @@ import com.comerzzia.pos.util.format.FormatUtil;
 import com.comerzzia.pos.util.i18n.I18N;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 
 @Primary
 @Component
@@ -38,8 +39,7 @@ public class PamplingPagosController extends PagosController {
         @Autowired
         protected GermanyFiscalPrinterService germanyFiscalPrinterService;
 
-        @FXML
-        private Button btEfectivoCashlogy;
+       private Button btEfectivoCashlogy;
 
         private boolean autoAceptarEfectivo = false;
 
@@ -140,8 +140,7 @@ public class PamplingPagosController extends PagosController {
                 super.anotarPago(importe);
         }
 
-        @FXML
-        private void accionBtEfectivoCashlogy() {
+       private void accionBtEfectivoCashlogy() {
                 BigDecimal pendiente = ticketManager.getTicket().getTotales().getPendiente();
                 tfImporte.setText(FormatUtil.getInstance().formateaImporte(pendiente));
                 autoAceptarEfectivo = true;
@@ -175,9 +174,19 @@ public class PamplingPagosController extends PagosController {
 		return (printer != null && printer instanceof GermanyFiscalPrinter);
 	}
 
-	@Override
-	public void initializeForm() throws InitializeGuiException {
-		super.initializeForm();
+       @Override
+       public void initializeForm() throws InitializeGuiException {
+               super.initializeForm();
+
+               if (btEfectivoCashlogy == null) {
+                       btEfectivoCashlogy = new Button(I18N.getTexto("Efectivo"));
+                       btEfectivoCashlogy.setOnAction(e -> accionBtEfectivoCashlogy());
+                       AnchorPane.setTopAnchor(btEfectivoCashlogy, 0.0);
+                       AnchorPane.setBottomAnchor(btEfectivoCashlogy, 0.0);
+                       AnchorPane.setLeftAnchor(btEfectivoCashlogy, 0.0);
+                       AnchorPane.setRightAnchor(btEfectivoCashlogy, 0.0);
+                       panelPagoEfectivo.getChildren().add(btEfectivoCashlogy);
+               }
 
                 boolean cashlogyActivo = ((PamplingPaymentsManagerImpl) paymentsManager).isCashlogyEnable();
                 log.debug("Inicializando formulario, cashlogyActivo=" + cashlogyActivo);

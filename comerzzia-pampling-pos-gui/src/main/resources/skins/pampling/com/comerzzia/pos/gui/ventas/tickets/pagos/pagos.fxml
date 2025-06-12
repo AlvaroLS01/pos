@@ -126,15 +126,7 @@
                                           <content>
                                             <AnchorPane id="Content" fx:id="panelPagoEfectivo" focusTraversable="false"
                                                         minHeight="0.0" minWidth="0.0" prefHeight="133.0"
-                                                        prefWidth="753.9999">
-                                              <children>
-                                                <Button fx:id="btEfectivoCashlogy" mnemonicParsing="false"
-                                                        onAction="#accionBtEfectivoCashlogy" text="%Efectivo"
-                                                        visible="false" managed="false"
-                                                        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                                        AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                              </children>
-                                            </AnchorPane>
+                                                        prefWidth="753.9999" />
                                           </content>
                                         </Tab>
                                         <Tab fx:id="panelPestanaPagoTarjeta" text="%Tarjeta">
