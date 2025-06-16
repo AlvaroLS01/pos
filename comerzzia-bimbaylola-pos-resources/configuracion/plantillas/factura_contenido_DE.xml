@@ -174,6 +174,13 @@
 		#if(${ticket.getTotales().getPuntos()} > 0)
 			 <linea><texto>Ha obtenido ${ticket.getTotales().getPuntos()} puntos en esta compra.</texto></linea>
 		#end
+        #if( $salida && $salida.equalsIgnoreCase("pantalla") && $ticket.getCabecera().getDatosFidelizado().getTelefono() )
+            <linea line-size="4">
+                <texto size="40" align="left">
+                    Teléfono ${ticket.getCabecera().getDatosFidelizado().getTelefono()}
+                </texto>
+            </linea>
+        #end
 	   <!-- <linea><texto></texto></linea> -->
 	#end
 
