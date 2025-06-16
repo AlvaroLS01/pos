@@ -23,11 +23,6 @@
 	#set( $imprimirDatosFacturacion =  $ticket.getCabecera().getCliente().getDatosFactura())
 	#parse("./plantillas/datos_cabecera_PL.xml")
 	
-#if(${salida.equals("pantalla")})
-    #if(${ticket.getCabecera().getCliente().getTelefono1()})
-        <linea line-size="4"><texto size="40" align="left">Teléfono ${ticket.getCabecera().getCliente().getTelefono1()}</texto></linea>
-    #end
-#end
 	
     <linea line-size="4"><texto style="1">Data/Godzina           Dokument             Ka Sprzedaw</texto> </linea>	
 	<linea line-size="4"><texto>-------------------------------------------------------</texto> </linea>	
