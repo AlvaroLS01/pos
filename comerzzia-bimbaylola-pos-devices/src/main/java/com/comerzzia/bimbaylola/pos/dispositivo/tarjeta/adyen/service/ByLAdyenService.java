@@ -275,17 +275,33 @@ public class ByLAdyenService extends AdyenService {
 	}
 	
 	@Override
-	public DatosRespuestaPagoTarjeta getResponseSale(DatosRespuestaPagoTarjeta response, SaleToPOIResponse saleToPoiResponse, Sesion sesion) {
+        public DatosRespuestaPagoTarjeta getResponseSale(DatosRespuestaPagoTarjeta response, SaleToPOIResponse saleToPoiResponse, Sesion sesion) {
 
-		DatosRespuestaPagoTarjeta datosRespuesta = super.getResponseSale(response, saleToPoiResponse, sesion);
-		List<PaymentReceipt> paymentReceiptList = saleToPoiResponse.getPaymentResponse().getPaymentReceipt();
+                DatosRespuestaPagoTarjeta datosRespuesta = super.getResponseSale(response, saleToPoiResponse, sesion);
+                // According to new requirements, the application label sent to the
+                // backoffice must contain the AID value instead of the label
+                // returned by Adyen. After retrieving the generic information
+                // through the parent class, we overwrite this field using the
+                // AID already populated in the response object.
+                datosRespuesta.setApplicationLabel(datosRespuesta.getAID());
+                List<PaymentReceipt> paymentReceiptList = saleToPoiResponse.getPaymentResponse().getPaymentReceipt();
 
 		if (!paymentReceiptList.isEmpty()) {
 			datosRespuesta.setPedirFirma(paymentReceiptList.get(0).isRequiredSignatureFlag());
 		}
 
-		return datosRespuesta;
-	}
+                return datosRespuesta;
+        }
+
+        @Override
+        public DatosRespuestaPagoTarjeta getResponseReturn(DatosRespuestaPagoTarjeta response, SaleToPOIResponse saleToPoiResponse, Sesion sesion) {
+
+                DatosRespuestaPagoTarjeta datosRespuesta = super.getResponseReturn(response, saleToPoiResponse, sesion);
+                // Overwrite the application label with the AID value so the backoffice
+                // receives the correct information.
+                datosRespuesta.setApplicationLabel(datosRespuesta.getAID());
+                return datosRespuesta;
+        }
 	
 	@Override
 	public void generatePaymentRequest(DatosPeticionPagoTarjeta request, String currency, SaleToPOIRequest message, Boolean isNotReference, ApplicationInfo applicationInfo)
