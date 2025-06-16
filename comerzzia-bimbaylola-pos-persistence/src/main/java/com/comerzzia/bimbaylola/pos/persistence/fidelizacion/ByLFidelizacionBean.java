@@ -12,8 +12,10 @@ public class ByLFidelizacionBean extends FidelizacionBean {
 	private String consentimientoUsodatos;
 	private String consentimientoRecibenoti;
 	private byte[] firma;
-	private String email;
-	private String telefono;
+       private String email;
+
+       @XmlElement(name = "telefono")
+       private String telefono;
 
 	@XmlElement(name = "tipo_identificacion")
 	protected String tipoIdentificacion;
