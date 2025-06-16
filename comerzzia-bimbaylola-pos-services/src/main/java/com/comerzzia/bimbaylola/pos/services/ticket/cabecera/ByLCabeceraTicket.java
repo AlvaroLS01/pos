@@ -12,11 +12,13 @@ import org.springframework.stereotype.Component;
 
 import com.comerzzia.bimbaylola.pos.persistence.core.config.configcontadores.rangos.ConfigContadorRango;
 import com.comerzzia.bimbaylola.pos.persistence.core.contadores.ByLContadorBean;
+import com.comerzzia.bimbaylola.pos.persistence.fidelizacion.ByLFidelizacionBean;
 import com.comerzzia.bimbaylola.pos.persistence.giftcard.ByLGiftCardBean;
 import com.comerzzia.bimbaylola.pos.services.epsontse.EposOutput;
 import com.comerzzia.bimbaylola.pos.services.impresorafiscal.InformacionFiscal;
 import com.comerzzia.bimbaylola.pos.services.spark130f.Spark130FOutput;
 import com.comerzzia.bimbaylola.pos.services.vertex.CabeceraVertex;
+import com.comerzzia.pos.persistence.fidelizacion.FidelizacionBean;
 import com.comerzzia.pos.persistence.giftcard.GiftCardBean;
 import com.comerzzia.pos.services.ticket.cabecera.CabeceraTicket;
 import com.comerzzia.pos.services.ticket.cabecera.TarjetaRegaloTicket;
@@ -28,6 +30,9 @@ public class ByLCabeceraTicket extends CabeceraTicket {
 
 	@XmlElement(name = "email_ticket_electronico")
 	protected String email;
+	
+    @XmlElement(name = "telefono")
+    protected String telefono;
 
 	@XmlTransient
 	protected String idTransaccion;
@@ -125,6 +130,26 @@ public class ByLCabeceraTicket extends CabeceraTicket {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+
+    public String getTelefono() {
+            return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+            this.telefono = telefono;
+    }
+    
+    @Override
+    public void setDatosFidelizado(FidelizacionBean tarjeta) {
+            super.setDatosFidelizado(tarjeta);
+
+            if (tarjeta instanceof ByLFidelizacionBean) {
+                    this.telefono = ((ByLFidelizacionBean) tarjeta).getTelefono();
+            } else {
+                    this.telefono = null;
+            }
+    }
 
 	public String getIdTransaccion() {
 		return idTransaccion;
