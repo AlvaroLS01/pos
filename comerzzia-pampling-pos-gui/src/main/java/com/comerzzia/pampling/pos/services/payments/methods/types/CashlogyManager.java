@@ -34,10 +34,14 @@ public class CashlogyManager extends ContadoManager {
 	private static final Logger log = Logger.getLogger(CashlogyManager.class);
 
 	private String cashlogyBaseUrl;
-	private String cashlogyUser;
-	private String cashlogyPassword;
-	private String deviceId;
-	private boolean cashlogyActivo;
+        private String cashlogyUser;
+        private String cashlogyPassword;
+        private String deviceId;
+        private boolean cashlogyActivo;
+        private volatile boolean cancelRequested;
+        private String activeToken;
+        private String activeOperationId;
+        private CashlogyClient activeClient;
 
 	@Override
 	public void setConfiguration(PaymentMethodConfiguration configuration) {
@@ -64,25 +68,35 @@ public class CashlogyManager extends ContadoManager {
 	}
 
 	@Override
-	public boolean pay(BigDecimal amount) throws PaymentException {
-	    if (!cashlogyActivo) {
-	        log.debug("cashlogyActivo = N, delegando a ContadoManager.pay()");
-	        return super.pay(amount);
-	    }
+        public boolean pay(BigDecimal amount) throws PaymentException {
+            if (!cashlogyActivo) {
+                log.debug("cashlogyActivo = N, delegando a ContadoManager.pay()");
+                return super.pay(amount);
+            }
+
+            cancelRequested = false;
+            activeClient = null;
+            activeToken = null;
+            activeOperationId = null;
+
+            try {
 
 	    // 1) Login
 	    log.debug("→ PAY inicio: urlBase=" + cashlogyBaseUrl + " user=" + cashlogyUser + " deviceId=" + deviceId);
-	    CashlogyClient client = new CashlogyClient(cashlogyBaseUrl);
-	    LoginResponse loginResp = client.login(cashlogyUser, cashlogyPassword);
+            CashlogyClient client = new CashlogyClient(cashlogyBaseUrl);
+            LoginResponse loginResp = client.login(cashlogyUser, cashlogyPassword);
 	    log.debug("← loginResp.result=" + loginResp.getResult() + " token=" + loginResp.getToken());
 	    if (!"OK".equalsIgnoreCase(loginResp.getResult())) {
 	        throw new PaymentException("Error en login Cashlogy: " + loginResp.getMensajeError());
 	    }
-	    String token = loginResp.getToken();
+            String token = loginResp.getToken();
+            activeClient = client;
+            activeToken = token;
 
 	    // 2) Preparar petición de venta
 	    int cents = amount.multiply(new BigDecimal(100)).intValue();
-	    String operationId = generateOperationId();
+            String operationId = generateOperationId();
+            activeOperationId = operationId;
 	    String posId       = getPosId();
 	    SaleRequest saleReq = new SaleRequest(deviceId, operationId, posId, cents, "EUR");
 
@@ -107,13 +121,16 @@ public class CashlogyManager extends ContadoManager {
 	    if ("TRANSACTION_IN_PROGRESS".equalsIgnoreCase(saleResp.getResult())) {
 	        log.debug("Venta en progreso: esperando completación...");
 	        long deadline = System.currentTimeMillis() + 10_000; // timeout 10s
-	        while (System.currentTimeMillis() < deadline) {
-	            try {
-	                Thread.sleep(500);
-	            } catch (InterruptedException ie) {
-	                Thread.currentThread().interrupt();
-	                break;
-	            }
+                while (System.currentTimeMillis() < deadline) {
+                    if (cancelRequested) {
+                        throw new PaymentException("Venta cancelada por el usuario");
+                    }
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException ie) {
+                        Thread.currentThread().interrupt();
+                        break;
+                    }
 	            StatusSaleResponse st = client.statusSale(token);
 	            log.debug("← statusSale.result=" + st.getResult());
 	            if ("OK".equalsIgnoreCase(st.getResult())) {
@@ -128,16 +145,25 @@ public class CashlogyManager extends ContadoManager {
 	    }
 
 	    // 6) Comprobar resultado final
-	    if (!"OK".equalsIgnoreCase(saleResp.getResult())) {
-	        throw new PaymentException("Error en venta Cashlogy: " + saleResp.getMensajeError());
-	    }
+            if (cancelRequested) {
+                throw new PaymentException("Venta cancelada por el usuario");
+            }
+
+            if (!"OK".equalsIgnoreCase(saleResp.getResult())) {
+                throw new PaymentException("Error en venta Cashlogy: " + saleResp.getMensajeError());
+            }
 
 	    // 7) Disparar evento OK
 	    BigDecimal deposited = new BigDecimal(saleResp.getTotalDeposited()).divide(new BigDecimal(100));
 	    log.debug("Venta completada: deposited=" + deposited);
-	    getEventHandler().paymentOk(new PaymentOkEvent(this, getPaymentId(), deposited));
-	    return true;
-	}
+            getEventHandler().paymentOk(new PaymentOkEvent(this, getPaymentId(), deposited));
+            return true;
+        } finally {
+            activeClient = null;
+            activeToken = null;
+            activeOperationId = null;
+            cancelRequested = false;
+        }
 
 	@Override
 	public boolean returnAmount(BigDecimal amount) throws PaymentException {
@@ -217,9 +243,25 @@ public class CashlogyManager extends ContadoManager {
 	}
 
 	@Override
-	public boolean recordCashFlowImmediately() {
-		return true;
-	}
+        public boolean recordCashFlowImmediately() {
+                return true;
+        }
+
+        public synchronized void requestCancelSale() {
+                cancelRequested = true;
+                if (activeClient != null && activeToken != null && activeOperationId != null) {
+                        try {
+                                String posId = getPosId();
+                                CancelSaleRequest req = new CancelSaleRequest(deviceId, activeOperationId, posId);
+                                CancelSaleResponse resp = activeClient.cancelSale(req, activeToken);
+                                log.debug("CancelSale solicitado, resultado=" + resp.getResult());
+                        } catch (Exception e) {
+                                log.error("Error enviando cancelSale", e);
+                        }
+                } else {
+                        log.warn("requestCancelSale llamado sin venta activa");
+                }
+        }
 
 	private String generateOperationId() {
 		String opId = String.valueOf(System.currentTimeMillis());
