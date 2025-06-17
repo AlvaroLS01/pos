@@ -10,12 +10,16 @@ import javafx.stage.Stage;
 public abstract class CashlogyTask<V> extends BackgroundTask<V> {
 
         protected Stage stage;
-        protected Runnable cancelAction;
+    protected Runnable cancelAction;
 	
 	private static Logger log = Logger.getLogger(CashlogyTask.class);
 	
-        public void start(Stage stageR) {
-                start(stageR, null);
+    public void start(Stage stageR) {
+        start(stageR, null);
+    }
+
+    public void setCancelAction(Runnable cancelAction) {
+        this.cancelAction = cancelAction;
     }
 
         public void start(Stage stageR, Runnable cancelAction) {

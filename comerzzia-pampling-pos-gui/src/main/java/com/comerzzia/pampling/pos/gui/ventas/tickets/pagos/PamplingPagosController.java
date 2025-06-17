@@ -235,7 +235,7 @@ public class PamplingPagosController extends PagosController {
 		final String codMedioPagoFinal = codMedioPago;
 		if (((PamplingPaymentsManagerImpl) paymentsManager).isCashlogyEnable() && medioPagoSeleccionado.equals(MediosPagosService.medioPagoDefecto)) {
 
-			new CashlogyTask<Void>(){
+                    CashlogyTask<Void> task = new CashlogyTask<Void>(){
 
 				@Override
 				protected Void call() throws Exception {
@@ -271,11 +271,13 @@ public class PamplingPagosController extends PagosController {
 					btAnotarPago.setDisable(false);
 
 				}
-                        }.start(getStage(), () -> {
+                    }; // end of anonymous CashlogyTask
+                    task.setCancelAction(() -> {
                                 if (paymentMethodManager instanceof CashlogyManager) {
                                         ((CashlogyManager) paymentMethodManager).requestCancelSale();
                                 }
                         });
+                        task.start(getStage());
 
 		}
 		else {
