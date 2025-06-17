@@ -1,0 +1,191 @@
+<!--Esta plantilla usa un parámetro $esBoletaCompleta que no llega desde el POS. Se debe asignar como (con un solo corchete): ##set( $esBoletaCompleta = true )
+-->
+
+	#if (${pago.tieneDatosRespuestaPagoTarjeta()})
+		
+		#if(!$paperLess)
+			<!--Inicio boleta completa-->
+			#if($esBoletaCompleta)
+				#parse("./plantillas/datos_cabecera_de.xml")
+
+				<linea> <texto> FÜR DEN KUNDEN </texto> </linea>
+				<linea>
+					<texto size="40" align="left">${ticket.getCabecera().getFechaAsLocale()}</texto>
+				</linea>    
+			
+				<linea>
+					<texto size="29" align="left">${pago.getDesMedioPago()} </texto>
+					<texto size="11" align="right">${pago.getImporteAsString()}</texto> 
+				</linea>
+			#end 
+			<linea> <texto> </texto> </linea>
+<!--			<linea>
+				<texto size="50" align="center" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getDocumento()}</texto> 
+			</linea>
+			<linea>
+				<texto size="20" align="left" fontsize="4">EMPLEADO: </texto>
+				<texto size="30" align="right" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getEmpleado()}</texto>
+			</linea>
+			<linea>
+				<texto size="20" align="left" fontsize="4">ESTABLECIMIENTO: </texto>
+				<texto size="30" align="right" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getEstablecimiento()}</texto>
+			</linea>
+			<linea>
+				<texto size="20" align="left" fontsize="4">NÚMERO COMERCIO: </texto>
+				<texto size="30" align="right" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getFuc()}</texto>
+			</linea>
+			<linea>
+				<texto size="20" align="left" fontsize="4">FECHA - HORA: </texto>
+				<texto size="30" align="right" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getFechaBoleta()} - ${pago.getDatosRespuestaPagoTarjeta().getHoraBoleta()}</texto> 
+			</linea> -->
+			<linea>
+				<texto size="20" align="left" fontsize="4">KARTE: </texto>
+				<texto size="30" align="right" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getTarjeta()}</texto> 
+			</linea>
+			<linea>
+				<texto size="20" align="left" fontsize="4">TRANSAKTIONSNUMMER: </texto>
+				<texto size="30" align="right" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getNumOperacion()}</texto>
+			</linea>
+			<linea>
+				<texto size="20" align="left" fontsize="4">TRANSAKTIONSART: </texto>
+				<texto size="30" align="right" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getTipoOp()}</texto> 
+			</linea>
+<!--		<linea>
+				<texto size="20" align="left" fontsize="4">RESPUESTA ARC - ATC: </texto>
+				<texto size="30" align="right" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getARC()} - ${pago.getDatosRespuestaPagoTarjeta().getATC()}</texto> 
+			</linea> -->
+			<linea>
+				<texto size="20" align="left" fontsize="4">BETRAG: </texto>
+				<texto size="30" align="right" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getDatosPeticion().getImporte()}</texto> 
+			</linea>
+			<linea>
+				<texto size="20" align="left" fontsize="4">AUTORISIERUNGSNUMMER: </texto>
+				<texto size="30" align="right" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getCodAutorizacion()}</texto> 
+			</linea>
+			<linea>
+				<texto size="20" align="left" fontsize="4">AID: </texto>
+				<texto size="30" align="right" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getAID()}</texto> 
+			</linea>
+			<linea>
+				<texto size="20" align="left" fontsize="4">ANWENDUNGSBEZEICHNUNG: </texto>
+				<texto size="30" align="right" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getMarcaTarjeta()}</texto> 
+			</linea>			
+			<linea>
+				<texto size="20" align="left" fontsize="4">TRANSAKTIONSNUMMER: </texto>
+				<texto size="30" align="right" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getNumTransaccion()}</texto> 
+			</linea>
+			<linea>
+				<texto size="20" align="left" fontsize="4">VERIFIZIERUNGSART: </texto>
+				<texto size="30" align="right" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getTipoLectura()}</texto> 
+			</linea>
+<!--		#if($pago.getDatosRespuestaPagoTarjeta().getContactLess() && ($pago.getDatosRespuestaPagoTarjeta().getContactLess() == 1))
+			<linea>
+				<texto size="50" align="center" fontsize="4">OPERACIÓN CONTACTLESS</texto> 
+			</linea>
+			#end
+			#if($pago.getDatosRespuestaPagoTarjeta().getApplicationLabel() && !$pago.getDatosRespuestaPagoTarjeta().getApplicationLabel().isEmpty())
+			<linea>
+				<texto size="12" align="left" fontsize="4">LABEL: </texto>
+				<texto size="30" align="left" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getApplicationLabel()}</texto> 
+			</linea>
+			#end
+			#if($pago.getDatosRespuestaPagoTarjeta().getTitular() && !$pago.getDatosRespuestaPagoTarjeta().getTitular().isEmpty())
+			<linea>
+				<texto size="20" align="left" fontsize="4">TITULAR: </texto>
+				<texto size="30" align="left" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getTitular()}</texto> 
+			</linea>
+			#end
+			<linea>			
+				<texto size="20" align="left" fontsize="4">TERMINAL: </texto>
+				<texto size="30" align="right" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getTerminalId()}</texto> 
+			</linea> -->
+			<linea> 
+				<texto size="20" align="left" fontsize="4">ANTWORT: </texto>
+				<texto size="30" align="right" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getMsgRespuesta()}</texto> 
+			</linea>
+			<linea> <texto> </texto> </linea>
+			#if (${pago.getDatosRespuestaPagoTarjeta().isDCC()})
+				<linea> <texto> </texto> </linea>
+				<linea>
+					<texto size="40" align="center" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getAdicionales().get("linLitTrans")}</texto> 
+				</linea>
+				<linea>
+					<texto size="40" align="center" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getAdicionales().get("linLitDivisa")} ${pago.getDatosRespuestaPagoTarjeta().getImporteDivisa()}</texto> 
+				</linea>
+				<linea>
+					<texto size="40" align="center" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getAdicionales().get("linMarca")}</texto> 
+				</linea>
+				<linea>
+					<texto size="40" align="center" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getAdicionales().get("linMarkUp")}</texto> 
+				</linea>
+				<linea>
+					<texto size="40" align="center" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getAdicionales().get("linLitComision")}</texto> 
+				</linea>
+				<linea>
+					<texto size="40" align="center" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getAdicionales().get("linLitEntidad")}</texto> 
+				</linea>
+				<linea>
+					<texto size="40" align="center" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getAdicionales().get("linCambio")}</texto> 
+				</linea>
+				<linea>
+					<texto size="40" align="center" fontsize="4">${pago.getDatosRespuestaPagoTarjeta().getAdicionales().get("linLitInfCambio")}</texto> 
+				</linea>
+			#end
+			<!-- Si no es boleta completa y es devolucion, pido firma establecimiento.
+				 Si no es boleta completa y no es devolucion, no pido firma.
+				 Si es boleta completa y es devolucion, no pido firma. 
+				 Si es boleta completa y no es devolucion, pido firma cliente
+				
+				 La boleta completa siempre es copia para establecimiento-->
+			set ($esDevolucion = ($ticket.getCabecera().getTotal().compareTo(0) > 0) || ($ticket.getCabecera().getCodTipoDocumento().equals("DE")))
+			#if (!$esBoletaCompleta && $esDevolucion)
+				<linea>
+					<texto size="40" align="center" fontsize="4">UNTERSCHRIFT DES GESCHÄFTS</texto> 
+				</linea>
+				<linea >
+					<texto size="40" align="center">------------------------------</texto> 
+				</linea>
+				<linea><texto size="40" align="center">|                            |</texto></linea>
+				<linea><texto size="40" align="center">|                            |</texto></linea>
+				<linea><texto size="40" align="center">|                            |</texto></linea>
+				<linea><texto size="40" align="center">|                            |</texto></linea>
+				<linea><texto size="40" align="center">|                            |</texto></linea>
+				<linea><texto size="40" align="center">|                            |</texto></linea>
+				<linea><texto size="40" align="center">|                            |</texto></linea>
+				<linea><texto size="40" align="center">|                            |</texto></linea>
+				<linea>
+					<texto size="40" align="center">------------------------------</texto> 
+				</linea>
+			#elseif ($esBoletaCompleta && !$esDevolucion)
+				<linea>
+					<texto size="40" align="center" fontsize="4">UNTERSCHRIFT DES KUNDEN</texto> 
+				</linea>
+				<linea >
+					<texto size="40" align="center">------------------------------</texto> 
+				</linea>
+				<linea><texto size="40" align="center">|                            |</texto></linea>
+				<linea><texto size="40" align="center">|                            |</texto></linea>
+				<linea><texto size="40" align="center">|                            |</texto></linea>
+				<linea><texto size="40" align="center">|                            |</texto></linea>
+				<linea><texto size="40" align="center">|                            |</texto></linea>
+				<linea><texto size="40" align="center">|                            |</texto></linea>
+				<linea><texto size="40" align="center">|                            |</texto></linea>
+				<linea><texto size="40" align="center">|                            |</texto></linea>
+				<linea>
+					<texto size="40" align="center">------------------------------</texto> 
+				</linea>
+			#end
+		#end
+		
+		<!--Inicio boleta completa -->
+		#if ($esBoletaCompleta)
+			<linea><texto></texto></linea>
+			<linea>
+				<texto size="50" align="left">${ticket.getCabecera().getDesTipoDocumento()} : ${ticket.getCabecera().getCodTicket()}</texto>
+			</linea>
+			<linea><texto size="40" align="center">KOPIE FÜR DAS GESCHÄFT</texto></linea>
+			<corte></corte>
+		#end
+		<!--Fin boleta completa -->
+		<linea><texto></texto></linea>
+	#end
