@@ -62,27 +62,30 @@ public class CashlogyVentanaCargando extends Stage {
 
         // Panel principal con estilo popup
         ventana.panelInterno = new BorderPane();
+        ventana.panelInterno.setId("ventana-cargando");
 
-        // Mensaje superior
-        Label lbMensaje = new Label(I18N.getTexto("Inserte el dinero por favor"));
-        VBox vBoxTop = new VBox();
-        vBoxTop.setStyle("-fx-alignment: center; -fx-background-radius: 5 5 0 0; -fx-border-width:5;");
-        lbMensaje.setStyle("-fx-font-size: 20px;");
-        vBoxTop.getChildren().add(lbMensaje);
-        vBoxTop.setPadding(new Insets(10));
+        // Cabecera
+        Label lbHeader = new Label("Introduzca dinero");
+        lbHeader.setId("header-text");
+        VBox vBoxTop = new VBox(lbHeader);
+        vBoxTop.setId("header-box");
+        vBoxTop.setAlignment(Pos.CENTER);
+        vBoxTop.setPadding(new Insets(12));
+        ventana.panelInterno.setTop(vBoxTop);
 
         // Rueda de carga
         ventana.cargando = new ProgressIndicator();
         ventana.cargando.setPrefSize(70, 70);
+        ventana.cargando.getStyleClass().add("progress-cargando");
 
         VBox vBoxCentro = new VBox(ventana.cargando);
         vBoxCentro.setAlignment(Pos.CENTER);
-        vBoxCentro.setPadding(new Insets(10, 10, 10, 10));
+        vBoxCentro.setPadding(new Insets(10));
         ventana.panelInterno.setCenter(vBoxCentro);
 
         // Botón Cancelar
         Button btnCancelar = new Button("Cancelar");
-        btnCancelar.setStyle("-fx-font-size: 14px; -fx-padding: 6 20;");
+        btnCancelar.setId("btn-cancelar");
         btnCancelar.setOnAction(event -> {
             log.info("Botón Cancelar pulsado");
             if (onCancel != null) {
@@ -105,6 +108,7 @@ public class CashlogyVentanaCargando extends Stage {
         ventana.scene.setFill(Color.TRANSPARENT);
 
         POSApplication.getInstance().addBaseCSS(ventana.scene); // Tu CSS base, si aplica
+        ventana.scene.getStylesheets().add("/styles/dialog.css");
         ventana.setScene(ventana.scene);
 
         ventana.initOwner(stageOwner);
