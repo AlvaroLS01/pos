@@ -8,29 +8,35 @@ import com.comerzzia.pos.core.gui.BackgroundTask;
 import javafx.stage.Stage;
 
 public abstract class CashlogyTask<V> extends BackgroundTask<V> {
-	
-	protected Stage stage;
+
+        protected Stage stage;
+        protected Runnable cancelAction;
 	
 	private static Logger log = Logger.getLogger(CashlogyTask.class);
 	
-	public void start(Stage stageR) {
-		
-		this.stage = stageR;
-		currentThread = new Thread(this);
-		currentThread.setName(this.getClass().toString());
-		currentThread.start();
-		
-		mostrarVentanaCargando();
+        public void start(Stage stageR) {
+                start(stageR, null);
+    }
+
+        public void start(Stage stageR, Runnable cancelAction) {
+
+                this.stage = stageR;
+                this.cancelAction = cancelAction;
+                currentThread = new Thread(this);
+                currentThread.setName(this.getClass().toString());
+                currentThread.start();
+
+                mostrarVentanaCargando();
 
     }
 	
 	@Override
-	protected void mostrarVentanaCargando(){
-    	if(mostrarVentanaCargando){
-    		CashlogyVentanaCargando.crearVentanaCargando(stage);
-    		CashlogyVentanaCargando.mostrar();
-            
-    	}
+        protected void mostrarVentanaCargando(){
+        if(mostrarVentanaCargando){
+                CashlogyVentanaCargando.crearVentanaCargando(stage, cancelAction);
+                CashlogyVentanaCargando.mostrar();
+
+        }
     }
 	
 	@Override

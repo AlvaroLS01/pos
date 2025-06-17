@@ -40,8 +40,11 @@ public class CashlogyVentanaCargando extends Stage {
     protected Timer timer;
     protected int timeoutVentana = 0;
     
-    public static void crearVentanaCargando(Stage stageOwner) {
+    private static Runnable onCancel;
+
+    public static void crearVentanaCargando(Stage stageOwner, Runnable cancelAction) {
         ventana = new CashlogyVentanaCargando();
+        onCancel = cancelAction;
         ventana.timer = new Timer(10000, new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -82,6 +85,13 @@ public class CashlogyVentanaCargando extends Stage {
         btnCancelar.setStyle("-fx-font-size: 14px; -fx-padding: 6 20;");
         btnCancelar.setOnAction(event -> {
             log.info("Botón Cancelar pulsado");
+            if (onCancel != null) {
+                try {
+                    onCancel.run();
+                } catch (Exception e) {
+                    log.error("Error ejecutando acción de cancelación", e);
+                }
+            }
             cerrar();
         });
 

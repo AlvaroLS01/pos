@@ -13,6 +13,7 @@ import com.comerzzia.pampling.pos.devices.impresoras.fiscal.alemania.GermanyFisc
 import com.comerzzia.pampling.pos.services.fiscal.alemania.GermanyFiscalPrinterService;
 import com.comerzzia.pampling.pos.services.payments.PamplingPaymentsManagerImpl;
 import com.comerzzia.pampling.pos.services.payments.methods.types.CashlogyTask;
+import com.comerzzia.pampling.pos.services.payments.methods.types.CashlogyManager;
 import com.comerzzia.pos.core.dispositivos.Dispositivos;
 import com.comerzzia.pos.core.dispositivos.dispositivo.impresora.IPrinter;
 import com.comerzzia.pos.core.dispositivos.dispositivo.tarjeta.TarjetaException;
@@ -270,7 +271,11 @@ public class PamplingPagosController extends PagosController {
 					btAnotarPago.setDisable(false);
 
 				}
-			}.start(getStage());
+                        }.start(getStage(), () -> {
+                                if (paymentMethodManager instanceof CashlogyManager) {
+                                        ((CashlogyManager) paymentMethodManager).requestCancelSale();
+                                }
+                        });
 
 		}
 		else {
