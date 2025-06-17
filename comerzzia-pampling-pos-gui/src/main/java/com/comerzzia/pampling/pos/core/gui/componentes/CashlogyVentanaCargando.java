@@ -62,31 +62,27 @@ public class CashlogyVentanaCargando extends Stage {
 
         // Panel principal con estilo popup
         ventana.panelInterno = new BorderPane();
-        ventana.panelInterno.getStyleClass().add("mainFxmlClass");
 
         // Mensaje superior
-        Label lbMensaje = new Label(I18N.getTexto("Introduzca dinero"));
+        Label lbMensaje = new Label(I18N.getTexto("Inserte el dinero por favor"));
         VBox vBoxTop = new VBox();
         vBoxTop.setStyle("-fx-alignment: center; -fx-background-radius: 5 5 0 0; -fx-border-width:5;");
         lbMensaje.setStyle("-fx-font-size: 20px;");
         vBoxTop.getChildren().add(lbMensaje);
         vBoxTop.setPadding(new Insets(10));
-        ventana.panelInterno.setTop(vBoxTop);
 
         // Rueda de carga
         ventana.cargando = new ProgressIndicator();
         ventana.cargando.setPrefSize(70, 70);
 
-        Label lbCargando = new Label(I18N.getTexto("Cargando..."));
-        VBox vBoxCentro = new VBox(ventana.cargando, lbCargando);
+        VBox vBoxCentro = new VBox(ventana.cargando);
         vBoxCentro.setAlignment(Pos.CENTER);
-        vBoxCentro.setSpacing(10);
         vBoxCentro.setPadding(new Insets(10, 10, 10, 10));
         ventana.panelInterno.setCenter(vBoxCentro);
 
         // Botón Cancelar
-        Button btnCancelar = new Button(I18N.getTexto("Cancelar"));
-        btnCancelar.getStyleClass().add("btCancelar");
+        Button btnCancelar = new Button("Cancelar");
+        btnCancelar.setStyle("-fx-font-size: 14px; -fx-padding: 6 20;");
         btnCancelar.setOnAction(event -> {
             log.info("Botón Cancelar pulsado");
             if (onCancel != null) {

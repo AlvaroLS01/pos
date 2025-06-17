@@ -163,6 +163,7 @@ public class CashlogyManager extends ContadoManager {
             activeToken = null;
             activeOperationId = null;
             cancelRequested = false;
+        	}
         }
 
 	@Override
