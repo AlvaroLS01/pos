@@ -1,112 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
-	<groupId>com.comerzzia.pampling.pos</groupId>
-	<artifactId>comerzzia-pampling-pos</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>com.comerzzia.byl</groupId>
+	<artifactId>comerzzia-bimbaylola-pos</artifactId>
+	<version>4.6.14</version>
 	<packaging>pom</packaging>
-	
+	<name>comerzzia-bimbaylola-pos</name>
+
 	<properties>
-		<maven.test.skip>true</maven.test.skip>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<comerzzia.pos.version>4.8.1.250128</comerzzia.pos.version>
+		<maven.test.skip>true</maven.test.skip>		
+		<cmzVersion>4.6.14</cmzVersion>
+		<bo.webservices.version>4.6.14-SNAPSHOT</bo.webservices.version>
 	</properties>
-	
- 	<repositories>
+
+	<repositories>
 		<repository>
-			<id>comerzzia</id>
+			<id>artifactory</id>
 			<url>http://repo.comerzzia.com/artifactory/comerzzia/</url>
+		</repository>
+		<repository>
+			<id>clientes</id>
+			<url>http://software.tier1.es/artifactory/clientes.local/</url>
+		</repository>
+		<repository>
+			<id>tier1</id>
+			<url>http://software.tier1.es/artifactory/tier1-external-libs.local/</url>
 		</repository>
 	</repositories>
 
 	<pluginRepositories>
 		<pluginRepository>
-			<id>comerzzia</id>
+			<id>artifactory</id>
 			<url>http://repo.comerzzia.com/artifactory/comerzzia/</url>
 		</pluginRepository>
 	</pluginRepositories>
-	
- 	<dependencies>
-        <!-- map all log systems to logback -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>log4j-over-slf4j</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-to-slf4j</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jul-to-slf4j</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>	
-		<!-- javafx dependences -->
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>jfxrt</artifactId>
-			<scope>provided</scope>
-		</dependency>  
-		<!-- global libraries -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-		</dependency>
-		<dependency>
-		    <groupId>epsonupos.frame</groupId>
-		    <artifactId>epsonupos.frame</artifactId>
-		    <version>1.0</version>
-		</dependency>
-		<dependency>
-		    <groupId>xerces</groupId>
-		    <artifactId>xercesImpl</artifactId>
-		    <version>2.9.1</version>
-		</dependency>
-	</dependencies>
-	
-	<dependencyManagement>
-	   <dependencies>
-	      <dependency>
-	        <groupId>com.comerzzia.pos</groupId>
-            <artifactId>comerzzia-pos-dependencies</artifactId>
-            <version>${comerzzia.pos.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-	      </dependency>
-	   </dependencies>
-	</dependencyManagement>
 
 	<build>
 		<pluginManagement>
 			<plugins>
- 				<plugin>
+				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
 					<configuration>
 						<encoding>${project.build.sourceEncoding}</encoding>
 						<source>${java.version}</source>
@@ -116,16 +53,21 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.4.3</version>
 					<configuration>
 						<encoding>${project.build.sourceEncoding}</encoding>
 					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
-	</build>	
-  <modules>
-    <module>comerzzia-pampling-pos-gui</module>
-    <module>comerzzia-pampling-pos-application</module>
-    <module>comerzzia-pampling-pos-resources</module>
-  </modules>
+	</build>
+
+	<modules>
+		<module>comerzzia-bimbaylola-pos-util</module>
+		<module>comerzzia-bimbaylola-pos-persistence</module>
+		<module>comerzzia-bimbaylola-pos-services</module>
+		<module>comerzzia-bimbaylola-pos-gui</module>
+		<module>comerzzia-bimbaylola-pos-skin</module>
+		<module>comerzzia-bimbaylola-pos-devices</module>
+	</modules>
 </project>
