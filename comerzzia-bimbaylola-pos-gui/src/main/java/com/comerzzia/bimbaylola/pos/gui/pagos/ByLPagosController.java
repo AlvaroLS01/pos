@@ -788,13 +788,9 @@ public class ByLPagosController extends PagosController {
 	}
 
 	@Override
-	public void initializeFocus() {
-		restaurarFocoTFImporte();
-		/* Añadimos la condición de que debe tener permisos para poder pagar con tarjeta regalo. */
-		if (pedirTarjetaRegalo && comprobarPermisosPagos()) {
-			procesarPagoTarjetaRegalo(mediosPagosService.getMedioPago(COD_MP_ABONO));
-		}
-	}
+       public void initializeFocus() {
+               restaurarFocoTFImporte();
+       }
 	
 	@Override
 	public void initializeComponents() {
@@ -1096,9 +1092,12 @@ public class ByLPagosController extends PagosController {
 		return limitePagoEfectivo;
 	}
 
-	protected void procesarPagoTarjetaRegalo(final MedioPagoBean medioPagoBean) {
-		log.info("procesarPagoTarjetaRegalo() - Iniciamos el procesamiento del Pago con Tarjeta Regalo...");
-		try {
+       protected void procesarPagoTarjetaRegalo(final MedioPagoBean medioPagoBean) {
+               log.info("procesarPagoTarjetaRegalo() - Iniciamos el procesamiento del Pago con Tarjeta Regalo...");
+               if (!Dispositivos.getInstance().getGiftCard().isMedioPagoGiftCard(medioPagoBean.getCodMedioPago())) {
+                       return;
+               }
+               try {
 			if (ticketManager.getTicket().getCabecera().getTarjetaRegalo() == null) {
 				Stage stage = null;
 				
