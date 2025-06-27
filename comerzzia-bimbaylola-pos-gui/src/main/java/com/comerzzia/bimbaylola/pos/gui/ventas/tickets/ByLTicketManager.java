@@ -1279,11 +1279,18 @@ public class ByLTicketManager extends TicketManager implements ByLTicketRegalo{
 			callback.onFailure(ex);
 		}
 
-		@Override
-		protected void succeeded() {
-			super.succeeded();
-			callback.onSucceeded();
-		}
+                @Override
+                protected void succeeded() {
+                        super.succeeded();
+                        /*
+                         * Clear the list of gift cards with provisional
+                         * movements to avoid applying compensations on
+                         * subsequent transactions when the current ticket has
+                         * been successfully completed.
+                         */
+                        SpringContext.getBean(ByLGiftCard.class).limpiarListaTarjetasRegaloAnulables();
+                        callback.onSucceeded();
+                }
 
 	}
 
