@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.components.alphanumerickeyboard.*?>
+<?import com.comerzzia.pos.core.gui.components.numerickeypad.*?>
+<?import com.comerzzia.pos.core.gui.components.textField.*?>
+<?import java.lang.*?>
+<?import java.lang.String?>
+<?import java.net.*?>
+<?import java.net.URL?>
+<?import javafx.collections.*?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
+<?scenebuilder-stylesheet ../../../../styles/styles.css?>
+<?scenebuilder-stylesheet ../../../../styles/colors.css?>
+
+<AnchorPane id="AnchorPane" prefHeight="728.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox alignment="CENTER" styleClass="titulo-ventana">
+          <children>
+            <Label fx:id="windowTitle" text="Editar artículo" />
+          </children>
+        </HBox>
+        <VBox alignment="CENTER" fillWidth="false" spacing="10.0" VBox.vgrow="ALWAYS">
+          <children>
+            <HBox alignment="CENTER_LEFT" fillHeight="true" prefHeight="-1.0" prefWidth="432.0" />
+            <HBox alignment="CENTER_LEFT" prefWidth="500.0" VBox.vgrow="NEVER">
+              <children>
+                <VBox prefHeight="-1.0" prefWidth="-1.0">
+                  <children>
+                    <Label alignment="CENTER_RIGHT" prefHeight="-1.0" prefWidth="-1.0" text="%ARTÍCULO">
+                      <font>
+                        <Font size="16.0" fx:id="x1" />
+                      </font>
+                    </Label>
+                    <HBox prefHeight="-1.0" prefWidth="-1.0" spacing="2.0">
+                      <children>
+                        <TextField id="tfItems" fx:id="tfItem" disable="false" editable="false" focusTraversable="false" prefHeight="-1.0" prefWidth="150.0" styleClass="tf-black-text" />
+                        <TextField fx:id="tfDescription" editable="false" focusTraversable="false" onKeyReleased="#actionEnterAccept" prefHeight="-1.0" prefWidth="431.0" styleClass="tf-black-text" />
+                      </children>
+                      <VBox.margin>
+                        <Insets />
+                      </VBox.margin>
+                    </HBox>
+                  </children>
+                </VBox>
+              </children>
+            </HBox>
+            <HBox fx:id="hbCombination1" alignment="CENTER_LEFT" prefWidth="500.0" spacing="5.0" VBox.vgrow="NEVER">
+              <children>
+                <VBox prefHeight="-1.0" prefWidth="200.0">
+                  <children>
+                    <Label fx:id="lbCombination1" alignment="CENTER_RIGHT" font="$x1" prefHeight="-1.0" prefWidth="-1.0" text="%DESGLOSE1" />
+                    <HBox prefHeight="-1.0" prefWidth="-1.0">
+                      <children>
+                        <TextField fx:id="tfCombination1" editable="false" focusTraversable="false" prefHeight="-1.0" prefWidth="-1.0" styleClass="tf-black-text" />
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+                <VBox prefHeight="-1.0" prefWidth="200.0">
+                  <children>
+                    <Label fx:id="lbCombination2" alignment="CENTER_RIGHT" font="$x1" prefHeight="-1.0" prefWidth="-1.0" text="DESGLOSE2" />
+                    <HBox prefHeight="-1.0" prefWidth="-1.0">
+                      <children>
+                        <TextField fx:id="tfCombination2" editable="false" focusTraversable="false" prefHeight="-1.0" prefWidth="-1.0" styleClass="tf-black-text" />
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+              </children>
+            </HBox>
+            <HBox fx:id="hbCombination2" alignment="CENTER_LEFT" prefWidth="500.0" spacing="5.0" VBox.vgrow="NEVER" />
+            <HBox alignment="CENTER_LEFT" prefWidth="500.0" spacing="5.0" VBox.vgrow="NEVER">
+              <children>
+                <VBox prefHeight="-1.0" prefWidth="200.0">
+                  <children>
+                    <Label alignment="CENTER_RIGHT" font="$x1" prefHeight="-1.0" prefWidth="-1.0" text="%VENDEDOR" />
+                    <HBox prefHeight="-1.0" prefWidth="-1.0">
+                      <children>
+                        <ComboBox fx:id="cbCashier" prefHeight="-1.0" prefWidth="192.0" styleClass="combo">
+                          <items>
+                            <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Item 1" />
+                              <String fx:value="Item 2" />
+                              <String fx:value="Item 3" />
+                            </FXCollections>
+                          </items>
+                        </ComboBox>
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+              </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="500.0" spacing="5.0" VBox.vgrow="NEVER">
+              <children>
+                <VBox prefWidth="100.0">
+                  <children>
+                    <Label alignment="CENTER_RIGHT" font="$x1" text="%CANTIDAD">
+                      <graphic>
+                        <Label alignment="CENTER_RIGHT" font="$x1" text="*" />
+                      </graphic>
+                    </Label>
+                    <HBox>
+                      <children>
+                        <NumericTextField fx:id="tfMeasureQuantity" alignment="CENTER_RIGHT" onKeyReleased="#actionEnterAccept" styleClass="tf-black-text" />
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+                <VBox alignment="BOTTOM_CENTER" prefHeight="-1.0" prefWidth="-1.0">
+                  <children>
+                    <HBox alignment="BOTTOM_CENTER" prefHeight="-1.0" prefWidth="-1.0">
+                      <children>
+                        <ComboBox id="cbCashier" fx:id="cbUnitMeasureCodes" prefHeight="-1.0" prefWidth="192.0" styleClass="combo">
+                          <items>
+                            <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Item 1" />
+                              <String fx:value="Item 2" />
+                              <String fx:value="Item 3" />
+                            </FXCollections>
+                          </items>
+                        </ComboBox>
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+                <VBox prefWidth="100.0">
+                  <children>
+                    <Label alignment="CENTER_RIGHT" font="$x1" text="%UNIDADES">
+                      <graphic>
+                        <Label alignment="CENTER_RIGHT" font="$x1" text="*" />
+                      </graphic>
+                    </Label>
+                    <HBox>
+                      <children>
+                        <NumericTextField fx:id="tfQuantity" alignment="CENTER_RIGHT" onKeyReleased="#actionEnterAccept" styleClass="tf-black-text" />
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+              </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="500.0" spacing="5.0" VBox.vgrow="NEVER">
+              <children>
+                <VBox prefWidth="100.0">
+                  <children>
+                    <Label alignment="CENTER_RIGHT" font="$x1" text="%PRECIO">
+                      <graphic>
+                        <Label alignment="CENTER_RIGHT" font="$x1" text="*" />
+                      </graphic>
+                    </Label>
+                    <HBox>
+                      <children>
+                        <NumericTextField fx:id="tfPrice" alignment="TOP_RIGHT" onKeyReleased="#actionEnterAccept" styleClass="tf-black-text" />
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+                <VBox prefWidth="100.0">
+                  <children>
+                    <Label fx:id="lbDiscount" alignment="CENTER_RIGHT" font="$x1" text="%DESCUENTO">
+                      <graphic>
+                        <Label alignment="CENTER_RIGHT" font="$x1" text="*" />
+                      </graphic>
+                    </Label>
+                    <HBox>
+                      <children>
+                        <NumericTextField fx:id="tfDiscount" alignment="CENTER_RIGHT" onKeyReleased="#actionEnterAccept" styleClass="tf-black-text" />
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+                <VBox prefWidth="100.0">
+                  <children>
+                    <Label fx:id="lbTotalPrice" alignment="CENTER_RIGHT" font="$x1" text="%PRECIO TOTAL" />
+                    <HBox>
+                      <children>
+                        <NumericTextField fx:id="tfTotalPrice" alignment="CENTER_RIGHT" onKeyReleased="#actionEnterAccept">
+                          <styleClass>
+                            <String fx:value="" />
+                            <String fx:value="tf-black-text" />
+                          </styleClass>
+                        </NumericTextField>
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+                <VBox prefWidth="100.0">
+                  <children>
+                    <Label fx:id="lbAmount" alignment="CENTER_RIGHT" font="$x1" text="%IMPORTE" />
+                    <HBox>
+                      <children>
+                        <NumericTextField fx:id="tfAmount" alignment="TOP_RIGHT" focusTraversable="false" onKeyReleased="#actionEnterAccept">
+                          <styleClass>
+                            <String fx:value="" />
+                            <String fx:value="tf-black-text" />
+                          </styleClass>
+                        </NumericTextField>
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+              </children>
+            </HBox>
+            <HBox fx:id="hbSerialNumbers" alignment="CENTER_LEFT" maxWidth="500.0" prefWidth="500.0">
+              <children>
+                <VBox prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
+                  <children>
+                    <Label text="%Nº SERIES" />
+                    <Label id="lbError" fx:id="lbSerialNumbers" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" text="" wrapText="true" />
+                  </children>
+                </VBox>
+              </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="500.0">
+              <children>
+                <Label fx:id="lbError" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="lbError" text="" HBox.hgrow="ALWAYS" />
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+        <HBox fx:id="keyboards" alignment="CENTER" minHeight="30.0" prefHeight="-1.0" spacing="15.0" style="-fx-background-color:#F9F9F9&#10;" VBox.vgrow="NEVER">
+          <children>
+            <AlphanumericKeyboard fx:id="keyboard" prefWidth="500.0" />
+            <NumericKeypad fx:id="numpad" prefWidth="320.0" />
+          </children>
+        </HBox>
+        <HBox alignment="BOTTOM_RIGHT" spacing="5.0">
+          <children>
+            <HBox fx:id="hbSerialBundles" alignment="CENTER" prefHeight="42.0">
+              <children>
+                <Button fx:id="btSerialNumbers" mnemonicParsing="false" onAction="#assignSerialNumbers" prefWidth="172.0" styleClass="blue-btn" text="%Números de serie" />
+              </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="62.0" spacing="10.0" HBox.hgrow="ALWAYS">
+              <children>
+                <Button fx:id="btAccept" font="$x1" minHeight="42.0" minWidth="115.0" mnemonicParsing="false" onAction="#actionAccept" prefHeight="42.0" prefWidth="115.0" style="" styleClass="blue-btn" text="%Aceptar" />
+                <Button fx:id="btCancel" font="$x1" minHeight="42.0" minWidth="115.0" mnemonicParsing="false" onAction="#closeCancel" prefHeight="42.0" prefWidth="115.0" styleClass="btn" text="%Cancelar" />
+              </children>
+              <HBox.margin>
+                <Insets />
+              </HBox.margin>
+            </HBox>
+          </children>
+          <padding>
+            <Insets left="10.0" right="10.0" />
+          </padding>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

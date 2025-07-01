@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-stylesheet ../../../gui/styles/styles.css?>
+
+<AnchorPane id="AnchorPane" minHeight="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" >
+  <children>
+    <VBox prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" styleClass="titulo-ventana">
+          <children>
+            <Label fx:id="lbTitulo" alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" text="%Expresión tiendas" />
+          </children>
+        </HBox>
+        <HBox prefHeight="-1.0" prefWidth="-1.0" spacing="3.0">
+          <children>
+            <VBox prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
+              <children>
+                <HBox prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
+                <HBox prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+                  <children>
+                    <Label alignment="CENTER_LEFT" contentDisplay="LEFT" maxWidth="558.0" prefHeight="-1.0" prefWidth="-1.0" text="%Expresiones soportadas: T = todas las tiendas; G:XX = Grupo XX; E:YYYYY = Etiqueta YYYYY; XXXX = Código tienda." wrapText="true" HBox.hgrow="ALWAYS">
+                      <HBox.margin>
+                        <Insets />
+                      </HBox.margin>
+                    </Label>
+                  </children>
+                </HBox>
+                <HBox prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+                  <children>
+                    <Label alignment="CENTER_LEFT" contentDisplay="LEFT" prefHeight="-1.0" prefWidth="-1.0" text="%Los distintos comandos de los que se compone la expresión deberán ir separados por espacios." wrapText="true" HBox.hgrow="ALWAYS">
+                      <HBox.margin>
+                        <Insets />
+                      </HBox.margin>
+                    </Label>
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="-1.0" prefWidth="-1.0">
+                  <children>
+                    <Button mnemonicParsing="false" onAction="#closeCancel" prefHeight="42.0" prefWidth="115.0" styleClass="main-btn" text="%Aceptar">
+                      <stylesheets>
+                        <URL value="@../../../gui/styles/styles.css" />
+                      </stylesheets>
+                    </Button>
+                  </children>
+                </HBox>
+              </children>
+            </VBox>
+          </children>
+          <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+          </padding>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

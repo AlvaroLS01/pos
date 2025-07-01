@@ -1,0 +1,36 @@
+comerzzia:
+   pos:
+      developerMode: true
+      developerModeInfo:
+         usuario: "admin"
+         password: "czz"
+         autologin: false
+         forceReload: false
+      interfaceInfo:
+        width: 1024
+        height: 768
+        fullscreen: false
+      buttonsLogin : false
+      country: "ES"
+      language: "es"
+      mainAction: 4000
+      menu: "POS-V5"
+      languageSelection: true
+      notificationsRequestSeconds: 0
+      virtualKeyboard:
+       show: false
+       showBottomInitially: false
+       initScale: 1.4
+       maxScale: 1
+       minScale: 1
+      #application: JPOS
+      #languageSelection: false
+      #skin: standard
+      #buttonsLogin: false
+      #notificationsRequestSeconds: 0
+      #showAlphanumericKeyboard: false
+      #iseRestUrl: http://127.0.0.1:8080/comerzzia-inStoreEngine/ws/
+      #inactivityTimer: 0
+      #imagesPath: C:\path\to\pos\config\images\
+      #defaultImage: C:\path\to\pos\config\images\defaultimage.png
+      #siteItemUrl: http://127.0.0.1:8081/

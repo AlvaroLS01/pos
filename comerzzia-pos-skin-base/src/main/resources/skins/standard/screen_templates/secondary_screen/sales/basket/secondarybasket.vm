@@ -1,0 +1,46 @@
+#doctype
+<html>
+	#htmlhead("/secondary_screen/sales/basket/secondarybasket.css")
+	<body class="czz-base">
+	    #environmentData('/secondary_screen/sales/basket/secondarybasket')
+	    #if($basket.getLines().size() <= 0)
+	    #else
+			#set($max = $basket.getLines().size() - 1)
+			#set($line = $basket.getLines()[$max])
+			#set($isVariableWeight = $line.getItemData().getWeightRequired())
+		    <div class="czz-card content secondary-text">
+		    	<div class="row">
+		    		<div class="col">
+	    				<div class="text-center">${line.getItemDes()}#if($line.getDiscount() > 0) <i class="icon-promotion"></i> #end</div>
+		    		</div>
+		    	</div>
+		    	<div class="row">
+					<div class="col czznumber text-end">
+						#if($isVariableWeight)
+							#number($line.getQuantity() 3)kg x #balance($line.getRateItem().getSalesPriceWithTaxes())#monetarySimbol()/kg
+						#else
+							#if($line.getQuantity() != 1)
+								#number($line.getQuantity())un x #balance($line.getPriceWithTaxes())#monetarySimbol()/un 
+							#end
+						#end
+					</div>
+				</div>
+				<div class="row">
+					<div class="czznumber text-end">#balance($line.getExtendedPriceWithTaxes()) #monetarySimbol()</div>
+				</div>
+		    </div>
+				##Filler here makes totals stick to bottom
+			<div class="czz-card-blue bold">
+				<div class="d-flex flex-wrap">
+					<div class="me-auto pe-2">
+						<span class="big-text">#i18n("Artículos")</span><span class="czznumber">#number($basket.getTotals().getTotalItems())</span>
+					</div>
+					<div class="text-end">
+						<span class="big-text me-3">#i18n("Total")</span>
+						<span class="czznumber">#balance($basket.getTotals().getTotalToPay())#monetarySimbol()</span>
+					</div>
+				</div>
+			</div>
+			#end
+	</body> 
+</html>

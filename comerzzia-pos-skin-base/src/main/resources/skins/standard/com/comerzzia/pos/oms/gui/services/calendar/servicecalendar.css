@@ -1,0 +1,30 @@
+.table-row-cell:empty {
+    -fx-background-color: -color-base-1;
+}
+ 
+.table-row-cell:empty .table-cell {
+    -fx-border-width: 0px;
+}
+
+.available-cell {
+    -fx-background-color: #CEF6CE;
+}
+
+.unavailable-cell {
+    -fx-background-color: #F5A9A9;;
+}
+
+.empty-cell {
+    -fx-background-color: -color-base-1;
+}
+
+.available-cell:selected {
+    -fx-background-color: #417405;
+    -fx-text-fill: white;
+}
+
+.unavailable-cell:selected {
+    -fx-background-color: #d11818;
+    -fx-text-fill: -color-text-alternative;
+}
+

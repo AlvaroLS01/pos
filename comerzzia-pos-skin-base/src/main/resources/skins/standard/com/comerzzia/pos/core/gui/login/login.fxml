@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-stylesheet ../../../gui/styles/styles.css?>
+<?scenebuilder-stylesheet ../../../gui/styles/colors.css?>
+
+<AnchorPane id="AnchorPane" maxHeight="-1.0" maxWidth="-1.0" minWidth="-1.0" prefHeight="700.0" prefWidth="1024.0" style="" styleClass="null" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox id="HBox" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="1024.0" spacing="1.0" styleClass="background-alternative">
+          <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="1.0" styleClass="header-gradient" HBox.hgrow="ALWAYS">
+              <children>
+                <HBox prefHeight="100.0" prefWidth="200.0" styleClass="background-alternative" HBox.hgrow="NEVER">
+                  <children>
+                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@../../../gui/images/logos/logo-czz-white.png" />
+                      </image>
+                    </ImageView>
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" styleClass="background-alternative" HBox.hgrow="ALWAYS">
+                  <children>
+                    <ImageView fx:id="ivCustomerLogo" fitHeight="47.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="true" HBox.hgrow="SOMETIMES">
+                      <image>
+                        <Image url="@../../../gui/images/logos/header-logo.png" />
+                      </image>
+                    </ImageView>
+                    <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="257.0" HBox.hgrow="ALWAYS">
+                      <children>
+                        <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                          <children>
+                            <Label fx:id="lbPOSData" styleClass="label-soft, alternative-text" text="Store Id · Store Description · Cash ID" />
+                          </children>
+                          <HBox.margin>
+                            <Insets right="13.0" />
+                          </HBox.margin>
+                        </VBox>
+                      </children>
+                    </HBox>
+                  </children>
+                </HBox>
+                <HBox prefHeight="50.0" prefWidth="110.0" styleClass="background-alternative">
+                  <children>
+                    <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                      <children>
+                        <Label fx:id="lbDate" styleClass="label-soft, alternative-text" text="99/99/9999" />
+                        <Label fx:id="lbTime" styleClass="label-soft, alternative-text" text="99:99" />
+                      </children>
+                      <HBox.margin>
+                        <Insets right="13.0" />
+                      </HBox.margin>
+                    </VBox>
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" onMouseClicked="#closeCancel" prefHeight="50.0" prefWidth="-1.0" styleClass="background-alternative" HBox.hgrow="SOMETIMES">
+                  <children>
+                    <HBox prefHeight="50.0" prefWidth="48.0" styleClass="icon-close" />
+                    <Label fx:id="lbCloseButton" prefWidth="-1.0" styleClass="alternative-text, medium-text, bold" text="%SALIR" HBox.hgrow="ALWAYS" />
+                  </children>
+                  <padding>
+                    <Insets right="13.0" />
+                  </padding>
+                  <HBox.margin>
+                    <Insets fx:id="x2" />
+                  </HBox.margin>
+                </HBox>
+              </children>
+            </HBox>
+          </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+          <children>
+            <VBox prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
+              <children>
+                <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+                  <children>
+                    <VBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="NEVER">
+                      <children>
+                        <Label fx:id="lbError" alignment="CENTER" prefHeight="30.0" prefWidth="-1.0" styleClass="lbError" text="" textAlignment="LEFT" />
+                        <Label fx:id="lbLoggedIn" alignment="CENTER" prefHeight="30.0" prefWidth="-1.0" styleClass="lbError, texto-centrado" text="" />
+                        <HBox prefHeight="-1.0" prefWidth="-1.0" styleClass="czz-card-blue">
+                          <children>
+                            <VBox alignment="CENTER" depthTest="INHERIT" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                              <children>
+                                <VBox prefHeight="-1.0" prefWidth="-1.0">
+                                  <children>
+                                    <Label fx:id="lbUser" alignment="CENTER_LEFT" maxHeight="-1.0" minHeight="-1.0" prefHeight="-1.0" prefWidth="-1.0" text="%Usuario">
+                                      <VBox.margin>
+                                        <Insets top="10.0" fx:id="x1" />
+                                      </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="tfUser" maxHeight="-1.0" minHeight="-1.0" onAction="#actionBtAccept" prefHeight="40.0" prefWidth="330.0" promptText="%Usuario" />
+                                  </children>
+                                </VBox>
+                                <VBox prefHeight="-1.0" prefWidth="-1.0">
+                                  <children>
+                                    <Label fx:id="lbPassword" alignment="CENTER_LEFT" maxHeight="-1.0" minHeight="-1.0" prefHeight="-1.0" prefWidth="-1.0" text="%Contraseña" VBox.margin="$x1" />
+                                    <PasswordField fx:id="tfPassword" maxHeight="-1.0" minHeight="-1.0" onAction="#actionBtAccept" prefHeight="40.0" prefWidth="330.0" promptText="%Contraseña" />
+                                  </children>
+                                </VBox>
+                                <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" spacing="20.0" VBox.margin="$x1">
+                                  <children>
+                                    <Button fx:id="btAccept" minHeight="-1.0" minWidth="-1.0" mnemonicParsing="false" onAction="#actionBtAccept" prefHeight="50.0" prefWidth="150.0" styleClass="btn" text="%Aceptar" HBox.hgrow="ALWAYS">
+                                      <HBox.margin>
+                                        <Insets fx:id="x3" />
+                                      </HBox.margin>
+                                    </Button>
+                                    <Button fx:id="btCancel" minHeight="-1.0" minWidth="-1.0" mnemonicParsing="false" onAction="#closeCancel" prefHeight="50.0" prefWidth="150.0" text="%Cancelar" HBox.hgrow="ALWAYS" HBox.margin="$x2" />
+                                  </children>
+                                </HBox>
+                              </children>
+                              <HBox.margin>
+                                <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
+                              </HBox.margin>
+                            </VBox>
+                          </children>
+                        </HBox>
+                      </children>
+                    </VBox>
+                  </children>
+                </HBox>
+                <VBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="NEVER">
+                  <children>
+                    <HBox fx:id="hbLanguageBox" alignment="CENTER" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" spacing="0.0" style="&#10;">
+                      <padding>
+                        <Insets fx:id="x2" />
+                      </padding>
+                      <VBox.margin>
+                        <Insets bottom="20.0" />
+                      </VBox.margin>
+                    </HBox>
+                  </children>
+                </VBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="-1.0" style="" styleClass="background-alternative">
+                  <children>
+                    <Button fx:id="btStockSearch" contentDisplay="TOP" mnemonicParsing="false" onAction="#openItemSearch" prefHeight="35.0" prefWidth="194.0" styleClass="btn, btn-stock" text="%Consultar stock" visible="true" />
+                  </children>
+                </HBox>
+              </children>
+            </VBox>
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../gui/styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

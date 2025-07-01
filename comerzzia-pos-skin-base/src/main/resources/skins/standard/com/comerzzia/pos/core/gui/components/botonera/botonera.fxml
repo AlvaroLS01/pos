@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" focusTraversable="true" minHeight="7.0" prefHeight="175.0" prefWidth="545.0" style="&#10;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.pos.core.gui.componentes.botonera.BotoneraController">
+  <children>
+    <TilePane fx:id="panelMenu" hgap="5.0" prefColumns="4" prefHeight="215.0" prefRows="2" prefTileHeight="80.0" prefTileWidth="130.0" prefWidth="545.0" vgap="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
+    </TilePane>
+  </children>
+</AnchorPane>

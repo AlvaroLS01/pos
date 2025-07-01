@@ -1,0 +1,12 @@
+{ "comerzzia": 
+   { "pos": 
+      { "modoDesarrollo": true, 
+        "modoDesarrolloinfo": { "usuario": "admin", "password": "czz", "autologin": false }, 
+        "interfazInfo": { "ancho": 1024, "alto": 768, "pantallaCompleta" : false}, 
+        "pais": "ES", 
+        "idioma": "es", 
+        "accionInicio": 4000, 
+        "menu": "POS-V5" 
+       } 
+     }
+}

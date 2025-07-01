@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.components.header.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" >
+  <children>
+    <HBox prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane prefHeight="600.0" prefWidth="800.0" HBox.hgrow="ALWAYS">
+          <children>
+            <VBox prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+              	<HBox alignment="CENTER" minHeight="48.0">
+		          <children>
+		            <CzzHeader fx:id="header" />
+		          </children>
+		          <VBox.margin>
+		          </VBox.margin>
+		        </HBox>
+                <AnchorPane maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="800.0" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lbTitulo" alignment="CENTER" prefHeight="25.999908447265625" prefWidth="800.0" styleClass="titulo-ventana" text="" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0" />
+                  </children>
+                </AnchorPane>
+                <ProgressBar fx:id="progressBar" maxHeight="10.0" maxWidth="1.7976931348623157E308" minHeight="0.0" prefHeight="-1.0" prefWidth="-1.0" progress="0.0" visible="true" VBox.vgrow="NEVER" />
+                <WebView fx:id="navegador" prefHeight="200.0" prefWidth="200.0" style="" VBox.vgrow="ALWAYS" />
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

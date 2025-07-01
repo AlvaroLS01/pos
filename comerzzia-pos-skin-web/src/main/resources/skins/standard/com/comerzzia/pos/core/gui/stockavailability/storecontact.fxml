@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-stylesheet ../../../gui/styles/styles.css?>
+
+<AnchorPane id="AnchorPane" minHeight="-1.0" prefHeight="-1.0" prefWidth="-1.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <VBox prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" styleClass="titulo-ventana">
+          <children>
+            <Label id="lbTitulo" fx:id="lbTitle" text="%Contacto tienda" />
+          </children>
+        </HBox>
+        <HBox prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+          <children>
+            <VBox prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+            <VBox prefHeight="-1.0" prefWidth="-1.0" spacing="5.0">
+              <children>
+                <HBox prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
+                <HBox prefHeight="-1.0" prefWidth="578.0">
+                  <children>
+                    <Label alignment="CENTER_RIGHT" contentDisplay="LEFT" prefHeight="22.0" prefWidth="200.0" text="%Domicilio">
+                      <HBox.margin>
+                        <Insets />
+                      </HBox.margin>
+                    </Label>
+                    <TextField id="tfDomicilio" fx:id="tfAddress" disable="false" editable="false" focusTraversable="false" prefWidth="200.0">
+                      <HBox.margin>
+                        <Insets left="30.0" fx:id="x1" />
+                      </HBox.margin>
+                    </TextField>
+                  </children>
+                  <VBox.margin>
+                    <Insets top="10.0" />
+                  </VBox.margin>
+                </HBox>
+                <HBox prefHeight="-1.0" prefWidth="578.0">
+                  <children>
+                    <Label alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="200.0" text="%Población" />
+                    <TextField id="tfPoblacion" fx:id="tfCity" disable="false" editable="false" focusTraversable="false" prefWidth="200.0" HBox.margin="$x1" />
+                  </children>
+                </HBox>
+                <HBox prefHeight="-1.0" prefWidth="578.0">
+                  <children>
+                    <Label alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="200.0" text="%Provincia" />
+                    <TextField id="tfProvincia" fx:id="tfProvince" disable="false" editable="false" focusTraversable="false" prefWidth="200.0" HBox.margin="$x1" />
+                  </children>
+                </HBox>
+                <HBox disable="false" prefHeight="-1.0" prefWidth="578.0" visible="true">
+                  <children>
+                    <Label alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="200.0" text="%C.P." />
+                    <TextField id="tfCP" fx:id="tfPostalCode" disable="false" editable="false" focusTraversable="false" prefWidth="200.0" visible="true" HBox.margin="$x1" />
+                  </children>
+                </HBox>
+                <HBox prefHeight="-1.0" prefWidth="578.0">
+                  <children>
+                    <Label alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="200.0" text="%Teléfono" />
+                    <TextField id="tfTelefono" fx:id="tfPhone" disable="false" editable="false" focusTraversable="false" prefWidth="200.0" HBox.margin="$x1" />
+                  </children>
+                </HBox>
+                <HBox prefHeight="-1.0" prefWidth="578.0">
+                  <children>
+                    <Label alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="200.0" text="%Persona Contacto" />
+                    <TextField id="tfPersonaContacto" fx:id="tfContactPerson" disable="false" editable="false" focusTraversable="false" prefWidth="200.0" HBox.margin="$x1" />
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="-1.0" prefWidth="-1.0">
+                  <children>
+                    <Button mnemonicParsing="false" onAction="#closeCancel" prefHeight="40.0" prefWidth="118.0" styleClass="blue-btn" text="%Aceptar">
+                      <stylesheets>
+                        <URL value="@../../../gui/styles/styles.css" />
+                      </stylesheets>
+                      <HBox.margin>
+                        <Insets right="10.0" />
+                      </HBox.margin>
+                    </Button>
+                  </children>
+                  <VBox.margin>
+                    <Insets bottom="10.0" top="10.0" />
+                  </VBox.margin>
+                </HBox>
+                <HBox prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
+              </children>
+            </VBox>
+            <VBox prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

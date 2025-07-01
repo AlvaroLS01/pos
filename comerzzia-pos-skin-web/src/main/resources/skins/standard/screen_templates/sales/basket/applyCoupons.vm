@@ -1,0 +1,60 @@
+#set($uniqueCandidateCoupons = [])
+#foreach($candidate in $basket.getCandidateCoupons())
+    #set($exists = false)
+    #foreach($couponCode in $uniqueCandidateCoupons)
+        #if($couponCode.getCouponCode().equals($candidate.getCouponCode()))
+            #set($exists = true)
+        #end
+    #end
+    #if(!$exists)
+        #set($quiet = $uniqueCandidateCoupons.add($candidate))
+    #end
+#end
+
+#set($couponsApplied = [])
+#if($uniqueCandidateCoupons.size() > 0)
+	#foreach($candidate in $uniqueCandidateCoupons)
+		#set($break = false)
+		#foreach($applied in $basket.getCouponsApplied())
+			#if(!$break)
+    			#if($applied.getCouponCode().equals($candidate.getCouponCode()))
+    				#set($break = $couponsApplied.add($applied))
+    			#end
+			#end
+		#end
+	#end
+    <div class="accordion" id="accordionCoupons">
+    	<div class="accordion-item">
+    		<h2 class="accordion-header" id="headingOne">
+    			<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+    				#i18n("Cupones aplicados ") $couponsApplied.size() ##/$basket.getCandidateCoupons().size()
+    			</button>
+    		</h2>
+			#if($couponsApplied.size() > 0)
+        		<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionCoupons">
+        			#foreach($coupon in $couponsApplied)
+        				<div class="accordion-body">
+    						<div class="flex-fill d-flex justify-content-between align-items-center">
+        						<div class="">
+		    						#if($coupon.getCouponName())
+			        					$coupon.getCouponName()
+			        				#else
+			        					$coupon.getCouponCode()
+			        				#end
+									#if($coupon.getPromotionText())
+										- $coupon.getPromotionText()
+									#end
+								</div>
+								#* Remove coupon example
+		    					<div class="" onclick="execute('DeleteCoupon', [{'name':'coupon_code', 'value':'${coupon.getCouponCode()}'}])">
+		    						X
+		    					</div>
+		    					*#
+        					</div>
+        				</div>
+        			#end
+        		</div>
+			#end
+    	</div>
+    </div>
+#end

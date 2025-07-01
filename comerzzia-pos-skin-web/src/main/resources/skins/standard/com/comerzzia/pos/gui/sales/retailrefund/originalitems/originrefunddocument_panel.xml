@@ -1,0 +1,12 @@
+<ButtonsGroup>
+    <ButtonsRow>
+        <Button>
+           	<text>Añadir todo</text>
+            <key>actionTableSelectAll</key>
+           	<type>METODO</type>
+            <shortcut>F3</shortcut>
+        	<imagePath>icons/add-all.png</imagePath>
+            <visible>S</visible>
+        </Button>
+    </ButtonsRow>
+</ButtonsGroup>

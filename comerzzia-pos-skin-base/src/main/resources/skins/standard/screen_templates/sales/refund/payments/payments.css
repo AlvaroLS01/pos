@@ -1,0 +1,33 @@
+.payment-row {
+	min-height: 35px;
+}
+
+.pending-area {
+	background-color: var(--color-principal-1);
+	color: var(--color-text-alternative);
+	font-size: 55px;
+}
+
+/* Other info */
+
+.delivered-area {
+	font-size: 30px;
+	margin-bottom: 20px;
+}
+
+.delivered-area div:first-child {
+	font-size: 16px;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.icon-payment-row {
+    background-color: transparent;
+    color: var(--color-principal-2);
+    border-radius: 0px;
+    width: 50px;
+    height: 28px;
+    font-size: 24px;
+    margin-left: 5px;
+    border-width: 0px;
+}

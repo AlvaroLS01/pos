@@ -1,0 +1,26 @@
+#doctype
+<html>
+	#htmlhead("/cash_management/close/limitedClose.css")
+	<body>
+		<div class="czz-base">
+			<div class="czz-card content">
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="close-paymode">#i18n("Forma de pago")</th>
+							<th class="close-col text-end">#i18n("Recuento")</th>
+						</tr>
+					</thead>
+					<tbody>
+						#foreach ($line in $closeLines)
+							<tr>
+								<td class="close-paymode">$!{line.getPaymentMethod()}</td>
+								<td class="close-col text-end">#balance($line.getCount())</td>
+							</tr>
+						#end
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,60 @@
+/* Main Structure */
+body {
+	font-size: 4.8em;
+}
+
+/* Top info */
+
+.payments-content {
+  padding: 15px 15px 1px 15px;
+  background-color: var(--color-base-2);
+}
+
+.label-total {
+	font-size: 1em;
+}
+
+.payment-label{
+	font-size: 0.7em;
+}
+
+.pending-area {
+	background-color: var(--color-principal-0);
+	color: white;
+	font-size: 1em;
+}
+
+.background-split-colors {
+	background: linear-gradient(180deg, rgba(255,255,255,255) 60%, var(--color-principal-0) 62%);
+}
+
+
+
+/* Icons */
+
+.icon-payment {
+	font-size: 24px;
+	color: var(--color-principal-2);
+}
+
+.btn-delete {
+	background-color: var(--color-principal-2);
+	color: white;
+	border-radius: 50px;
+	width: 50px;
+	height: 28px;
+	font-size: 20px;
+	margin-left: 5px;
+	border-width: 0px;
+}
+
+.icon-prepayment {
+    background-color: transparent;
+    color: var(--color-principal-2);
+    border-radius: 0px;
+    width: 50px;
+    height: 28px;
+    font-size: 24px;
+    margin-left: 5px;
+    border-width: 0px;
+}

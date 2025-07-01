@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.components.header.*?>
+<?import com.comerzzia.pos.core.gui.components.itemimage.*?>
+<?import com.comerzzia.pos.core.gui.components.numerickeypad.*?>
+<?import com.comerzzia.pos.core.gui.components.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
+<?scenebuilder-stylesheet wholesaleItemization.css?>
+<?scenebuilder-stylesheet ../../../styles/styles.css?>
+<?scenebuilder-stylesheet ../../../styles/colors.css?>
+
+<AnchorPane id="AnchorPane" prefHeight="728.0" prefWidth="1024.0" style="&#10;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+      	<HBox alignment="CENTER" minHeight="48.0">
+          <children>
+            <CzzHeader fx:id="header" />
+          </children>
+          <VBox.margin>
+          </VBox.margin>
+        </HBox>
+        <HBox fx:id="parentHbox" prefHeight="728.0" prefWidth="1024.0" VBox.vgrow="ALWAYS">
+          <children>
+            <VBox fx:id="vbContainerWebView" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+              <children>
+                <WebView fx:id="wvPrincipal" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+              </children>
+            </VBox>
+            <VBox fx:id="vbGeneral" prefWidth="350.0" spacing="10.0" style="" HBox.hgrow="NEVER">
+              <children>
+                <VBox fx:id="vbTopButtonsPanel" minHeight="60.0" prefHeight="60.0" VBox.vgrow="NEVER">
+                  <VBox.margin>
+                    <Insets top="15.0" />
+                  </VBox.margin>
+                </VBox>
+                <HBox prefHeight="41.0">
+                  <children>
+                    <TextField fx:id="tfItemCode" onKeyReleased="#actionTfItemCode" prefHeight="41.0" prefWidth="265.0" style="" styleClass="textfield-composite-left" text="8989898989" HBox.hgrow="ALWAYS" />
+                    <NumericTextField fx:id="tfItemQuantity" alignment="CENTER_RIGHT" onKeyReleased="#actionTfItemQuantity" prefHeight="41.0" prefWidth="130.0" text="1">
+                      <styleClass>
+                        <String fx:value="textfield-composite-right" />
+                        <String fx:value="tf-quantity" />
+                      </styleClass>
+                    </NumericTextField>
+                  </children>
+                </HBox>
+                <HBox minHeight="300.0" prefHeight="-1.0">
+                  <children>
+                    <NumericKeypad fx:id="numpad" />
+                  </children>
+                  <VBox.margin>
+                    <Insets />
+                  </VBox.margin>
+                </HBox>
+                <Button fx:id="btPayment" mnemonicParsing="false" onAction="#openPayments" prefHeight="60.0" prefWidth="1500.0" style="" styleClass="big-main-btn" text="%Pago" />
+                <VBox fx:id="vbBottomButtonsPanel" prefHeight="130.0" VBox.vgrow="ALWAYS">
+                  <VBox.margin>
+                    <Insets bottom="15.0" />
+                  </VBox.margin>
+                </VBox>
+              </children>
+              <padding>
+                <Insets left="15.0" right="15.0" />
+              </padding>
+            </VBox>
+            <VBox fx:id="vbOtherButtons" prefHeight="-1.0" prefWidth="350.0" spacing="10.0" style="">
+              <children>
+                <VBox fx:id="vbOtherButtonsPane" fillWidth="true" prefHeight="-1.0" style="" VBox.vgrow="ALWAYS">
+                  <VBox.margin>
+                    <Insets top="15.0" />
+                  </VBox.margin>
+                </VBox>
+                <HBox prefHeight="-1.0" spacing="10.0" style="">
+                  <children>
+                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchLateralVBox" prefHeight="60.0" styleClass="btn" text="%Cancelar" HBox.hgrow="ALWAYS" />
+                  </children>
+                  <VBox.margin>
+                    <Insets bottom="10.0" top="10.0" />
+                  </VBox.margin>
+                </HBox>
+              </children>
+              <padding>
+                <Insets left="15.0" right="15.0" />
+              </padding>
+            </VBox>
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.components.datepicker.* ?>
+<?import com.comerzzia.pos.core.gui.components.header.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet ../../../pos/gui/styles/styles.css?>
+<?scenebuilder-stylesheet ../../../pos/gui/styles/colors.css?>
+
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="background-card-pane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" >
+  <children>
+    <VBox prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+      	<HBox alignment="CENTER" minHeight="48.0">
+          <children>
+            <CzzHeader fx:id="header" />
+          </children>
+          <VBox.margin>
+          </VBox.margin>
+        </HBox>
+        <HBox id="HBox" alignment="CENTER" minHeight="-1.0" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0" style="" styleClass="czz-card" VBox.vgrow="ALWAYS">
+          <children>
+            <VBox prefHeight="350.0" prefWidth="463.0" HBox.hgrow="ALWAYS">
+              <children>
+                <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                <FlowPane alignment="CENTER_LEFT" hgap="5.0" prefHeight="70.0" prefWidth="-1.0" VBox.vgrow="NEVER">
+                  <children>
+                    <Label id="lblIdServicio" fx:id="lblCodServicio" alignment="CENTER_RIGHT" prefWidth="140.0" text="%#Servicio" />
+                    <TextField id="tfServiceCode" fx:id="tfServiceCode" prefWidth="200.0" />
+                  </children>
+                  <VBox.margin>
+                    <Insets />
+                  </VBox.margin>
+                </FlowPane>
+                <FlowPane alignment="CENTER_LEFT" hgap="5.0" prefHeight="70.0" prefWidth="-1.0" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lblCodDocumento" alignment="CENTER_RIGHT" prefWidth="140.0" text="%Cód. documento" />
+                    <TextField fx:id="tfDocCode" prefWidth="200.0" />
+                  </children>
+                </FlowPane>
+                <FlowPane alignment="CENTER_LEFT" hgap="5.0" prefHeight="70.0" prefWidth="-1.0" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lblFechaEntrega" alignment="CENTER_RIGHT" prefWidth="140.0" text="%Entrega Solicitada" />
+                    <DatePicker fx:id="dpDeliveryDate1" prefWidth="155.0" />
+                    <DatePicker fx:id="dpDeliveryDate2" prefWidth="155.0" />
+                  </children>
+                </FlowPane>
+                <FlowPane alignment="CENTER_LEFT" hgap="5.0" prefHeight="70.0" prefWidth="-1.0" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lblTipoServicio" alignment="CENTER_RIGHT" prefWidth="140.0" text="%Tipos de servicio" />
+                    <ComboBox fx:id="cmbServiceType" maxWidth="295.0" prefHeight="21.0" prefWidth="295.0">
+                      <items>
+                        <FXCollections fx:factory="observableArrayList">
+                          <String fx:value="Item 1" />
+                          <String fx:value="Item 2" />
+                          <String fx:value="Item 3" />
+                        </FXCollections>
+                      </items>
+                    </ComboBox>
+                  </children>
+                </FlowPane>
+                <FlowPane alignment="CENTER_LEFT" hgap="5.0" prefHeight="70.0" prefWidth="-1.0" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lblCliente" alignment="CENTER_RIGHT" prefWidth="140.0" text="%Cliente" />
+                    <TextField id="tfCustomer" fx:id="tfCustomer" prefHeight="-1.0" prefWidth="282.0" />
+                  </children>
+                </FlowPane>
+                <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+              </children>
+              <padding>
+                <Insets bottom="50.0" />
+              </padding>
+            </VBox>
+            <VBox prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
+              <children>
+                <AnchorPane prefHeight="20.0" prefWidth="-1.0">
+                  <children>
+                    <Label fx:id="lblEstados" text="%Estados" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  </children>
+                </AnchorPane>
+                <ScrollPane fitToHeight="false" focusTraversable="false" hbarPolicy="NEVER" mouseTransparent="false" pannable="false" prefHeight="330.0" prefWidth="400.0" styleClass="" visible="true" VBox.vgrow="ALWAYS">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="-1.0" prefWidth="-1.0">
+                      <children>
+                        <VBox fx:id="panelChks" prefHeight="-1.0" prefWidth="350.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <padding>
+                            <Insets top="20.0" />
+                          </padding>
+                        </VBox>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </ScrollPane>
+              </children>
+            </VBox>
+          </children>
+        </HBox>
+        <VBox prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="NEVER">
+          <children>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="50.0" prefWidth="-1.0" style="" VBox.vgrow="NEVER">
+              <children>
+                <VBox fx:id="buttonGroupPanel" prefHeight="-1.0" prefWidth="-1.0" styleClass="button-panel-box" HBox.hgrow="ALWAYS" />
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../../pos/gui/styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

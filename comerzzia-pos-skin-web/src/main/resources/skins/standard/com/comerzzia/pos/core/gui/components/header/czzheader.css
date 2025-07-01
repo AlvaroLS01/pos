@@ -1,0 +1,17 @@
+.icon-menu {
+	-fx-background-image: url("../../../../gui/images/icons/dots-menu.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.icon-bell {
+	-fx-background-image: url("../../../../gui/images/icons/bell.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.icon-circle {
+	-fx-background-image: url("../../../../gui/images/icons/yellow-circle.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}

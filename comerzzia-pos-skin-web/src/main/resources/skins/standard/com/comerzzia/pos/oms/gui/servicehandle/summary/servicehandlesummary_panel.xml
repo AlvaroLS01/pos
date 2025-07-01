@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ButtonsGroup>
+    <ButtonsRow>
+    	<Button>
+            <text>NUEVA PREPARACION</text>
+            <key>newServiceHandle</key>
+           <type>METODO</type>
+			<shortcut>F1</shortcut>
+			<imagePath>icons/asignarmepreparacion.png</imagePath>
+			<visible>S</visible>
+        </Button>
+        <Button>
+            <text>ETIQUETAS</text>
+            <key>tags</key>
+            <type>METODO</type>
+			<shortcut>F2</shortcut>
+			<imagePath>icons/etiquetas.png</imagePath>
+			<visible>S</visible>
+        </Button> 
+        <Button>
+            <type>HUECO</type>
+            <visible>S</visible>
+        </Button>  
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+	</ButtonsRow>
+	<ButtonsRow>
+		<Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+        <Button>
+            <text>IMPRIMIR PREPARACIÓN</text>
+            <key>print</key>
+            <type>METODO</type>
+			<shortcut>F7</shortcut>
+			<imagePath>icons/print.png</imagePath>
+			<visible>S</visible>
+        </Button> 
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+	</ButtonsRow>
+</ButtonsGroup>

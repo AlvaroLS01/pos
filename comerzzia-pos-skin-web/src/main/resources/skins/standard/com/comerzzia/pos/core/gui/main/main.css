@@ -1,0 +1,51 @@
+.header {
+	-fx-background-color: -color-principal-2;
+}
+
+.header-gradient {
+	-fx-background-color:
+        rgba(0,0,0,0.08),
+        linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,100) 100%);
+}
+
+.header-component {
+	-fx-background-color: -color-principal-2;
+}
+
+.label-white {
+	-fx-text-fill: white;
+}
+
+.label-big {
+	-fx-font-weight: bold;
+	-fx-font-size: 18px;
+}
+
+.label-soft {
+	-fx-opacity: 0.5;
+	-fx-font-size: 15px;
+}
+
+.icon-menu {
+	-fx-background-image: url("../../../../pos/gui/images/icons/dots-menu.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.icon-bell {
+	-fx-background-image: url("../../../../pos/gui/images/icons/bell.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.icon-circle {
+	-fx-background-image: url("../../../../pos/gui/images/icons/yellow-circle.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.icon-close {
+	-fx-background-image: url("../../../../pos/gui/images/icons/close.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}

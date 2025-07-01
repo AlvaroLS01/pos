@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-stylesheet ../../../gui/styles/colors.css?>
+<?scenebuilder-stylesheet ../../../gui/styles/styles.css?>
+
+<AnchorPane id="AnchorPane" minWidth="600.0" prefHeight="720.0" prefWidth="1024.0" styleClass="" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <VBox prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0">
+          <children>
+            <ImageView fitHeight="54.847063628564946" fitWidth="222.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../../../gui/images/logos/logo_comerzzia.png" />
+              </image>
+            </ImageView>
+          </children>
+        </HBox>
+        <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+          <children>
+            <Label fx:id="lbTitle" alignment="CENTER" contentDisplay="LEFT" text="Se ha lanzado una excepción inicializando el JPOS" textAlignment="LEFT" underline="false" wrapText="false" />
+            <Label fx:id="lbMessage" disable="false" text="Label" visible="true" />
+            <TextArea fx:id="taException" disable="false" editable="false" prefWidth="200.0" visible="true" wrapText="true" VBox.vgrow="ALWAYS" />
+          </children>
+          <VBox.margin>
+            <Insets left="10.0" right="10.0" />
+          </VBox.margin>
+        </VBox>
+        <HBox alignment="CENTER_RIGHT" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0" styleClass="button-panel-box">
+          <children>
+            <Button fx:id="btCopy" mnemonicParsing="false" onAction="#copyTrace" text="Copiar traza" />
+            <Button fx:id="btClose" mnemonicParsing="false" onAction="#closeCancel" prefHeight="36.0" prefWidth="94.0" styleClass="btn" text="Cerrar" />
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

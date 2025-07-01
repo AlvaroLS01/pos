@@ -1,0 +1,478 @@
+:root {
+	--color-principal-1: #0e6687;
+	--color-principal-2: #1282AA;
+	
+	--color-base-1: #FFFFFF;
+	--color-base-2: #F0F3F6;
+	--color-base-3: #E0E0E0;
+	
+	/** Text colors */
+	--color-text: #1282AA;
+	--color-text-secondary: #000000;
+	--color-text-alternative: white;
+	
+	/** Button colors **/
+	--color-button-main: #1282AA;
+	--color-button-main-hover: #96BBCC;
+	--color-button-base: #F9F9F9;
+	--color-button-base-hover: #E0E0E0;
+	
+	/** Dividers colors **/
+	--color-background-component: #F9F9F9;
+	--color-background-card: white;
+	--color-background-card-wrapper: #F0F3F6;
+	--color-background-alternative: #1282AA;
+}
+
+@font-face {
+	font-family: 'DM Sans', sans-serif;
+	src: url('fonts/DMSans-Regular.ttf')
+}
+
+@font-face {
+	font-family: 'DM Sans Bold';
+	src: url('fonts/DMSans-Bold.ttf')
+}
+
+@font-face {
+	font-family: 'DM Sans Bold Italic';
+	src: url('fonts/DMSans-BoldItalic.ttf')
+}
+
+@font-face {
+	font-family: 'DM Sans Italic';
+	src: url('fonts/DMSans-Italic.ttf')
+}
+
+@font-face {
+	font-family: 'DM Sans Medium';
+	src: url('fonts/DMSans-Medium.ttf')
+}
+
+@font-face {
+	font-family: 'DM Sans Medium Italic';
+	src: url('fonts/DMSans-MediumItalic.ttf')
+}
+
+body {
+	font-family: 'DM Sans';
+	letter-spacing: 0px;
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--color-text);
+	/*color: black;*/
+}
+
+/*-----------------------------------------------------------------*/
+/* ================= Bootstrap styles Override =================== */
+/*-----------------------------------------------------------------*/
+/* ******************** SCROLLBAR ******************** */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--color-base-1);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--color-principal-2);
+	opacity: 0.24;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--color-principal-2);
+}
+
+button {
+	display: inline-block;
+	text-align: center;
+	border: 1px solid transparent;
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	border-radius: 0.25rem;
+}
+
+/* *********************************** TABLES *********************************** */
+table thead tr {
+	border-bottom: 1px solid var(--color-text);
+	padding-bottom: 12px;
+	padding-right: 12px;
+	
+	color: var(--color-text);
+	text-transform: uppercase;
+	
+}
+
+table thead {
+	position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+	position: sticky;
+	top: -10px;
+    background-color: var(--color-base-1);
+}
+
+table tbody tr {
+	max-height: 55vh;
+	overflow-y: auto;
+	font-weight: 500;
+	border-left: 3px solid rgba(255,255,255,0);
+}
+
+table tbody tr td {
+	padding: 12px;
+	cursor: pointer;
+	margin: 0px;
+}
+
+/* Fit width of column to content, useful for button columns */
+table tbody tr td.fit {
+	white-space: nowrap;
+    width: 1%;
+}
+
+/* Main data line */
+table tbody tr[data-bs-toggle="collapse"] {
+	border-top: 1px solid var(--color-text);
+}
+
+/* Other data line */
+table tbody tr.collapse {
+	transition: 0s;
+}
+
+/* Other data line */
+table tbody tr.collapse,
+/* Main data line with expanded other data line */
+table tbody tr[aria-expanded="true"] {
+	border-left: 3px solid #F9B233;
+}
+
+/*-----------------------------------------------------------------*/
+/* ==================== CZZ5 styles Override ===================== */
+/*-----------------------------------------------------------------*/
+
+/* ******************** CARDS ******************** */
+
+.czz-card {
+	background-color: var(--color-background-card);
+	margin-bottom: 10px;
+	border-radius: 10px;
+	padding: 10px 12px 10px 12px;
+}
+
+.czz-card-blue {
+	background-color: var(--color-background-alternative);
+	color: var(--color-text-alternative);
+	margin-bottom: 10px;
+	border-radius: 10px;
+	padding: 10px 12px 10px 12px;
+}
+
+/* Rounded scrollbar on a card to respect the rounded corners */
+.czz-card::-webkit-scrollbar,
+.czz-card::-webkit-scrollbar-track,
+.czz-card::-webkit-scrollbar-thumb,
+.czz-card-blue::-webkit-scrollbar,
+.czz-card-blue::-webkit-scrollbar-track,
+.czz-card-blue::-webkit-scrollbar-thumb {
+	border-radius: 15px;
+}
+
+/* ******************** TEXT STYLES ******************** */
+
+.medium-text {
+	font-size: 18px;
+}
+
+.big-text {
+	font-size: 32px;
+}
+
+.small-text {
+	font-size: 13px;
+}
+
+.tiny-text {
+	font-size: 9px;
+}
+
+.giant-text {
+	font-size: 55px;
+}
+
+.main-text {
+	color: var(--color-text);
+}
+
+.alternative-text {
+	color: var(--color-text-alternative);
+}
+
+.secondary-text {
+	color: var(--color-text-secondary);
+}
+
+.bold {
+  font-weight: 700;
+}
+
+/* ******************** ELEMENTS ******************** */
+
+.horizontal-separator {
+	border-bottom: 1px solid var(--color-text);
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+.vertical-separator {
+	border-left: 1px solid white;
+  	width: 1px;
+  	padding: 0px;
+}
+
+.btn {
+	color: var(--color-text);
+	background-color: var(--color-button-base);
+    border-color: var(--color-button-base);
+}
+
+.btn:hover,
+.btn:focus {
+	color: var(--color-text);
+	background-color: var(--color-button-base-hover);
+	border-color: var(--color-button-base-hover);
+}
+
+.main-btn {
+	color: var(--color-text-alternative);
+	background-color: var(--color-button-main);
+   	border-color: var(--color-button-main);
+}
+
+.main-btn:hover,
+.main-btn:focus {
+	color: var(--color-text-alternative);
+	background-color: var(--color-button-main-hover);
+	border-color: var(--color-button-main-hover);
+}
+
+.btn-circle {
+	background-color: var(--color-button-main);
+	color: var(--color-text-alternative);
+	border-radius: 50px;
+	width: 50px;
+	height: 50px;
+	font-size: 20px;
+	margin-left: 5px;
+	border-width: 0px;
+}
+
+.btn-oval {
+	background-color: var(--color-button-main);
+	color: var(--color-text-alternative);
+	border-radius: 50px;
+	width: 50px;
+	height: 28px;
+	font-size: 20px;
+	margin-left: 5px;
+	border-width: 0px;
+}
+
+.btn-circle:hover {
+	background-color: var(--color-button-main-hover);
+}
+
+.lb-quick-access {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 4px;
+}
+
+.btn-menu {
+	background-color: var(--color-base-1);
+	color: var(--color-text);
+	display: inline-block;
+	margin-right: 15px;
+	margin-bottom: 15px;
+	width: 100px;
+	min-height: 80px;
+	border-radius: 10px;
+	border-color: var(--color-base-1);
+	font-size: 14px;
+	font-weight: 500;
+	padding: 0px;
+	position: relative;
+}
+
+.a-btn {
+	text-decoration: none;
+}
+
+.a-btn:hover {
+	color: var(--color-text);
+}
+
+.btn-button-pane {
+	background-color: white;
+	color: var(--color-text);
+	display: inline-block;
+	width: 100px;
+	min-height: 80px;
+	border-radius: 10px;
+	border-color: white;
+	font-size: 14px;
+	font-weight: 500;
+	padding: 0px;
+	position: relative;
+}
+
+a.btn-button-pane {
+    text-decoration: none;
+    border-radius: 10px;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+a.btn-button-pane:hover {
+    color: var(--color-text);
+}
+
+
+/* *********************************** FLOW BASE FOR SCREENS *********************************** */
+/* CZZ FLOW LAYOUT DOCS
+
+- CLASSES:
+	.czz-base   -> creates a vertical flow container
+	.content    -> child of .czz-base, makes the element able to stretch and being scrollable
+	.filler     -> child of .czz-base, creates a blank space on the flow
+	.has-filler -> add this clase to every .content if .czz-base has a filler, for proper sizing
+	
+-RELATED CLASSES:
+	.czz-card   -> it gives card appearance to an element. Usually applied to .czz-base's children
+	.p-2        -> Bootstrap class for padding. Usually applied to .czz-base
+	
+-EXAMPLES:
+	<!-- Card that fills the whole .czz-base -->
+	<div class="czz-base">
+		<div class="czz-card content">
+			Card
+		</div>
+	</div>
+	
+	<!-- Card at the top of .czz-base adjusted to its content size. It grows as it has more content -->
+	<div class="czz-base">
+		<div class="czz-card content has-filler">
+			Card
+		</div>
+		<div class="filler"/>
+	</div>
+	
+	<!-- Same as last example, but the card is now fixed to bottom because the filler is at the top -->
+	<div class="czz-base">
+		<div class="filler"/>
+		<div class="czz-card content has-filler">
+			Card
+		</div>
+	</div>
+	
+	<!-- Creates a footer always fixed at the bottom, and a centered card (both fillers share space equally) -->
+	<div class="czz-base">
+		<div class="filler"/>
+		<div class="czz-card content has-filler">
+			Card
+		</div>
+		<div class="filler"/>
+		<div class="czz-card">
+			Header
+		</div>
+	</div>
+*/
+.czz-base {
+	background-color: var(--color-background-card-wrapper);
+	height: 100vh;
+	
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.czz-base .content {
+    flex: 1 1 auto;
+    overflow-y: auto;
+}
+.czz-base .content.has-filler {
+	flex: 0 1 auto;
+    overflow-y: auto;
+}
+
+.czz-base .filler {
+	flex: 1 1 auto;
+}
+
+.background-split-colors {
+	background: linear-gradient(180deg, rgba(255,255,255,255) 60%, var(--color-principal-1) 62%);
+}
+
+.background-card-pane {
+	background-color: var(--color-background-card-wrapper);
+}
+
+.main-color-text {
+	color: var(--color-text);
+	margin-bottom: 10px;
+	padding: 10px 12px 10px 12px;
+}
+
+.menu-base {
+	background-color: var(--color-background-card-wrapper);
+}
+
+hr{
+	margin: 0 0 0.3rem 0;
+}
+
+
+.flag {
+  pointer-events: none;
+  font: 700 14px/12px Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    line-height: 12px;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 9px 0 7px;
+    padding-right: 0px;
+    padding-left: 0px;
+  text-shadow: 1px 1px rgba(0,0,0,0.24);
+  display: block;
+  position: fixed;
+  right: 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(-45deg);
+  background: -moz-linear-gradient(45deg, rgba(255,0,0,1) 0%, rgba(240,56,9,1) 52%, rgba(250,21,0,1) 100%);
+  background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(255,0,0,1)), color-stop(52%, rgba(240,56,9,1)), color-stop(100%, rgba(250,21,0,1)));
+  background: -webkit-linear-gradient(45deg, rgba(255,0,0,1) 0%, rgb(255, 90, 64) 52%, rgba(250,21,0,1) 100%);
+  background: -o-linear-gradient(45deg, rgba(255,0,0,1) 0%, rgb(255, 90, 64) 52%, rgba(250,21,0,1) 100%);
+  background: -ms-linear-gradient(45deg, rgba(255,0,0,1) 0%, rgb(255, 90, 64) 52%, rgba(250,21,0,1) 100%);
+  background: linear-gradient(45deg, rgba(255,0,0,1) 0%, rgb(255, 90, 64) 52%, rgba(250,21,0,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#fa1500', GradientType=1 );
+  left: -56px;
+  z-index: 999999;
+  width: 259px;
+  min-height: 43px;
+  opacity: 0.2;
+  font-size: 1.8em;
+  line-height: 29px;
+  padding-left: 4%;
+  box-sizing: border-box;
+  padding-right: 4%;
+  text-align: center;
+  TOP: 49px;
+}

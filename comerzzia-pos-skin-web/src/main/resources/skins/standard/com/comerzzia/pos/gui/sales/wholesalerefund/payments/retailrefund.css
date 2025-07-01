@@ -1,0 +1,23 @@
+.btn-refund {
+	-fx-background-color: -color-principal-2 !important;
+	-fx-text-fill: white !important;
+	-fx-font-size: 25.0px !important;
+	-fx-font-weight: bold;
+}
+
+.lb-title2 {
+	-fx-font-size: 14.0px !important;
+}
+
+.btn-search {
+	-fx-background-color: -color-principal-2 !important;
+	-fx-background-image: url("../../images/icons/search-white.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-padding: 10 10 10 10;
+}
+
+.black-text {
+	-fx-text-fill: black !important;
+	-fx-font-size: 12.0px !important;
+}

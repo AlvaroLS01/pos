@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ButtonsGroup>
+    <ButtonsRow>
+    	<Button>
+            <text>ASIGNARME PREPARACIÓN</text>
+            <key>assignMeHandle</key>
+            <type>METODO</type>
+			<shortcut>F1</shortcut>
+			<imagePath>icons/asignarmepreparacion.png</imagePath>
+			<visible>S</visible>
+        </Button>
+        <Button>
+            <text>IR A PREPARACIÓN</text>
+            <key>goToHandle</key>
+            <type>METODO</type>
+			<shortcut>F2</shortcut>
+			<imagePath>icons/buscar-articulo.png</imagePath>
+			<visible>S</visible>
+        </Button>
+        <Button>
+            <text>ACTUALIZAR</text>
+            <key>refresh</key>
+            <type>METODO</type>
+			<shortcut>F3</shortcut>
+			<imagePath>icons/actualizar.png</imagePath>
+			<visible>S</visible>
+        </Button>          
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+	</ButtonsRow>
+	<ButtonsRow>
+		<Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+	</ButtonsRow>
+</ButtonsGroup>

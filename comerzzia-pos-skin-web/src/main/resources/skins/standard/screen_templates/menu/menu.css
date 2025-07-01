@@ -1,0 +1,28 @@
+.menu-items {
+	padding-top: 10px;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.menu-close {
+	margin-left: 10px;
+}
+
+.btn-close {
+	background-color: var(--color-principal-2);
+	color: white;
+	border-radius: 50px;
+	width: 50px;
+	height: 50px;
+	font-size: 20px;
+	margin-left: 5px;
+	border-width: 0px;
+}
+
+.section-menu {
+	margin-bottom: 15px;
+}
+
+.menu-base::-webkit-scrollbar {
+	width: 30px;
+}

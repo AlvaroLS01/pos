@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ButtonsGroup>
+    <ButtonsRow>
+    	<Button>
+			<text>Bloquear cajero</text>
+            <key>gotoLockTPV</key>
+            <type>METODO</type>
+			<shortcut>Ctrl + 1</shortcut>
+			<imagePath>icons/cash-lock.png</imagePath>
+			<visible>S</visible>
+        </Button>
+        <Button>
+            <text>Permisos</text>
+            <key>gotoPermissions</key>
+            <type>METODO</type>
+	    	<shortcut>Ctrl + 2</shortcut>
+	    	<imagePath>icons/manage-permission.png</imagePath>
+    		<visible>S</visible>
+        </Button>
+    	<Button>
+			<text>Login</text>
+            <key>gotoLogin</key>
+            <type>METODO</type>
+			<shortcut>Ctrl + 3</shortcut>
+			<imagePath>icons/cash-lock.png</imagePath>
+			<visible>N</visible>
+        </Button>
+    	<Button>
+			<text>Contraseña</text>
+            <key>gotoChangePassword</key>
+            <type>METODO</type>
+			<shortcut>Ctrl + 4</shortcut>
+			<imagePath>icons/edit-lock.png</imagePath>
+			<visible>S</visible>
+        </Button>
+        <Button>
+            <text>Acercade</text>
+            <key>gotoAboutApplication</key>
+            <type>METODO</type>
+	    	<shortcut>Ctrl + 5</shortcut>
+	    	<imagePath>icons/i-about.png</imagePath>
+    		<visible>S</visible>
+        </Button>
+	</ButtonsRow>
+</ButtonsGroup>

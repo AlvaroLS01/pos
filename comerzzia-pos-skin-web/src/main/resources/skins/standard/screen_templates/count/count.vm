@@ -1,0 +1,49 @@
+#doctype
+<html>
+	#htmlhead("/count/count.css")
+	<body>
+		<div class="czz-base">
+			#if(${paymentMethodSelected})
+			<div class="czz-card">
+				<div class="medium-text blue-text" >${paymentMethodSelected.getPaymentMethodDes()}</div>
+			</div>
+			#end
+			#if ($countLines.size() > 0)
+			<div class="czz-card">		
+				<table class="table">
+    				<thead>
+				        <tr>
+				            <th class="count-paymode">#i18n("FORMA DE PAGO")</th>
+				            <th class="count-col text-end">#i18n("CANTIDAD")</th>
+				            <th class="count-col text-end">#i18n("MONEDA")</th>
+				            <th class="count-col text-end">#i18n("TOTAL")</th>
+				        </tr>
+   	 				</thead>
+		    		<tbody>
+			  		 	#if($countLines.size() > 0)
+							#foreach ($line in $countLines)
+								#set ($index = $foreach.index)
+						        <tr data-bs-toggle="collapse" data-bs-target="#lineData${index}" class="clickable" >
+						            <td class="count-paymode">$line.getPaymentMethod().getPaymentMethodDes()</td>
+						            <td class="count-col text-end">$line.getQuantity()</td>
+						            <td class="count-col text-end">#balance($line.getCountValue())</td>
+						            <td class="count-col text-end">#balance($line.getTotal())</td>
+						        </tr>
+						        <tr class="collapse" id="lineData${index}" style="transition: 0s;" >
+						        	<td colspan="7">
+						        		<div class="row">
+						        			<div class="col text-end">
+						        				#icobutton("icon-delete white-text" "execute('deleteItem', [{'name':'lineId', 'value':'$foreach.index'}])")
+						        			</div>
+										</div>		        	
+						        	</td>
+						        </tr>
+			    			#end
+			    		#end
+		    		</tbody>
+				</table>	
+			</div>
+			#end
+		</div>		
+	</body> 
+</html>

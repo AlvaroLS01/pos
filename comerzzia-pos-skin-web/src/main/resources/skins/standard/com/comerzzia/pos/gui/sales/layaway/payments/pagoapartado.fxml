@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.components.numerickeypad.*?>
+<?import com.comerzzia.pos.core.gui.components.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-stylesheet ../../../styles/colors.css?>
+<?scenebuilder-stylesheet ../../../styles/styles.css?>
+
+<AnchorPane id="AnchorPane" fx:id="panelContenido" prefHeight="768.0" prefWidth="1024.0" styleClass="mainFxmlClass, pantalla-detalle" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" >
+  <children>
+    <VBox prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox prefHeight="50.0" prefWidth="-1.0" styleClass="titulo-ventana">
+          <children>
+            <Label alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" text="%Importe a pagar" />
+          </children>
+        </HBox>
+        <HBox prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+          <children>
+            <VBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
+              <children>
+                <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0" VBox.vgrow="ALWAYS">
+                  <children>
+                    <Label alignment="CENTER_RIGHT" prefWidth="-1.0" text="%Importe" />
+                    <NumericTextField fx:id="tfImporte" onKeyReleased="#accionAceptarIntro" prefWidth="180.0" />
+                  </children>
+                </HBox>
+              </children>
+            </VBox>
+            <VBox prefHeight="-1.0" prefWidth="-1.0">
+              <children>
+                <NumericKeypad fx:id="tecladoNumerico" layoutX="14.0" layoutY="14.0" />
+              </children>
+              <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" fx:id="x1" />
+              </padding>
+            </VBox>
+          </children>
+        </HBox>
+        <HBox alignment="CENTER_RIGHT" padding="$x1" prefHeight="-1.0" prefWidth="-1.0" spacing="10.0">
+          <children>
+            <Button mnemonicParsing="false" onAction="#accionAceptar" prefWidth="140.0" styleClass="btAceptar" text="%Aceptar" />
+            <Button mnemonicParsing="false" onAction="#closeCancel" prefWidth="140.0" styleClass="btCancelar" text="%Cancelar" />
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

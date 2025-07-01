@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-stylesheet ../../../pos/gui/styles/styles.css?>
+<?scenebuilder-stylesheet ../../../pos/gui/styles/colors.css?>
+
+<AnchorPane id="AnchorPane" minHeight="147.0" prefHeight="147.0" prefWidth="569.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" >
+  <children>
+    <HBox prefHeight="200.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane minHeight="119.0" prefHeight="119.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
+          <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane minHeight="30.0" prefHeight="37.0" prefWidth="600.0" styleClass="titulo-ventana" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lbTitle" alignment="CENTER" prefHeight="37.0" prefWidth="479.0" text="%Escriba el código de la preparación a la que quiera acceder" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  </children>
+                </AnchorPane>
+                <AnchorPane minHeight="52.0" prefHeight="52.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+                  <children>
+                    <VBox minHeight="43.5" prefHeight="43.5" prefWidth="600.0" AnchorPane.bottomAnchor="21.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <children>
+                        <AnchorPane id="AnchorPane" prefWidth="600.0">
+                          <children>
+                            <Label alignment="CENTER_RIGHT" layoutX="36.0" layoutY="11.0" prefWidth="146.0" text="%Código de preparación" />
+                            <TextField id="tfCode" fx:id="tfCode" layoutX="208.0" layoutY="8.0" onKeyReleased="#actionAcceptIntro" prefWidth="316.0" />
+                          </children>
+                        </AnchorPane>
+                      </children>
+                    </VBox>
+                  </children>
+                </AnchorPane>
+                <AnchorPane minHeight="51.999900000002526" prefHeight="51.999900000002526" prefWidth="578.0" VBox.vgrow="NEVER">
+                  <children>
+                    <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <children>
+                        <AnchorPane prefHeight="52.0" prefWidth="92.0" HBox.hgrow="ALWAYS" />
+                        <TilePane alignment="BOTTOM_RIGHT" hgap="10.0" minHeight="52.0" prefHeight="52.0" prefWidth="480.0" HBox.hgrow="NEVER">
+                          <children>
+                            <Button mnemonicParsing="false" onAction="#actionAccept" prefHeight="42.0" prefWidth="115.0" styleClass="main-btn" text="%Aceptar" />
+                            <Button mnemonicParsing="false" onAction="#closeCancel" prefHeight="42.0" prefWidth="115.0" styleClass="btn" text="%Cancelar">
+                              <TilePane.margin>
+                                <Insets right="10.0" />
+                              </TilePane.margin>
+                            </Button>
+                          </children>
+                          <padding>
+                            <Insets bottom="10.0" left="10.0" top="10.0" />
+                          </padding>
+                        </TilePane>
+                      </children>
+                    </HBox>
+                  </children>
+                </AnchorPane>
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

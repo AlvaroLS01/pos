@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.components.numerickeypad.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet ../../../pos/gui/styles/styles.css?>
+<?scenebuilder-stylesheet ../../../pos/gui/styles/colors.css?>
+
+<AnchorPane id="AnchorPane" prefHeight="-1.0" prefWidth="-1.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <VBox id="VBox" alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" spacing="0.0" styleClass="background-card-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" styleClass="titulo-ventana" VBox.vgrow="NEVER">
+          <children>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="969.0" text="%Detalles del servicio" />
+          </children>
+        </HBox>
+        <HBox prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+          <children>
+            <VBox prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
+              <children>
+                <VBox minHeight="-1.0" prefHeight="-1.0" prefWidth="-1.0" spacing="10.0" style="-fx-background-color: white;&#10;" VBox.vgrow="NEVER">
+                  <children>
+                    <HBox prefHeight="-1.0" prefWidth="-1.0" spacing="5.0">
+                      <children>
+                        <Label fx:id="lbCustomer" prefWidth="80.0" text="%Cliente" />
+                        <TextField fx:id="tfCustomer" editable="false" focusTraversable="false" prefWidth="284.0" />
+                        <Label id="lbDeliveryDate" fx:id="lbDeliveryDate" prefWidth="100.0" text="%Fecha entrega" />
+                        <TextField fx:id="tfDeliveryDate" editable="false" focusTraversable="false" prefWidth="135.0" />
+                        <Label fx:id="lbSchedule" prefWidth="170.0" text="%Horario" />
+                        <TextField fx:id="tfSchedule" editable="false" focusTraversable="false" prefWidth="127.0" />
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="-1.0" prefWidth="-1.0" spacing="5.0">
+                      <children>
+                        <Label id="lbServiceCode" fx:id="lbServiceCode" prefWidth="80.0" text="%#Servicio" />
+                        <TextField fx:id="tfServiceCode" disable="false" editable="false" focusTraversable="false" prefWidth="284.0" text="" />
+                        <Label fx:id="lbServiceType" maxWidth="-1.0" prefWidth="100.0" text="%Tipo" />
+                        <TextField fx:id="tfServiceType" disable="false" editable="false" focusTraversable="false" prefWidth="245.0" />
+                        <Label id="lbStatus" fx:id="lbStatus" minWidth="-1.0" prefWidth="60.0" text="%Estado" />
+                        <TextField fx:id="tfStatus" editable="false" focusTraversable="false" minWidth="-1.0" prefWidth="170.0" />
+                      </children>
+                    </HBox>
+                  </children>
+                  <padding>
+                    <Insets top="5.0" />
+                  </padding>
+                </VBox>
+                <HBox prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+                  <children>
+                    <TabPane fx:id="servicesTabPane" prefHeight="-1.0" prefWidth="-1.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                      <tabs>
+                        <Tab fx:id="summaryTab" text="%Resumen">
+                          <content>
+                            <fx:include fx:id="serviceSummaryPanel" source="summary/servicesummarypanel.fxml" />
+                          </content>
+                        </Tab>
+                        <Tab fx:id="customerTab" text="%Cliente">
+                          <content>
+                            <fx:include fx:id="serviceCustomerPanel" source="customer/servicecustomerpanel.fxml" />
+                          </content>
+                        </Tab>
+                        <Tab fx:id="deliveryAddressTab" text="%Dirección de entrega">
+                          <content>
+                            <fx:include fx:id="deliveryAddressPanel" source="deliveryaddress/deliveryaddresspanel.fxml" />
+                          </content>
+                        </Tab>
+                        <Tab fx:id="preparationDataTab" text="%Datos de la preparación">
+                          <content>
+                            <fx:include fx:id="orderPreparationDataPanel" source="orderpreparationdata/orderpreparationdatapanel.fxml" />
+                          </content>
+                        </Tab>
+                      </tabs>
+                    </TabPane>
+                  </children>
+                </HBox>
+              </children>
+            </VBox>
+          </children>
+        </HBox>
+        <AnchorPane fx:id="buttonGroupPane" maxWidth="-1.0" prefHeight="190.0" prefWidth="-1.0" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="5.0" />
+          </padding>
+          <VBox.margin>
+            <Insets />
+          </VBox.margin>
+        </AnchorPane>
+        <HBox alignment="CENTER_RIGHT" prefHeight="-1.0" prefWidth="-1.0" styleClass="button-panel-box">
+          <children>
+            <Button id="btCancelar" mnemonicParsing="false" onAction="#closeCancel" prefWidth="-1.0" styleClass="btn" text="%Cerrar">
+              <HBox.margin>
+                <Insets />
+              </HBox.margin>
+            </Button>
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../pos/gui/styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

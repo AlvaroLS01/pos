@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ButtonsGroup>
+    <ButtonsRow>
+       	<Button>
+       		<imagePath>icons/cash.png</imagePath>
+			<text>Recuento</text>
+            <key>openCashJournalCount</key>
+            <type>METODO</type>
+			<shortcut>F8</shortcut>
+			<visible>true</visible>
+        </Button> 
+    </ButtonsRow>
+</ButtonsGroup>

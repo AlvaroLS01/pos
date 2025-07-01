@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.*?>
+<?scenebuilder-stylesheet ../../../gui/styles/styles.css?>
+<?scenebuilder-stylesheet ../../../gui/styles/colors.css?>
+
+<AnchorPane id="AnchorPane" maxHeight="-1.0" maxWidth="-1.0" minWidth="-1.0" prefHeight="700.0" prefWidth="1024.0" style="" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <VBox prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox prefHeight="50.0" prefWidth="-1.0" spacing="1.0" styleClass="header-gradient, header">
+          <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="header-component" HBox.hgrow="NEVER">
+              <children>
+                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../../../gui/images/logos/logo-czz-white.png" />
+                  </image>
+                </ImageView>
+              </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="header-component" HBox.hgrow="ALWAYS">
+              <children>
+                <ImageView fx:id="ivCustomerLogo" fitHeight="47.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="true">
+                  <image>
+                    <Image url="@../../../gui/images/logos/header-logo.png" />
+                  </image>
+                </ImageView>
+              </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#closeCancel" prefHeight="50.0" prefWidth="-1.0" styleClass="header-component" HBox.hgrow="SOMETIMES">
+              <children>
+                <HBox prefHeight="50.0" prefWidth="48.0" styleClass="icon-close" />
+                <Label id="lbCloseButton" prefWidth="-1.0" styleClass="label-white, label-big" text="%SALIR" HBox.hgrow="ALWAYS" />
+              </children>
+              <padding>
+                <Insets right="13.0" />
+              </padding>
+              <HBox.margin>
+                <Insets />
+              </HBox.margin>
+            </HBox>
+          </children>
+        </HBox>
+        <VBox prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+          <children>
+            <WebView fx:id="operationWebView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            <HBox prefHeight="-1.0" prefWidth="-1.0" styleClass="button-panel-box">
+              <children>
+                <Button fx:id="btLogin" disable="true" mnemonicParsing="false" onAction="#gotoLogin" text="%Iniciar Sesión" />
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../gui/styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

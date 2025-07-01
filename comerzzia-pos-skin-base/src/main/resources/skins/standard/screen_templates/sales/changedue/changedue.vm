@@ -1,0 +1,87 @@
+<html>
+	#htmlhead("/sales/changedue/changedue.css")
+	<body class="background-card-pane">
+		#environmentData('/sales/changedue/changedue')
+		<div class="payments-top"></div>
+		<div class="payments-content">
+		<div class="czz-card">
+			<div class="big-text" >#i18n("Artículos") #number($basketTransaction.getTotals().getTotalItems())</div>
+		</div>
+		#set($lessIncome = $basketTransaction.getPayments().getLessIncomePayments().values())
+		#set($prepayments = $basketTransaction.getPayments().getPrepayments().getPaymentsList())
+		#set($payments = $basketTransaction.getPayments().getPaymentsList())
+			<div class="czz-card background-split-colors bold">
+				<div class="row  label-total">
+					<div class="col-4 fw-normal">#i18n("Total")</div>
+					<div class="col-8 text-end">#balance($basketTransaction.getTotals().getTotalWithTaxes())</div>
+				</div>
+				<div class="row pending-area d-flex align-items-center">
+					<div class="col">
+						<div class="fw-normal big-text">#i18n("Cambio")</div>
+						<div class="big-text">$basketTransaction.getTotals().getChangeDue().getChangePaymentMethod().getPaymentMethodDes()</div>
+					</div>
+					<div class="col-6">
+						<div class="label-pending text-end">#balance($basketTransaction.getTotals().getChangeDue().getAmount())</div>
+					</div>
+				</div>
+			</div>
+			#if($basketTransaction.getTotals().getTotalPayments() != 0)
+			<div class="czz-card payments-actions">
+				<div class="row header-area delivered-area bold" data-bs-toggle="collapse" data-bs-target=".collapseable">
+					<div class="col-4">#i18n("ENTREGADO")</div>
+					<div class="col-8 text-end">#balance($basketTransaction.getTotals().getTotalPayments())</div>
+					<div class="header-line collapseable collapse"></div>
+				</div>
+				<div class="payments-details collapseable collapse show">
+					#foreach($payment in $payments)
+					<div class="row">
+						<div class="col flex-grow-0">
+							<div class="text-center icon-prepayment"></div>
+						</div>
+						<div class="col-5 flex-grow-1">${payment.getPaymentMethod().getPaymentMethodDes()}</div>
+						<div class="col-5 text-end">#balance($payment.getAmount())</div>
+					</div>
+					#end
+					#foreach($payment in $lessIncome)
+					<div class="row">
+						<div class="col flex-grow-0">
+							<div class="text-center icon-prepayment"><i class="icon-coupon"></i></div>
+						</div>
+						<div class="col-5 flex-grow-1">${payment.getPaymentMethod().getPaymentMethodDes()}</div>
+						<div class="col-5 text-end">#balance($payment.getAmount())</div>
+					</div>
+					#end
+					#foreach($payment in $prepayments)
+					<div class="row">
+						<div class="col flex-grow-0">
+							<div class="text-center icon-prepayment"><i class="icon-coupon"></i></div>
+						</div>
+						<div class="col-5 flex-grow-1">${payment.getPaymentMethod().getPaymentMethodDes()}</div>
+						<div class="col-5 text-end">#balance($payment.getAmount())</div>
+					</div>
+					#end
+				</div>
+			</div>
+			#end
+			#if($basketTransaction.getCouponsToIssue().size() > 0)
+			<div class="czz-card">
+				<div class="row header-area delivered-area bold">
+					<div class="col-12">#i18n("CUPONES A EMITIR")</div>
+				</div>
+				<div>
+					#foreach($coupon in $basketTransaction.getCouponsToIssue())
+					<div class="row">
+						<div class="col flex-grow-0">
+							<div class="text-center icon-prepayment"><i class="icon-coupon"></i></div>
+						</div>
+						<div class="col-5">$!{coupon.getCouponName()}</div>
+						<div class="col-4 text-end">${coupon.getPromotionId()}</div>
+						<div class="col-2 text-end">#if($coupon.getBalance()) #balance($coupon.getBalance()) #end</div>
+					</div>
+					#end
+				</div>
+			</div>
+			#end
+		</div>
+	</body> 
+</html>

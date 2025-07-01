@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ButtonsGroup>
+    <ButtonsRow>
+    	<Button>
+			<text>FILTRAR</text>
+            <key>filterNormal</key>
+            <type>METODO</type>
+			<shortcut>F1</shortcut>
+			<imagePath>icons/filtrar.png</imagePath>
+			<visible>S</visible>
+        </Button>
+        <Button>
+			<text>PDTES. PREPARACIÓN</text>
+            <key>filterStatus</key>
+            <params>
+            	<entry>
+		            <key>viewcode</key>
+		            <value>PTE_PREPARACION</value>
+		        </entry>
+		    </params>
+            <type>METODO</type>
+			<shortcut>F2</shortcut>
+			<imagePath>icons/pendientepreparacion.png</imagePath>
+			<visible>S</visible>
+        </Button> 
+        <Button>
+			<text>PDTES. EMBALAJE</text>
+            <key>filterStatus</key>
+            <params>
+            	<entry>
+		            <key>viewcode</key>
+		            <value>PTE_EMBALAJE</value>
+		        </entry>
+		    </params>
+            <type>METODO</type>
+			<shortcut>F3</shortcut>
+			<imagePath>icons/pendienteembalaje.png</imagePath>
+			<visible>S</visible>
+        </Button>
+        <Button>
+			<text>EN PREPARACIÓN</text>
+            <key>filterStatus</key>
+            <params>
+            	<entry>
+		            <key>viewcode</key>
+		            <value>EN_PREPARACION</value>
+		        </entry>
+		    </params>
+            <type>METODO</type>
+			<shortcut>F4</shortcut>
+			<imagePath>menu/pos-preparacion.png</imagePath>
+			<visible>S</visible>
+        </Button>
+	</ButtonsRow>
+	<ButtonsRow>
+		<Button>
+			<text>PDTES. FACTURAR</text>
+            <key>filterStatus</key>
+            <params>
+            	<entry>
+		            <key>viewcode</key>
+		            <value>PTE_FACTURAR</value>
+		        </entry>
+		    </params>
+            <type>METODO</type>
+			<shortcut>F6</shortcut>
+			<imagePath>icons/pendientepagos.png</imagePath>
+			<visible>S</visible>
+        </Button> 
+		<Button>
+			<text>PDTES. ENVÍO</text>
+            <key>filterStatus</key>
+            <params>
+            	<entry>
+		            <key>viewcode</key>
+		            <value>PTE_ENVIO</value>
+		        </entry>
+		    </params>
+            <type>METODO</type>
+			<shortcut>F7</shortcut>
+			<imagePath>icons/pendientenvio.png</imagePath>
+			<visible>S</visible>
+        </Button> 
+        <Button>
+			<text>PDTES. CONFIRMAR ENTREGA</text>
+            <key>filterStatus</key>
+            <params>
+            	<entry>
+		            <key>viewcode</key>
+		            <value>PTE_CONFIRMACION_ENTREGA</value>
+		        </entry>
+		    </params>
+            <type>METODO</type>
+			<shortcut>F8</shortcut>
+			<imagePath>icons/pendienteconfirmacionentrega.png</imagePath>
+			<visible>S</visible>
+        </Button> 
+        <Button>
+			<text>PDTES. RECOGIDA</text>
+            <key>filterStatus</key>
+            <params>
+            	<entry>
+		            <key>viewcode</key>
+		            <value>PTE_RECOGIDA</value>
+		        </entry>
+		    </params>
+            <type>METODO</type>
+			<shortcut>F9</shortcut>
+			<imagePath>icons/pendientederecogida.png</imagePath>
+			<visible>S</visible>
+        </Button>  
+        
+		
+        <Button>
+        	<type>HUECO</type>
+        </Button>
+	</ButtonsRow>
+</ButtonsGroup>

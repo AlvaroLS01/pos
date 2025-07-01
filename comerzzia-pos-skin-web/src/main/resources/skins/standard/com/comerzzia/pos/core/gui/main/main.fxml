@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="pantallaPane" maxHeight="-1.0" maxWidth="-1.0" minHeight="580.0" minWidth="-Infinity" prefHeight="720.0" prefWidth="1024.0" style="" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.pos.core.gui.main.MainViewController">
+  <children>
+    <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox id="HBox" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="1024.0" spacing="1.0" styleClass="header">
+          <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="1.0" styleClass="header-gradient" HBox.hgrow="ALWAYS">
+              <children>
+                <HBox minWidth="48.0" onMouseClicked="#accionMostrarMenu" prefHeight="47.0" prefWidth="48.0" styleClass="header-component, icon-menu" />
+                <HBox prefHeight="100.0" prefWidth="200.0" styleClass="header-component" HBox.hgrow="NEVER">
+                  <children>
+                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@../../../gui/images/logos/logo-czz-white.png" />
+                      </image>
+                    </ImageView>
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="header-component" HBox.hgrow="ALWAYS">
+                  <children>
+                    <HBox onMouseClicked="#openNotifications" prefHeight="50.0" prefWidth="35.0" styleClass="bell-icon, icon-bell" />
+                    <Label fx:id="lbNotifications" alignment="CENTER" minHeight="32.0" minWidth="32.0" onMouseClicked="#openNotifications" prefHeight="32.0" prefWidth="32.0" styleClass="icon-circle, label-white, label-big" text="X" />
+                    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                      <children>
+                        <ImageView fitHeight="47.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                          <image>
+                            <Image url="@../../../gui/images/logos/customer-logo.png" />
+                          </image>
+                        </ImageView>
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="50.0" prefWidth="257.0" HBox.hgrow="ALWAYS">
+                      <children>
+                        <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                          <children>
+                            <Label fx:id="lbPOSData" styleClass="label-soft, label-white" text="Store Id · Store Description · Cash ID" />
+                            <Label fx:id="lbCashier" styleClass="label-soft, label-white" text="Cashier" />
+                          </children>
+                          <HBox.margin>
+                            <Insets right="13.0" />
+                          </HBox.margin>
+                        </VBox>
+                      </children>
+                    </HBox>
+                  </children>
+                </HBox>
+                <HBox prefHeight="50.0" prefWidth="110.0" styleClass="header-component">
+                  <children>
+                    <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                      <children>
+                        <Label fx:id="lbDate" styleClass="label-soft, label-white" text="99/99/9999" />
+                        <Label fx:id="lbTime" styleClass="label-soft, label-white" text="99:99" />
+                      </children>
+                      <HBox.margin>
+                        <Insets right="13.0" />
+                      </HBox.margin>
+                    </VBox>
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" onMouseClicked="#close" prefHeight="50.0" prefWidth="-1.0" styleClass="header-component" HBox.hgrow="SOMETIMES">
+                  <children>
+                    <HBox prefHeight="50.0" prefWidth="48.0" styleClass="icon-close" />
+                    <Label fx:id="lbCloseButton" prefWidth="-1.0" styleClass="label-white, label-big" text="%SALIR" HBox.hgrow="ALWAYS" />
+                  </children>
+                  <padding>
+                    <Insets right="13.0" />
+                  </padding>
+                  <HBox.margin>
+                    <Insets />
+                  </HBox.margin>
+                </HBox>
+              </children>
+            </HBox>
+          </children>
+        </HBox>
+        <HBox fx:id="panelPrincipal" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@main.css" />
+  </stylesheets>
+</AnchorPane>

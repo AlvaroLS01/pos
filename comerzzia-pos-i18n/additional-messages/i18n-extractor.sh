@@ -1,0 +1,1 @@
+./mvnw -s .mvn/settings.xml exec:java

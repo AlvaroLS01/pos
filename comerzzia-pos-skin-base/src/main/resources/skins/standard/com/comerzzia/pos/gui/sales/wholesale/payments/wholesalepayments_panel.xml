@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ButtonsGroup>
+    <ButtonsRow>
+        <Button>
+			<text>Efectivo</text>
+            <key>selectPaymentMethod</key>
+            <type>METODO</type>
+			<shortcut>F1</shortcut>
+			<imagePath>icons/cash.png</imagePath>
+			<params>
+				<entry>
+					<key>codMedioPago</key>
+					<value>0000</value>
+				</entry>
+			</params>
+        </Button>
+        <Button>
+			<text>Tarjeta</text>
+            <key>selectPaymentMethod</key>
+            <type>METODO</type>
+			<shortcut>F1</shortcut>
+			<imagePath>icons/credit-card.png</imagePath>
+			<params>
+				<entry>
+					<key>codMedioPago</key>
+					<value>0010</value>
+				</entry>
+			</params>
+        </Button>
+        <Button>
+			<text>Otros</text>
+            <key>switchLateralVBox</key>
+            <type>METODO</type>
+			<shortcut>F1</shortcut>
+			<imagePath>icons/other.png</imagePath>
+        </Button>
+	</ButtonsRow>
+</ButtonsGroup>

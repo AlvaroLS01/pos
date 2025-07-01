@@ -1,41 +1,94 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.comerzzia.byl</groupId>
-	<artifactId>comerzzia-bimbaylola-pos</artifactId>
-	<version>4.6.14</version>
+	<groupId>com.comerzzia.pos</groupId>
+	<artifactId>comerzzia-pos</artifactId>
+	<version>5.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>comerzzia-bimbaylola-pos</name>
 
 	<properties>
+		<maven.test.skip>true</maven.test.skip>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.test.skip>true</maven.test.skip>		
-		<cmzVersion>4.6.14</cmzVersion>
-		<bo.webservices.version>4.6.14-SNAPSHOT</bo.webservices.version>
 	</properties>
 
-	<repositories>
-		<repository>
-			<id>artifactory</id>
-			<url>http://repo.comerzzia.com/artifactory/comerzzia/</url>
-		</repository>
-		<repository>
-			<id>clientes</id>
-			<url>http://software.tier1.es/artifactory/clientes.local/</url>
-		</repository>
-		<repository>
-			<id>tier1</id>
-			<url>http://software.tier1.es/artifactory/tier1-external-libs.local/</url>
-		</repository>
-	</repositories>
+	<modules>
+		<module>comerzzia-pos-resources</module>
+		<module>comerzzia-pos-core-services</module>
+		<module>comerzzia-pos-core-devices</module>
+		<module>comerzzia-pos-core-gui</module>
+		<module>comerzzia-pos-util</module>
+		<module>comerzzia-pos-devices</module>
+		<module>comerzzia-pos-skin-base</module>
+		<module>comerzzia-pos-skin-web</module>
+		<module>comerzzia-pos-sales-gui</module>
+		<module>comerzzia-pos-application</module>
+	</modules>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>artifactory</id>
-			<url>http://repo.comerzzia.com/artifactory/comerzzia/</url>
-		</pluginRepository>
-	</pluginRepositories>
+	<dependencies>
+		<!-- map all log systems to logback -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-to-slf4j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- javafx dependences -->
+		<dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+        </dependency>
+		<!-- global libraries -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.comerzzia.pos</groupId>
+				<artifactId>comerzzia-pos-bom</artifactId>	
+				<version>5.0-SNAPSHOT</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<pluginManagement>
@@ -58,16 +111,75 @@
 						<encoding>${project.build.sourceEncoding}</encoding>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.4</version>
+					<configuration>
+						<archive>
+							<manifestEntries>
+								<Build-commit>${buildCommit}</Build-commit>
+								<Build-number>${buildNumber}</Build-number>
+								<Build-timestamp>${buildTimestamp}</Build-timestamp>
+								<Built-By>${buildUser}</Built-By>
+								<comerzzia-module>${project.artifactId}</comerzzia-module>
+								<comerzzia-module-version>${project.version}</comerzzia-module-version>
+							</manifestEntries>
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.8</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>3.4.1</version>
+					<configuration>
+					    <failOnError>false</failOnError>
+						<doclint>none</doclint>
+						<quiet>true</quiet>
+					</configuration>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.2.1</version>
+					<configuration>
+						<excludes>
+							<exclude>**/MyBatisGenerator.xml</exclude>
+						</excludes>
+					</configuration>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<goals>
+								<goal>jar-no-fork</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
 			</plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
-
-	<modules>
-		<module>comerzzia-bimbaylola-pos-util</module>
-		<module>comerzzia-bimbaylola-pos-persistence</module>
-		<module>comerzzia-bimbaylola-pos-services</module>
-		<module>comerzzia-bimbaylola-pos-gui</module>
-		<module>comerzzia-bimbaylola-pos-skin</module>
-		<module>comerzzia-bimbaylola-pos-devices</module>
-	</modules>
 </project>

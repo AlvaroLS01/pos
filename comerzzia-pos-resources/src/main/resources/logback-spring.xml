@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+    <property name="LOG_DATEFORMAT_PATTERN" value="HH:mm:ss.SSS"/>
+    <property name="FILE_LOG_PATTERN" value="${FILE_LOG_PATTERN:-%d{${LOG_DATEFORMAT_PATTERN:-HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} --- [%15.15t] %-60.60logger{60} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>    
+    
+    <springProfile name="!ide">
+		<property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(---){faint} %clr([%15.15t]){faint} %clr(%-60.60logger{59}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+	</springProfile>
+	
+	<springProfile name="ide">
+		<property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr([%15.15t]){faint} %clr(%class{50}.%method){cyan} \\(%file:%line\\) %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>					
+	</springProfile>
+	
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+	<springProfile name="!ide &amp; (pos | filelogs)">	    
+	    <property name="LOG_FILE" value="../log/comerzzia-pos.log"/>
+	    
+	    <property name="LOGBACK_ROLLINGPOLICY_MAX_FILE_SIZE" value="50MB"/>
+	    <property name="LOGBACK_ROLLINGPOLICY_MAX_HISTORY" value="30"/>
+	    <property name="LOGBACK_ROLLINGPOLICY_TOTAL_SIZE_CAP" value="1GB"/>
+	    
+	    <include resource="org/springframework/boot/logging/logback/file-appender.xml" />
+	    
+	    <root level="INFO">
+			<appender-ref ref="FILE" />
+		</root>
+	</springProfile>
+
+    <springProfile name="!pos | ide | consolelogs">
+	    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+	    
+	    <root level="INFO">
+			<appender-ref ref="CONSOLE" />
+		</root>
+	</springProfile>
+
+	<logger name="org.eclipse" level="INFO" />
+	<logger name="org.apache" level="INFO" />
+	<logger name="org.springframework" level="INFO" />
+	<logger name="jndi" level="INFO" />
+	<logger name="org.mybatis" level="INFO" />
+	<logger name="org.quartz" level="INFO" />
+	<logger name="org.hibernate" level="INFO" />
+
+	<logger name="org.comtel2000" level="INFO" />
+
+    <springProfile name="dev">
+       <logger name="com.comerzzia" level="DEBUG" />
+       <logger name="com.comerzzia.pos.core" level="INFO" />
+    </springProfile>    	
+</configuration>

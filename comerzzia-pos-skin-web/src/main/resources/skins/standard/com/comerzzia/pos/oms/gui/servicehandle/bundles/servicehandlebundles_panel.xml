@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ButtonsGroup>
+    <ButtonsRow>
+    	<Button>
+            <text>FIN PREPARACIÓN</text>
+            <key>finishHandle</key>
+            <type>METODO</type>
+			<shortcut>F1</shortcut>
+			<imagePath>icons/sustituir.png</imagePath>
+			<visible>S</visible>
+        </Button>
+        <Button>
+            <type>HUECO</type>
+        	<visible>S</visible>
+        </Button> 
+        <Button>
+            <type>HUECO</type>
+        	<visible>S</visible>
+        </Button>  
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+        <Button>
+        	<text>DETALLE DEL SERVICIO</text>
+            <key>serviceDetail</key>
+            <params>
+		        <entry>
+		            <key>idAccion</key>
+		            <value>4018</value>
+		        </entry>
+		    </params>
+            <type>METODO</type>
+			<shortcut>F5</shortcut>
+			<imagePath>icons/detalledelservicio.png</imagePath>
+			<visible>N</visible>
+        </Button>
+	</ButtonsRow>
+	<ButtonsRow>
+		<Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+	</ButtonsRow>
+</ButtonsGroup>

@@ -1,0 +1,106 @@
+/*First section. WebView table*/
+
+.rounded-hbox {
+	-fx-background-color: -color-base-1;
+	-fx-background-radius: 10 10 10 10;
+	-fx-border-radius: 10 10 10 10;
+}
+
+/*Second section. Income/Outcome totals*/
+
+.left-side-panel {
+	-fx-background-color: -color-base-1;
+	-fx-background-radius: 10 0 0 10;
+}
+
+.io-total-cash-close {
+	-fx-background-color: -color-principal-2;
+	-fx-background-radius: 0 10 10 0;
+}
+
+.io-cash-close-values {
+	-fx-text-fill: -color-base-1;
+}
+
+.docs-amounts {
+	-fx-background-color: -color-principal-2;
+	-fx-background-radius: 5 5 5 5;
+}
+
+/*Third section. Misalignment details*/
+
+.misalignment-top-box {
+	-fx-background-color: -color-base-1;
+	-fx-background-radius: 10 10 0 0;
+}
+
+.misalignment-bottom-box {
+	-fx-background-color: -color-principal-2;
+	-fx-background-radius: 0 0 10 10;
+}
+
+.misalignment-bottom-box-full-rounded {
+	-fx-background-color: -color-principal-2;
+	-fx-background-radius: 10px;
+}
+
+.white-big-text {
+	-fx-text-fill: -color-base-1;
+	-fx-font-size: 48px;
+}
+
+.white-big-number {
+	-fx-text-fill: -color-base-1;
+	-fx-font-size: 64px;
+}
+
+.sixteen-px-text {
+	-fx-font-size: 16px;
+}
+
+.twenty-four-px-text {
+	-fx-font-size: 24px;
+}
+
+.thirty-two-px-text {
+	-fx-font-size: 32px;
+}
+
+/*Fourth section. Bottom info and buttons*/
+
+.white-bottom-panel {
+	-fx-background-color: -color-base-1;
+	-fx-background-radius: 10 10 10 10;
+}
+
+.twelve-px-blue-text {
+	-fx-text-fill: -color-principal-2;
+	-fx-font-size: 14px;
+}
+
+.twelve-px-black-text {
+	-fx-text-fill: black;
+	-fx-font-size: 12px;
+}
+
+
+/*Miscelaneous*/
+
+.blue-border-top {
+	-fx-border-color: -color-principal-2;
+	-fx-border-width: 1px;
+	-fx-border-style: solid none none none;
+}
+
+.black-text {
+	-fx-text-fill: black;
+}
+
+.white-text {
+	-fx-text-fill: -color-base-1;
+}
+
+.rounded-table {
+	-fx-border-radius: 10px;
+	-fx-background-radius: 10px;
+}

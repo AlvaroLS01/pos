@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.components.header.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?scenebuilder-stylesheet ../../styles/colors.css?>
+<?scenebuilder-stylesheet ../../styles/styles.css?>
+<?import com.comerzzia.pos.core.gui.components.header.*?>
+
+<AnchorPane minHeight="-1.0" padding="$x1" prefHeight="768.0" prefWidth="1024.0" styleClass="" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <!-- TODO Add Nodes -->
+  <children>
+    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+       <HBox alignment="CENTER" minHeight="48.0">
+          <children>
+            <CzzHeader fx:id="header" />
+          </children>
+          <VBox.margin>
+          </VBox.margin>
+        </HBox>
+        <VBox prefHeight="768.0" prefWidth="1024.0" styleClass="background-card-pane" VBox.vgrow="ALWAYS">
+          <children>
+            <HBox prefHeight="41.0" prefWidth="-1.0" styleClass="titulo-ventana">
+              <children>
+                <Label alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" text="%Configuración código de barras" />
+              </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" styleClass="background-card-pane" VBox.vgrow="ALWAYS">
+              <children>
+                <VBox alignment="CENTER" fillWidth="true" prefHeight="-1.0" prefWidth="-1.0" HBox.margin="$x1">
+                  <children>
+                    <VBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0" styleClass="czz-card">
+                      <children>
+                        <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0">
+                          <children>
+                            <VBox prefHeight="-1.0" prefWidth="-1.0">
+                              <children>
+                                <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="%Descripción">
+                                  <graphic>
+                                    <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="*" />
+                                  </graphic>
+                                </Label>
+                                <TextField fx:id="tfDescription" prefWidth="244.0" />
+                              </children>
+                            </VBox>
+                            <VBox prefHeight="-1.0" prefWidth="-1.0">
+                              <children>
+                                <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="%Prefijo">
+                                  <graphic>
+                                    <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="*" />
+                                  </graphic>
+                                </Label>
+                                <TextField fx:id="tfPrefix" prefWidth="70.0" />
+                              </children>
+                            </VBox>
+                          </children>
+                        </HBox>
+                        <Separator prefWidth="-1.0">
+                          <VBox.margin>
+                            <Insets bottom="10.0" top="10.0" fx:id="x2" />
+                          </VBox.margin>
+                        </Separator>
+                        <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0">
+                          <children>
+                            <VBox prefHeight="-1.0" prefWidth="-1.0">
+                              <children>
+                                <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="%Tipo">
+                                  <graphic>
+                                    <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="*" />
+                                  </graphic>
+                                </Label>
+                                <ComboBox fx:id="cbCodeType" prefHeight="-1.0" prefWidth="154.0">
+                                  <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                      <String fx:value="Item 1" />
+                                      <String fx:value="Item 2" />
+                                      <String fx:value="Item 3" />
+                                    </FXCollections>
+                                  </items>
+                                </ComboBox>
+                              </children>
+                            </VBox>
+                          </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0">
+                          <children>
+                            <VBox prefHeight="-1.0" prefWidth="-1.0">
+                              <children>
+                                <Label alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" text="%Posición">
+                                  <graphic>
+                                    <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="*" />
+                                  </graphic>
+                                </Label>
+                                <TextField id="tfPosicionTicket" fx:id="tfContentPosition" maxWidth="9999.0" prefHeight="-1.0" prefWidth="80.0" />
+                              </children>
+                            </VBox>
+                            <VBox prefHeight="-1.0" prefWidth="-1.0">
+                              <children>
+                                <Label alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" text="%Longitud">
+                                  <graphic>
+                                    <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="*" />
+                                  </graphic>
+                                </Label>
+                                <TextField id="tfLongitudTicket" fx:id="tfContentLength" prefHeight="-1.0" prefWidth="80.0" />
+                              </children>
+                            </VBox>
+                          </children>
+                        </HBox>
+                        <Separator prefWidth="-1.0" VBox.margin="$x2" />
+                        <Label alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" styleClass="bold" text="%Precio" />
+                        <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0">
+                          <children>
+                            <VBox prefHeight="-1.0" prefWidth="-1.0">
+                              <children>
+                                <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="%Posición">
+                                  <graphic>
+                                    <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="*" />
+                                  </graphic>
+                                </Label>
+                                <TextField fx:id="tfPricePosition" prefWidth="60.0" />
+                              </children>
+                            </VBox>
+                            <VBox prefHeight="-1.0" prefWidth="-1.0">
+                              <children>
+                                <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="%Parte entera">
+                                  <graphic>
+                                    <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="*" />
+                                  </graphic>
+                                </Label>
+                                <TextField fx:id="tfPriceWholeNumber" prefWidth="100.0" />
+                              </children>
+                            </VBox>
+                            <VBox prefHeight="-1.0" prefWidth="-1.0">
+                              <children>
+                                <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="%Parte decimal">
+                                  <graphic>
+                                    <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="*" />
+                                  </graphic>
+                                </Label>
+                                <TextField fx:id="tfPriceFractionPart" prefWidth="100.0" />
+                              </children>
+                            </VBox>
+                          </children>
+                        </HBox>
+                        <Separator prefWidth="-1.0" VBox.margin="$x2" />
+                        <Label alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" styleClass="bold" text="%Cantidad" />
+                        <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0">
+                          <children>
+                            <VBox prefHeight="-1.0" prefWidth="-1.0">
+                              <children>
+                                <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="%Posición">
+                                  <graphic>
+                                    <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="*" />
+                                  </graphic>
+                                </Label>
+                                <TextField fx:id="tfQuantityPosition" prefWidth="60.0" />
+                              </children>
+                            </VBox>
+                            <VBox prefHeight="-1.0" prefWidth="-1.0">
+                              <children>
+                                <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="%Parte entera">
+                                  <graphic>
+                                    <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="*" />
+                                  </graphic>
+                                </Label>
+                                <TextField fx:id="tfQuantityWholeNumber" prefWidth="100.0" />
+                              </children>
+                            </VBox>
+                            <VBox prefHeight="-1.0" prefWidth="-1.0">
+                              <children>
+                                <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="%Parte decimal">
+                                  <graphic>
+                                    <Label alignment="CENTER_LEFT" prefWidth="-1.0" text="*" />
+                                  </graphic>
+                                </Label>
+                                <TextField id="tfPDecimalCantidda" fx:id="tfQuantityFractionPart" prefWidth="100.0" />
+                              </children>
+                            </VBox>
+                          </children>
+                        </HBox>
+                        <Separator prefWidth="-1.0" VBox.margin="$x2" />
+                        <CheckBox fx:id="cbLoyalty" mnemonicParsing="false" prefWidth="-1.0" text="%Fidelizado" />
+                        <Label fx:id="lbError" alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" styleClass="lbError" text="" />
+                      </children>
+                    </VBox>
+                  </children>
+                  <padding>
+                    <Insets fx:id="x1" />
+                  </padding>
+                </VBox>
+              </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0">
+              <children>
+                <Button mnemonicParsing="false" onAction="#actionAccept" prefWidth="120.0" styleClass="main-btn" text="%Aceptar" />
+                <Button mnemonicParsing="false" onAction="#closeCancel" prefWidth="120.0" styleClass="btn" text="%Cancelar" />
+              </children>
+              <padding>
+                <Insets bottom="15.0" right="15.0" top="15.0" />
+              </padding>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

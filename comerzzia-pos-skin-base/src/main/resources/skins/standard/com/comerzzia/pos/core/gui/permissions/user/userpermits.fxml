@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-stylesheet ../../../../gui/styles/colors.css?>
+<?scenebuilder-stylesheet ../../../../gui/styles/styles.css?>
+
+<AnchorPane id="AnchorPane" minWidth="-1.0" prefHeight="550.0" prefWidth="403.0" styleClass="" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" >
+  <children>
+    <HBox id="HBox" alignment="CENTER" minWidth="388.0" prefHeight="700.0" prefWidth="403.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane id="AnchorPane" minWidth="388.0" prefHeight="700.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
+          <children>
+            <VBox id="VBox" alignment="CENTER" prefHeight="700.0" prefWidth="-1.0" spacing="5.0" styleClass="background-card-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane prefHeight="30.0" prefWidth="800.0" styleClass="titulo-ventana" VBox.vgrow="NEVER">
+                  <children>
+                    <Label alignment="CENTER" prefHeight="25.999908447265625" prefWidth="800.0" text="%Gestión de Permisos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  </children>
+                </AnchorPane>
+                <HBox id="HBox" alignment="CENTER" minHeight="-1.0" prefHeight="-1.0" prefWidth="-1.0" spacing="0.0" styleClass="czz-card" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lbActionName" alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" text="NOMBRE DE ACCION" HBox.hgrow="ALWAYS" />
+                  </children>
+                  <padding>
+                    <Insets left="10.0" right="10.0" fx:id="x1" />
+                  </padding>
+                </HBox>
+                <HBox minHeight="189.0" minWidth="403.0" padding="$x1" prefHeight="565.0" prefWidth="403.0" spacing="5.0" styleClass="czz-card" VBox.vgrow="ALWAYS">
+                  <children>
+                    <TilePane fx:id="tpActions" hgap="5.0" minWidth="369.0" orientation="VERTICAL" prefColumns="1" prefHeight="564.0" prefRows="10" prefTileWidth="300.0" prefWidth="383.0" vgap="5.0" HBox.hgrow="ALWAYS" />
+                  </children>
+                </HBox>
+                <HBox id="HBox" alignment="BOTTOM_RIGHT" maxHeight="-1.0" minHeight="60.0" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0" styleClass="button-panel-box" VBox.vgrow="NEVER">
+                  <children>
+                    <Button fx:id="btAccept" mnemonicParsing="false" onAction="#closeCancel" prefHeight="42.0" prefWidth="110.0" styleClass="main-btn" text="%Aceptar" />
+                    <Button fx:id="btManage" mnemonicParsing="false" onAction="#actionManage" prefHeight="42.0" prefWidth="163.0" styleClass="btn" text="%Administrar" />
+                  </children>
+                </HBox>
+              </children>
+            </VBox>
+          </children>
+          <HBox.margin>
+            <Insets />
+          </HBox.margin>
+        </AnchorPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

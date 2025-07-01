@@ -1,0 +1,398 @@
+:root {
+	--color-principal-0: #0e6687;
+	/* darker blue*/
+	--color-principal-1: #0082AA;
+	/* dark blue */
+	--color-principal-2: #1282AA;
+	
+	--color-principal-3: #86ABCC;
+	
+	/* white */
+	--color-base-1: #FFFFFF;
+	/* lightgrey */
+	--color-base-2: #F0F3F6;
+	/* grey */
+	--color-base-3: #E0E0E0;
+	
+	--color-base-4: #96BBCC;
+	
+	--color-text: #1282AA;
+}
+
+@font-face {
+	font-family: 'DM Sans', sans-serif;
+	src: url('fonts/DMSans-Regular.ttf')
+}
+
+@font-face {
+	font-family: 'DM Sans Bold';
+	src: url('fonts/DMSans-Bold.ttf')
+}
+
+@font-face {
+	font-family: 'DM Sans Bold Italic';
+	src: url('fonts/DMSans-BoldItalic.ttf')
+}
+
+@font-face {
+	font-family: 'DM Sans Italic';
+	src: url('fonts/DMSans-Italic.ttf')
+}
+
+@font-face {
+	font-family: 'DM Sans Medium';
+	src: url('fonts/DMSans-Medium.ttf')
+}
+
+@font-face {
+	font-family: 'DM Sans Medium Italic';
+	src: url('fonts/DMSans-MediumItalic.ttf')
+}
+
+body {
+	font-family: 'DM Sans';
+	letter-spacing: 0px;
+	font-size: 14px;
+	font-weight: 500;
+	letter-spacing: 0px;
+	color: #000000;
+}
+
+/* ******************** SCROLLBAR ******************** */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--color-base-1);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--color-principal-2);
+	opacity: 0.24;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--color-principal-2);
+}
+
+/* ******************** CARDS ******************** */
+
+.czz-card {
+	background-color: var(--color-base-1);
+	margin-bottom: 10px;
+	border-radius: 10px;
+	padding: 10px 12px 10px 12px;
+}
+
+/* Rounded scrollbar on a card to respect the rounded corners */
+.czz-card::-webkit-scrollbar,
+.czz-card::-webkit-scrollbar-track,
+.czz-card::-webkit-scrollbar-thumb {
+	border-radius: 15px;
+}
+
+/* ******************** TEXT STYLES ******************** */
+
+.medium-text {
+	font-size: 18px;
+}
+
+.big-text {
+	font-size: 32px;
+}
+
+.small-text {
+	font-size: 9px;
+}
+
+.blue-text {
+	color: var(--color-principal-2);
+}
+
+.white-text {
+	color: var(--color-base-1);
+}
+
+/* ******************** ELEMENTS ******************** */
+
+.horizontal-separator {
+	border-bottom: 1px solid var(--color-principal-2);
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+.btn-circle {
+	background-color: var(--color-principal-2);
+	color: var(--color-base-1);
+	border-radius: 50px;
+	width: 50px;
+	height: 50px;
+	font-size: 20px;
+	margin-left: 5px;
+	border-width: 0px;
+}
+
+.btn-circle:hover {
+	background-color: var(--color-base-4);
+	color: var(--color-base-1);
+}
+
+.btn-circle span::before {
+	color: var(--color-base-1);
+}
+
+.quickaccess-label {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 4px;
+}
+
+.btn {
+	border-radius: 10px;
+	padding: 10px;
+    font-size: 16px;
+}
+
+.btn-secondary {
+    color: var(--color-principal-2);
+	background-color: var(--color-base-2);
+    border-color: var(--color-base-2);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+	color: var(--color-principal-2);
+	background-color: var(--color-base-3);
+	border-color: var(--color-base-3);
+}
+
+.btn-menu {
+	background-color: var(--color-base-1);
+	color: var(--color-text);
+	display: inline-block;
+	margin-right: 15px;
+	margin-bottom: 15px;
+	width: 100px;
+	min-height: 80px;
+	border-radius: 10px;
+	border-color: var(--color-base-1);
+	font-size: 14px;
+	font-weight: 500;
+	padding: 0px;
+	position: relative;
+}
+
+.btn-button-pane {
+	background-color: white;
+	color: var(--color-text);
+	display: inline-block;
+	margin-right: 15px;
+	margin-bottom: 15px;
+	width: 100px;
+	min-height: 80px;
+	border-radius: 10px;
+	border-color: white;
+	font-size: 14px;
+	font-weight: 500;
+	padding: 0px;
+	position: relative;
+}
+
+
+/* *********************************** TABLES *********************************** */
+table thead tr {
+	border-bottom: 1px solid var(--color-principal-2);
+	padding-bottom: 12px;
+	padding-right: 12px;
+	
+	color: var(--color-text);
+	text-transform: uppercase;
+	
+}
+
+table thead {
+	position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+	position: sticky;
+	top: -10px;
+    background-color: var(--color-base-1) !important;
+}
+
+table tbody tr {
+	max-height: 55vh;
+	overflow-y: auto;
+	font-weight: 500;
+	border-left: 3px solid rgba(255,255,255,0);
+}
+
+table tbody tr td {
+	padding: 12px;
+	cursor: pointer;
+	margin: 0px;
+}
+
+/* Fit width of column to content, useful for button columns */
+table tbody tr td.fit {
+	white-space: nowrap;
+    width: 1%;
+}
+
+/* Main data line */
+table tbody tr[data-bs-toggle="collapse"] {
+	border-top: 1px solid var(--color-principal-2);
+}
+
+/* Other data line */
+table tbody tr.collapse {
+	transition: 0s;
+}
+
+/* Other data line */
+table tbody tr.collapse,
+/* Main data line with expanded other data line */
+table tbody tr[aria-expanded="true"] {
+	/* .fake-table-rows > div.other-item-data */
+	/* .fake-table-rows > div.main-item-data[aria-expanded="true"] */
+	border-left: 3px solid #F9B233;
+}
+
+/* *********************************** FLOW BASE FOR SCREENS *********************************** */
+/* CZZ FLOW LAYOUT DOCS
+
+- CLASSES:
+	.czz-base   -> creates a vertical flow container
+	.content    -> child of .czz-base, makes the element able to stretch and being scrollable
+	.filler     -> child of .czz-base, creates a blank space on the flow
+	.has-filler -> add this clase to every .content if .czz-base has a filler, for proper sizing
+	
+-RELATED CLASSES:
+	.czz-card   -> it gives card appearance to an element. Usually applied to .czz-base's children
+	.p-2        -> Bootstrap class for padding. Usually applied to .czz-base
+	
+-EXAMPLES:
+	<!-- Card that fills the whole .czz-base -->
+	<div class="czz-base">
+		<div class="czz-card content">
+			Card
+		</div>
+	</div>
+	
+	<!-- Card at the top of .czz-base adjusted to its content size. It grows as it has more content -->
+	<div class="czz-base">
+		<div class="czz-card content has-filler">
+			Card
+		</div>
+		<div class="filler"/>
+	</div>
+	
+	<!-- Same as last example, but the card is now fixed to bottom because the filler is at the top -->
+	<div class="czz-base">
+		<div class="filler"/>
+		<div class="czz-card content has-filler">
+			Card
+		</div>
+	</div>
+	
+	<!-- Creates a footer always fixed at the bottom, and a centered card (both fillers share space equally) -->
+	<div class="czz-base">
+		<div class="filler"/>
+		<div class="czz-card content has-filler">
+			Card
+		</div>
+		<div class="filler"/>
+		<div class="czz-card">
+			Header
+		</div>
+	</div>
+*/
+.czz-base {
+	background-color: var(--color-base-2);
+	height: 100vh;
+	
+    display: flex;
+    flex-direction: column;
+}
+
+.czz-base .content {
+    flex: 1 1 auto;
+    overflow-y: auto;
+}
+.czz-base .content.has-filler {
+	flex: 0 1 auto;
+    overflow-y: auto;
+}
+
+/* If JavaFX WebView supports :has() in the future we can get rid of .has-filler and uncomment this rule instead 
+.czz-base:has(> .filler) .content {
+	flex: 0 1 auto;
+    overflow-y: auto;
+}*/
+
+.czz-base .filler {
+	flex: 1 1 auto;
+}
+
+.lightgrey-bg {
+	background-color: var(--color-base-2);
+}
+
+.main-color-bg {
+	background-color: var(--color-principal-0);
+}
+
+.main-color-text {
+	color: var(--color-principal-0);
+	margin-bottom: 10px;
+	padding: 10px 12px 10px 12px;
+}
+
+.menu-base {
+	background-color: var(--color-base-2);
+}
+
+hr{
+	margin: 0 0 0.3rem 0;
+}
+
+
+.flag {
+  pointer-events: none;
+  font: 700 14px/12px Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    line-height: 12px;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 9px 0 7px;
+    padding-right: 0px;
+    padding-left: 0px;
+  text-shadow: 1px 1px rgba(0,0,0,0.24);
+  display: block;
+  position: fixed;
+  right: 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(-45deg);
+  background: -moz-linear-gradient(45deg, rgba(255,0,0,1) 0%, rgba(240,56,9,1) 52%, rgba(250,21,0,1) 100%);
+  background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(255,0,0,1)), color-stop(52%, rgba(240,56,9,1)), color-stop(100%, rgba(250,21,0,1)));
+  background: -webkit-linear-gradient(45deg, rgba(255,0,0,1) 0%, rgb(255, 90, 64) 52%, rgba(250,21,0,1) 100%);
+  background: -o-linear-gradient(45deg, rgba(255,0,0,1) 0%, rgb(255, 90, 64) 52%, rgba(250,21,0,1) 100%);
+  background: -ms-linear-gradient(45deg, rgba(255,0,0,1) 0%, rgb(255, 90, 64) 52%, rgba(250,21,0,1) 100%);
+  background: linear-gradient(45deg, rgba(255,0,0,1) 0%, rgb(255, 90, 64) 52%, rgba(250,21,0,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#fa1500', GradientType=1 );
+  left: -56px;
+  z-index: 999999;
+  width: 259px;
+  min-height: 43px;
+  opacity: 0.2;
+  font-size: 1.8em;
+  line-height: 29px;
+  padding-left: 4%;
+  box-sizing: border-box;
+  padding-right: 4%;
+  text-align: center;
+  TOP: 49px;
+}

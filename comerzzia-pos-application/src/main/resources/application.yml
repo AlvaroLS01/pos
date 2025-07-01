@@ -1,0 +1,17 @@
+spring:   
+    main:
+        web-application-type: none
+        allow-bean-definition-overriding: true
+##        allow-circular-references: true
+        
+    application:
+        name: "comerzzia POS"
+        ui:
+           title: "comerzzia POS"
+    messages:
+        basename: i18n/czz-pos
+    jackson:
+        serialization: 
+           FAIL_ON_EMPTY_BEANS: false
+           
+        

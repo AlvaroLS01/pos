@@ -1,0 +1,20 @@
+img{
+	cursor: pointer;
+}
+
+.ticket-date {
+	width: 25%;
+}
+
+.ticket-tillCode {
+	width: 10%;
+}
+
+.ticket-docType {
+	width: 40%;
+}
+
+.ticket-id {
+	width: 20%;
+}
+

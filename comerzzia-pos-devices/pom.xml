@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.comerzzia.pos</groupId>
+		<artifactId>comerzzia-pos</artifactId>
+		<version>5.1-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
+	<artifactId>comerzzia-pos-devices</artifactId>
+
+	<dependencies>
+		<!-- operating system and javapos libraries -->
+		<dependency>
+			<groupId>org.javapos</groupId>
+			<artifactId>javapos</artifactId>
+		</dependency>		
+		<dependency>
+		    <groupId>com.neuronrobotics</groupId>
+		    <artifactId>nrjavaserial</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.ntb.usb</groupId>
+			<artifactId>ch-ntb-usb</artifactId>
+		</dependency>
+		<!-- operating system and javapos libraries -->
+		<!-- Jasper Reports -->
+		<dependency>
+		    <groupId>net.sf.jasperreports</groupId>
+		    <artifactId>jasperreports</artifactId>
+		</dependency>
+		<dependency>
+		    <!-- barcode4j for barcode printing -->
+		    <groupId>net.sf.barcode4j</groupId>
+		    <artifactId>barcode4j</artifactId>
+		</dependency>
+		<dependency>
+		    <!-- barcode4j needs this library for image rendering -->
+		    <groupId>org.apache.xmlgraphics</groupId>
+		    <artifactId>batik-bridge</artifactId>
+		    <scope>runtime</scope>
+		</dependency>
+		<dependency>
+		    <!-- barcode4j needs this library for image rendering -->
+		    <groupId>org.apache.xmlgraphics</groupId>
+		    <artifactId>batik-svggen</artifactId>
+		    <scope>runtime</scope>
+		</dependency>        
+		<dependency>
+		    <!-- jasper dependences for export to microsoft documents -->
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <!-- jasper dependences for export to microsoft documents -->
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+		<!-- Jasper Reports -->
+		<!-- QR generator for ticket html printing -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+        </dependency>
+		<!-- end QR generator for ticket html printing -->		
+		<!-- comerzzia dependences -->
+		<dependency>
+            <groupId>com.comerzzia.pos</groupId>
+            <artifactId>comerzzia-pos-core-gui</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+	</dependencies>
+</project>

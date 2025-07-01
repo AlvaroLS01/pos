@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.components.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-stylesheet ../../../../pos/gui/styles/styles.css?>
+<?scenebuilder-stylesheet ../../../../pos/gui/styles/colors.css?>
+
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-1.0" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <HBox id="HBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="800.0" HBox.hgrow="ALWAYS">
+          <children>
+            <VBox prefHeight="-1.0" prefWidth="-1.0" style="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane maxHeight="40.0" maxWidth="-1.0" minHeight="40.0" prefHeight="40.0" prefWidth="-1.0">
+                  <children>
+                    <Label id="lbService" prefWidth="80.0" text="%#Servicio" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="6.0" />
+                    <TextField fx:id="tfServiceCode" disable="false" editable="false" focusTraversable="false" prefWidth="200.0" text="" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="5.0" />
+                    <Label id="lbDocument" maxWidth="-1.0" prefWidth="100.0" text="%Cód. documento" AnchorPane.leftAnchor="305.0" AnchorPane.topAnchor="7.0" />
+                    <TextField id="tfDocumentCode" fx:id="tfDocumentCode" disable="false" editable="false" focusTraversable="false" prefWidth="245.0" AnchorPane.leftAnchor="405.0" AnchorPane.topAnchor="5.0" />
+                  </children>
+                </AnchorPane>
+                <VBox prefHeight="-1.0" prefWidth="-1.0" styleClass="background-card-pane" VBox.vgrow="ALWAYS">
+                  <children>
+                    <VBox prefHeight="-1.0" prefWidth="-1.0" styleClass="czz-card" VBox.vgrow="ALWAYS">
+                      <children>
+                        <VBox prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+                          <children>
+                            <Label text="%Nº Bultos" />
+                            <TableView fx:id="tbPackagings" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+                              <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                              </columnResizePolicy>
+                              <columns>
+                                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="624.0" text="%Tipo de embalaje" fx:id="tcPackagingType" />
+                                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="70.0" text="%Cantidad" fx:id="tcQuantity" />
+                                <TableColumn prefWidth="150.0" fx:id="tcQuantityControl" />
+                              </columns>
+                            </TableView>
+                          </children>
+                        </VBox>
+                        <VBox prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="NEVER">
+                          <children>
+                            <Label text="%Observaciones" />
+                            <TextArea fx:id="taRemarks" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" wrapText="true" VBox.vgrow="ALWAYS" />
+                          </children>
+                        </VBox>
+                      </children>
+                    </VBox>
+                    <AnchorPane fx:id="buttonGroupPane" prefHeight="190.0" prefWidth="-1.0" style="">
+                      <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                      </padding>
+                    </AnchorPane>
+                  </children>
+                </VBox>
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../pos/gui/styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.components.itemimage.*?>
+<?import com.comerzzia.pos.core.gui.components.numerickeypad.*?>
+<?import com.comerzzia.pos.core.gui.components.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet ../../../../styles/styles.css?>
+<?scenebuilder-stylesheet ../../../../styles/colors.css?>
+
+<AnchorPane id="AnchorPane" prefHeight="559.0" prefWidth="1024.0" style="&#10;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" >
+  <children>
+    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane prefHeight="45.0" prefWidth="1002.0" styleClass="titulo-ventana">
+          <children>
+            <Label alignment="CENTER" text="%Cupones del fidelizado" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+          </children>
+        </AnchorPane>
+        <ScrollPane fx:id="scrollPane" focusTraversable="false" hbarPolicy="NEVER" pannable="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;&#10;" styleClass="sinborde" VBox.vgrow="ALWAYS">
+          <content>
+            <AnchorPane id="Content" fx:id="buttonPane" minHeight="-1.0" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="&#10;">
+              <children>
+                <Label text="%Sin cupones disponibles" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+              </children>
+            </AnchorPane>
+          </content>
+          <VBox.margin>
+            <Insets bottom="5.0" left="20.0" right="20.0" top="20.0" />
+          </VBox.margin>
+        </ScrollPane>
+        <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="1002.0" style="&#10;" VBox.vgrow="NEVER">
+          <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" HBox.hgrow="ALWAYS">
+              <children>
+                <Button id="tgSelectAll" fx:id="btSelectAll" mnemonicParsing="true" onAction="#selectDeselectAll" prefHeight="42.0" prefWidth="219.0" text="Seleccionar/Deseleccionar todos" />
+              </children>
+            </HBox>
+            <Button fx:id="btAccept" contentDisplay="CENTER" mnemonicParsing="false" onAction="#accept" styleClass="blue-btn" text="%Aceptar" textAlignment="CENTER" />
+          </children>
+          <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" />
+          </VBox.margin>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

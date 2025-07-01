@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.components.numerickeypad.*?>
+<?import com.comerzzia.pos.core.gui.components.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-stylesheet ../../../styles/colors.css?>
+<?scenebuilder-stylesheet ../../../styles/styles.css?>
+
+<AnchorPane id="AnchorPane" minHeight="-1.0" prefHeight="712.0" prefWidth="809.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <VBox prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" styleClass="titulo-ventana">
+          <children>
+            <Label fx:id="lbTitle" alignment="CENTER" prefHeight="30.0" prefWidth="598.0" text="%Tarjeta de Saldo" />
+          </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" styleClass="" VBox.vgrow="ALWAYS">
+          <children>
+            <VBox alignment="CENTER" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="background-card-pane" HBox.hgrow="ALWAYS">
+              <children>
+                <VBox alignment="CENTER_LEFT" maxWidth="400.0" minHeight="130.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="czz-card">
+                  <children>
+                    <VBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0">
+                      <children>
+                        <Label alignment="TOP_LEFT" minHeight="-1.0" minWidth="80.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="medium-text" text="%REGARGA:" />
+                        <TextField id="tfBalance" fx:id="tfBalance" disable="true" editable="false" prefHeight="30.0" prefWidth="-1.0" styleClass="" />
+                      </children>
+                    </VBox>
+                  </children>
+                </VBox>
+              </children>
+            </VBox>
+            <VBox alignment="TOP_LEFT" maxWidth="-Infinity" prefHeight="-1.0" prefWidth="350.0" spacing="10.0" HBox.hgrow="ALWAYS">
+              <children>
+                <VBox id="vbPaymentsMethods" prefHeight="60.0" />
+                <HBox id="lbImporte">
+                  <children>
+                    <AnchorPane disable="true" visible="false" HBox.hgrow="ALWAYS">
+                      <children>
+                        <NumericTextField fx:id="tfAmount" prefHeight="41.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label prefHeight="41.0" prefWidth="73.0" styleClass="" text="%Importe" AnchorPane.rightAnchor="0.0" />
+                      </children>
+                    </AnchorPane>
+                  </children>
+                </HBox>
+                <HBox prefHeight="360.0">
+                  <children>
+                    <NumericKeypad fx:id="numericKeypad" />
+                  </children>
+                  <VBox.margin>
+                    <Insets fx:id="x1" />
+                  </VBox.margin>
+                </HBox>
+                <HBox alignment="TOP_LEFT" prefHeight="60.0" spacing="10.0">
+                  <children>
+                    <Button fx:id="btAccept" mnemonicParsing="false" onAction="#actionAccept" prefHeight="60.0" prefWidth="320.0" styleClass="main-btn" text="%Aceptar" HBox.hgrow="ALWAYS" />
+                    <Button fx:id="btCancel" mnemonicParsing="false" onAction="#actionClose" prefHeight="60.0" prefWidth="320.0" styleClass="btn" text="%Cancelar" HBox.hgrow="ALWAYS" />
+                  </children>
+                </HBox>
+              </children>
+              <padding>
+                <Insets left="15.0" right="15.0" />
+              </padding>
+            </VBox>
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

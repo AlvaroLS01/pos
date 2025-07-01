@@ -1,0 +1,220 @@
+<html>
+	#htmlhead("/sales/refund/payments/payments.css")
+	<body class="lightgrey-bg">
+		<div class="payments-top"></div>
+		<div class="payments-content">
+			#set($payments = $basketTransaction.getPayments().getPaymentsList())
+			#set($lessIncome = $basketTransaction.getPayments().getLessIncomePayments().values())
+			#set($prepayments = $basketTransaction.getPayments().getPrepayments().getPaymentsList())
+			#if($MathUtils.compare($basketTransaction.getTotals().getBalanceDue(), 0) == 0 && $MathUtils.compare($basketTransaction.getTotals().getChangeDue().getAmount(), 0) == 0)
+				<div class="czz-card fw-bold">
+					<div class="row blue-text label-total">
+						<div class="col-4 fw-normal">#i18n("Total")</div>
+						<div class="col-8 text-end">#balance($basketTransaction.getTotals().getTotalWithTaxes().abs())</div>
+					</div>
+				</div>
+			#else
+				<div class="czz-card background-split-colors fw-bold">
+					<div class="row blue-text label-total">
+						<div class="col-4 fw-normal">#i18n("Total")</div>
+						<div class="col-8 text-end">#balance($basketTransaction.getTotals().getTotalWithTaxes().abs())</div>
+					</div>
+					#if($MathUtils.compare($basketTransaction.getTotals().getBalanceDue(), 0) > 0)
+					<div class="row pending-area">
+						<div class="fw-normal">#i18n("A Devolver")</div>
+						<div class="text-end label-pending">#balance($basketTransaction.getTotals().getBalanceDue())</div>
+					</div>
+					#else
+					<div class="row pending-area d-flex align-items-center">
+						<div class="col">
+							<div class="fw-normal big-text">#i18n("Cambio")</div>
+							<div class="big-text">$basketTransaction.getTotals().getChangeDue().getChangePaymentMethod().getPaymentMethodDes()</div>
+						</div>
+						<div class="col-6">
+							<div class="label-pending text-end">#balance($basketTransaction.getTotals().getChangeDue().getAmount())</div>
+						</div>
+					</div>
+					#end
+				</div>
+			#end
+			
+			#if($basketTransaction.getTotals().getTotalPayments() != 0)
+			<div class="czz-card payments-actions">
+				<div class="row header-area delivered-area blue-text fw-bold">
+					<div class="col-4">#i18n("DEVUELTO")</div>
+					<div class="col-8 text-end">#balance($basketTransaction.getTotals().getTotalPayments())</div>
+				</div>
+				<div class="payments-details">
+					#foreach($payment in $payments)
+					<div class="row">
+						<div class="col">
+							#if($payment.getCanBeDeleted())
+								<button class="btn-delete btn-circle" onClick="execute('DeletePayment', [{'name':'line_id', 'value':'${payment.getPaymentId()}'}])">
+									<div> <i class="icon-delete white-text"></i></div>
+								</button>
+							#end
+						</div>
+						<div class="col-5">${payment.getPaymentMethod().getPaymentMethodDes()}</div>
+						<div class="col-5 text-end">#balance($payment.getAmount())</div>
+					</div>
+					#end
+					#foreach($payment in $lessIncome)
+					<div class="row">
+						<div class="col">
+							<div class="text-center icon-prepayment"><i class="icon-coupon"></i></div>
+						</div>
+						<div class="col-5">${payment.getPaymentMethod().getPaymentMethodDes()}</div>
+						<div class="col-5 text-end">#balance($payment.getAmount())</div>
+					</div>
+					#end
+					#foreach($payment in $prepayments)
+					<div class="row">
+						<div class="col">
+							<div class="text-center icon-prepayment"><i class="icon-coupon"></i></div>
+						</div>
+						<div class="col-5">${payment.getPaymentMethod().getPaymentMethodDes()}</div>
+						<div class="col-5 text-end">#balance($payment.getAmount())</div>
+					</div>
+					#end
+				</div>
+			</div>
+			#end
+		</div>
+		<div class="payments-base lightgrey-bg">
+			#* 
+			<div class="czz-card">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>#i18n("Impuestos")</th>
+							<th class="text-end">#i18n("Base")</th>
+							<th class="text-end">#i18n("Cuota")</th>
+							<th class="text-end">#i18n("Total")</th>
+						</tr>
+					</thead>
+					<tbody>
+						#foreach($subtotalIva in $basketTransaction.getHeader().getSubtotalesIva())
+							<tr>
+								<td>${fmt.formateaNumero($subtotalIva.getPorcentaje(), 2)} %</td>
+								<td class="text-end">${fmt.formateaImporte($subtotalIva.getBase())}</td>
+								<td class="text-end">${fmt.formateaImporte($subtotalIva.getCuota())}</td>
+								<td class="text-end">${fmt.formateaImporte($subtotalIva.getTotal())}</td>
+							</tr>
+						#end
+					</tbody>
+				</table>
+			</div>
+			*#
+			
+			#set($textPromotions = [])
+			#set($pointsPromotions = [])
+			#foreach($promotion in $basketTransaction.getPromotions())
+				#if($promotion.getPromotionTypeId() eq 13)
+					#set($swallow = $textPromotions.add($promotion))
+				#elseif($promotion.getPoints()>0)
+					#set($swallow = $pointsPromotions.add($promotion))
+				#end
+			#end
+			#if(!$textPromotions.isEmpty())
+				<div class="czz-card">
+					<div class="row header-area delivered-area blue-text fw-bold">
+						<div class="col">#i18n("MENSAJES PROMOCIONALES")</div>
+					</div>
+					<div>
+						#foreach($promotion in $textPromotions)
+							<div class="row ">
+								<div class="col">
+									<div class="text-center icon-prepayment"><i class="icon-promotion"></i></div>
+								</div>
+								<div class="col-10">${promotion.getPromotionText()}</div>
+							</div>
+						#end
+					</div>
+				</div>
+			#end
+			
+			#if($basketTransaction.getTotals().getTotalSavingLessProfit() > 0)
+			<div class="czz-card">
+				<div class="row header-area delivered-area blue-text fw-bold">
+					<div class="col-6">#i18n("DESCUENTOS APLICADOS")</div>
+					<div class="col-6 text-end">#balance($basketTransaction.getTotals().getTotalSavingLessProfit())</div>
+				</div>
+				<div>
+					#foreach($promotion in $basketTransaction.getPromotions())
+						#if($promotion.isLessProfitDiscount()  && $promotion.getTotalSaving() > 0)
+						<div class="row promotion-row">
+							<div class="col">
+								<div class="text-center icon-prepayment"><i class="icon-promotion"></i></div>
+							</div>
+							<div class="col-6">${promotion.getPromotionText()}</div>
+							<div class="col-2 text-end">${promotion.getPromotionId()}</div>
+							<div class="col-2 text-end">#balance($promotion.getTotalSaving())</div>
+						</div>
+						#end
+					#end
+				</div>
+			</div>
+			#end
+			
+			#if($basketTransaction.getCardPromotionTransactions().size() > 0)
+			<div class="czz-card">
+				<div class="row header-area delivered-area blue-text fw-bold">
+					<div class="col-12">#i18n("SALDO A ACUMULAR")</div>
+				</div>
+				<div>
+					#foreach($promotionTransaction in $basketTransaction.getCardPromotionTransactions())
+					<div class="row">
+						<div class="col">
+							<div class="text-center icon-prepayment"><i class="icon-coupon"></i></div>
+						</div>
+						<div class="col-4">$!{promotionTransaction.getConcept()}</div>
+						<div class="col-4 text-end">$!{promotionTransaction.getCardCode()}</div>
+						<div class="col-2 text-end">#if($promotionTransaction.getAmount()) #balance($promotionTransaction.getAmount()) #end</div>
+					</div>
+					#end
+				</div>
+			</div>
+			#end
+			
+			#if(!$pointsPromotions.isEmpty())
+				<div class="czz-card">
+					<div class="row header-area delivered-area blue-text fw-bold">
+						<div class="col">#i18n("PUNTOS")</div>
+					</div>
+					<div>
+						#foreach($promotion in $pointsPromotions)
+							<div class="row promotion-row">
+								<div class="col">
+									<div class="text-center icon-prepayment"><i class="icon-promotion"></i></div>
+								</div>
+								<div class="col-6">${promotion.getPromotionText()}</div>
+								<div class="col-2 text-end">${promotion.getPromotionId()}</div>
+								<div class="col-2 text-end">#balance($promotion.getPoints())</div>
+							</div>
+						#end
+					</div>
+				</div>
+			#end
+			
+			#if($basketTransaction.getCouponsToIssue().size() > 0)
+			<div class="czz-card">
+				<div class="row header-area delivered-area blue-text fw-bold">
+					<div class="col-12">#i18n("CUPONES A EMITIR")</div>
+				</div>
+				<div>
+					#foreach($coupon in $basketTransaction.getCouponsToIssue())
+					<div class="row">
+						<div class="col">
+							<div class="text-center icon-prepayment"><i class="icon-coupon"></i></div>
+						</div>
+						<div class="col-4">$!{coupon.getCouponName()}</div>
+						<div class="col-4 text-end">${coupon.getPromotionId()}</div>
+						<div class="col-2 text-end">#balance($coupon.getBalance())</div>
+					</div>
+					#end
+				</div>
+			</div>
+			#end
+		</div>
+	</body> 
+</html>

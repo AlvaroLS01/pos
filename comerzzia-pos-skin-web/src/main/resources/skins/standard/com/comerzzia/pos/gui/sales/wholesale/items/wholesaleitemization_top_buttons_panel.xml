@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ButtonsGroup>
+    <ButtonsRow>
+    	<Button>
+			<text>abrir cajón (no visible)</text>
+            <key>OPEN TILL</key>
+            <type>OPERACION</type>
+			<shortcut>Ctrl + O</shortcut>
+			<imagePath>icons/ticket_aparcar.png</imagePath>
+			<visible>N</visible>
+        </Button>
+        <Button>
+			<text>Aparcar</text>
+            <key>parkBasket</key>
+            <type>METODO</type>
+			<shortcut>F1</shortcut>
+			<imagePath>icons/ticket-park.png</imagePath>
+			<visible>S</visible>
+        </Button> 
+        <Button>
+			<text>Anular</text>
+            <key>CANCEL SALE</key>
+            <type>OPERACION</type>
+			<shortcut>F3</shortcut>
+			<imagePath>icons/ticket-cancel.png</imagePath>
+			<visible>S</visible>
+        </Button>
+    </ButtonsRow> 
+</ButtonsGroup>

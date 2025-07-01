@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.components.datepicker.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.*?>
+<?scenebuilder-stylesheet ../../styles/styles.css?>
+<?scenebuilder-stylesheet ../../styles/colors.css?>
+<?import com.comerzzia.pos.core.gui.components.header.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="728.0" prefWidth="1024.0" style="" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox alignment="CENTER" minHeight="48.0">
+          <children>
+            <CzzHeader fx:id="header" />
+          </children>
+          <VBox.margin>
+          </VBox.margin>
+        </HBox>
+        <HBox fx:id="parentHbox" prefHeight="728.0" prefWidth="1024.0" VBox.vgrow="ALWAYS">
+          <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+              <children>
+                <WebView fx:id="wvPrincipal" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+              </children>
+            </VBox>
+            <VBox prefHeight="-1.0" prefWidth="350.0" style="" HBox.hgrow="NEVER">
+              <children>
+                <HBox prefHeight="-1.0" prefWidth="-1.0">
+                  <children>
+                    <VBox prefHeight="61.0" prefWidth="153.0">
+                      <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="50.0" styleClass="text-label" text="%CAJA">
+                          <VBox.margin>
+                            <Insets left="10.0" />
+                          </VBox.margin>
+                        </Label>
+                        <TextField fx:id="tfTillCode" editable="true" focusTraversable="true" maxWidth="120.0" onKeyReleased="#actionSearchEnter" prefHeight="40.0" prefWidth="40.0" styleClass="text-field-document">
+                          <VBox.margin>
+                            <Insets left="10.0" />
+                          </VBox.margin>
+                        </TextField>
+                      </children>
+                    </VBox>
+                    <VBox fillWidth="false" prefHeight="61.0" prefWidth="208.0">
+                      <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="62.0" styleClass="text-label" text="%FECHA" />
+                        <DatePicker fx:id="tfDate" onKeyReleased="#actionSearchEnter" maxWidth="208.0" prefWidth="188.0" />
+                      </children>
+                    </VBox>
+                  </children>
+                  <padding>
+                    <Insets top="20.0" />
+                  </padding>
+                  <VBox.margin>
+                    <Insets />
+                  </VBox.margin>
+                </HBox>
+                <HBox prefHeight="-1.0" prefWidth="-1.0" spacing="0.0">
+                  <children>
+                    <VBox prefHeight="61.0" prefWidth="400.0">
+                      <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" minHeight="22.0" prefHeight="22.0" prefWidth="273.0" styleClass="text-label" text="%CÓDIGO DE TIPO DE DOCUMENTO">
+                          <VBox.margin>
+                            <Insets left="5.0" fx:id="x2" />
+                          </VBox.margin>
+                        </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                          <children>
+                            <TextField fx:id="tfDocTypeCode" editable="true" focusTraversable="true" maxWidth="280.0" prefHeight="39.0" prefWidth="280.0" styleClass="text-field-document">
+                              <HBox.margin>
+                                <Insets left="10.0" right="10.0" />
+                              </HBox.margin>
+                            </TextField>
+                            <Button fx:id="btSearchDocType" minHeight="23.0" minWidth="25.0" mnemonicParsing="false" onAction="#actionSearchDocType" prefHeight="40.0" prefWidth="40.0" styleClass="btn-helper" />
+                          </children>
+                        </HBox>
+                      </children>
+                    </VBox>
+                  </children>
+                  <padding>
+                    <Insets top="20.0" />
+                  </padding>
+                  <VBox.margin>
+                    <Insets />
+                  </VBox.margin>
+                </HBox>
+                <HBox prefHeight="-1.0" prefWidth="-1.0">
+                  <children>
+                    <VBox prefHeight="61.0" prefWidth="400.0">
+                      <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="182.0" styleClass="text-label" text="%TIPO DE DOCUMENTO">
+                          <VBox.margin>
+                            <Insets bottom="2.0" left="5.0" fx:id="x1" />
+                          </VBox.margin>
+                        </Label>
+                        <TextField fx:id="tfDocTypeDes" disable="false" editable="false" focusTraversable="false" maxWidth="330.0" prefHeight="40.0" prefWidth="330.0" visible="true">
+                          <VBox.margin>
+                            <Insets left="10.0" />
+                          </VBox.margin>
+                        </TextField>
+                      </children>
+                    </VBox>
+                  </children>
+                  <padding>
+                    <Insets top="20.0" />
+                  </padding>
+                  <VBox.margin>
+                    <Insets />
+                  </VBox.margin>
+                </HBox>
+                <HBox prefHeight="-1.0" prefWidth="-1.0">
+                  <children>
+                    <VBox prefHeight="61.0" prefWidth="400.0">
+                      <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="120.0" styleClass="text-label" text="%DOCUMENTO">
+                          <VBox.margin>
+                            <Insets left="5.0" fx:id="x2" />
+                          </VBox.margin>
+                        </Label>
+                        <TextField fx:id="tfDocumentNumber" editable="true" focusTraversable="true" maxWidth="330.0" onKeyReleased="#actionSearchEnter" prefHeight="40.0" prefWidth="330.0" styleClass="text-field-document">
+                          <VBox.margin>
+                            <Insets left="10.0" />
+                          </VBox.margin>
+                        </TextField>
+                      </children>
+                    </VBox>
+                  </children>
+                  <padding>
+                    <Insets top="20.0" />
+                  </padding>
+                  <VBox.margin>
+                    <Insets />
+                  </VBox.margin>
+                </HBox>
+                <HBox prefHeight="-1.0" prefWidth="-1.0">
+                  <children>
+                    <VBox prefHeight="61.0" prefWidth="400.0">
+                      <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="129.0" styleClass="text-label" text="%LOCALIZADOR" VBox.margin="$x2" />
+                        <TextField fx:id="tfLocator" editable="true" focusTraversable="true" maxWidth="330.0" onKeyReleased="#actionSearchEnter" prefHeight="40.0" prefWidth="330.0" styleClass="text-field-document">
+                          <VBox.margin>
+                            <Insets left="10.0" />
+                          </VBox.margin>
+                        </TextField>
+                      </children>
+                    </VBox>
+                  </children>
+                  <padding>
+                    <Insets top="20.0" />
+                  </padding>
+                  <VBox.margin>
+                    <Insets />
+                  </VBox.margin>
+                </HBox>
+                <Label fx:id="lbError" alignment="CENTER" prefHeight="25.0" prefWidth="-1.0" styleClass="lbError" text="">
+                  <VBox.margin>
+                    <Insets left="10.0" top="20.0" />
+                  </VBox.margin>
+                </Label>
+                <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0">
+                  <children>
+                    <Button fx:id="btSearch" mnemonicParsing="false" onAction="#actionSearch" prefHeight="60.0" prefWidth="330.0" style="" styleClass="button-searchdocument" text="%Buscar documento" />
+                  </children>
+                  <VBox.margin>
+                    <Insets top="150.0" />
+                  </VBox.margin>
+                </HBox>
+              </children>
+            </VBox>
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

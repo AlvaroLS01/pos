@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.components.header.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-stylesheet ../../../../gui/styles/styles.css?>
+<?scenebuilder-stylesheet ../../../../gui/styles/colors.css?>
+
+<AnchorPane id="AnchorPane" fx:id="panelContenido" prefHeight="750.0" prefWidth="1020.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox alignment="CENTER" minHeight="48.0">
+          <children>
+            <CzzHeader fx:id="header" />
+          </children>
+        </HBox>
+        <HBox id="HBox" alignment="CENTER" prefHeight="750.0" prefWidth="1020.0" spacing="5.0" VBox.vgrow="ALWAYS">
+          <children>
+            <VBox id="vbButtons" alignment="TOP_CENTER" minWidth="-Infinity" padding="$x1" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0" HBox.hgrow="ALWAYS">
+              <children>
+                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="-1.0" prefWidth="200.0" style="" styleClass="sinborde, bg-base-1" VBox.vgrow="ALWAYS">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="-1.0" prefWidth="-1.0">
+                      <children>
+                        <VBox fx:id="vbButtons" alignment="TOP_CENTER" layoutX="-1.0" layoutY="2.0" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0">
+                          <children>
+                            <ToggleButton id="btGeneral" fx:id="tgBtGeneral" mnemonicParsing="false" onAction="#actionBtGeneral" prefHeight="55.0" prefWidth="150.0" selected="true" text="%General">
+                              <toggleGroup>
+                                <ToggleGroup fx:id="devicesBtns" />
+                              </toggleGroup>
+                              <VBox.margin>
+                                <Insets fx:id="x1" />
+                              </VBox.margin>
+                            </ToggleButton>
+                          </children>
+                          <padding>
+                            <Insets left="5.0" right="5.0" />
+                          </padding>
+                        </VBox>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                  <VBox.margin>
+                    <Insets left="5.0" right="5.0" top="5.0" />
+                  </VBox.margin>
+                </ScrollPane>
+              </children>
+            </VBox>
+            <VBox id="VBox" alignment="CENTER" prefHeight="626.0" prefWidth="1020.0" spacing="5.0" HBox.hgrow="ALWAYS" HBox.margin="$x3">
+              <children>
+                <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                  <children>
+                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0" HBox.hgrow="ALWAYS">
+                      <children>
+                        <HBox alignment="CENTER" prefHeight="30.0" prefWidth="805.0" spacing="10.0">
+                          <children>
+                            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                              <children>
+                                <Label fx:id="lbDesConfig" alignment="CENTER_RIGHT" prefWidth="235.0" text="" />
+                              </children>
+                            </VBox>
+                            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                              <children>
+                                <AnchorPane minHeight="28.0" prefHeight="28.0" prefWidth="398.0">
+                                  <children>
+                                    <ComboBox fx:id="cbDesConfig" layoutX="1.0" layoutY="-1.0" minWidth="0.0" prefHeight="29.0" prefWidth="303.0">
+                                      <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                          <String fx:value="Item 1" />
+                                          <String fx:value="Item 2" />
+                                          <String fx:value="Item 3" />
+                                        </FXCollections>
+                                      </items>
+                                    </ComboBox>
+                                    <TextField fx:id="tfStore" editable="false" layoutX="0.0" layoutY="0.0" minWidth="0.0" prefHeight="28.0" prefWidth="305.0" visible="true" />
+                                  </children>
+                                </AnchorPane>
+                              </children>
+                            </VBox>
+                          </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="30.0" prefWidth="805.0" spacing="10.0">
+                          <children>
+                            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                              <children>
+                                <Label fx:id="lbConnMethod" alignment="CENTER_RIGHT" prefWidth="235.0" text="" visible="true" />
+                              </children>
+                            </VBox>
+                            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                              <children>
+                                <AnchorPane minHeight="28.0" prefHeight="28.0" prefWidth="398.0">
+                                  <children>
+                                    <ComboBox fx:id="cbConnMethods" layoutX="0.0" layoutY="0.0" minWidth="0.0" onKeyReleased="#actionAcceptEnter" prefHeight="21.0" prefWidth="305.0" visible="true">
+                                      <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                          <String fx:value="Item 1" />
+                                          <String fx:value="Item 2" />
+                                          <String fx:value="Item 3" />
+                                        </FXCollections>
+                                      </items>
+                                    </ComboBox>
+                                    <TextField fx:id="tfTill" disable="false" editable="false" layoutX="0.0" layoutY="-1.0" minWidth="0.0" prefHeight="29.0" prefWidth="305.0" />
+                                  </children>
+                                </AnchorPane>
+                              </children>
+                            </VBox>
+                          </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                          <children>
+                            <TextArea fx:id="taConfig" editable="false" prefHeight="179.0" prefWidth="735.0" visible="false" wrapText="true" HBox.hgrow="ALWAYS">
+                              <HBox.margin>
+                                <Insets left="20.0" right="30.0" fx:id="x2" />
+                              </HBox.margin>
+                            </TextArea>
+                          </children>
+                          <VBox.margin>
+                            <Insets top="10.0" fx:id="x3" />
+                          </VBox.margin>
+                        </HBox>
+                        <HBox id="vbAdditionalData" prefHeight="100.0" prefWidth="200.0">
+                          <children>
+                            <VBox fx:id="vbAdditionalData" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="3.0" HBox.hgrow="ALWAYS" HBox.margin="$x2" />
+                          </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                          <children>
+                            <Button fx:id="btEditConfiguration" mnemonicParsing="false" onAction="#openDeviceConfiguration" prefHeight="40.0" text="%Editar configuración" />
+                          </children>
+                          <padding>
+                            <Insets right="10.0" />
+                          </padding>
+                        </HBox>
+                      </children>
+                      <HBox.margin>
+                        <Insets top="10.0" fx:id="x3" />
+                      </HBox.margin>
+                    </VBox>
+                  </children>
+                </HBox>
+                <HBox id="" alignment="CENTER_RIGHT" minHeight="48.0" prefHeight="83.0" prefWidth="805.0" VBox.vgrow="NEVER">
+                  <children>
+                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                      <children>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" VBox.vgrow="ALWAYS">
+                          <children>
+                            <Button id="btAccept" mnemonicParsing="false" onAction="#actionAccept" prefHeight="-1.0" prefWidth="-1.0" styleClass="main-btn" text="%Aceptar" />
+                            <Button id="btCancel" mnemonicParsing="false" onAction="#actionCancel" prefHeight="-1.0" prefWidth="-1.0" styleClass="btn" text="%Cancelar" />
+                          </children>
+                          <padding>
+                            <Insets right="10.0" />
+                          </padding>
+                        </HBox>
+                      </children>
+                    </VBox>
+                  </children>
+                </HBox>
+              </children>
+            </VBox>
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

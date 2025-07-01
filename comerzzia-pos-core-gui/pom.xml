@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.comerzzia.pos</groupId>
+		<artifactId>comerzzia-pos</artifactId>
+		<version>5.1-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
+	<artifactId>comerzzia-pos-core-gui</artifactId>
+	
+	<dependencies>
+		<!-- javafx dependences -->
+		<dependency>
+			<groupId>org.comtel2000</groupId>
+			<artifactId>fx-onscreen-keyboard</artifactId>
+		</dependency>
+		<!-- javafx dependences -->
+		<!-- operating system integrations -->
+		<dependency>
+			<groupId>it.sauronsoftware</groupId>
+			<artifactId>junique</artifactId>
+		</dependency>
+		<!-- end operating system integrations -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<!-- velocity engine for print templates -->
+		<dependency>
+            <groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-engine-core</artifactId>
+       </dependency>       
+		<dependency>
+		    <groupId>org.apache.velocity</groupId>
+		    <artifactId>spring-velocity-support</artifactId>
+		</dependency>  
+		<!-- codec-->
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>		    
+		</dependency>		
+		<dependency>
+		    <groupId>commons-collections</groupId>
+		    <artifactId>commons-collections</artifactId>
+		    <version>3.2.2</version>
+		</dependency>
+		<dependency>
+		  <groupId>jakarta.xml.bind</groupId>
+		  <artifactId>jakarta.xml.bind-api</artifactId>
+		</dependency>
+		<dependency>
+		  <groupId>com.sun.xml.bind</groupId>
+		  <artifactId>jaxb-impl</artifactId>
+		  <version>4.0.0</version>
+		  <scope>runtime</scope>
+		</dependency> 				
+		<!-- comerzzia dependences -->
+		<dependency>
+			<groupId>com.comerzzia.pos</groupId>
+			<artifactId>comerzzia-pos-core-services</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.comerzzia.pos</groupId>
+			<artifactId>comerzzia-pos-skin-base</artifactId>
+			<version>${project.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+</project>

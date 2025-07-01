@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ButtonsGroup>
+    <ButtonsRow>
+    	<Button>
+            <text>SUSTITUIR</text>
+            <key>replace</key>
+            <params>
+		        <entry>
+		            <key>replacementTypeId</key>
+		            <value>20</value>
+		        </entry>
+		    </params>
+            <type>METODO</type>
+			<shortcut>F1</shortcut>
+			<imagePath>icons/sustituir.png</imagePath>
+			<visible>S</visible>
+        </Button>
+        <Button>
+            <text>NO SERVIR</text>
+            <key>noServe</key>
+            <params>
+		        <entry>
+		            <key>replacementTypeId</key>
+		            <value>0</value>
+		        </entry>
+		    </params>
+            <type>METODO</type>
+			<shortcut>F2</shortcut>
+			<imagePath>icons/noservir.png</imagePath>
+			<visible>S</visible>
+        </Button> 
+        <Button>
+            <text>IMPRIMIR PREPARACIÓN</text>
+            <key>print</key>
+            <type>METODO</type>
+			<shortcut>F3</shortcut>
+			<imagePath>icons/print.png</imagePath>
+			<visible>S</visible>
+        </Button>  
+        <Button>
+        	<text>LIBERAR PREPARACIÓN</text>
+            <key>freeHandle</key>
+            <type>METODO</type>
+			<shortcut>F4</shortcut>
+			<imagePath>icons/liberarpreparacion.png</imagePath>
+			<visible>S</visible>
+        </Button>
+        <Button>
+        	<text>DETALLE DEL SERVICIO</text>
+            <key>serviceDetail</key>
+            <type>METODO</type>
+			<shortcut>F5</shortcut>
+			<imagePath>icons/detalledelservicio.png</imagePath>
+			<visible>S</visible>
+        </Button>
+	</ButtonsRow>
+	<ButtonsRow>
+		<Button>
+        	<text>CAMBIO FORMATO</text>
+            <key>changeFormat</key>
+            <params>
+		        <entry>
+		            <key>replacementTypeId</key>
+		            <value>10</value>
+		        </entry>
+		    </params>
+            <type>METODO</type>
+			<shortcut>F6</shortcut>
+			<imagePath>icons/cambiarformato.png</imagePath>
+			<visible>S</visible>
+        </Button>
+        <Button>
+        	<text>BULTOS</text>
+            <key>bundles</key>
+            <type>METODO</type>
+			<shortcut>F7</shortcut>
+			<imagePath>icons/cambiarformato.png</imagePath>
+			<visible>S</visible>
+        </Button>
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+        <Button>
+        	<type>HUECO</type>
+        	<visible>S</visible>
+        </Button>
+	</ButtonsRow>
+</ButtonsGroup>

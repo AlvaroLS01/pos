@@ -1,0 +1,56 @@
+
+#doctype
+<html>
+	#htmlhead("/sales/scale/scaledata.css")
+	<body class="czz-base p-2">
+	    <div class="czz-card content">
+	    	<div class="row">
+	    		<div class="col">
+    				<div class="text-center">${basketItem.getItemData().getItemDes()}</div>
+	    		</div>
+	    	</div>
+			<div class="row text-end">
+			#if(${status}==0)
+				<div class="col czznumber">
+						#number(${basketItem.getWeight()} 3)kg x #balance($basketItem.getPriceForPromotionApply())#monetarySimbol()/kg
+				</div>
+			#elseif(${status}!= -2)
+				<div class="col czznumber">
+						--- kg x #balance(${basketItem.getPriceForPromotionApply()})#monetarySimbol()/kg
+				</div>
+			#else
+				<div class="col czznumber">
+						#number(${fmt.parseBigDecimal("0")} 1) kg x #balance($basketItem.getPriceForPromotionApply())#monetarySimbol()/kg
+				</div>
+			#end
+			</div>
+			<div class="">
+				#if(${status}== -2)
+					→0←
+				#end
+			</div>
+			#if ($scaleMsg)
+			<div class="row fw-bold">
+				<div class="text-center">${scaleMsg}</div>
+			</div>
+			#end
+	    </div>
+	    <div class="text-end">
+			<span class="medium-text main-color-text">$!{certNumber} #if($hashLibrary)($!{hashLibrary})#end</span>
+		<div>
+		##Filler here makes totals stick to bottom
+		#if(${status}!=0)
+		<div class="czz-card main-color-bg footer fw-bold white-text">
+			<div class="text-end">
+				<span class="big-text me-3">#i18n("Total")</span><span class="czznumber">#number(${fmt.parseBigDecimal("0")} 1) #monetarySimbol()</span>
+			</div>
+		</div>
+		#else
+		<div class="czz-card main-color-bg footer fw-bold white-text">
+			<div class="text-end">
+				<span class="big-text me-3">#i18n("Total")</span><span class="czznumber">#balance(${basketItem.getExtendedPriceWithTaxesWithoutDiscount()})#monetarySimbol()</span>
+			</div>
+		</div>
+		#end
+	</body>
+</html>

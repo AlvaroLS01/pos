@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.components.datepicker.* ?>
+<?import com.comerzzia.pos.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet ../../../../pos/gui/styles/styles.css?>
+<?scenebuilder-stylesheet ../../../../pos/gui/styles/colors.css?>
+
+<AnchorPane id="AnchorPane" focusTraversable="false" minWidth="448.0" prefHeight="-1.0" prefWidth="529.0" styleClass="mainFxmlClass, pantalla-detalle" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" >
+  <children>
+    <VBox alignment="CENTER" prefHeight="589.0" prefWidth="837.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="837.0" styleClass="titulo-ventana">
+          <children>
+            <Label fx:id="lbTitle" text="%Nueva actividad" />
+          </children>
+        </HBox>
+        <HBox prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="SOMETIMES">
+          <children>
+            <VBox prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+            <VBox alignment="TOP_LEFT" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="NEVER">
+              <children>
+                <HBox prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
+                <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="SOMETIMES">
+                  <children>
+                    <VBox prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
+                      <children>
+                        <Label alignment="BOTTOM_LEFT" text="%Tipo de contacto">
+                          <graphic>
+                            <Label alignment="BOTTOM_LEFT" text="*" />
+                          </graphic>
+                          <VBox.margin>
+                            <Insets bottom="2.0" fx:id="x1" />
+                          </VBox.margin>
+                        </Label>
+                        <HBox prefHeight="-1.0" prefWidth="-1.0">
+                          <children>
+                            <ComboBox id="cbTipoSolicitud" fx:id="cbContactType" onKeyReleased="#actionTfCodeIntro" prefHeight="21.0" prefWidth="233.0">
+                              <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                  <String fx:value="Item 1" />
+                                  <String fx:value="Item 2" />
+                                  <String fx:value="Item 3" />
+                                </FXCollections>
+                              </items>
+                              <HBox.margin>
+                                <Insets bottom="10.0" />
+                              </HBox.margin>
+                            </ComboBox>
+                          </children>
+                        </HBox>
+                      </children>
+                    </VBox>
+                  </children>
+                </HBox>
+                <HBox prefHeight="-1.0" prefWidth="-1.0">
+                  <children>
+                    <VBox prefHeight="-1.0" prefWidth="-1.0">
+                      <children>
+                        <Label text="%Valor">
+                          <graphic>
+                            <Label alignment="BOTTOM_LEFT" text="*" />
+                          </graphic>
+                        </Label>
+                        <HBox prefHeight="-1.0" prefWidth="-1.0">
+                          <children>
+                            <TextField fx:id="tfValue" prefWidth="-1.0" />
+                          </children>
+                        </HBox>
+                      </children>
+                    </VBox>
+                  </children>
+                  <padding>
+                    <Insets bottom="10.0" />
+                  </padding>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="SOMETIMES">
+                  <children>
+                    <VBox prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
+                      <children>
+                        <Label text="%Descripción" VBox.margin="$x1">
+                          <graphic>
+                            <Label alignment="BOTTOM_LEFT" text="*" />
+                          </graphic>
+                        </Label>
+                        <HBox prefHeight="-1.0" prefWidth="-1.0">
+                          <children>
+                            <TextArea fx:id="tfDescription" onKeyReleased="#actionTfCodeIntro" prefHeight="-1.0" prefWidth="-1.0" wrapText="true" />
+                          </children>
+                        </HBox>
+                      </children>
+                    </VBox>
+                  </children>
+                </HBox>
+                <HBox prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="SOMETIMES">
+                  <children>
+                    <Label fx:id="lbError" styleClass="lbError" text="" />
+                  </children>
+                </HBox>
+                <HBox alignment="TOP_RIGHT" prefHeight="-1.0" prefWidth="-1.0">
+                  <children>
+                    <Button fx:id="btAccept" mnemonicParsing="false" onAction="#actionAccept" prefWidth="103.0" styleClass=", blue-btn" text="%Aceptar">
+                      <HBox.margin>
+                        <Insets right="5.0" />
+                      </HBox.margin>
+                    </Button>
+                    <Button fx:id="btCancel" mnemonicParsing="false" onAction="#closeCancel" styleClass="btn" text="%Cancelar" />
+                  </children>
+                  <VBox.margin>
+                    <Insets top="10.0" />
+                  </VBox.margin>
+                </HBox>
+                <HBox prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
+              </children>
+            </VBox>
+            <VBox prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../../pos/gui/styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

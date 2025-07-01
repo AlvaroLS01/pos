@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.components.header.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
+<?scenebuilder-stylesheet ../../styles/colors.css?>
+<?scenebuilder-stylesheet ../../styles/styles.css?>
+
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <VBox prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox alignment="CENTER" minHeight="48.0">
+          <children>
+            <CzzHeader fx:id="header" />
+          </children>
+        </HBox>
+        <VBox prefHeight="768.0" prefWidth="1024.0" style="" styleClass="lightgrey-background" VBox.vgrow="ALWAYS">
+          <children>
+            <HBox prefHeight="-1.0" prefWidth="-1.0" style="" VBox.margin="$x2" VBox.vgrow="ALWAYS">
+              <children>
+                <TabPane fx:id="tabPanel" prefHeight="200.0" prefWidth="-1.0" tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS" HBox.margin="$x2">
+                  <tabs>
+                    <Tab fx:id="tabMovements" text="%Movimientos">
+                      <content>
+                        <VBox prefHeight="-1.0" prefWidth="-1.0" style="" styleClass="lightgrey-background">
+                          <children>
+                            <WebView fx:id="wvMovements" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                              <VBox.margin>
+                                <Insets left="10.0" right="10.0" top="10.0" fx:id="x1" />
+                              </VBox.margin>
+                            </WebView>
+                          </children>
+                          <padding>
+                            <Insets fx:id="x2" />
+                          </padding>
+                        </VBox>
+                      </content>
+                    </Tab>
+                    <Tab fx:id="tabSales" text="%Ventas">
+                      <content>
+                        <VBox prefHeight="-1.0" prefWidth="-1.0" style="">
+                          <children>
+                            <WebView fx:id="wvSales" prefHeight="200.0" prefWidth="200.0" VBox.margin="$x1" VBox.vgrow="ALWAYS" />
+                          </children>
+                        </VBox>
+                      </content>
+                    </Tab>
+                  </tabs>
+                </TabPane>
+              </children>
+            </HBox>
+            <HBox fx:id="hbBottomButtonsPanel" alignment="CENTER_LEFT" maxHeight="80.0" maxWidth="1.7976931348623157E308" padding="$x2" prefHeight="65.0" prefWidth="800.0" VBox.vgrow="NEVER">
+              <VBox.margin>
+                <Insets bottom="10.0" left="10.0" />
+              </VBox.margin>
+            </HBox>
+            <VBox fx:id="vbBottomRectangle" alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" styleClass="card" VBox.vgrow="NEVER">
+              <children>
+                <HBox prefHeight="50.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+                  <children>
+                    <VBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="NEVER">
+                      <children>
+                        <HBox alignment="TOP_LEFT" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="NEVER">
+                          <children>
+                            <VBox prefHeight="-1.0" prefWidth="231.0" HBox.hgrow="ALWAYS">
+                              <children>
+                                <Label text="%CAJERO" />
+                                <Label fx:id="lbCashierName" styleClass="cash-info-text" text="cajero" />
+                              </children>
+                            </VBox>
+                          </children>
+                          <VBox.margin>
+                            <Insets fx:id="x2" />
+                          </VBox.margin>
+                        </HBox>
+                      </children>
+                      <padding>
+                        <Insets right="20.0" fx:id="x3" />
+                      </padding>
+                    </VBox>
+                    <VBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" HBox.margin="$x3">
+                      <children>
+                        <HBox prefHeight="-1.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                          <children>
+                            <VBox prefHeight="-1.0" prefWidth="100.0">
+                              <children>
+                                <Label text="%Caja" />
+                                <Label fx:id="lbCashNumber" styleClass="cash-info-text" text="caja" />
+                              </children>
+                            </VBox>
+                          </children>
+                          <VBox.margin>
+                            <Insets fx:id="x2" />
+                          </VBox.margin>
+                        </HBox>
+                      </children>
+                    </VBox>
+                    <VBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0">
+                      <children>
+                        <HBox prefHeight="-1.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                          <children>
+                            <VBox prefHeight="-1.0" prefWidth="245.0">
+                              <children>
+                                <Label prefHeight="20.0" prefWidth="173.0" text="%Estado" />
+                                <Label fx:id="lbCashState" styleClass="cash-info-text" text="estado" />
+                              </children>
+                            </VBox>
+                          </children>
+                        </HBox>
+                      </children>
+                    </VBox>
+                  </children>
+                  <VBox.margin>
+                    <Insets left="5.0" />
+                  </VBox.margin>
+                </HBox>
+              </children>
+              <padding>
+                <Insets fx:id="x2" />
+              </padding>
+              <VBox.margin>
+                <Insets fx:id="x2" />
+              </VBox.margin>
+            </VBox>
+          </children>
+          <padding>
+            <Insets fx:id="x2" />
+          </padding>
+        </VBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ButtonsGroup>
+    <ButtonsRow>
+        <Button>
+            <texto>Datos envío</texto>
+            <clave>accionEstablecerDatosEnvio</clave>
+            <tipo>METODO</tipo>
+            <rutaImagen>icons/datos-envio.png</rutaImagen>
+            <visible>S</visible>
+        </Button>
+        <Button>
+            <texto>Datos cliente</texto>
+            <clave>accionCambiarDatosCliente</clave>
+            <tipo>METODO</tipo>
+            <rutaImagen>icons/cliente.png</rutaImagen>
+            <visible>S</visible>
+        </Button>
+        <Button>
+            <tipo>HUECO</tipo>
+        </Button>
+	</ButtonsRow>
+</ButtonsGroup>

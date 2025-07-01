@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ButtonsGroup>
+	<ButtonsRow>       
+		<Button>
+			<text>Selección Manual</text>
+            <key>openPickList</key>
+            <type>METODO</type>
+			<shortcut>F9</shortcut>
+			<imagePath>icons/search.png</imagePath>
+			<visible>S</visible>
+        </Button>
+	</ButtonsRow>
+	<ButtonsRow>
+       	<Button>
+			<text>Consultar Saldo</text>
+            <key>openCheckGiftCardBalance</key>
+            <type>METODO</type>
+			<shortcut>F11</shortcut>
+			<imagePath>icons/gift.png</imagePath>
+			<visible>S</visible>
+        </Button> 
+	</ButtonsRow> 
+</ButtonsGroup>

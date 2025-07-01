@@ -1,0 +1,6 @@
+.hb-info {
+	-fx-background-radius: 10px;
+	-fx-background-color: white;
+	-fx-spacing: 18px;
+	-fx-padding: 12px 0px 12px 15px;
+}

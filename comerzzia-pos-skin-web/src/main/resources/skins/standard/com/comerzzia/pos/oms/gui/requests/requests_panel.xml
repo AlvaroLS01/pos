@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ButtonsGroup>
+	<ButtonsRow>
+    	<Button>
+			<text>NUEVA SOLICITUD</text>
+            <key>newRequest</key>
+            <type>METODO</type>
+			<shortcut>F1</shortcut>
+			<imagePath>icons/nuevasolicitud.png</imagePath>
+			<visible>S</visible>
+        </Button>
+        <Button>
+			<text>VER SOLICITUD</text>
+            <key>viewRequest</key>
+            <type>METODO</type>
+			<shortcut>F2</shortcut>
+			<imagePath>icons/versolicitud.png</imagePath>
+			<visible>S</visible>
+		</Button> 
+		<Button>
+			<text>RESOLVER</text>
+            <key>resolve</key>
+            <type>METODO</type>
+			<shortcut>F3</shortcut>
+			<imagePath>icons/resolver.png</imagePath>
+			<visible>S</visible>
+        </Button>  
+        <Button>
+			<type>HUECO</type>
+		</Button>
+       	<Button>
+			<type>HUECO</type>
+		</Button>  
+	</ButtonsRow>         
+    <ButtonsRow>    
+        <Button>
+			<text>NUEVA ACTIVIDAD</text>
+            <key>newActivity</key>
+            <type>METODO</type>
+			<shortcut>F6</shortcut>
+			<imagePath>icons/nueva-actividad.png</imagePath>
+			<visible>S</visible>
+        </Button>       
+        <Button>
+			<text>VER ACTIVIDAD</text>
+            <key>viewActivity</key>
+            <type>METODO</type>
+			<shortcut>F7</shortcut>
+			<imagePath>icons/veractividad.png</imagePath>
+			<visible>S</visible>
+		</Button> 
+       	<Button>
+			<text>VISTO</text>
+            <key>checked</key>
+            <type>METODO</type>
+			<shortcut>F8</shortcut>
+			<imagePath>icons/visto.png</imagePath>
+			<visible>S</visible>
+        </Button> 
+        <Button>
+			<type>HUECO</type>
+        </Button>  
+        <Button>
+			<type>HUECO</type>
+		</Button>  
+    </ButtonsRow> 
+</ButtonsGroup>

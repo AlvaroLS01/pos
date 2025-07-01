@@ -1,0 +1,77 @@
+/*Second section. Income/Outcome totals*/
+
+.left-side-panel {
+	-fx-background-color: -color-background-card;
+	-fx-background-radius: 10 0 0 10;
+}
+
+.io-total-cash-close {
+	-fx-background-color: -color-background-alternative;
+	-fx-background-radius: 0 10 10 0;
+}
+
+.io-cash-close-values {
+	-fx-text-fill: -color-text-alternative;
+}
+
+.docs-amounts {
+	-fx-background-color: -color-background-alternative;
+	-fx-background-radius: 5 5 5 5;
+}
+
+/*Third section. Misalignment details*/
+
+.misalignment-top-box {
+	-fx-background-color: -color-background-card;
+	-fx-background-radius: 10 10 0 0;
+}
+
+.misalignment-bottom-box {
+	-fx-background-color: -color-background-alternative;
+	-fx-background-radius: 0 0 10 10;
+}
+
+.misalignment-bottom-box-full-rounded {
+	-fx-background-color: -color-background-alternative;
+	-fx-background-radius: 10px;
+}
+
+.white-big-text {
+	-fx-font-size: 48px;
+}
+
+.white-big-number {
+	-fx-font-size: 64px;
+}
+
+.sixteen-px-text {
+	-fx-font-size: 16px;
+}
+
+.twenty-four-px-text {
+	-fx-font-size: 24px;
+}
+
+.thirty-two-px-text {
+	-fx-font-size: 32px;
+}
+
+/*Fourth section. Bottom info and buttons*/
+
+.white-bottom-panel {
+	-fx-background-color: -color-background-card;
+	-fx-background-radius: 10 10 10 10;
+}
+
+/*Miscelaneous*/
+
+.blue-border-top {
+	-fx-border-color: -color-background-alternative;
+	-fx-border-width: 1px;
+	-fx-border-style: solid none none none;
+}
+
+.rounded-table {
+	-fx-border-radius: 10px;
+	-fx-background-radius: 10px;
+}

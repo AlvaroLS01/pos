@@ -1,0 +1,40 @@
+#doctype
+<html>
+	#htmlhead("/sales/documents/documents.css")
+	<body>
+		<div class="czz-base p-2">
+			<div class="czz-card content">
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="ticket-date">#i18n("Fecha")</th>
+							<th class="text-start ticket-tillCode">#i18n("Caja")</th>
+							<th class="text-start ticket-docType">#i18n("Tipo de documento")</th>
+							<th class="text-start ticket-id">#i18n("Documento")</th>
+						</tr>
+					</thead>
+					<tbody>
+						#foreach ($document in $documents)
+							#set ($index = $foreach.index)
+							<tr data-bs-toggle="collapse" data-bs-target="#lineData${index}">
+								<td class="ticket-date">#datehour($!document.getDate())</td>
+								<td class="ticket-tillCode" class="text-start">$!{document.getTill()}</td>
+								<td class="ticket-docType" class="text-start">$!{document.getDocTypeDes()}</td>
+								<td class="ticket-id" class="text-start">$!{document.getDocumentNumber()}</td>
+							</tr>
+							<tr class="collapse" id="lineData${index}" style="transition: 0s;">
+								<td colspan="6">
+									<div class="row">
+										<div class="col text-end">
+											#textbutton("#i18n('Imprimir')" "execute('showTicket', [{'name':'document_uid', 'value':'${document.getDocumentUid()}'}])")
+										</div>
+									</div>
+								</td>
+							</tr>
+						#end
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body> 
+</html>

@@ -1,0 +1,38 @@
+#czz-keyboard {
+	-fx-background-color: #F9F9F9;
+}
+
+#czz-keyboard .button,
+#czz-keyboard .toggle-button,
+#czz-keyboard .button:hover,
+#czz-keyboard .toggle-button:hover {
+	-fx-border-color: rgba(200.0, 200.0, 200.0, 0.3);
+	-fx-border-radius: 0.0px;
+	-fx-background-color: #F9F9F9;
+	-fx-background-radius: 0.0px;
+	-fx-background-insets: 0.0px;
+	-fx-text-fill: #000000;
+	-fx-cursor: hand;
+	-fx-padding: 0px;
+	
+	-fx-font-family: 'DM Sans';
+	-fx-effect: dropshadow(three-pass-box, rgba(174, 174, 174, 0.30), 4, 0, 0, 0) !important;
+	
+	
+	-fx-font-size: 22px;
+}
+
+
+#czz-keyboard .toggle-button:selected,
+#czz-keyboard .toggle-button:selected:hover {
+	-fx-background-color: -grey-scale-grey-medium;
+	-fx-effect: innershadow(three-pass-box, rgba(174, 174, 174, 0.30), 4, 0, 0, 0) !important;
+}
+
+#czz-keyboard #shift-button {
+	-fx-graphic: url('../../../../gui/images/icons/shift-black.png');
+}
+
+#czz-keyboard #backspace-button {
+	-fx-graphic: url('../../../../gui/images/icons/backspace-black.png');
+}
