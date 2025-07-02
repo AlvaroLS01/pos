@@ -1,9 +1,0 @@
-<div class="flex-fill">
-	<div class="alert alert-primary" role="alert"">
-		<h2 class="alert-heading">#i18n("Nuevo cliente")</h2>
-		<hr>
-		<div class="flex-fill d-flex justify-content-between align-items-center">
-			#i18n("Introduzca un código de identificación de cliente.")
-		</div>		
-	</div>
-</div>

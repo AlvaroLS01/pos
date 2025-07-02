@@ -1,7 +1,0 @@
-#if($basket.getLines().size() <= 0)
-<div class="content has-filler">
-	<div class="flex-fill alert alert-warning d-flex justify-content-between align-items-center" role="alert"">
-		<span>#i18n("Se encuentra en modo entrenamiento. Algunas funciones pueden estar desactivadas o no realizar completamente su función")</span>							
-	</div>
-</div>
-#end
