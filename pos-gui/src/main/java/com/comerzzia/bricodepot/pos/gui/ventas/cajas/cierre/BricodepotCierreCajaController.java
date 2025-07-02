@@ -137,8 +137,9 @@ public class BricodepotCierreCajaController extends CierreCajaController {
 				sesion.getSesionCaja().actualizarDatosCaja();
 				transferirCajaAMaster(formularioCierreCaja.getDateCierre());
 			}
-			cajaSesion.cerrarCaja();
-			log.debug("accionCierreCaja() - Caja " + cajaSesion.getUidDiarioCaja() + " cerrada exitosamente.");
+                        String uidDiarioCaja = cajaSesion.getUidDiarioCaja();
+                        cajaSesion.cerrarCaja();
+                        log.debug("accionCierreCaja() - Caja " + uidDiarioCaja + " cerrada exitosamente.");
 			
 			
 			
