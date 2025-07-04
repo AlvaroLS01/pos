@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.datepicker.* ?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.* ?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" minHeight="147.0" prefHeight="386.0" prefWidth="871.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.cardoso.pos.gui.ventas.taxfree.TaxfreeController">
+  <children>
+    <HBox prefHeight="200.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane minHeight="119.0" prefHeight="119.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
+          <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="mainFxmlClass, pantalla-detalle" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane minHeight="30.0" prefHeight="37.0" prefWidth="600.0" styleClass="titulo-ventana" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lbTitulo" alignment="CENTER" prefHeight="37.0" prefWidth="479.0" text="%Lea o escriba el código de barras de la tarjeta" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="-1.0" />
+                  </children>
+                </AnchorPane>
+                <AnchorPane minHeight="52.0" prefHeight="276.0" prefWidth="847.0" VBox.vgrow="ALWAYS">
+                  <children>
+                    <VBox minHeight="43.5" prefHeight="43.5" prefWidth="600.0" AnchorPane.bottomAnchor="21.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <children>
+                        <AnchorPane id="AnchorPane" prefHeight="296.0" prefWidth="867.0">
+                          <children>
+                            <Label alignment="CENTER_RIGHT" layoutX="23.0" layoutY="9.0" prefWidth="145.0" text="%Nombre Completo" />
+                            <TextField fx:id="tfNombreCompleto" layoutX="201.0" layoutY="5.0" onKeyReleased="#accionAceptarIntro" prefWidth="579.0" />
+                            <Label alignment="CENTER_RIGHT" layoutX="23.0" layoutY="49.0" prefWidth="145.0" text="%Nº pasaporte" />
+                            <TextField fx:id="tfDocumento" layoutX="201.0" layoutY="46.0" onKeyReleased="#accionAceptarIntro" prefWidth="295.0" />
+                            <Label alignment="CENTER_RIGHT" layoutX="491.0" layoutY="50.0" prefWidth="122.0" text="%Pais Pasaporte" />
+                            <ComboBox id="cbPais" fx:id="cbNacionalidad" layoutX="630.0" layoutY="44.0" onAction="#comprobarResidencia" prefHeight="30.0" prefWidth="150.0">
+                              <items>
+                                <FXCollections fx:factory="observableArrayList" />
+                              </items>
+                            </ComboBox>
+                            <Label alignment="CENTER_RIGHT" layoutX="23.0" layoutY="94.0" prefWidth="145.0" text="%Email" />
+                            <TextField fx:id="tfEmail" layoutX="201.0" layoutY="90.0" onKeyReleased="#accionAceptarIntro" prefWidth="579.0" />
+                            <Label alignment="CENTER_RIGHT" layoutX="23.0" layoutY="135.0" prefWidth="145.0" text="%CP" />
+                            <TextField fx:id="tfCP" onKeyReleased="#accionAceptarIntro" prefWidth="198.0" AnchorPane.leftAnchor="201.0" AnchorPane.topAnchor="131.0" />
+                            <Label alignment="CENTER_RIGHT" layoutX="424.0" layoutY="135.0" prefWidth="145.0" text="%Fecha Nacimiento" />
+                            <DatePicker fx:id="dpFechaNacimiento" layoutX="592.0" layoutY="131.0" prefWidth="166.0" />
+                            <Label alignment="CENTER_RIGHT" layoutX="23.0" layoutY="177.0" prefWidth="145.0" text="%Medio de devolución" />
+                            <ComboBox fx:id="cbMedioPago" layoutX="201.0" layoutY="176.0" prefHeight="30.0" prefWidth="150.0">
+                              <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                  <String fx:value=" " />
+                                  <String fx:value="Efectivo" />
+                                  <String fx:value="Tarjeta" />
+                                  <String fx:value="Alipay" />
+                                </FXCollections>
+                              </items>
+                            </ComboBox>
+                            <Label alignment="CENTER_RIGHT" layoutX="325.0" layoutY="181.0" prefWidth="115.0" text="%Nº Tarjeta" />
+                            <TextField fx:id="tfTarjeta" layoutX="448.0" layoutY="177.0" onKeyReleased="#accionAceptarIntro" prefWidth="330.0" />
+                            <Label alignment="CENTER_RIGHT" layoutX="43.0" layoutY="219.0" prefWidth="125.0" text="%Pais de residencia" />
+                            <ComboBox fx:id="cbPais" layoutX="201.0" layoutY="219.0" prefHeight="30.0" prefWidth="150.0">
+                              <items>
+                                <FXCollections fx:factory="observableArrayList" />
+                              </items>
+                            </ComboBox>
+                          </children>
+                        </AnchorPane>
+                      </children>
+                    </VBox>
+                  </children>
+                </AnchorPane>
+                <AnchorPane minHeight="51.999900000002526" prefHeight="95.0" prefWidth="869.0" VBox.vgrow="NEVER">
+                  <children>
+                    <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <children>
+                        <AnchorPane prefHeight="138.0" prefWidth="91.0" HBox.hgrow="ALWAYS" />
+                        <TilePane alignment="CENTER" hgap="10.0" minHeight="52.0" prefHeight="66.0" prefWidth="480.0" HBox.hgrow="NEVER">
+                          <children>
+                            <Button alignment="CENTER" mnemonicParsing="false" onAction="#accionAceptar" prefHeight="42.0" prefWidth="115.0" styleClass="btAceptar" text="%Aceptar" />
+                            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#accionCancelar" prefHeight="42.0" prefWidth="115.0" styleClass="btCancelar" text="%Cancelar">
+                              <TilePane.margin>
+                                <Insets right="10.0" />
+                              </TilePane.margin>
+                            </Button>
+                          </children>
+                          <padding>
+                            <Insets bottom="10.0" left="10.0" top="10.0" />
+                          </padding>
+                        </TilePane>
+                      </children>
+                    </HBox>
+                  </children>
+                </AnchorPane>
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../Vistas/Producto/Comerzzia/trunk/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/styles/styles.css" />
+    <URL value="@../../../../../../../../../../../../../../../../../../../Cosas%20necesarias/Cosas%20necesarias/styles.css" />
+  </stylesheets>
+</AnchorPane>

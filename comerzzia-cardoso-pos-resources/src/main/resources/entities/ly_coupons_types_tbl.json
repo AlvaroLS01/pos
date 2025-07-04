@@ -1,0 +1,18 @@
+[
+  {
+    "couponTypeCode": "DEFAULT",
+    "couponTypeName": "DEFAULT",
+    "defManualSelect": true,
+    "prefix": "8",
+    "maxLength": 8,
+    "generationMode": 0
+  },
+  {
+    "couponTypeCode": "MANUAL",
+    "couponTypeName": "MANUAL",
+    "defManualSelect": true,
+    "prefix": "9",
+    "maxLength": 8,
+    "generationMode": 2
+  }
+]

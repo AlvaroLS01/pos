@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comerzzia.cardoso.pos.persistence.promociones.CardosoPromocionesMapper">
+	
+	<resultMap id="PromocionCandidata" type="com.comerzzia.cardoso.pos.persistence.promociones.PromocionCandidataBean" >
+		<result column="ID_PROMOCION" property="idPromocion" jdbcType="DECIMAL" />
+		<result column="CODTAR" property="codtar" jdbcType="VARCHAR" />
+		<result column="ID_TIPO_PROMOCION" property="idTipoPromocion" jdbcType="DECIMAL" />
+		<result column="FECHA_INICIO" property="fechaInicio" jdbcType="TIMESTAMP" />
+		<result column="FECHA_FIN" property="fechaFin" jdbcType="TIMESTAMP" />
+		<result column="CODART" property="codArt" jdbcType="VARCHAR" />
+		<result column="PRECIO_TARIFA" property="precioTarifa" jdbcType="DECIMAL" />
+	</resultMap>
+  
+	<select id="selectPromocionAplicable" resultMap="PromocionCandidata" resultType="com.comerzzia.cardoso.pos.persistence.promociones.PromocionCandidataBean">
+		SELECT
+			CAB.ID_PROMOCION, CAB.CODTAR, CAB.ID_TIPO_PROMOCION, CAB.FECHA_INICIO, CAB.FECHA_FIN, DET.CODART, DET.PRECIO_TARIFA
+		FROM
+			D_PROMOCIONES_DET_TBL DET INNER JOIN D_PROMOCIONES_CAB_TBL CAB ON (
+			DET.UID_ACTIVIDAD = CAB.UID_ACTIVIDAD AND DET.ID_PROMOCION = CAB.ID_PROMOCION)
+		WHERE
+			DET.UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR} AND
+			DET.CODART = #{codArt,jdbcType=VARCHAR} AND
+			CAB.CODTAR = #{codTar,jdbcType=VARCHAR} AND
+			((#{usaFidelizacion,jdbcType=VARCHAR} = 'S') OR ((#{usaFidelizacion,jdbcType=VARCHAR} = 'N') AND (CAB.SOLO_FIDELIZACION = 'N'))) AND
+			#{fecha,jdbcType=DATE} BETWEEN DET.FECHA_INICIO AND DET.FECHA_FIN
+		ORDER BY CAB.FECHA_INICIO DESC, CAB.FECHA_FIN ASC, CAB.ID_PROMOCION DESC, CAB.ID_TIPO_PROMOCION DESC
+	</select>
+
+</mapper>

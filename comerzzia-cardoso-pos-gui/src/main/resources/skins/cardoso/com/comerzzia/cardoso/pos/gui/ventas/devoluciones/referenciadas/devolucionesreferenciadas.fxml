@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.cardoso.pos.gui.ventas.devoluciones.referenciadas.DevolucionesReferenciadasController">
+  <children>
+    <VBox prefHeight="700.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane minHeight="42.0" prefHeight="42.0" prefWidth="1000.0" styleClass="titulo-ventana" VBox.vgrow="NEVER">
+          <children>
+            <Label alignment="CENTER" prefHeight="52.0" prefWidth="528.0" text="%DEVOLUCIÓN REFERENCIADA SIN DOC ORIGEN" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+          </children>
+        </AnchorPane>
+        <AnchorPane minHeight="42.0" prefHeight="598.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
+          <children>
+            <HBox prefHeight="200.0" prefWidth="695.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane fx:id="panelMenuTabla" prefHeight="490.0" prefWidth="90.0" HBox.hgrow="ALWAYS">
+                  <padding>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" fx:id="x1" />
+                  </padding>
+                  <HBox.margin>
+                    <Insets />
+                  </HBox.margin>
+                </AnchorPane>
+                <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0">
+                  <children>
+                    <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                    <FlowPane prefHeight="200.0" prefWidth="200.0">
+                      <children>
+                        <Label alignment="CENTER" prefWidth="614.0" styleClass="etiqueta-titulo2" text="%DATOS DE LA OPERACIÓN ORIGINAL" />
+                      </children>
+                    </FlowPane>
+                    <FlowPane hgap="5.0" prefHeight="55.0" prefWidth="200.0">
+                      <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="180.0" styleClass="etiqueta-titulo2" text="%Payment ID" />
+                        <TextField id="tfTienda" fx:id="tfPaymentid" alignment="CENTER_LEFT" onKeyReleased="#keyReleased" prefHeight="42.0" prefWidth="250.0" />
+                      </children>
+                    </FlowPane>
+                    <FlowPane hgap="5.0" prefHeight="55.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                      <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="180.0" styleClass="etiqueta-titulo2" text="%Terminal / POS_ID" />
+                        <TextField id="tfCodCaja" fx:id="tfTerminal" alignment="CENTER_LEFT" onKeyReleased="#keyReleased" prefHeight="42.0" prefWidth="250.0" />
+                      </children>
+                    </FlowPane>
+                    <FlowPane hgap="5.0" prefHeight="55.0" prefWidth="200.0">
+                      <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="180.0" styleClass="etiqueta-titulo2" text="%Comercio" />
+                        <TextField id="tfTipoDoc" fx:id="tfComercio" alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="250.0" />
+                      </children>
+                    </FlowPane>
+                    <FlowPane hgap="5.0" prefHeight="55.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                      <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="180.0" styleClass="etiqueta-titulo2" text="%Importe" />
+                        <TextFieldImporte fx:id="tfImporte" alignment="CENTER_LEFT" focusTraversable="false" maxWidth="110.0" prefHeight="30.0" prefWidth="110.0" />
+                      </children>
+                    </FlowPane>
+                    <FlowPane hgap="5.0" prefHeight="55.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                      <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="180.0" styleClass="etiqueta-titulo2" text="%Observaciones" />
+                        <TextField id="tfOperacion" fx:id="tfObservaciones" alignment="CENTER_LEFT" onKeyReleased="#keyReleased" prefHeight="150.0" prefWidth="350.0" />
+                      </children>
+                    </FlowPane>
+                    <FlowPane prefHeight="200.0" prefWidth="200.0">
+                      <children>
+                        <Label fx:id="lbMensajeError" alignment="CENTER" prefHeight="51.0" prefWidth="616.0" styleClass="lbError" text="" />
+                      </children>
+                    </FlowPane>
+                    <FlowPane prefHeight="200.0" prefWidth="200.0">
+                      <children>
+                        <AnchorPane prefHeight="42.0" prefWidth="180.0" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="595.0" spacing="15.0">
+                          <children>
+                            <Button fx:id="btAceptar" mnemonicParsing="false" onAction="#accionAceptar" prefHeight="73.0" prefWidth="254.0" styleClass="btAceptar" text="%INICIAR DEVOLUCION" wrapText="true" />
+                            <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#accionCancelar" prefHeight="73.0" prefWidth="254.0" styleClass="btCancelar" text="%INICIAR CANCELACIÓN" wrapText="true" />
+                          </children>
+                        </HBox>
+                      </children>
+                    </FlowPane>
+                  </children>
+                </VBox>
+                <AnchorPane prefHeight="490.0" prefWidth="90.0" HBox.hgrow="ALWAYS" />
+              </children>
+            </HBox>
+          </children>
+        </AnchorPane>
+        <AnchorPane prefHeight="51.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
+          <children>
+            <HBox prefHeight="321.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+              </children>
+            </HBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

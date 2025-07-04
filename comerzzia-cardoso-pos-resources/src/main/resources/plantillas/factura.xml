@@ -1,0 +1,405 @@
+<plantilla>
+
+<!-- Esta primer condición la tenemos comentada por defecto. Sirve para elegir la impresión por ticket o por A4 -->
+<!-- Si se descomenta, imprimiría por A4 si no es FS o si es una devolución y el ticket origen no es FS e imprimiría por ticket si es FS o es una devolución y el ticket origen es FS-->
+## #if( (!$ticket.getCabecera().getDatosDocOrigen() && ($ticket.getCabecera().getCodTipoDocumento() != "FS" && $ticket.getCabecera().getCodTipoDocumento() != "VC")) || ($ticket.getCabecera().getDatosDocOrigen() && ($ticket.getCabecera().getDatosDocOrigen().getCodTipoDoc() != "FS" && $ticket.getCabecera().getDatosDocOrigen().getCodTipoDoc() != "VC")) )
+<!--	 <documento salida="impresora2" procesador="JASPER" fichero="facturas/facturaA4">		
+	</documento>
+	 <documento salida="impresora1">  -->
+
+	##	#foreach ($pago in $ticket.getPagos())
+	##		#set($esBoletaCompleta = true)
+	##		#parse("./plantillas/detalle_pagos_boletas.xml")
+	##	#end
+	##	#parse("./plantillas/detalle_comprobantes_giftcard.xml")
+	 <!-- </documento> -->
+
+## #else
+	#set($tienePagoGiftcard = false)
+	#foreach ($pago in $ticket.getPagos())
+		#if (${pago.isPagoTarjetaRegalo()})
+			#set($tienePagoGiftcard = true)
+			#break
+		#end
+	#end
+	#if(!$paperLess || ( $paperLess && ($ticket.getCabecera().getDatosEnvio() || $tienePagoGiftcard)))
+		<documento salida="impresora1">
+		#if(!$paperLess)
+			#if(!${salida.equals("pantalla")})
+				<apertura-cajon></apertura-cajon>
+			#end
+				 
+			<linea><texto fontsize="6"></texto></linea>
+			<!--Impresion de logo-->   
+			#if(${salida.equals("impresora")})  
+			   <linea > <texto pre-command="27;61;31;29;47;00;27;61;30" > </texto > </linea>
+			   <!--Code page 1252-->
+			   <!--<linea > <texto pre-command="27;116;8" > </texto > </linea>-->
+			#end
+
+			#set( $imprimirDatosFacturacion =  $ticket.getCabecera().getCliente().getDatosFactura())
+			#parse("./plantillas/datos_cabecera.xml")
+			
+			<linea><texto style="1" size="40" align="center">${ticket.getCabecera().getDesTipoDocumento()}</texto></linea>	
+			<linea><texto>     Documento:${ticket.getCabecera().getCodTicket()}/${ticket.getCabecera().getTipoDocumento()}</texto></linea>
+			
+			<!--Documento SII Dimensión tienda en Teléfono2 de tabla d_almacenes_tbl+Decena del código caja+Numero de ticket-->		
+			#if(${ticket.getCabecera().getTienda().getTelefono2()})
+				#set ($cajaSII = $ticket.getCabecera().getCodCaja().substring(0,1))	
+				#set ($separador = '-')	
+
+				#if (${ticket.getCabecera().getCodTipoDocumento()} == "FS")
+					<linea><texto>     Num SII: ${ticket.getCabecera().getTienda().getTelefono2()}$cajaSII$separador${ticket.getCabecera().getCodTicket().substring(13,19)}</texto></linea>
+				#end
+				#if (${ticket.getCabecera().getCodTipoDocumento()} == "NC")
+					<linea><texto>     Num SII: NC${ticket.getCabecera().getTienda().getTelefono2()}$cajaSII$separador${ticket.getCabecera().getCodTicket().substring(13,19)}</texto></linea>
+				#end	
+			#end
+			<!--Fin documento SII-->
+			
+			<!--Datos documento origen de la devolución>-->
+			#if($ticket.getCabecera().getDatosDocOrigen())
+				<linea><texto>Referencia:$ticket.getCabecera().getDatosDocOrigen().getCodTicket()</texto></linea>
+			#end
+			<!--    <linea> <texto style ="1"> DESCRIPCION                     IMPORTE</texto> </linea> -->
+			<linea> <texto style ="1"> Und. Precio  Dto%     Neto      IMPORTE</texto> </linea>
+			<linea> <texto>-----------------------------------------</texto> </linea>		  
+			
+			## LINEAS
+			#set ($articulosVenta = 0)
+			#set ($articulosDevolucion = 0)
+			#foreach ($linea in $ticket.getLineas())
+				<linea>			
+					<texto fontsize="6" size="7" align="left">${linea.getArticulo().getCodArticulo()} </texto>
+					<texto fontsize="6" size="30" align="left">${linea.getArticulo().getDesArticulo()}</texto>			
+				</linea>		
+				<!-- <linea> 			
+
+					#<texto fontsize="6" size="21" align="left"> ${linea.getCantidad().intValue()} X ${linea.getPrecioTotalConDtoAsString()}</texto>
+					#<texto fontsize="6" size="19" align="right"> ${linea.getImporteTotalConDtoAsString()}</texto> -->
+
+				#set ($PrecioTotalSinDTO = 0)
+				#if (100-${linea.getDescuentoTarifa()}  != 0 )
+					#set ($PrecioTotalSinDTO = ${linea.getPrecioTotalConDto()}/((100-${linea.getDescuentoTarifa()} )/100))
+				#else
+					#set ($PrecioTotalSinDTO = ${linea.getPrecioTotalSinDto()})
+				#end 
+
+				#if ($PrecioTotalSinDTO == 0)
+					#set ($PrecioTotalSinDTO = ${linea.getPrecioTotalSinDto()})
+				#end
+				
+				<!--<linea> <texto> Calculos:  ${linea.getDescuentoTarifa()}</texto> </linea>-->
+				<linea>
+					#<texto fontsize="6" size="5" align="right">  ${linea.getCantidad().intValue()}  </texto>
+					#<texto fontsize="6" size="9" align="right"> $PrecioTotalSinDTO </texto>
+					#if(${linea.getDescuentoTarifa()} > 0)
+						#<texto style="1" fontsize="6" size="6" align="right">${linea.getDescuentoTarifaAsString()} </texto>
+					#else
+						#<texto fontsize="6" size="6" align="right">0,00 </texto>
+					#end
+					#<texto fontsize="6" size="10" align="right">   ${linea.getPrecioTotalConDtoAsString()} </texto>
+					#<texto fontsize="6" size="11" align="right">${linea.getImporteTotalConDtoAsString()} </texto>
+						 
+						#PESO VARIABLE
+						#if($linea.getCantidad().intValue() != $linea.getCantidad()) 		
+							#if($linea.getCantidad() > 0) 
+								#set($articulosVenta = $articulosVenta + 1)
+							#else
+								#set($articulosDevolucion = $articulosDevolucion + 1)
+							#end
+						#else
+							#if($linea.getCantidad() > 0) 
+								#set($articulosVenta = $articulosVenta + $linea.getCantidad().intValue())
+							#else
+								#set($articulosDevolucion = $articulosDevolucion + $linea.getCantidad().intValue() * -1)
+							#end
+						#end
+				</linea>  		
+				<!-- personalizacion cardoso -->
+				<!-- Descuento tarifa -->
+				#if(${linea.getDescuentoTarifa()} > 0)
+						#if(${linea.getDescuentoTarifa()} >= 99)
+						   <linea>
+								<texto style="1" fontsize="6" size="40" align="left">OBSEQUIO</texto>						
+						   </linea>				   
+						#end
+				#end			
+				
+				<!-- Numeros serie -->
+				#foreach ($numeroSerie in $linea.getNumerosSerie())  
+				   <linea>
+				     <texto size="40" align="left">   *NS:${numeroSerie}</texto>
+				   </linea>  				   
+				#end 
+				
+				#if($linea.getNumerosSerie() && $linea.getLotes())
+				   <linea>
+					    <texto size="40" align="left">   -----------------------</texto>
+				   </linea>
+				#end
+				
+				<!-- Lotes -->
+				#foreach ($lote in $linea.getLotes())  
+				   <linea>
+				     <texto size="40" align="left">   *LOTE:${lote.getId()}(${lote.getCantidad()})</texto>
+				   </linea>  				   
+				#end 
+				<!-- personalizacion cardoso --> 
+				<linea><texto fontsize="6" size="40"> </texto></linea>
+			#end
+					
+			## TOTALES    
+			<linea line-size = "1"> 
+				<texto size="29" align="right" >TOTAL A PAGAR: </texto>
+				<texto size="11" align="right" >${ticket.getTotales().getTotalAPagarAsString()}</texto> 
+			</linea>
+			#if(${ticket.getTotales().isHayEntregaCuenta()})
+			 <linea line-size = "1">
+				<texto size="29" align="right">ENTREGADO A CUENTA: </texto>
+				<texto size="11" align="right">${ticket.getTotales().getEntregadoACuentaAsString()}</texto> 
+			</linea>
+			#end
+			<linea line-size = "1">
+				<texto size="29" align="right">TOTAL ENTREGADO: </texto>
+				<texto size="11" align="right">${ticket.getTotales().getEntregadoAsString()}</texto> 
+			</linea>
+			<linea line-size = "1"> <texto>                              ----------</texto> </linea>
+			<linea line-size = "1">
+				<texto size="29" align="right">A DEVOLVER: </texto>
+				<texto size="11" align="right">${ticket.getTotales().getCambioAsString()}</texto> 
+			</linea>
+			
+			<linea><texto fontsize="6"></texto></linea>
+			<!-- personalizacion cardoso -->
+			<!-- Descuento cabecera empleados -->
+			#if(${ticket.getCabecera().getDescuentoCabecera()} > 0)
+			   <linea>
+				  <linea><texto size="40" align="center">     ***********************************</texto></linea>
+				  <linea><texto size="35" align="left">     DTO. FIDELIZADO(${ticket.getCabecera().getDescuentoCabecera()}%): ${ticket.getCabecera().getDatosDescuentoEmpleados().getTotalDescuentoAsString()}</texto></linea>
+				  <linea><texto size="40" align="center">   ***********************************</texto></linea>
+			   </linea>
+			#end
+			
+			#if($articulosVenta > 0)
+			   <linea> <texto> ARTICULOS VENTA: $articulosVenta</texto> </linea>
+			#end
+			
+			#if($articulosDevolucion > 0)
+			   <linea> <texto> ARTICULOS DEVOLUCION: $articulosDevolucion</texto> </linea>
+			#end
+			<!-- fin personalizacion cardoso -->
+
+			
+			<linea> <texto style ="1" >DETALLE DE PAGOS</texto> </linea>
+			#parse("./plantillas/detalle_pagos.xml")
+			<linea> <texto> </texto> </linea>
+			
+			<linea> <texto style ="1" >DESGLOSE IMPUESTOS</texto> </linea>
+			<linea> <texto style ="1">BASE         CUOTA                 TOTAL</texto> </linea>
+			
+			#foreach ($impuesto in $ticket.getCabecera().getSubtotalesIva())
+				<linea>
+					<texto size="9" align="right">${impuesto.getBaseAsString()} </texto> 
+					<texto size="20" align="left">  ${impuesto.getPorcentajeAsString()}%  ${impuesto.getCuotaAsString()} </texto> 
+					<texto size="11" align="right"> ${impuesto.getTotalAsString()}</texto> 
+				</linea>
+			#end
+			
+			<linea> <texto size="40" style ="1" align="center">   IMPUESTOS INCLUIDOS</texto> </linea>
+			
+			#PROMOCIONES
+			#if(${ticket.tienePromocionesAhorroMayor0()})
+				<linea> <texto>----------------------------------------</texto> </linea>
+				<linea> <texto style ="1" >PROMOCIONES APLICADAS</texto> </linea>
+				#foreach ($promocion in $ticket.getPromociones())
+					#if(${promocion.getImporteTotalAhorro()} > 0 && !${promocion.isDescuentoAFuturo()})    	
+						<linea>
+							<texto size="34" align="left">P${promocion.getIdPromocion()} ${promocion.getTextoPromocion()}</texto> 
+							<texto size="1" align="left"> </texto>
+							<texto size="5" align="right">${promocion.getImporteTotalAhorroAsString()}</texto> 
+						</linea>
+					#end
+				#end
+				<linea line-size = "1">
+					<texto size="29" align="right">TOTAL PROMOCIONES: </texto>
+					<texto size="11" align="right">${ticket.getTotales().getTotalPromocionesAsString()}</texto> 
+				</linea>
+			#end
+
+			#FIDELIZADO y PUNTOS
+			#if(${ticket.getCabecera().getDatosFidelizado()})
+				#if(${ticket.getCabecera().getDatosFidelizado().getNumTarjetaFidelizado()})
+					<linea> <texto>TARJETA FIDELIZADO: ${ticket.getCabecera().getDatosFidelizado().getNumTarjetaFidelizado()}</texto> </linea>
+				#end
+				#if (${ticket.getCabecera().getDatosFidelizado().getNombre()})
+				<linea>
+					<texto align="left">Nombre: $esc.xml(${ticket.getCabecera().getDatosFidelizado().getNombre()})</texto>
+				</linea>
+				#end
+				#if (${ticket.getCabecera().getDatosFidelizado().getApellido()})
+				<linea>
+					<texto align="left">        $esc.xml(${ticket.getCabecera().getDatosFidelizado().getApellido()})</texto>
+				</linea>
+				#end
+				#if ( !${esCopia} && !${esGestion}) 
+				<linea> <texto>Puntos acumulados:  ${ticket.getCabecera().getDatosFidelizado().getSaldoTotalAsString()}</texto> </linea>
+				#end
+				#if(${ticket.getTotales().getPuntos()} > 0)
+					 <linea><texto>Ha obtenido ${ticket.getTotales().getPuntos()} puntos en esta compra.</texto></linea>
+				#end
+				#if(${ticket.getPuntosDevueltos()} > 0)
+					 <linea><texto>Se han devuelto ${ticket.getPuntosDevueltos()} puntos en este ticket.</texto></linea>
+				#end
+			#end
+		#end
+		
+		#if(${ticket.getCabecera().getDatosEnvio()})
+		<linea> <texto>----------------------------------------</texto> </linea>
+		<linea><texto align="center" size="40">ENVÍO A DOMICILIO</texto></linea>
+		<linea> <texto>----------------------------------------</texto> </linea>
+		#end
+
+		#if(!$paperLess)
+            <codbar align="center" tipo-leyenda="2">${ticket.getCabecera().getLocalizador()}</codbar>
+			<!--<codbar type="QR">${urlQR}${ticket.getCabecera().getUidTicket()}</codbar>-->
+			
+			<!-- personalizacion cardoso -->
+			
+			<linea><texto> </texto></linea>
+			<linea><texto align="center" size="40">GRACIAS POR SU VISITA</texto></linea>
+			<linea><texto> </texto></linea>
+			<linea><texto size="40" fontsize ="6" align="center">Caja:$ticket.getCabecera().getCodCaja()  Fecha: ${ticket.getCabecera().getFechaAsLocale()}</texto></linea>     
+			<linea><texto size="40" fontsize ="6" align="center">Fue atendido por:$ticket.getCabecera().getCajero().getDesusuario()</texto></linea>
+			<linea> <texto size="40" fontsize ="6" align="center">Es necesario presentar ticket de compra</texto> </linea>
+			<linea> <texto size="40" fontsize ="6" align="center">para cualquier devolucion.</texto> </linea>
+			<linea> <texto size="40" fontsize ="6" align="center">Plazo maximo 30 dias.</texto> </linea>
+			<linea> <texto size="40" fontsize ="6" align="center">Consultar condiciones de venta</texto> </linea>
+			<linea> <texto size="40" fontsize ="6" align="center">en el establecimiento.</texto> </linea>
+			<!--<linea> <texto size="40" align="center">No se aceptarán las devoluciones que</texto> </linea>-->
+			<!--<linea> <texto size="40" align="center">afecten a productos perecederos.</texto> </linea>-->
+			<!--Fin personalizacion cardoso -->
+			<linea><texto> </texto></linea>
+
+		
+			<!-- ALBERTO Y JOMARTIN 01-12-2016. Imprime el numero de chequeAromas a entregar -->
+			#if( (!${esCopia}) &&  (${ticket.getCabecera().getDatosValesPromocionales().getValorVale()} > 0) )			
+			  <linea> <texto>----------------------------------------</texto> </linea>
+			  <linea> <texto fontsize ="6">${ticket.getCabecera().getDatosValesPromocionales().getTexto()}</texto> </linea>
+			  <linea><texto> </texto></linea>
+			  <linea><texto fontsize ="6" align="center">${ticket.getCabecera().getDatosValesPromocionales().getNumVales()} CHEQUES</texto></linea>
+			  <linea><texto> </texto></linea>
+			  <linea> <texto>----------------------------------------</texto> </linea>
+			  <linea><texto> </texto></linea>
+			#end
+
+			#parse("./plantillas/promocion_texto.xml")
+			#if(${apartado})
+			   <corte></corte>
+			   <linea><texto size="40" align="center">Justificante entrega articulos apartado</texto> </linea>
+			   <linea></linea>  
+			   <linea><texto>Apartado:${apartado}</texto> </linea>
+			   #if ((${ticket.getCabecera().getCliente().getDatosFactura()}) && (${ticket.getCabecera().getCliente().getDatosFactura().getNombre()}))
+				<linea><texto>Cliente:${ticket.getCabecera().getCliente().getDatosFactura().getNombre()}</texto> </linea>
+			   #else
+				  <linea><texto>Cliente:${ticket.getCliente().getNombreComercial()}</texto> </linea>
+			   #end
+			   <linea><texto>Fecha:${ticket.getCabecera().getFechaAsLocale()}</texto></linea>    
+			   <linea><texto>${ticket.getCabecera().getDesTipoDocumento()}:${ticket.getCabecera().getCodTicket()}</texto> </linea>
+			   <linea><texto>Importe:${ticket.getTotales().getTotalAPagarAsString()}</texto> </linea>
+			   <linea> <texto> </texto> </linea>
+			   <linea> <texto style ="1" >DETALLE DE PAGOS</texto> </linea>
+			   #parse("./plantillas/detalle_pagos.xml")
+			   <linea> <texto> </texto> </linea>
+			   <linea><texto size="40" align="center">Ejemplar para el establecimiento</texto> </linea>
+			   <linea><texto> </texto></linea>   
+			#end
+		#end	
+		<linea><texto> </texto></linea>
+		<linea><texto> </texto></linea>
+		<corte></corte>
+		
+		#foreach ($pago in $ticket.getPagos())
+		    #set($esBoletaCompleta = true)
+			#parse("./plantillas/detalle_pagos_boletas.xml")
+		#end	
+		#parse("./plantillas/detalle_comprobantes_giftcard.xml")
+		
+		#if(${ticket.getCabecera().getDatosEnvio()})
+			<linea><texto align="center" size="40">DATOS DE ENVÍO</texto></linea>
+			<linea><texto>----------------------------------------</texto></linea>
+			<linea>
+				<texto size="50" align="left">${ticket.getCabecera().getDesTipoDocumento()} : ${ticket.getCabecera().getCodTicket()}</texto>
+			</linea>
+			#if (${ticket.getCabecera().getDatosEnvio().getNombreComercial()})
+			  <linea>
+				  <texto>Nombre: </texto>
+				  <texto align="left">${ticket.getCabecera().getDatosEnvio().getNombreComercial()}</texto>
+			  </linea>
+			#end
+			#if (${ticket.getCabecera().getDatosEnvio().getTipoIdentificacion()})
+				#if(${ticket.getCabecera().getDatosEnvio().getCif()})
+					<linea>
+						<texto>${ticket.getCabecera().getDatosEnvio().getTipoIdentificacion()}: </texto>
+						<texto align="left">${ticket.getCabecera().getDatosEnvio().getCif()}</texto>
+					</linea>
+				#end
+			#end
+			#if (${ticket.getCabecera().getDatosEnvio().getDomicilio()})
+			  <linea>
+				  <texto>Domicilio: </texto>
+				  <texto align="left">${ticket.getCabecera().getDatosEnvio().getDomicilio()}</texto>
+			  </linea>
+			#end
+			#if (${ticket.getCabecera().getDatosEnvio().getPoblacion()})
+			  <linea>
+				  <texto>Poblacion: </texto>
+				  <texto align="left">${ticket.getCabecera().getDatosEnvio().getPoblacion()}</texto>
+			  </linea>
+			#end
+			#if (${ticket.getCabecera().getDatosEnvio().getProvincia()})
+			  <linea>
+				  <texto>Provincia: </texto>
+				  <texto align="left">${ticket.getCabecera().getDatosEnvio().getProvincia()}</texto>
+			  </linea>
+			#end
+			#if (${ticket.getCabecera().getDatosEnvio().getLocalidad()})
+			  <linea>
+				  <texto>Localidad: </texto>
+				  <texto align="left">${ticket.getCabecera().getDatosEnvio().getLocalidad()}</texto>
+			  </linea>
+			#end
+			#if (${ticket.getCabecera().getDatosEnvio().getPais()})
+			  <linea>
+				  <texto>Pais: </texto>
+				  <texto align="left">${ticket.getCabecera().getDatosEnvio().getPais()}</texto>
+			  </linea>
+			#end
+			#if (${ticket.getCabecera().getDatosEnvio().getCp()})
+			  <linea>
+				  <texto>C.P.: </texto>
+				  <texto align="left">${ticket.getCabecera().getDatosEnvio().getCp()}</texto>
+			  </linea>
+			#end
+			#if (${ticket.getCabecera().getDatosEnvio().getTelefono1()})
+			  <linea>
+				  <texto>Teléfono: </texto>
+				  <texto align="left">${ticket.getCabecera().getDatosEnvio().getTelefono1()}</texto>
+			  </linea>
+			#end
+			<linea><texto></texto></linea>
+			<linea><texto></texto></linea>
+			<linea><texto></texto></linea>	  
+			<corte></corte>
+		#end
+		
+		<!-- personalizacion cardoso -->
+			#if (false) <!-- ALBERTO Y JOMARTIN 01/12/2016 -->
+			  #parse("./plantillas/cardoso_vale_promocion.xml")
+			#end  
+		<!-- fin personalizacion cardoso --> 		
+	   </documento>   
+	#end
+## #end 
+
+</plantilla>

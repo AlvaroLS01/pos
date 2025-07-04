@@ -1,0 +1,24 @@
+<plantilla> 
+    <!-- Esta primer condición la tenemos comentada por defecto. Sirve para elegir la impresión por ticket o por A4 -->
+    #if((!$ticket.getCabecera().getDatosDocOrigen() && ($ticket.getCabecera().getCodTipoDocumento() != "FS" && $ticket.getCabecera().getCodTipoDocumento() != "VC")) || 
+	    ($ticket.getCabecera().getDatosDocOrigen() && ($ticket.getCabecera().getDatosDocOrigen().getCodTipoDoc() != "FS" && $ticket.getCabecera().getDatosDocOrigen().getCodTipoDoc() != "VC")))
+		<documento procesador="JASPER" fichero="facturas_cardoso/informeCardoso_jasper" salida="impresora2">  	
+			#if(!${salida.equals("impresora")})  
+				#parse("./plantillas/factura_ticket_distribuciones.xml")
+			#end
+		</documento>
+		<documento salida="impresora1">
+			#if(${salida.equals("impresora")})   
+				#if((!${esCopia}) && ${salida.equals("impresora")})  
+					<apertura-cajon></apertura-cajon>
+				#end
+			
+				#set($esBoletaCompleta = true)
+				#parse("./plantillas/detalle_pagos_boletas.xml")
+				#parse("./plantillas/detalle_pagos_boletas.xml")
+			#end
+		</documento>  
+	#else
+	   #parse("./plantillas/factura_ticket_distribuciones.xml")
+	#end
+</plantilla>

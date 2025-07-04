@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comerzzia.cardoso.pos.persistence.taxfree.movimientos.MovimientosTaxfreeMapper">
+  <resultMap id="BaseResultMap" type="com.comerzzia.cardoso.pos.persistence.taxfree.movimientos.MovimientosTaxfree">
+    <id column="uid_actividad" jdbcType="VARCHAR" property="uidActividad" />
+    <id column="cod_ticket" jdbcType="VARCHAR" property="codTicket" />
+    <id column="barcode" jdbcType="VARCHAR" property="barcode" />
+    <id column="tipo_movimiento" jdbcType="VARCHAR" property="tipoMovimiento" />
+    <result column="fecha_movimiento" jdbcType="TIMESTAMP" property="fechaMovimiento" />
+    <result column="caja_movimiento" jdbcType="VARCHAR" property="cajaMovimiento" />
+    <result column="pasaporte" jdbcType="VARCHAR" property="pasaporte" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    uid_actividad, cod_ticket, barcode, tipo_movimiento, fecha_movimiento, caja_movimiento, 
+    pasaporte
+  </sql>
+  <select id="selectByExample" parameterType="com.comerzzia.cardoso.pos.persistence.taxfree.movimientos.MovimientosTaxfreeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_movimientos_taxfree_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.comerzzia.cardoso.pos.persistence.taxfree.movimientos.MovimientosTaxfreeKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from x_movimientos_taxfree_tbl
+    where uid_actividad = #{uidActividad,jdbcType=VARCHAR}
+      and cod_ticket = #{codTicket,jdbcType=VARCHAR}
+      and barcode = #{barcode,jdbcType=VARCHAR}
+      and tipo_movimiento = #{tipoMovimiento,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.cardoso.pos.persistence.taxfree.movimientos.MovimientosTaxfreeKey">
+    delete from x_movimientos_taxfree_tbl
+    where uid_actividad = #{uidActividad,jdbcType=VARCHAR}
+      and cod_ticket = #{codTicket,jdbcType=VARCHAR}
+      and barcode = #{barcode,jdbcType=VARCHAR}
+      and tipo_movimiento = #{tipoMovimiento,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.cardoso.pos.persistence.taxfree.movimientos.MovimientosTaxfreeExample">
+    delete from x_movimientos_taxfree_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.cardoso.pos.persistence.taxfree.movimientos.MovimientosTaxfree">
+    insert into x_movimientos_taxfree_tbl (uid_actividad, cod_ticket, barcode, 
+      tipo_movimiento, fecha_movimiento, caja_movimiento, 
+      pasaporte)
+    values (#{uidActividad,jdbcType=VARCHAR}, #{codTicket,jdbcType=VARCHAR}, #{barcode,jdbcType=VARCHAR}, 
+      #{tipoMovimiento,jdbcType=VARCHAR}, #{fechaMovimiento,jdbcType=TIMESTAMP}, #{cajaMovimiento,jdbcType=VARCHAR}, 
+      #{pasaporte,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.cardoso.pos.persistence.taxfree.movimientos.MovimientosTaxfree">
+    insert into x_movimientos_taxfree_tbl
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        uid_actividad,
+      </if>
+      <if test="codTicket != null">
+        cod_ticket,
+      </if>
+      <if test="barcode != null">
+        barcode,
+      </if>
+      <if test="tipoMovimiento != null">
+        tipo_movimiento,
+      </if>
+      <if test="fechaMovimiento != null">
+        fecha_movimiento,
+      </if>
+      <if test="cajaMovimiento != null">
+        caja_movimiento,
+      </if>
+      <if test="pasaporte != null">
+        pasaporte,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        #{uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="codTicket != null">
+        #{codTicket,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null">
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="tipoMovimiento != null">
+        #{tipoMovimiento,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaMovimiento != null">
+        #{fechaMovimiento,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cajaMovimiento != null">
+        #{cajaMovimiento,jdbcType=VARCHAR},
+      </if>
+      <if test="pasaporte != null">
+        #{pasaporte,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.cardoso.pos.persistence.taxfree.movimientos.MovimientosTaxfreeExample" resultType="java.lang.Long">
+    select count(*) from x_movimientos_taxfree_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update x_movimientos_taxfree_tbl
+    <set>
+      <if test="row.uidActividad != null">
+        uid_actividad = #{row.uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="row.codTicket != null">
+        cod_ticket = #{row.codTicket,jdbcType=VARCHAR},
+      </if>
+      <if test="row.barcode != null">
+        barcode = #{row.barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="row.tipoMovimiento != null">
+        tipo_movimiento = #{row.tipoMovimiento,jdbcType=VARCHAR},
+      </if>
+      <if test="row.fechaMovimiento != null">
+        fecha_movimiento = #{row.fechaMovimiento,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.cajaMovimiento != null">
+        caja_movimiento = #{row.cajaMovimiento,jdbcType=VARCHAR},
+      </if>
+      <if test="row.pasaporte != null">
+        pasaporte = #{row.pasaporte,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update x_movimientos_taxfree_tbl
+    set uid_actividad = #{row.uidActividad,jdbcType=VARCHAR},
+      cod_ticket = #{row.codTicket,jdbcType=VARCHAR},
+      barcode = #{row.barcode,jdbcType=VARCHAR},
+      tipo_movimiento = #{row.tipoMovimiento,jdbcType=VARCHAR},
+      fecha_movimiento = #{row.fechaMovimiento,jdbcType=TIMESTAMP},
+      caja_movimiento = #{row.cajaMovimiento,jdbcType=VARCHAR},
+      pasaporte = #{row.pasaporte,jdbcType=VARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.cardoso.pos.persistence.taxfree.movimientos.MovimientosTaxfree">
+    update x_movimientos_taxfree_tbl
+    <set>
+      <if test="fechaMovimiento != null">
+        fecha_movimiento = #{fechaMovimiento,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cajaMovimiento != null">
+        caja_movimiento = #{cajaMovimiento,jdbcType=VARCHAR},
+      </if>
+      <if test="pasaporte != null">
+        pasaporte = #{pasaporte,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid_actividad = #{uidActividad,jdbcType=VARCHAR}
+      and cod_ticket = #{codTicket,jdbcType=VARCHAR}
+      and barcode = #{barcode,jdbcType=VARCHAR}
+      and tipo_movimiento = #{tipoMovimiento,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.cardoso.pos.persistence.taxfree.movimientos.MovimientosTaxfree">
+    update x_movimientos_taxfree_tbl
+    set fecha_movimiento = #{fechaMovimiento,jdbcType=TIMESTAMP},
+      caja_movimiento = #{cajaMovimiento,jdbcType=VARCHAR},
+      pasaporte = #{pasaporte,jdbcType=VARCHAR}
+    where uid_actividad = #{uidActividad,jdbcType=VARCHAR}
+      and cod_ticket = #{codTicket,jdbcType=VARCHAR}
+      and barcode = #{barcode,jdbcType=VARCHAR}
+      and tipo_movimiento = #{tipoMovimiento,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.comerzzia.cardoso.pos.persistence.taxfree.movimientos.MovimientosTaxfreeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_movimientos_taxfree_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

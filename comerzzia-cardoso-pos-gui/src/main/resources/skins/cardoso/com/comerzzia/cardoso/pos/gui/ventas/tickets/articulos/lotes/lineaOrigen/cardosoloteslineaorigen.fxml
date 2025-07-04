@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.tecladonumerico.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" minWidth="544.999977929685" prefHeight="405.0" prefWidth="544.999977929685" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.cardoso.pos.gui.ventas.tickets.articulos.lotes.lineaOrigen.CardosoLotesLineaOrigenController">
+  <children>
+    <VBox prefHeight="700.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane minHeight="42.0" prefHeight="42.0" prefWidth="1000.0" styleClass="titulo-ventana" VBox.vgrow="NEVER">
+          <children>
+            <Label alignment="CENTER" prefHeight="52.0" prefWidth="528.0" text="%Lotes disponibles" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+          </children>
+        </AnchorPane>
+        <AnchorPane prefHeight="289.0" prefWidth="545.0" VBox.vgrow="ALWAYS">
+          <children>
+            <HBox prefHeight="290.0" prefWidth="816.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane minWidth="545.0" prefHeight="298.0" prefWidth="545.0" HBox.hgrow="ALWAYS">
+                  <children>
+                    <AnchorPane fx:id="panelBotonera" layoutX="484.0" layoutY="14.0" prefHeight="269.0" prefWidth="47.0" />
+                    <TableView id="tbNumerosSerie" fx:id="tbLotes" layoutX="14.0" layoutY="14.0" prefHeight="269.0" prefWidth="463.0">
+                      <columns>
+                        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="461.0" text="%Lote" fx:id="tcIdLote" />
+                      </columns>
+                    </TableView>
+                  </children>
+                </AnchorPane>
+              </children>
+            </HBox>
+          </children>
+        </AnchorPane>
+        <AnchorPane minWidth="545.0" prefHeight="63.0" prefWidth="545.0">
+          <children>
+            <Button fx:id="btCerrar" layoutX="414.0" layoutY="11.0" mnemonicParsing="false" onAction="#accionCancelar" styleClass="btCancelar" text="%Cerrar" />
+            <Button layoutX="283.0" layoutY="11.0" mnemonicParsing="false" onAction="#accionAceptar" styleClass="btAceptar" text="%Aceptar" />
+          </children>
+        </AnchorPane>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>

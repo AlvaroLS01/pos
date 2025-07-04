@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?scenebuilder-stylesheet ../../../../../../../../../../../../../../../../../Producto/Comerzzia-4.8/InStore/JavaFX POS/javafx-pos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="112.0" prefWidth="600.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.cardoso.pos.gui.configuracion.c3i.dialogo.AutotestDialogoController">
+  <children>
+    <HBox layoutX="0.0" layoutY="0.0" prefHeight="27.0" prefWidth="600.0" styleClass="titulo-ventana">
+      <children>
+        <Label id="lb" fx:id="lbTitulo" alignment="CENTER" contentDisplay="CENTER" prefWidth="600.0" text="Label" />
+      </children>
+    </HBox>
+    <HBox layoutX="0.0" layoutY="30.0" prefHeight="42.0" prefWidth="600.0">
+      <children>
+        <TextField fx:id="tfRespuesta" prefHeight="40.0" prefWidth="600.0" />
+      </children>
+    </HBox>
+    <HBox layoutX="0.0" layoutY="70.0" prefHeight="42.0" prefWidth="600.0">
+      <children>
+        <HBox alignment="TOP_RIGHT" prefHeight="93.0" prefWidth="600.0">
+          <children>
+            <Button id="accionAceptar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#accionAceptar" onKeyPressed="#accionAceptarIntro" styleClass="btAceptar" text="%Aceptar" textAlignment="LEFT" />
+          </children>
+        </HBox>
+      </children>
+    </HBox>
+  </children>
+</AnchorPane>

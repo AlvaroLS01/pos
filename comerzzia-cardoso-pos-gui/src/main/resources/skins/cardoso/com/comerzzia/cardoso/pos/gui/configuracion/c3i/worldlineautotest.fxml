@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" prefHeight="768.0" prefWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.cardoso.pos.gui.configuracion.c3i.WorldlineAutotestController">
+  <children>
+    <VBox prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox alignment="CENTER" prefHeight="33.0" prefWidth="600.0" styleClass="titulo-ventana">
+          <children>
+            <Label alignment="CENTER" prefWidth="159.0" text="%Autotest" textAlignment="CENTER" />
+          </children>
+        </HBox>
+        <HBox prefHeight="33.0" prefWidth="600.0">
+          <children>
+            <TextField id="posDisplayComboBox" fx:id="tfPosDisplay" alignment="CENTER" prefHeight="33.0" prefWidth="586.0" HBox.hgrow="ALWAYS" />
+          </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="334.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+          <children>
+            <VBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="NEVER">
+              <children>
+                <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="NEVER">
+                  <children>
+                    <VBox alignment="BOTTOM_CENTER" prefHeight="-1.0" prefWidth="200.0">
+                      <children>
+                        <Button fx:id="btIniciar" mnemonicParsing="false" onAction="#inicarAutotest" prefWidth="93.0" text="%Iniciar Autotest" />
+                      </children>
+                    </VBox>
+                    <GridPane prefHeight="320.0" prefWidth="293.0">
+                      <children>
+                        <Button fx:id="btOcho" mnemonicParsing="false" prefWidth="67.0" text="8" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <Button fx:id="btNueve" mnemonicParsing="false" prefWidth="67.0" text="9" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                        <Button fx:id="btCuatro" mnemonicParsing="false" prefWidth="67.0" text="4" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <Button fx:id="btCinco" mnemonicParsing="false" prefWidth="67.0" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button id="bySeis" fx:id="btSeis" mnemonicParsing="false" prefWidth="67.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Button fx:id="btCero" mnemonicParsing="false" prefWidth="67.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Button fx:id="btUno" mnemonicParsing="false" prefWidth="67.0" text="1" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <Button fx:id="btDos" mnemonicParsing="false" prefWidth="67.0" text="2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button fx:id="btTres" mnemonicParsing="false" prefWidth="67.0" text="3" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Button fx:id="btAnular" mnemonicParsing="false" prefWidth="67.0" style="-fx-background-color: #FF0000;&#10;-fx-text-fill: #000000;" text="%Anular" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                        <Button fx:id="btCorregir" mnemonicParsing="false" prefWidth="67.0" style="-fx-background-color: #FFFF00;&#10;-fx-text-fill: #000000" text="%Corregir" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Button fx:id="btAceptar" mnemonicParsing="false" prefWidth="67.0" style="-fx-background-color: #00FF00;&#10;-fx-text-fill: #000000" text="%Aceptar" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <Button fx:id="btSiete" mnemonicParsing="false" prefHeight="21.0" prefWidth="67.0" text="7" textAlignment="LEFT" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                      </children>
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                    </GridPane>
+                    <VBox prefHeight="-1.0" prefWidth="200.0" />
+                  </children>
+                </HBox>
+              </children>
+            </VBox>
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>

@@ -1,0 +1,2 @@
+Este directorio se usa para el almacenamiento temporal de los PaymentID devueltos por Worldline, para usarlos en el caso de que
+se apague el POS en medio de un pago y no tengamos una respuesta segura

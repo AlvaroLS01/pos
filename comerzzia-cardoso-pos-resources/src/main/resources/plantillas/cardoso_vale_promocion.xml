@@ -1,0 +1,97 @@
+<!--En devoluciones no los tenemos en cuenta-->
+#if(!${ticket.getCabecera().getDatosDocOrigen()})
+	
+	<!--Si no es una copia de un ticket -->
+	#if( (!${esCopia}) &&  (${ticket.getCabecera().getDatosValesPromocionales().getValorVale()} > 0) )
+		
+		#set($start = 1)
+		#set($end = ${ticket.getCabecera().getDatosValesPromocionales().getNumVales()})
+		#set($range = [$start..$end])
+		#foreach($i in $range)
+			<!-- 
+			#if(${salida.equals("impresora")})  
+		       <logo></logo>
+		       <linea><texto></texto></linea>
+		    #end
+		    -->
+			#if(${salida.equals("impresora")})
+			<linea > <texto pre-command="27;97;1" > </texto > </linea>	<!-- JOMARTIN Y ALBERTO. 30/11/2016 -->
+			<linea > <texto pre-command="27;61;31;29;47;00;27;61;30" > </texto > </linea>
+			<!--Code page 1252-->
+			<linea > <texto pre-command="27;116;8" > </texto > </linea>
+            #end 
+		    
+		    #if(${ticket.getEmpresa().getNombreComercial()})
+		    	<linea><texto size="40" align="center">${ticket.getEmpresa().getNombreComercial()}</texto></linea>
+		    #end
+			
+			<!-- JOMARTIN Y ALBERTO. 30/11/2016 -->
+			#if(${ticket.getCabecera().getEmpresa().getCif()})
+			    <linea><texto size="40" align="center">${ticket.getCabecera().getEmpresa().getCif()}</texto></linea>
+			#end
+		    
+		    #if(${ticket.getCabecera().getTienda().getDomicilio()})
+		    	<linea><texto size="40" align="center">${ticket.getCabecera().getTienda().getDomicilio()}</texto></linea>
+		    #end
+		    
+		    #if(${ticket.getCabecera().getTienda().getPoblacion()})
+		    	<linea><texto size="40" align="center">${ticket.getCabecera().getTienda().getPoblacion()}</texto></linea>
+		    #end
+		    
+		    #if(${ticket.getCabecera().getTienda().getProvincia()})
+		    	<linea><texto size="40" align="center">${ticket.getCabecera().getTienda().getProvincia()}</texto></linea>
+		    #end
+			
+			<!-- JOMARTIN Y ALBERTO. 30/11/2016 -->
+			#if(${ticket.getCabecera().getTienda().getTelefono1()})
+			    <linea><texto size="40" align="center">Tlf: ${ticket.getCabecera().getTienda().getTelefono1()}</texto></linea>
+			#end	
+		    
+		    <!-- <linea><texto size="40" align="center">${ticket.getCabecera().getTienda().getProvincia()}</texto></linea> -->
+		    
+		    <linea><texto size="40" align="center">________________________________________</texto></linea>
+			<linea><texto></texto></linea>
+		    
+			<linea line-size = "1"><texto size="40" style="1" align="center">${ticket.getCabecera().getDatosValesPromocionales().getTexto()}</texto></linea>
+			<codbar align="center" tipo-leyenda="0" altura="45">34000</codbar>
+			<linea><texto></texto></linea>
+			
+			#set($padCero = '')
+			#if(${i} < 10)
+				#set($padCero = '000')
+			#elseif(${i} < 100)
+				#set($padCero = '00')
+			#elseif(${i} < 1000)
+				#set($padCero = '0')
+			#end
+			
+			<linea><texto size="40" align="center">${ticket.getCabecera().getPeriodoTicket()}${ticket.getCabecera().getIdTicketFormateado()}${padCero}${i}</texto></linea>
+			<linea><texto size="40" align="center">${i}/${end}</texto></linea>
+			
+			<linea line-size = "1"><texto size="40" style="1" align="center">5 euros de REGALO</texto></linea>
+			<linea><texto size="40" align="center">para tus próximas compras en</texto></linea>
+			<linea><texto size="40" align="center">fragancias populares, </texto></linea>
+			<linea><texto size="40" align="center">tratamiento mass-market </texto></linea>
+			<linea><texto size="40" align="center">y cofres de maquillaje y baño</texto></linea>
+			<linea><texto size="40" align="center">por importe PVP superior a 30 euros</texto></linea>
+			<linea><texto></texto></linea>
+			<linea><texto size="40" align="center">Valido del ${ticket.getCabecera().getDatosValesPromocionales().getFechaInicioRedencionAsString()} al ${ticket.getCabecera().getDatosValesPromocionales().getFechaFinRedencionAsString()}</texto></linea>
+			
+			<linea><texto></texto></linea>
+			<linea><texto size="40" align="center">________________________________________</texto></linea>
+			<linea><texto></texto></linea>
+			<linea><texto size="40" align="center">Consultar condiciones y bases de</texto></linea>
+			<linea><texto size="40" align="center">promocion en la tienda</texto></linea>
+			<linea><texto size="40" align="center">________________________________________</texto></linea>
+			
+			<linea><texto></texto></linea>
+			<linea><texto>${ticket.getCabecera().getFechaCortaAsString()}</texto></linea>
+			<linea><texto>N. F. Simp.: ${ticket.getCabecera().getIdTicketFormateado()}</texto></linea>
+			<linea><texto></texto></linea>
+			<linea><texto></texto></linea>
+			<linea><texto></texto></linea>
+			<corte></corte> 
+		#end
+	#end
+	
+#end

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subInformePagosCardoso" pageWidth="275" pageHeight="842" columnWidth="275" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="6cf97c6e-a036-48f6-b8ed-ba18eb80c71c">
+	<property name="ireport.zoom" value="5.559917313492252"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="PAGOS" class="java.util.List"/>
+	<field name="desMedioPago" class="java.lang.String">
+		<fieldDescription><![CDATA[desMedioPago]]></fieldDescription>
+	</field>
+	<field name="importe" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[importe]]></fieldDescription>
+	</field>
+	<pageHeader>
+		<band height="31">
+			<staticText>
+				<reportElement uuid="1d8e441d-c2a3-46e1-8a95-e3ad691547f4" mode="Opaque" x="0" y="0" width="275" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DETALLE PAGOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1d8e441d-c2a3-46e1-8a95-e3ad691547f4" x="6" y="20" width="106" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1d8e441d-c2a3-46e1-8a95-e3ad691547f4" x="163" y="20" width="106" height="10"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="8bf7051e-bdb9-41b4-bbdf-97e8dd8cec3e" x="0" y="0" width="275" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="b0623d16-fa1c-490e-9919-3dc4cc778bc5" x="0" y="30" width="275" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="a5485ee0-cb87-43fd-b568-563faeb79f21" x="0" y="1" width="1" height="30"/>
+			</line>
+			<line>
+				<reportElement uuid="d87780e2-9be4-44d9-a067-7c7e5827ac26" x="274" y="1" width="1" height="30"/>
+			</line>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="12">
+			<textField>
+				<reportElement uuid="73ea4b8b-4aab-4c52-9379-1b8e3f03eceb" x="6" y="0" width="106" height="10"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desMedioPago}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="b02662f1-5f27-47c9-a2d4-6422be90c16c" x="163" y="0" width="106" height="10"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{importe}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="c526c5af-27eb-418f-9406-568a900666f9" x="0" y="-1" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement uuid="c526c5af-27eb-418f-9406-568a900666f9" x="274" y="-1" width="1" height="13"/>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="2">
+			<line>
+				<reportElement uuid="5416a013-584a-4e0e-92fb-174dfafea9a4" x="0" y="-1" width="275" height="1"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

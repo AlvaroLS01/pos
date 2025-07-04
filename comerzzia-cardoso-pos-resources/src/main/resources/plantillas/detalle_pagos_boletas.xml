@@ -1,0 +1,116 @@
+﻿<!--Esta plantilla usa un parámetro $esBoletaCompleta que no llega desde el POS. Se debe asignar como (con un solo corchete): ##set( $esBoletaCompleta = true )
+-->
+#if (${pago.tieneDatosRespuestaPagoTarjeta()} && ${pago.getDatosRespuestaPagoTarjeta().getCodAutorizacion()})
+	<linea><texto fontsize="6"></texto></linea>
+	<!--Inicio boleta completa-->
+	#if($esBoletaCompleta)
+		#parse("./plantillas/datos_cabecera.xml")
+		<linea> <texto> </texto> </linea>
+	#end 
+	<!--Fin boleta completa-->
+	
+	<!--<linea> <texto> </texto> </linea>-->
+	<!--<linea> <texto> </texto> </linea>-->
+
+	<linea>
+	#if($pago.getDatosRespuestaPagoTarjeta().getTipoLectura() == "L")
+		<texto size="25" align="left" style ="1"> OPERACION CONTACTLESS</texto>
+	#end
+	#if($pago.getDatosRespuestaPagoTarjeta().getTipoLectura() == "E")
+		<texto size="25" align="left" style ="1"> OPERACION CHIP</texto>
+	#end		
+	
+	#if($pago.getDatosRespuestaPagoTarjeta().getTipoTransaccion() == "VENTA")
+		<texto size="15" align="left">Tipo:VENTA</texto>
+	#elseif($pago.getDatosRespuestaPagoTarjeta().getTipoTransaccion() == "DEVOLUCION")
+		<texto size="15" align="left">Tipo:DEVOLUCION</texto>
+	#end
+	</linea>
+	
+	<linea>
+	<texto size="25" align="left"> ${pago.getDatosRespuestaPagoTarjeta().getApplicationLabel()}</texto>
+	#if($pago.getDatosRespuestaPagoTarjeta().getAID())
+		<!--<linea><texto> </texto></linea>-->
+		<texto size="15" align="left">${pago.getDatosRespuestaPagoTarjeta().getAID()}</texto>
+		<!--<linea><texto> </texto></linea>-->
+	#end
+	</linea>
+	
+	<!--<linea><texto> </texto></linea>-->
+	
+	<linea>
+	#if(${pago.getDatosRespuestaPagoTarjeta().getAID()})
+		<texto size="25" align="left"> DDF:${pago.getDatosRespuestaPagoTarjeta().getAID()}</texto>
+	#else
+	   <texto size="1" align="left"> </texto>
+	#end
+	<texto size="15" align="left">Comercio:${pago.getDatosRespuestaPagoTarjeta().getCodigoCentro()}</texto>
+	</linea>
+	
+	<linea>
+	<texto size="25" align="left"> N.Tarj:${pago.getDatosRespuestaPagoTarjeta().getPAN()}</texto>
+	<texto size="15" align="left">Num.Aut:${pago.getDatosRespuestaPagoTarjeta().getCodAutorizacion()}</texto>
+	</linea>
+	
+	<linea>
+	<texto size="25" align="left"> Fec:${pago.getDatosRespuestaPagoTarjeta().getFechaTransaccion()}</texto>
+	<texto size="15" align="left">FUC: ${pago.getDatosRespuestaPagoTarjeta().getFuc()}</texto>
+	</linea>
+	
+	<linea>
+	<texto size="25" align="left"> Importe:${pago.getImporteAsString()} EUR</texto>
+	<texto size="15" align="left">PinPad:${pago.getDatosRespuestaPagoTarjeta().getTerminalId()}</texto>
+	</linea>
+	
+	#if($pago.getDatosRespuestaPagoTarjeta().getNombreEntidad())
+		<linea><texto size="40" align="left"> ${pago.getDatosRespuestaPagoTarjeta().getNombreEntidad()}</texto></linea>
+	#end
+	
+	<!--Inicio boleta completa -->
+	#if ($esBoletaCompleta)
+		<!--<linea><texto> </texto></linea>-->
+		<linea><texto size="40" align="left"> Documento:${ticket.getCabecera().getCodTicket()}</texto></linea>
+	#end
+	
+	<!-- Si no es boleta completa y es devolucion, pido firma establecimiento.
+		 Si no es boleta completa y no es devolucion, no pido firma.
+		 Si es boleta completa y es devolucion, no pido firma. 
+		 Si es boleta completa y no es devolucion, pido firma cliente
+		
+		 La boleta completa siempre es copia para establecimiento-->
+	#if (!$esBoletaCompleta && ($pago.getDatosRespuestaPagoTarjeta().getTipoTransaccion() == "DEVOLUCION"))
+		<linea><texto> Firma establecimiento</texto></linea>
+		<linea><texto> ---------------------------------------</texto></linea>
+		<linea><texto>                                         </texto></linea>
+		<linea><texto>                                         </texto></linea>
+		<linea><texto>                                         </texto></linea>
+		<linea><texto>                                         </texto></linea>
+		<linea><texto> ---------------------------------------</texto></linea>
+	#elseif ($esBoletaCompleta && !($pago.getDatosRespuestaPagoTarjeta().getTipoTransaccion() == "DEVOLUCION"))
+		#if($pago.getDatosRespuestaPagoTarjeta().getAuthMode() == "0")
+			<linea><texto> ESTA TRANSACCION NO REQUIERE FIRMA</texto></linea>
+		#elseif($pago.getDatosRespuestaPagoTarjeta().getAuthMode() == "1")
+			<linea><texto> ESTA TRANSACCION NO REQUIERE FIRMA</texto></linea>
+		#else
+			<linea><texto>Firma cliente</texto> </linea>
+			<linea><texto> ---------------------------------------</texto></linea>
+			<linea><texto>                                         </texto></linea>
+			<linea><texto>                                         </texto></linea>
+			<linea><texto>                                         </texto></linea>
+			<linea><texto>                                         </texto></linea>
+			<linea><texto> ---------------------------------------</texto></linea>
+		#end
+	#end
+	
+	<!--Inicio boleta completa -->
+	#if ($esBoletaCompleta)
+		<!--<linea><texto></texto></linea>-->
+		<linea><texto size="40" align="center">Copia para el establecimiento</texto></linea>
+		<linea><texto> </texto></linea>
+		<!--<linea><texto> </texto></linea>-->
+		<!--<linea><texto> </texto></linea>-->
+		<!--<linea><texto> </texto></linea>-->
+		<corte></corte>
+	#end
+#end
+

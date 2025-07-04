@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subInformeImpuestosCardoso" pageWidth="245" pageHeight="842" columnWidth="245" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b16c26ef-fd0e-46bc-8164-34ff78b49df6">
+	<property name="ireport.zoom" value="2.1435888100000096"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="base" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[base]]></fieldDescription>
+	</field>
+	<field name="cuotaIVA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[cuota]]></fieldDescription>
+	</field>
+	<field name="porcentajeRecargo" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[porcentajeRecargo]]></fieldDescription>
+	</field>
+	<field name="cuotaRecargo" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[cuotaRecargo]]></fieldDescription>
+	</field>
+	<field name="porcentajeIVA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[porcentaje]]></fieldDescription>
+	</field>
+	<pageHeader>
+		<band height="39">
+			<staticText>
+				<reportElement uuid="1d8e441d-c2a3-46e1-8a95-e3ad691547f4" mode="Opaque" x="0" y="0" width="244" height="13" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IMPUESTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1d8e441d-c2a3-46e1-8a95-e3ad691547f4" mode="Opaque" x="66" y="13" width="89" height="12" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1d8e441d-c2a3-46e1-8a95-e3ad691547f4" mode="Opaque" x="156" y="13" width="88" height="12" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECARGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1d8e441d-c2a3-46e1-8a95-e3ad691547f4" x="0" y="25" width="66" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BASE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1d8e441d-c2a3-46e1-8a95-e3ad691547f4" x="66" y="25" width="41" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1d8e441d-c2a3-46e1-8a95-e3ad691547f4" x="109" y="25" width="46" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUOTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1d8e441d-c2a3-46e1-8a95-e3ad691547f4" x="155" y="25" width="38" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1d8e441d-c2a3-46e1-8a95-e3ad691547f4" x="196" y="25" width="48" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUOTA]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="fb7e0b5c-6f4d-42a3-a74f-795fad0f3283" x="66" y="13" width="1" height="24"/>
+			</line>
+			<line>
+				<reportElement uuid="ef374146-d282-472d-890a-a476e561ad75" x="155" y="13" width="1" height="24"/>
+			</line>
+			<line>
+				<reportElement uuid="3efcc515-f5d3-4955-ae30-424f5d96af2c" x="0" y="37" width="245" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField pattern="#,##0.00">
+				<reportElement uuid="45fb478a-5d4e-4067-b159-33470aa55c24" x="0" y="-1" width="65" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{base}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="d9414721-a56d-40a1-8f60-f89fab5fceb0" x="68" y="-1" width="39" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{porcentajeIVA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="9cc70c6d-9a61-4228-bd85-e74bd1fcce36" x="109" y="-1" width="46" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cuotaIVA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="3c4f280f-9892-479d-9364-6889e2195613" x="156" y="-1" width="37" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{porcentajeRecargo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="579e2405-24b3-4006-adfa-2e5bd6d21681" x="196" y="-1" width="48" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cuotaRecargo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="dea283a3-1ee2-43bc-a1fc-4ce59753595a" x="66" y="-2" width="1" height="14"/>
+			</line>
+			<line>
+				<reportElement uuid="50de2097-65f5-4081-b70d-1d71910fef62" x="155" y="-2" width="1" height="14"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>
