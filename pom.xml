@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
-	
-	<groupId>com.comerzzia.cardoso.pos</groupId>
-	<artifactId>comerzzia-cardoso-pos</artifactId>
-	<version>4.8.1-SNAPSHOT</version>
+
+	<groupId>com.comerzzia.iskaypet.pos</groupId>
+	<artifactId>comerzzia-iskaypet-pos</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	
+
 	<properties>
 		<maven.test.skip>true</maven.test.skip>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- <comerzzia.pos.version>4.8.1-SNAPSHOT</comerzzia.pos.version> -->
-		<comerzzia.pos.version>4.8.1.240507</comerzzia.pos.version>
-		<comerzzia.api.v1.version>1.2.0-SNAPSHOT</comerzzia.api.v1.version>		
+
+		<comerzzia.pos.version>4.8.1.231005</comerzzia.pos.version>
 	</properties>
-	
- 	<repositories>
+
+	<repositories>
 		<repository>
-			<id>comerzzia</id>
-			<url>http://repo.comerzzia.com/artifactory/comerzzia/</url>
+			<id>artifactory</id>
+			<url>https://repomaven.tier1.es/artifactory/iskaypet/</url>
 		</repository>
 		<repository>
-			<id>clientes</id>
-			<name>clientes</name>
-			<url>http://repomaven.tier1.es/artifactory/tier1/</url>
-			<layout>default</layout>
+			<id>iskaypet</id>
+			<url>https://repomaven.tier1.es/artifactory/iskaypet/</url>
 		</repository>
 	</repositories>
 
 	<pluginRepositories>
 		<pluginRepository>
-			<id>comerzzia</id>
-			<url>http://repo.comerzzia.com/artifactory/comerzzia/</url>
+			<id>artifactory</id>
+			<url>https://repomaven.tier1.es/artifactory/iskaypet/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>iskaypet</id>
+			<url>https://repomaven.tier1.es/artifactory/iskaypet/</url>
 		</pluginRepository>
 	</pluginRepositories>
-	
- 	<dependencies>
-        <!-- map all log systems to logback -->
+
+	<dependencies>
+		<!-- ############################## DEPENDENCIAS EXTERNAS ############################## -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>log4j-over-slf4j</artifactId>
@@ -61,14 +65,12 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
-		</dependency>	
-		<!-- javafx dependences -->
+		</dependency>
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>jfxrt</artifactId>
 			<scope>provided</scope>
-		</dependency>  
-		<!-- global libraries -->
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -84,25 +86,26 @@
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
-		</dependency>        
+		</dependency>
 	</dependencies>
-	
+
 	<dependencyManagement>
-	   <dependencies>
-	      <dependency>
-	        <groupId>com.comerzzia.pos</groupId>
-            <artifactId>comerzzia-pos-dependencies</artifactId>
-            <version>${comerzzia.pos.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-	      </dependency>
-	   </dependencies>
+		<!-- ############################## DEPENDENCIAS ESTÁNDAR ############################## -->
+		<dependencies>
+			<dependency>
+				<groupId>com.comerzzia.pos</groupId>
+				<artifactId>comerzzia-pos-dependencies</artifactId>
+				<version>${comerzzia.pos.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
 	</dependencyManagement>
 
 	<build>
 		<pluginManagement>
 			<plugins>
- 				<plugin>
+				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<configuration>
@@ -120,10 +123,12 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-	</build>	
-  <modules>
-    <module>comerzzia-cardoso-pos-gui</module>
-    <module>comerzzia-cardoso-pos-application</module>
-    <module>comerzzia-cardoso-pos-resources</module>
-  </modules>
+	</build>
+	
+	<modules>
+		<module>comerzzia-iskaypet-pos-gui</module>
+		<module>comerzzia-iskaypet-pos-application</module>
+		<module>comerzzia-iskaypet-pos-resources</module>
+	</modules>
+	
 </project>

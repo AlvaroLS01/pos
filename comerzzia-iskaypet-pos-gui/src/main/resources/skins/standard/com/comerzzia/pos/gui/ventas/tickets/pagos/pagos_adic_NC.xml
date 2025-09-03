@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Panel>
+    <LineaBotones>
+        <Boton>
+            <texto>PAGOS ORIGEN</texto>
+            <clave>accionPagosOrigen</clave>
+            <tipo>METODO</tipo>
+            <rutaImagen>iconos/listado_pagos.png</rutaImagen>
+            <visible>S</visible>
+        </Boton>
+    </LineaBotones>
+</Panel>

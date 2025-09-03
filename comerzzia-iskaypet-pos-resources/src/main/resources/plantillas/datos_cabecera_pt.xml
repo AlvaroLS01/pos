@@ -1,0 +1,214 @@
+<plantilla>
+	#if($imprimirLogo)
+	    <logo alignLogo="center"></logo>
+	#end
+	<!-- DATOS EMPRESA	-->
+	<!-- #printIfLinea(${ticket.getCabecera().getEmpresa().getDesEmpresa()} "center" "1")-->
+	#foreach($lineaEmpresa in $textUtils.divideLines(${ticket.getCabecera().getEmpresa().getDesEmpresa()}, 40))
+		<linea>
+			<texto size="41" align="center" style="1">${lineaEmpresa}</texto>
+		</linea>
+	#end
+
+	#set( $direccionEmpresa = "")
+	#if( $ticket.getCabecera().getEmpresa().getDomicilio() && !$ticket.getCabecera().getEmpresa().getDomicilio().isEmpty() )
+		#set( $direccionEmpresa = "${direccionEmpresa}${ticket.getCabecera().getEmpresa().getDomicilio()}" )
+	#end
+	#if( $ticket.getCabecera().getEmpresa().getCp() && !$ticket.getCabecera().getEmpresa().getCp().isEmpty() )
+		#set( $direccionEmpresa = "${direccionEmpresa} ${ticket.getCabecera().getEmpresa().getCp()}" )
+	#end
+	#if( $ticket.getCabecera().getEmpresa().getPoblacion() && !$ticket.getCabecera().getEmpresa().getPoblacion().isEmpty() )
+		#set( $direccionEmpresa = "${direccionEmpresa} - ${ticket.getCabecera().getEmpresa().getPoblacion()}" )
+	#end
+
+	#foreach($lineaDireccionEmpresa in $textUtils.divideLines(${direccionEmpresa}, 54))
+		<linea>
+			<texto size="55" align="center" fontsize="4">${lineaDireccionEmpresa}</texto>
+		</linea>
+	#end
+
+	#set($registroNIPC = "Registada na conservatória do registo comercial do Entroncamento, sob o NIPC: ${ticket.getCabecera().getEmpresa().getCif()}")
+	#foreach($lineaNIPC in $textUtils.divideLines(${registroNIPC}, 54))
+	<linea>
+		<texto size="55" align="center" fontsize="4">${lineaNIPC}</texto>
+	</linea>
+	#end
+
+	#if (${ticket.getCabecera().getUidActividad().contains("KIWOKO_PT")})
+	<linea>
+		<texto size="55" align="center" fontsize="4">Capital social: 100.000 EUR</texto>
+	</linea>
+	#end
+
+	#if (${ticket.getCabecera().getUidActividad().contains("TIENDA_ANIMAL_PT")})
+	<linea>
+		<texto size="55" align="center" fontsize="4">Capital social: 3.000 EUR</texto>
+	</linea>
+	#end
+
+	#if(${ticket.getCabecera().getFiscalData().getProperty("ATCUD")})
+	<linea>
+		<texto size="55" align="center" fontsize="4">ATCUD: ${ticket.getCabecera().getFiscalData().getProperty("ATCUD").getValue()}</texto>
+	</linea>
+	#end
+
+	<linea><texto size="41" align="center">-----------------------------------------</texto></linea>
+
+	<!-- DATOS TIENDA	-->
+	#printIfLinea(${ticket.getCabecera().getTienda().getDesAlmacen()} "center" "1")
+
+	#set( $direccionTienda = "")
+	#if( $ticket.getCabecera().getTienda().getDomicilio() && !$ticket.getCabecera().getTienda().getDomicilio().isEmpty() )
+		#set( $direccionTienda = "${direccionTienda}${ticket.getCabecera().getTienda().getDomicilio()}" )
+	#end
+	#if( $ticket.getCabecera().getTienda().getCp() && !$ticket.getCabecera().getTienda().getCp().isEmpty() )
+		#set( $direccionTienda = "${direccionTienda} ${ticket.getCabecera().getTienda().getCp()}" )
+	#end
+	#if( $ticket.getCabecera().getTienda().getPoblacion() && !$ticket.getCabecera().getTienda().getPoblacion().isEmpty() )
+		#set( $direccionTienda = "${direccionTienda} - ${ticket.getCabecera().getTienda().getPoblacion()}" )
+	#end
+	#if( $ticket.getCabecera().getTienda().getTelefono1() && !$ticket.getCabecera().getTienda().getTelefono1().isEmpty() )
+		#set( $direccionTienda = "${direccionTienda} ${ticket.getCabecera().getTienda().getTelefono1()}" )
+	#end
+	#foreach($lineaDireccionTienda in $textUtils.divideLines(${direccionTienda}, 54))
+	<linea>
+		<texto size="55" align="center" fontsize="4">${lineaDireccionTienda}</texto>
+	</linea>
+	#end
+
+	<linea><texto size="41" align="center">-----------------------------------------</texto></linea>
+
+
+	<!--	&lt;!&ndash; DATOS TIENDA	&ndash;&gt;-->
+<!--	#printIfLinea(${ticket.getCabecera().getTienda().getDesAlmacen()} "center" "1")-->
+<!--	#printIfLinea(${ticket.getCabecera().getTienda().getDomicilio()} "center")-->
+<!--	#codigoPostalProvincia(${ticket.getCabecera().getTienda().getCp()} ${ticket.getCabecera().getTienda().getPoblacion()} "center")-->
+<!--	#printIfLinea(${ticket.getCabecera().getCliente().getEmail()} "center")-->
+<!--	#printIfLinea(${ticket.getCabecera().getTienda().getTelefono1()} "center")-->
+
+<!--	#if (${ticket.getCabecera().getUidActividad().contains("TIENDA_ANIMAL_ES")})-->
+<!--		#printIfLinea("www.tiendanimal.es" "center")-->
+<!--	#end-->
+
+<!--	#if (${ticket.getCabecera().getUidActividad().contains("TIENDA_ANIMAL_PT")})-->
+<!--		#printIfLinea("www.tiendanimal.pt" "center")-->
+<!--	#end-->
+
+<!--	#if (${ticket.getCabecera().getUidActividad().contains("KIWOKO_ES")})-->
+<!--	#printIfLinea("www.kiwoko.com" "center")-->
+<!--	#end-->
+
+<!--	#if (${ticket.getCabecera().getUidActividad().contains("KIWOKO_PT")})-->
+<!--	#printIfLinea("www.kiwoko.pt" "center")-->
+<!--	#end-->
+
+
+<!--	&lt;!&ndash; DATOS EMPRESA	&ndash;&gt;-->
+<!--	<linea><texto size="41" style="2"> </texto></linea>-->
+<!--	<linea><texto> </texto></linea>-->
+<!--	#foreach($lineaEmpresa in $textUtils.divideLines(${ticket.getCabecera().getEmpresa().getDesEmpresa().trim()}, 40))-->
+<!--	<linea>-->
+<!--		<texto size="41" align="center" style="1">${lineaEmpresa}</texto>-->
+<!--	</linea>-->
+<!--	#end-->
+
+
+<!--	#foreach($lineaDireccion in $textUtils.divideLines(${ticket.getCabecera().getEmpresa().getDomicilio().trim()}, 40))-->
+<!--	<linea>-->
+<!--		<texto size="41" align="center" style="1">${lineaDireccion}</texto>-->
+<!--	</linea>-->
+<!--	#end-->
+
+<!--	#printIfLinea("${ticket.getCabecera().getEmpresa().getCp()} - ${ticket.getCabecera().getEmpresa().getPoblacion()}" "center")-->
+
+<!--	#foreach($lineaNIPC in $textUtils.divideLines("Registrada na conservatoria do registro comercial al de Entroncamento, sob o", 40))-->
+<!--	<linea>-->
+<!--		<texto size="41" align="center" style="1">${lineaNIPC}</texto>-->
+<!--	</linea>-->
+<!--	#end-->
+<!--	#printIfLineaEtiqueta("NIPC" ${ticket.getCabecera().getEmpresa().getCif()} "center")-->
+
+<!--	#if (${ticket.getCabecera().getUidActividad().contains("KIWOKO_PT")})-->
+<!--		#printIfLineaEtiqueta("Capital social: " "100.000 EUR" "center")-->
+<!--	#end-->
+
+<!--	#if (${ticket.getCabecera().getUidActividad().contains("TIENDA_ANIMAL_PT")})-->
+<!--		#printIfLineaEtiqueta("Capital social: " "3.000 EUR" "center")-->
+<!--	#end-->
+
+<!--	#if(${ticket.getCabecera().getFiscalData().getProperty("ATCUD")})-->
+<!--		#printIfLineaEtiqueta("ATCUD: " ${ticket.getCabecera().getFiscalData().getProperty("ATCUD").getValue()} "center")&ndash;&gt;-->
+<!--	#end-->
+
+	#if(!$imprimirDatosFacturacion)
+
+	#set($consumidor = "Cliente consumidor final - NIF do cliente:")
+
+		#if(${ticket.getCabecera().getDocumentoCliente()})
+			#set($consumidor = "$consumidor ${ticket.getCabecera().getDocumentoCliente()}")
+		#elseif(${ticket.getCabecera().getCliente().getDatosFactura()} && ${ticket.getCabecera().getCliente().getDatosFactura().getCif()})
+			#set($consumidor = "$consumidor ${ticket.getCabecera().getCliente().getDatosFactura().getCif()}")
+		#else
+			#set($consumidor = "$consumidor 999999990")
+		#end
+		#foreach($lineaConsumidor in $textUtils.divideLines(${consumidor}, 54))
+			<linea>
+				<texto size="55" align="center" fontsize="4">${lineaConsumidor}</texto>
+			</linea>
+		#end
+	#end
+	
+	<!-- Inicio Datos Factura -->
+	#if ($imprimirDatosFacturacion)
+		<linea>
+			<texto size="55" align="center" fontsize="4">CLIENTE</texto>
+		</linea>
+
+		#if( $ticket.getCabecera().getCliente().getDatosFactura().getNombre() && !$ticket.getCabecera().getCliente().getDatosFactura().getNombre().isEmpty() )
+			<linea>
+				<texto size="55" align="left" fontsize="4">Nombre:  ${ticket.getCabecera().getCliente().getDatosFactura().getNombre()}</texto>
+			</linea>
+		#end
+
+		#if( $ticket.getCabecera().getCliente().getDatosFactura().getCif() && !$ticket.getCabecera().getCliente().getDatosFactura().getCif().isEmpty() )
+			<linea>
+				<texto size="55" align="left" fontsize="4">NIF:  ${ticket.getCabecera().getCliente().getDatosFactura().getCif()}</texto>
+			</linea>
+		#end
+
+		#set( $direccionCliente = "Endereço:")
+		#if( $ticket.getCabecera().getCliente().getDatosFactura().getDomicilio() && !$ticket.getCabecera().getCliente().getDatosFactura().isEmpty() )
+			#set( $direccionCliente = "${direccionCliente} ${ticket.getCabecera().getCliente().getDatosFactura().getDomicilio()}" )
+		#end
+		#if( $ticket.getCabecera().getCliente().getDatosFactura().getCp() && !$ticket.getCabecera().getCliente().getDatosFactura().getCp().isEmpty() )
+			#set( $direccionCliente = "${direccionCliente} ${ticket.getCabecera().getCliente().getDatosFactura().getCp()}" )
+		#end
+		#if( $ticket.getCabecera().getCliente().getDatosFactura().getLocalidad() && !$ticket.getCabecera().getCliente().getDatosFactura().getLocalidad().isEmpty() )
+			#set( $direccionCliente = "${direccionCliente} - ${ticket.getCabecera().getCliente().getDatosFactura().getLocalidad()}" )
+		#end
+		#if( $ticket.getCabecera().getCliente().getDatosFactura().getProvincia() && !$ticket.getCabecera().getCliente().getDatosFactura().getProvincia().isEmpty() )
+			#set( $direccionCliente = "${direccionCliente} - ${ticket.getCabecera().getCliente().getDatosFactura().getProvincia()}" )
+		#end
+
+		#foreach($lineaDireccionCliente in $textUtils.divideLines(${direccionCliente}, 54))
+			<linea>
+				<texto size="55" align="left" fontsize="4">${lineaDireccionCliente}</texto>
+			</linea>
+		#end
+
+		#if ($ticket.getCabecera().getDatosFidelizado())
+			#set($observaciones = $ticket.getCabecera().getDatosFidelizado().getAdicionales().get("OBSERVACIONES"))
+			#if ($observaciones)
+				#set($infoAdicional = "Información adicional: ${observaciones}")
+				#foreach($lineaInfo in $textUtils.divideLines($infoAdicional, 40))
+					<linea>
+						<texto size="55" align="left" fontsize="4">${lineaInfo}</texto>
+					</linea>
+				#end
+			#end
+		#end
+		<linea><texto size="41" align="center">-----------------------------------------</texto></linea>
+	#end
+	
+
+</plantilla>

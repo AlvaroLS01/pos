@@ -1,0 +1,87 @@
+<!--Esta plantilla usa un parámetro $imprimirDatosFacturacion que no llega desde el POS. Se debe asignar como (con un solo corchete): ##set( $imprimirDatosFacturacion = true )
+-->
+<plantilla>
+	#if($imprimirLogo)
+		<logo alignLogo="center"></logo>
+	#end
+	<!-- DATOS EMPRESA	-->
+	<!-- #printIfLinea(${ticket.getCabecera().getEmpresa().getDesEmpresa()} "center" "1")-->
+	#foreach($lineaEmpresa in $textUtils.divideLines(${ticket.getCabecera().getEmpresa().getDesEmpresa()}, 40))
+		<linea>
+			<texto size="41" align="center" style="1">${lineaEmpresa}</texto>
+		</linea>
+	#end
+
+	#set( $direccionEmpresa = "")
+	#if( $ticket.getCabecera().getEmpresa().getDomicilio() && !$ticket.getCabecera().getEmpresa().getDomicilio().isEmpty() )
+		#set( $direccionEmpresa = "${direccionEmpresa}${ticket.getCabecera().getEmpresa().getDomicilio()}" )
+	#end
+	#if( $ticket.getCabecera().getEmpresa().getCp() && !$ticket.getCabecera().getEmpresa().getCp().isEmpty() )
+		#set( $direccionEmpresa = "${direccionEmpresa} ${ticket.getCabecera().getEmpresa().getCp()}" )
+	#end
+	#if( $ticket.getCabecera().getEmpresa().getPoblacion() && !$ticket.getCabecera().getEmpresa().getPoblacion().isEmpty() )
+		#set( $direccionEmpresa = "${direccionEmpresa} - ${ticket.getCabecera().getEmpresa().getPoblacion()}" )
+	#end
+	#if( $ticket.getCabecera().getEmpresa().getCif() && !$ticket.getCabecera().getEmpresa().getCif().isEmpty() )
+		#set( $direccionEmpresa = "${direccionEmpresa} ${ticket.getCabecera().getEmpresa().getCif()}" )
+	#end
+
+	#foreach($lineaDireccionEmpresa in $textUtils.divideLines(${direccionEmpresa}, 54))
+		<linea>
+			<texto size="55" align="center" fontsize="4">${lineaDireccionEmpresa}</texto>
+		</linea>
+	#end
+
+	#set($registroNIPC = "Registada na conservatória do registo comercial do Entroncamento, sob o NIPC: ${ticket.getCabecera().getEmpresa().getCif()}")
+	#foreach($lineaNIPC in $textUtils.divideLines(${registroNIPC}, 54))
+		<linea>
+			<texto size="55" align="center" fontsize="4">${lineaNIPC}</texto>
+		</linea>
+	#end
+
+	#if (${ticket.getCabecera().getUidActividad().contains("KIWOKO_PT")})
+		<linea>
+			<texto size="55" align="center" fontsize="4">Capital social: 100.000 EUR</texto>
+		</linea>
+	#end
+
+	#if (${ticket.getCabecera().getUidActividad().contains("TIENDA_ANIMAL_PT")})
+		<linea>
+			<texto size="55" align="center" fontsize="4">Capital social: 3.000 EUR</texto>
+		</linea>
+	#end
+
+	#if(${ticket.getCabecera().getFiscalData().getProperty("ATCUD")})
+		<linea>
+			<texto size="55" align="center" fontsize="4">ATCUD: ${ticket.getCabecera().getFiscalData().getProperty("ATCUD").getValue()}</texto>
+		</linea>
+	#end
+
+	<linea><texto size="41" align="center">-----------------------------------------</texto></linea>
+
+	<!-- DATOS TIENDA	-->
+	#printIfLinea(${ticket.getCabecera().getTienda().getDesAlmacen()} "center" "1")
+
+	#set( $direccionTienda = "")
+	#if( $ticket.getCabecera().getTienda().getDomicilio() && !$ticket.getCabecera().getTienda().getDomicilio().isEmpty() )
+		#set( $direccionTienda = "${direccionTienda}${ticket.getCabecera().getTienda().getDomicilio()}" )
+	#end
+	#if( $ticket.getCabecera().getTienda().getCp() && !$ticket.getCabecera().getTienda().getCp().isEmpty() )
+		#set( $direccionTienda = "${direccionTienda} ${ticket.getCabecera().getTienda().getCp()}" )
+	#end
+	#if( $ticket.getCabecera().getTienda().getPoblacion() && !$ticket.getCabecera().getTienda().getPoblacion().isEmpty() )
+		#set( $direccionTienda = "${direccionTienda} - ${ticket.getCabecera().getTienda().getPoblacion()}" )
+	#end
+	#if( $ticket.getCabecera().getTienda().getTelefono1() && !$ticket.getCabecera().getTienda().getTelefono1().isEmpty() )
+		#set( $direccionTienda = "${direccionTienda} ${ticket.getCabecera().getTienda().getTelefono1()}" )
+	#end
+	#foreach($lineaDireccionTienda in $textUtils.divideLines(${direccionTienda}, 54))
+		<linea>
+			<texto size="55" align="center" fontsize="4">${lineaDireccionTienda}</texto>
+		</linea>
+	#end
+
+	<linea><texto size="41" align="center">-----------------------------------------</texto></linea>
+
+
+</plantilla>

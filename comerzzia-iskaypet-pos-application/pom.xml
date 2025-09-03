@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>com.comerzzia.iskaypet.pos</groupId>
+		<artifactId>comerzzia-iskaypet-pos</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<artifactId>comerzzia-iskaypet-pos-application</artifactId>
+	<packaging>jar</packaging>
+
+	<repositories>
+		<repository>
+			<id>artifactory</id>
+			<url>https://repomaven.tier1.es/artifactory/iskaypet/</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>artifactory</id>
+			<url>https://repomaven.tier1.es/artifactory/iskaypet/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencies>
+		<!-- ########################### DEPENDENCIAS PERSONALIZADAS ########################### -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>comerzzia-iskaypet-pos-gui</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<!-- ############################## DEPENDENCIAS ESTÁNDAR ############################## -->
+		<dependency>
+			<groupId>com.comerzzia.pos</groupId>
+			<artifactId>comerzzia-pos-backstore-gui</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- ############################## DEPENDENCIAS EXTERNAS ############################## -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<version>2.1.4.RELEASE</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+	</build>
+	
+</project>

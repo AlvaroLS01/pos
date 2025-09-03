@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.datepicker.* ?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-1.0" prefHeight="473.0" prefWidth="592.0" styleClass="mainFxmlClass, pantalla-detalle" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.iskaypet.pos.gui.ventas.tickets.articulos.trazabilidad.seleccion.AsignarTrazabilidadController">
+  <children>
+    <HBox alignment="CENTER" prefHeight="40.0" prefWidth="-1.0" styleClass="titulo-ventana" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <Label text="%Identificación del Animal" HBox.hgrow="ALWAYS" />
+      </children>
+    </HBox>
+    <VBox prefHeight="356.0" prefWidth="584.0" spacing="15.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="44.0">
+      <children>
+        <HBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0" VBox.vgrow="NEVER">
+          <children>
+            <VBox prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
+              <children>
+                <HBox prefHeight="-1.0" prefWidth="-1.0">
+                  <children>
+                    <Label text="%Información complementaria animal" />
+                    <Label fx:id="lbContador" prefHeight="20.0" prefWidth="61.0" text="%contador" textAlignment="RIGHT">
+                      <HBox.margin>
+                        <Insets left="10.0" />
+                      </HBox.margin>
+                    </Label>
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="-1.0" prefWidth="-1.0">
+                  <children>
+                    <VBox prefHeight="-1.0" prefWidth="-1.0">
+                      <children>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="-1.0" prefWidth="-1.0">
+                          <children>
+                            <Label fx:id="lbCodArt" style="-fx-font-weight: bold;&#10;-fx-text-fill: #131312;" text="Label" />
+                          </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="-1.0" prefWidth="-1.0">
+                          <children>
+                            <Label fx:id="lbDesArt" style="-fx-font-weight: bold;&#10;-fx-text-fill: #131312;" text="Label" />
+                          </children>
+                        </HBox>
+                      </children>
+                    </VBox>
+                  </children>
+                </HBox>
+              </children>
+            </VBox>
+          </children>
+          <padding>
+            <Insets left="20.0" right="20.0" fx:id="x1" />
+          </padding>
+        </HBox>
+        <HBox fx:id="hbSeleccionIdentificacion" padding="$x1" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="NEVER">
+          <children>
+            <VBox prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
+              <children>
+                <HBox prefHeight="-1.0" prefWidth="-1.0">
+                  <children>
+                    <GridPane hgap="5.0" vgap="5.0" HBox.hgrow="ALWAYS">
+                      <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
+                          <children>
+                            <Label text="%ID (CHIP | ANILLA | CITES)" />
+                            <Label text=":" />
+                          </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="cbIdentificadores" maxWidth="1.7976931348623157E308" minHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
+                          <items>
+                            <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Item 1" />
+                              <String fx:value="Item 2" />
+                              <String fx:value="Item 3" />
+                            </FXCollections>
+                          </items>
+                        </ComboBox>
+                      </children>
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="-1.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="-1.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                    </GridPane>
+                  </children>
+                </HBox>
+              </children>
+            </VBox>
+          </children>
+        </HBox>
+        <HBox fx:id="hbIntroduccionManual" disable="false" fillHeight="true" prefHeight="-1.0" prefWidth="-1.0" visible="true" VBox.vgrow="NEVER">
+          <children>
+            <GridPane vgap="5.0" HBox.hgrow="ALWAYS">
+              <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                  <children>
+                    <Label text="%Id Chip" />
+                    <Label text=":" />
+                  </children>
+                  <GridPane.margin>
+                    <Insets />
+                  </GridPane.margin>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                  <children>
+                    <Label text="%Id Anilla" />
+                    <Label text=":" />
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                  <children>
+                    <Label text="%Id Cites" />
+                    <Label text=":" />
+                  </children>
+                </HBox>
+                <TextField fx:id="tfIdChip" prefHeight="42.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <TextField fx:id="tfIdAnilla" prefHeight="42.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="tfIdCites" prefHeight="42.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="-1.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="60.0" prefWidth="-1.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+          </children>
+          <padding>
+            <Insets left="20.0" right="20.0" top="20.0" />
+          </padding>
+        </HBox>
+        <HBox prefHeight="-1.0" prefWidth="-1.0" spacing="10.0" VBox.vgrow="NEVER">
+          <children>
+            <Button fx:id="btIntroduccionManual" mnemonicParsing="false" onAction="#accionIntroduccionManual" prefHeight="42.0" text="%Introducción manual">
+              <HBox.margin>
+                <Insets top="10.0" />
+              </HBox.margin>
+            </Button>
+            <VBox prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+            <Button fx:id="btAceptar" mnemonicParsing="false" onAction="#accionAceptar" prefHeight="42.0" styleClass="btAceptar" text="%Aceptar">
+              <HBox.margin>
+                <Insets top="10.0" />
+              </HBox.margin>
+            </Button>
+            <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#accionCancelar" prefHeight="42.0" styleClass="btCancelar" text="%Cancelar">
+              <HBox.margin>
+                <Insets top="10.0" />
+              </HBox.margin>
+            </Button>
+          </children>
+          <padding>
+            <Insets left="10.0" right="10.0" />
+          </padding>
+        </HBox>
+      </children>
+      <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      </padding>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../Vistas/Producto/Comerzzia/trunk/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

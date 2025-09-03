@@ -1,0 +1,172 @@
+<plantilla>
+
+    <documento>
+		#if($imprimirLogo)
+		    <logo alignLogo="center"></logo>
+		#end
+
+		<linea> <texto></texto></linea>
+		#if(${caja.getCodAlmAsString()}&&${caja.getCodCajaAsString()})
+			<linea>
+				<texto size="21" align="left">CAIXA:</texto>
+				<texto size="20" align="right">${caja.getCodAlmAsString()}/${caja.getCodCajaAsString()}</texto>
+			</linea>
+		#end
+		#if(${fechaApertura})
+			<linea>
+				<texto size="21" align="left">ABERTURA:</texto>
+				<texto size="20" align="right">${fechaApertura}</texto>
+			</linea>
+		#end
+		#if(${fechaCierre})
+			<linea>
+				<texto size="21" align="left">FECHAMENTO:</texto>
+				<texto size="20" align="right">${fechaCierre}</texto>
+			</linea>
+		#end
+		#if(${usuario})
+			<linea>
+				<texto size="21" align="left">OPÉARIO:</texto>
+				<texto size="20" align="right"> ${usuario.getDesusuario()}</texto>
+			</linea>
+		#end
+		#if(${fechaImpresion})
+			<linea>
+				<texto size="21" align="left">DATA IMPRESÃO:</texto>
+				<texto size="20" align="right">${fechaImpresion}</texto>
+			</linea>
+		#end
+
+		<linea><texto>----------------------------------------</texto></linea>
+		
+		<linea>
+			<texto size="41" align="left">RESUMO TOTALIZADO</texto>
+		</linea>
+		
+		<linea>
+			<texto size="41" align="left">Total tickets:</texto>
+			<texto size="21" align="right">${caja.getTotalTicketsAsString()}</texto>
+		</linea>   
+		#if( ${caja.getTotalApuntesEntradaAsString()})
+		<linea>
+			<texto size="34" align="left">A) MOV. ENTRADAS(Saldo inicial):</texto>
+			<texto size="7" align="right">${saldoInicial}</texto>
+		</linea>
+		<linea>
+			<texto size="34" align="left">   MOV. ENTRADAS(Entradas Din.):</texto>
+			<texto size="7" align="right">${entradaEfectivo}</texto>
+		</linea>
+		#end
+		#if(${caja.getTotalVentasEntradaAsString()})
+		<linea>
+			<texto size="20" align="left">B) VENDAS:</texto>
+			<texto size="21" align="right">${caja.getTotalVentasEntradaAsString()}</texto>
+		</linea>
+		#end
+		#if(${caja.getNumTicketsEntrada()})
+		<linea>
+			<texto size="21" align="left">   Tickets de vendas:</texto>
+			<texto size="20" align="right"> ${caja.getNumTicketsEntrada()}</texto>
+		</linea>
+		#end
+		
+		#if( ${caja.getTotalEntradasAsString()})
+		<linea> 
+			<texto size="20" align="left">E = (A+B)</texto> 
+			<texto size="21" align="right">${caja.getTotalEntradasAsString()}</texto>
+		</linea>
+		#end
+
+		<linea><texto>----------------------------------------</texto></linea>
+
+		#if(${caja.getTotalApuntesSalidaAsString()})
+		<linea>
+			<texto size="34" align="left">C) MOV. SAIDA (Retiradas):</texto>
+			<texto size="7" align="right">${retiradas}</texto>
+		</linea>
+		<linea>
+			<texto size="34" align="left">   MOV. SAIDA (Saída de caixa):</texto>
+			<texto size="7" align="right">${salidaCaja}</texto>
+		</linea>
+		#end
+		#if(${caja.getTotalVentasSalidaAsString()})
+		<linea>
+			<texto size="21" align="left">D) DEVOLUÇÕES:</texto>
+			<texto size="20" align="right">${caja.getTotalVentasSalidaAsString()}</texto>
+		</linea>
+		#end
+		#if(${caja.getNumTicketsSalida()})
+		<linea>
+			<texto size="21" align="left">   Tickets de devoluções:</texto>
+			<texto size="20" align="right"> ${caja.getNumTicketsSalida()}</texto>
+		</linea>
+		#end
+		
+		<linea> 
+			<texto size="21" align="left">S = (C+D)</texto>
+			<texto size="20" align="right">${caja.getTotalSalidasAsString()}</texto>
+		</linea>
+		
+		<linea> 
+			<texto size="21" align="left">(E-S)</texto>
+			<texto size="20" align="right">${caja.getTotalAsString()}</texto>
+		</linea>
+
+		
+		<linea>
+			<texto size="17" align="left">FORMA PAGAMENTO</texto>
+			<texto size="8" align="right">TOTAL</texto>
+			<texto size="8" align="right">RECONTO</texto>
+			<texto size="8" align="right">DESC</texto>
+		</linea>
+		
+		#foreach($acumulado in $acumulados)
+		<linea>
+			#if(${acumulado.getMedioPago().getDesMedioPago()})
+			<texto size="17" align="left">${acumulado.getMedioPago().getDesMedioPago()}</texto>
+			#end
+			#if(${acumulado.getTotal()})
+			<texto size="8" align="right">${acumulado.getTotalAsString()}</texto>
+			#end
+			#if(${acumulado.getRecuento()})
+			<texto size="8" align="right">${acumulado.getRecuentoAsString()}</texto>
+			#end
+			#if(${acumulado.getDescuadre()})
+			<texto size="8" align="right">${acumulado.getDescuadreAsString()}</texto>
+			#end
+		</linea>
+		#end
+
+		<linea><texto>----------------------------------------</texto></linea>
+		<linea>
+			<texto size="41" align="center">TOTAIS</texto>
+		</linea>
+		<linea><texto>----------------------------------------</texto></linea>
+		<linea> 
+			<texto size="21" align="right">TOTAL</texto>
+			<texto size="13" align="right">DECLARADO</texto>
+			<texto size="13" align="right">DESQUADRE</texto>
+		</linea>
+		
+		<linea>
+			#if(${caja.getTotalAsString()}) 
+			<texto size="21" align="right">${caja.getTotalAsString()}</texto>
+			#end
+			#if(${caja.getTotalRecuentoAsString()})
+			<texto size="13" align="right">${caja.getTotalRecuentoAsString()}</texto>
+			#end
+			#if(${caja.getDescuadreAsString()})
+			<texto size="13" align="right">${caja.getDescuadreAsString()}</texto> 
+			#end
+		</linea>
+		<linea><texto></texto></linea>
+
+		#if($imprimirLogo)
+			<linea><texto></texto></linea>
+			<linea><texto></texto></linea>
+			<linea><texto></texto></linea>
+		#end
+
+		<corte></corte>
+	</documento>
+</plantilla>

@@ -1,0 +1,14 @@
+.texto-negrita,
+.text-right,
+#lbFormaCambio {
+    -fx-font-size: 28px;
+}
+
+.pantalla-detalle {
+    -fx-background-color: #fff;
+    -fx-background-radius: 30;
+    -fx-padding: 0;
+    -fx-border-color: #9c9c9c;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+}

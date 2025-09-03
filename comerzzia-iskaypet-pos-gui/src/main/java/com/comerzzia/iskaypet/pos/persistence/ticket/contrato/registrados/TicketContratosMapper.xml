@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.registrados.TicketContratosMapper" >
+  <resultMap id="BaseResultMap" type="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.registrados.TicketContratosBean" >
+    <id column="UID_ACTIVIDAD" property="uidActividad" jdbcType="VARCHAR" />
+    <id column="UID_TICKET" property="uidTicket" jdbcType="VARCHAR" />
+    <id column="LINEA" property="linea" jdbcType="INTEGER" />
+    <result column="FECHA" property="fecha" jdbcType="TIMESTAMP" />
+    <result column="METODO_FIRMA" property="metodoFirma" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.registrados.TicketContratosBean" extends="BaseResultMap" >
+    <result column="CONTRATO" property="contrato" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UID_ACTIVIDAD, UID_TICKET, LINEA, FECHA, METODO_FIRMA
+  </sql>
+  <sql id="Blob_Column_List" >
+    CONTRATO
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.registrados.TicketContratosExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from x_tickets_contract_tbl
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.registrados.TicketContratosExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_tickets_contract_tbl
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.registrados.TicketContratosKey" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from x_tickets_contract_tbl
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and UID_TICKET = #{uidTicket,jdbcType=VARCHAR}
+      and LINEA = #{linea,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.registrados.TicketContratosKey" >
+    delete from x_tickets_contract_tbl
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and UID_TICKET = #{uidTicket,jdbcType=VARCHAR}
+      and LINEA = #{linea,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.registrados.TicketContratosExample" >
+    delete from x_tickets_contract_tbl
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.registrados.TicketContratosBean" >
+    insert into x_tickets_contract_tbl (UID_ACTIVIDAD, UID_TICKET, LINEA, 
+      FECHA, METODO_FIRMA, CONTRATO
+      )
+    values (#{uidActividad,jdbcType=VARCHAR}, #{uidTicket,jdbcType=VARCHAR}, #{linea,jdbcType=INTEGER}, 
+      #{fecha,jdbcType=TIMESTAMP}, #{metodoFirma,jdbcType=VARCHAR}, #{contrato,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.registrados.TicketContratosBean" >
+    insert into x_tickets_contract_tbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uidActividad != null" >
+        UID_ACTIVIDAD,
+      </if>
+      <if test="uidTicket != null" >
+        UID_TICKET,
+      </if>
+      <if test="linea != null" >
+        LINEA,
+      </if>
+      <if test="fecha != null" >
+        FECHA,
+      </if>
+      <if test="metodoFirma != null" >
+        METODO_FIRMA,
+      </if>
+      <if test="contrato != null" >
+        CONTRATO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uidActividad != null" >
+        #{uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="uidTicket != null" >
+        #{uidTicket,jdbcType=VARCHAR},
+      </if>
+      <if test="linea != null" >
+        #{linea,jdbcType=INTEGER},
+      </if>
+      <if test="fecha != null" >
+        #{fecha,jdbcType=TIMESTAMP},
+      </if>
+      <if test="metodoFirma != null" >
+        #{metodoFirma,jdbcType=VARCHAR},
+      </if>
+      <if test="contrato != null" >
+        #{contrato,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.registrados.TicketContratosExample" resultType="java.lang.Integer" >
+    select count(*) from x_tickets_contract_tbl
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update x_tickets_contract_tbl
+    <set >
+      <if test="record.uidActividad != null" >
+        UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uidTicket != null" >
+        UID_TICKET = #{record.uidTicket,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linea != null" >
+        LINEA = #{record.linea,jdbcType=INTEGER},
+      </if>
+      <if test="record.fecha != null" >
+        FECHA = #{record.fecha,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.metodoFirma != null" >
+        METODO_FIRMA = #{record.metodoFirma,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contrato != null" >
+        CONTRATO = #{record.contrato,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update x_tickets_contract_tbl
+    set UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      UID_TICKET = #{record.uidTicket,jdbcType=VARCHAR},
+      LINEA = #{record.linea,jdbcType=INTEGER},
+      FECHA = #{record.fecha,jdbcType=TIMESTAMP},
+      METODO_FIRMA = #{record.metodoFirma,jdbcType=VARCHAR},
+      CONTRATO = #{record.contrato,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update x_tickets_contract_tbl
+    set UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      UID_TICKET = #{record.uidTicket,jdbcType=VARCHAR},
+      LINEA = #{record.linea,jdbcType=INTEGER},
+      FECHA = #{record.fecha,jdbcType=TIMESTAMP},
+      METODO_FIRMA = #{record.metodoFirma,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.registrados.TicketContratosBean" >
+    update x_tickets_contract_tbl
+    <set >
+      <if test="fecha != null" >
+        FECHA = #{fecha,jdbcType=TIMESTAMP},
+      </if>
+      <if test="metodoFirma != null" >
+        METODO_FIRMA = #{metodoFirma,jdbcType=VARCHAR},
+      </if>
+      <if test="contrato != null" >
+        CONTRATO = #{contrato,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and UID_TICKET = #{uidTicket,jdbcType=VARCHAR}
+      and LINEA = #{linea,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.registrados.TicketContratosBean" >
+    update x_tickets_contract_tbl
+    set FECHA = #{fecha,jdbcType=TIMESTAMP},
+      METODO_FIRMA = #{metodoFirma,jdbcType=VARCHAR},
+      CONTRATO = #{contrato,jdbcType=LONGVARBINARY}
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and UID_TICKET = #{uidTicket,jdbcType=VARCHAR}
+      and LINEA = #{linea,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.registrados.TicketContratosBean" >
+    update x_tickets_contract_tbl
+    set FECHA = #{fecha,jdbcType=TIMESTAMP},
+      METODO_FIRMA = #{metodoFirma,jdbcType=VARCHAR}
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and UID_TICKET = #{uidTicket,jdbcType=VARCHAR}
+      and LINEA = #{linea,jdbcType=INTEGER}
+  </update>
+  <select resultMap="ResultMapWithBLOBs" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.registrados.TicketContratosExample" id="selectByExampleWithBLOBsWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from x_tickets_contract_tbl
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select resultMap="BaseResultMap" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.registrados.TicketContratosExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_tickets_contract_tbl
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

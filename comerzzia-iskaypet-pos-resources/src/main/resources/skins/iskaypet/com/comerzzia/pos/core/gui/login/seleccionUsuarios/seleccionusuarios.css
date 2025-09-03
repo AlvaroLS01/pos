@@ -1,0 +1,6 @@
+.btRegistroHorarioEntradaSalida{
+    -fx-background-image: url("../../../../../../../../../logos/logo.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 2px center;
+    -fx-padding: 10 10 10 40;
+}

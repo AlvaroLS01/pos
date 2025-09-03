@@ -1,0 +1,14 @@
+.cell-renderer-resalted {
+    -fx-background-color: #F4F01F;
+    -fx-text-fill: #000000;
+    -fx-border-width: 0 1 1 0;
+    -fx-border-color: #bababa;
+}
+
+.table-view .table-row-cell:focused .cell-renderer-resalted {
+    -fx-background-color: #8d8c12;
+    -fx-text-fill: #000000;
+    -fx-background-insets: 0;
+    -fx-background: -fx-accent;
+    -fx-font-weight: bold;
+}

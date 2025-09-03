@@ -1,0 +1,50 @@
+/*ISK-110*/
+.lbPromociones {
+    -fx-background-color: #0082aa;
+    -fx-text-fill: #eee;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
+
+.total {
+    -fx-background-color: #eee;
+    -fx-font-size: 65px;
+    -fx-text-fill: #0082aa;
+    -fx-font-weight: bold;
+    -fx-border-color: #a0a0a0;
+    -fx-padding: 0px 8px 0px 0px;
+}
+
+.total.total-reduced {
+    -fx-font-size: 55px;
+}
+.total-reduced-40 {
+    -fx-font-size: 50px;
+}
+.total-reduced-35 {
+    -fx-font-size: 45px;
+}
+.total-reduced-30 {
+    -fx-font-size: 40px;
+}
+.total-reduced-27 {
+    -fx-font-size: 37px;
+}
+.total-reduced-10 {
+    -fx-font-size: 20px;
+}
+
+.cell-renderer-resalted {
+    -fx-background-color: #F4F01F;
+    -fx-text-fill: #000000;
+    -fx-border-width: 0 1 1 0;
+    -fx-border-color: #bababa;
+}
+
+.table-view .table-row-cell:focused .cell-renderer-resalted {
+    -fx-background-color: #8d8c12;
+    -fx-text-fill: #000000;
+    -fx-background-insets: 0;
+    -fx-background: -fx-accent;
+    -fx-font-weight: bold;
+}

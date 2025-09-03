@@ -1,0 +1,79 @@
+##<!-- Macro que imprime una linea solo si viene rellena -->
+#macro (printIfLinea $linea $align $style $size $fontSize)
+	#if ($linea)
+		#if (!$align)
+			#set($align = "left")
+		#end
+		#if (!$style)
+			#set($style = "0")
+		#end
+		#if (!$size)
+			#set($size = "41")
+		#end
+		#if (!$fontSize)
+			#set($fontSize = "0")
+		#end
+		<linea><texto align="$align" style="$style" size="$size" fontsize="$fontSize">$esc.xml($linea)</texto></linea>
+	#end
+#end
+##<!-- Macro que imprime una etiqueta y una linea solo si la linea viene rellena -->
+#macro (printIfLineaEtiqueta $etiqueta $linea $align $style $size $fontSize)
+	#if ($linea)
+		<linea>
+			#if ($etiqueta)
+				#set($etiqueta = "$etiqueta: ")
+			#else
+				#set($etiqueta = "")
+			#end
+			#if (!$align)
+				#set($align = "left")
+			#end
+			#if (!$style)
+				#set($style = "0")
+			#end
+			#if (!$size)
+				#set($size = "41")
+			#end
+			#if (!$fontSize)
+				#set($fontSize = "0")
+			#end
+			<texto align="$align" style="$style" size="$size" fontsize="$fontSize">$etiqueta$esc.xml($linea)</texto>
+		</linea>
+	#end
+#end
+##<!-- Macro que imprime una linea solo si viene rellena o otro por defecto -->
+#macro (printIfLineaOr $linea $or)
+	#if ($linea)
+		<linea><texto size="41" align="left">$esc.xml($linea)</texto></linea>
+	#else
+		#if($or)
+			<linea><texto size="41" align="left">$or</texto></linea>
+		#end
+	#end
+#end
+##<!-- Macro para formatear codigo postal y provincia -->
+#macro (codigoPostalProvincia $cp $provincia $align)
+	#if (!$align)
+		#set($align = "left")
+	#end
+	#if ($cp && $provincia)
+		<linea><texto size="41" align="$align">$cp - $provincia</texto></linea>
+	#else
+		#if($cp)
+			<linea><texto size="41" align="$align">$cp</texto></linea>
+		#end
+		#if($provincia)
+			<linea><texto size="41" align="$align">$esc.xml($provincia)</texto></linea>
+		#end
+	#end
+#end
+##<!-- Macro para imprimir linea en blanco -->
+#macro (printLineaEnBlanco)
+	<linea><texto> </texto></linea>
+#end
+
+##<!-- Macro para imprimir linea en blanco -->
+#macro (printLineaSubrayado)
+	<linea> <texto size="41" style="2"> </texto> </linea>
+	<linea><texto> </texto></linea>
+#end

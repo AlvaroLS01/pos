@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comerzzia.iskaypet.pos.gui.ventas.tickets.pagos.valedevolucionmanual.ValeDevolucionManualController">
+    <children>
+        <HBox alignment="CENTER" prefHeight="195.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox alignment="CENTER" prefHeight="195.0" prefWidth="400.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="215.0" styleClass="titulo-ventana" VBox.vgrow="NEVER">
+                            <children>
+                                <Label fx:id="lbTitulo" text="%Vale devolución entrada manual" />
+                            </children>
+                        </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="195.0">
+                     <children>
+                        <Label prefWidth="100.0" text="%Nº Vale">
+                           <padding>
+                              <Insets right="20.0" />
+                           </padding>
+                        </Label>
+                        <TextField id="tfImporte" fx:id="tfTarjeta" editable="false" focusTraversable="false" prefHeight="40.0" prefWidth="280.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="195.0">
+                     <children>
+                                <Label prefWidth="100.0" text="%Importe €">
+                           <padding>
+                              <Insets right="20.0" />
+                           </padding></Label>
+                     <TextFieldImporte fx:id="tfImporte" alignment="CENTER_RIGHT" maxWidth="280.0" prefHeight="40.0" prefWidth="280.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="195.0">
+                     <children>
+                                <Button fx:id="btAceptar" mnemonicParsing="false" onAction="#accionAceptar" styleClass="btAceptar" text="%Aceptar">
+                                    <HBox.margin>
+                                        <Insets right="10.0" />
+                                    </HBox.margin>
+                                </Button>
+                                <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#accionCancelar" styleClass="btCancelar" text="%Cancelar">
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="20.0" prefWidth="195.0">
+                     <children>
+                        <Label fx:id="lbError" styleClass="lbError">
+                           <padding>
+                              <Insets left="50.0" right="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+   <styleClass>
+      <String fx:value="mainFxmlClass" />
+      <String fx:value="pantalla-modal" />
+   </styleClass>
+</AnchorPane>

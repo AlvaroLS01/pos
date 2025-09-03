@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.prefijos.PrefijosPaisesMapper">
+  <resultMap id="BaseResultMap" type="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.prefijos.PrefijosPaisesKey">
+    <id column="UID_INSTANCIA" jdbcType="VARCHAR" property="uidInstancia" />
+    <id column="CODPAIS" jdbcType="VARCHAR" property="codpais" />
+    <id column="PREFIJO" jdbcType="VARCHAR" property="prefijo" />
+  </resultMap>
+  <select id="getPrefijosPaises" resultMap="BaseResultMap">
+	SELECT PAI.UID_INSTANCIA, CONCAT ('(', PAI.CODPAIS, ')', PAI.DESPAIS) AS CODPAIS , PRE.PREFIJO 
+	FROM 
+		X_PAISES_PREFIJOS_TBL PRE INNER JOIN
+		D_PAISES_TBL PAI ON (PRE.UID_INSTANCIA = PAI.UID_INSTANCIA AND PRE.CODPAIS = PAI.CODPAIS) 
+  </select>
+  <select id="getPrefijoFidelizado" resultMap="BaseResultMap">
+	SELECT PAI.UID_INSTANCIA, CONCAT ('(', PAI.CODPAIS, ')', PAI.DESPAIS) AS CODPAIS , PRE.PREFIJO 
+	FROM 
+		X_PAISES_PREFIJOS_TBL PRE INNER JOIN
+		D_PAISES_TBL PAI ON (PRE.UID_INSTANCIA = PAI.UID_INSTANCIA AND PRE.CODPAIS = PAI.CODPAIS)
+	WHERE PAI.UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+	AND PAI.CODPAIS = #{codPais,jdbcType=VARCHAR}
+  </select>
+</mapper>

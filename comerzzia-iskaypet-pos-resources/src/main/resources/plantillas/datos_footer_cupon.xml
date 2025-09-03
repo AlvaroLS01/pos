@@ -1,0 +1,21 @@
+<!--Esta plantilla usa un parámetro $imprimirDatosFacturacion que no llega desde el POS. Se debe asignar como (con un solo corchete): ##set( $imprimirDatosFacturacion = true )
+-->
+<plantilla>
+
+	<linea><texto size="47" style="2"> </texto></linea>
+	<linea><texto> </texto></linea>
+	#foreach($lineaEmpresa in $textUtils.divideLines(${ticket.getCabecera().getEmpresa().getDesEmpresa()}, 40))
+	<linea>
+		<texto size="40" align="center" style="1">${lineaEmpresa}</texto>
+	</linea>
+	#end
+	#foreach($lineaDireccion in $textUtils.divideLines(${ticket.getCabecera().getEmpresa().getDomicilio().trim()}, 46))
+	<linea>
+		<texto size="47" align="center">${lineaDireccion}</texto>
+	</linea>
+	#end
+	#printIfLinea("${ticket.getCabecera().getEmpresa().getCp()} - ${ticket.getCabecera().getEmpresa().getPoblacion()}" "center")
+	#printIfLineaEtiqueta("CIF" ${ticket.getCabecera().getEmpresa().getCif()} "center")
+	<linea><texto size="47" style="2"> </texto></linea>
+
+</plantilla>

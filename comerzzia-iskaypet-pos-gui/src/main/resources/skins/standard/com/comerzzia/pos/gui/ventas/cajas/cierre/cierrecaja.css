@@ -1,0 +1,6 @@
+.btAbrirRecuento {
+    -fx-background-image: url("recuento-caja-32.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px center;
+    -fx-padding: 10 10 10 50;
+}

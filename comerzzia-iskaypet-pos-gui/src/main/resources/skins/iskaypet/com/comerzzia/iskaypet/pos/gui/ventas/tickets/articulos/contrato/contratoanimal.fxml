@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.datepicker.* ?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.* ?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="600.0" styleClass="pantalla-modal" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comerzzia.iskaypet.pos.gui.ventas.tickets.articulos.contrato.ContratoAnimalController">
+  <children>
+    <VBox layoutX="0.0" layoutY="0.0" prefHeight="313.0" prefWidth="600.0">
+      <children>
+        <HBox prefHeight="20.0" prefWidth="600.0" styleClass="titulo-ventana">
+          <children>
+            <Label id="lbTitulo" alignment="CENTER" prefHeight="20.0" prefWidth="600.0" text="%Datos de la mascota" />
+          </children>
+        </HBox>
+        <HBox alignment="BOTTOM_CENTER" minHeight="311.0" prefHeight="311.0" prefWidth="600.0">
+          <children>
+            <VBox alignment="CENTER" minHeight="273.0" prefHeight="285.0" prefWidth="600.0" spacing="5.0">
+              <children>
+                <FlowPane id="panelEspecie" alignment="CENTER_LEFT" hgap="4.0" prefHeight="33.0" prefWidth="600.0" VBox.vgrow="NEVER">
+                  <children>
+                    <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="180.0" text="%Especie" />
+                    <TextField fx:id="tfEspecie" prefWidth="360.0" />
+                  </children>
+                </FlowPane>
+                <FlowPane id="panelRaza" hgap="4.0" prefHeight="33.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                  <children>
+                    <Label id="lbRaza" alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="180.0" text="%Raza" />
+                    <TextField fx:id="tfRaza" prefWidth="360.0" />
+                  </children>
+                </FlowPane>
+                <FlowPane hgap="4.0" prefHeight="33.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                  <children>
+                    <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="180.0" text="%Sexo" />
+                    <ComboBox id="cbTipoDocIdent" fx:id="cbSexo" prefHeight="29.0" prefWidth="200.0" />
+                  </children>
+                </FlowPane>
+                <FlowPane hgap="4.0" prefHeight="33.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                  <children>
+                    <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="180.0" text="%Peso(g)" />
+                    <TextFieldImporte fx:id="tfPeso" prefWidth="360.0" />
+                  </children>
+                </FlowPane>
+                <FlowPane hgap="4.0" prefHeight="33.0" prefWidth="200.0">
+                  <children>
+                    <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="180.0" text="%ID (CHIP | ANILLA | CITES)" />
+                    <TextField fx:id="tfNumIden" editable="false" focusTraversable="false" prefWidth="360.0" />
+                  </children>
+                </FlowPane>
+                    <HBox alignment="CENTER_RIGHT" minHeight="51.0" prefHeight="51.0" prefWidth="739.0">
+                      <children>
+                        <TilePane alignment="BOTTOM_RIGHT" hgap="10.0" prefHeight="51.0" prefWidth="468.0" HBox.hgrow="NEVER">
+                          <children>
+                            <Button id="btAceptar" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#accionAceptar" prefHeight="42.0" prefWidth="115.0" styleClass="btAceptar" text="%Aceptar" />
+                            <Button id="btCancelar" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#accionCancelar" prefHeight="42.0" prefWidth="115.0" styleClass="btCancelar" text="%Cancelar" />
+                          </children>
+                          <padding>
+                            <Insets bottom="5.0" right="5.0" />
+                          </padding>
+                        </TilePane>
+                      </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                    </HBox>
+              </children>
+            </VBox>
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>

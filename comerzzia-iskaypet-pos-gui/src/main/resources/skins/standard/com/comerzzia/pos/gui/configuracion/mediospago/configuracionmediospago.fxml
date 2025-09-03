@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?scenebuilder-stylesheet ../../../../../../../../../../../../../../../trunk/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comerzzia.iskaypet.pos.gui.configuracion.mediospago.IskaypetConfiguracionMediosPagoController">
+  <children>
+    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane prefHeight="53.0" prefWidth="1013.0" styleClass="titulo-ventana">
+          <children>
+            <Label alignment="CENTER" text="%Configuración de medios de pago" textAlignment="LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+          </children>
+        </AnchorPane>
+        <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+          <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="1013.0" spacing="15.0">
+              <children>
+                <Label text="%Seleccione un medio de pago para ver su configuración:">
+                  <HBox.margin>
+                    <Insets left="20.0" />
+                  </HBox.margin>
+                </Label>
+                <ComboBox fx:id="cbMediosPago" prefHeight="40.0" prefWidth="434.0">
+                  <items>
+                    <FXCollections fx:factory="observableArrayList" />
+                  </items>
+                </ComboBox>
+              </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+              <children>
+                <ScrollPane fx:id="spPropiedades" fitToHeight="true" fitToWidth="true" hbarPolicy="AS_NEEDED" pannable="false" prefHeight="200.0" prefViewportWidth="0.0" prefWidth="200.0" style="-fx-font-size: 20px;&#10;" vbarPolicy="AS_NEEDED" HBox.hgrow="ALWAYS">
+                  <content>
+                    <AnchorPane id="Content" fx:id="panelContenedorPropiedades" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                      <children>
+                        <VBox fx:id="panelPropiedades" focusTraversable="true" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </ScrollPane>
+              </children>
+              <VBox.margin>
+                <Insets left="20.0" right="10.0" />
+              </VBox.margin>
+            </HBox>
+                  <HBox prefHeight="53.0" prefWidth="1013.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="508.0">
+                           <children>
+                              <TilePane alignment="CENTER_LEFT" hgap="10.0" prefHeight="53.0" prefWidth="508.0">
+                                 <children>
+                                    <Button fx:id="btCargaFicheroTresMil" mnemonicParsing="false" onAction="#accionCargaFicheroTresMil" prefHeight="40.0" prefWidth="40.0">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../gui/imagenes/iconos/detalledelservicio.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="btTelecargaVerifone" mnemonicParsing="false" onAction="#accionTelecargaVerifone" prefHeight="40.0" prefWidth="40.0">
+                            	      <graphic>
+            					        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+            					          <image>
+            					            <Image url="@../../../gui/imagenes/iconos/actualizar.png" />
+            					          </image>
+            					        </ImageView>
+            					      </graphic>
+                                    </Button>
+                                 </children>
+                              </TilePane>
+                           </children>
+                        </VBox>
+                    <VBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="505.0" HBox.hgrow="ALWAYS">
+                           <children>
+                        <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#guardarCambios" styleClass="btAceptar" text="%Guardar cambios" />
+                           </children>
+                    </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="20.0" right="10.0" />
+                     </VBox.margin>
+                  </HBox>
+          </children>
+          <VBox.margin>
+            <Insets />
+          </VBox.margin>
+        </VBox>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>
