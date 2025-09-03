@@ -404,19 +404,29 @@ public class IskaypetTicketService extends TicketsService {
 
 
 	@Override
-	public synchronized void registrarTicket(Ticket ticket, TipoDocumentoBean tipoDocumento, boolean procesarTicket) throws TicketsServiceException {
-		log.debug("registrarTicket() - Registrando ticket con id: " + ticket.getIdTicket() + ", total entregado de: " + ticket.getCabecera().getTotales().getEntregadoAsString() + " y un total a pagar de: " + ticket.getCabecera().getTotales().getTotalAPagar());
-		log.debug("registrarTicket() - Cantidad total de líneas: " + ticket.getLineas().size());
-		try {
-			for (Object obj : ticket.getPagos()) {
-				IPagoTicket pago = (IPagoTicket) obj;
-				log.debug("registrarTicket() - Pago del ticket con medio de pago: " + pago.getDesMedioPago() + " y un importe de: " + pago.getImporte());
-			}
-		}
-		catch (Exception e) {
-			log.error("registrarTicket() - Error al recorrer los pagos del ticket" + e.getMessage(), e);
-		}
-		super.registrarTicket(ticket, tipoDocumento, procesarTicket);
-	}
+    public synchronized void registrarTicket(Ticket ticket, TipoDocumentoBean tipoDocumento, boolean procesarTicket) throws TicketsServiceException {
+        log.debug("registrarTicket() - Registrando ticket con id: " + ticket.getIdTicket() + ", total entregado de: " + ticket.getCabecera().getTotales().getEntregadoAsString() + " y un total a pagar de: " + ticket.getCabecera().getTotales().getTotalAPagar());
+        log.debug("registrarTicket() - Cantidad total de líneas: " + ticket.getLineas().size());
+        try {
+            for (Object obj : ticket.getPagos()) {
+                IPagoTicket pago = (IPagoTicket) obj;
+                log.debug("registrarTicket() - Pago del ticket con medio de pago: " + pago.getDesMedioPago() + " y un importe de: " + pago.getImporte());
+            }
+        }
+        catch (Exception e) {
+            log.error("registrarTicket() - Error al recorrer los pagos del ticket" + e.getMessage(), e);
+        }
+        BigDecimal totalAPagar = ticket.getCabecera().getTotales().getTotalAPagar();
+        // Ensure a ticket with a positive total always has both payments and item lines
+        if (totalAPagar.compareTo(BigDecimal.ZERO) != 0) {
+            if (ticket.getPagos().isEmpty()) {
+                throw new TicketsServiceException("Ticket sin líneas de pago");
+            }
+            if (ticket.getLineas().isEmpty()) {
+                throw new TicketsServiceException("Ticket sin líneas de artículos");
+            }
+        }
+        super.registrarTicket(ticket, tipoDocumento, procesarTicket);
+    }
 
 }
