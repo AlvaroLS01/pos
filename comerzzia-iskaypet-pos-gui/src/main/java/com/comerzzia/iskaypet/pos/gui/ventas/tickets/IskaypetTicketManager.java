@@ -151,6 +151,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * GAP 107 - ISK-262 GLOVO (venta por plataforma digital)
@@ -237,6 +238,9 @@ public class IskaypetTicketManager extends TicketManager {
 
     @Autowired
     private IskaypetTicketService iskaypetTicketService;
+
+    // Flag to block UI resets while a ticket is being persisted
+    private final AtomicBoolean registrandoTicket = new AtomicBoolean(false);
 
     @Autowired
     private LoteArticuloManager loteArticuloManager;
@@ -913,9 +917,13 @@ public class IskaypetTicketManager extends TicketManager {
             // !ticketPrincipal.getCuponesAplicados().isEmpty();
             boolean processTicket = false;
 
-            ticketsService.registrarTicket((Ticket) ticketPrincipal, documentoActivo, processTicket);
-
-            confirmarPagosTarjeta(pagosAutorizados, stage);
+            registrandoTicket.set(true);
+            try {
+                ticketsService.registrarTicket((Ticket) ticketPrincipal, documentoActivo, processTicket);
+                confirmarPagosTarjeta(pagosAutorizados, stage);
+            } finally {
+                registrandoTicket.set(false);
+            }
 
             return null;
         }
@@ -2890,8 +2898,21 @@ public class IskaypetTicketManager extends TicketManager {
 
     @Override
     public void inicializarTicket() throws DocumentoException, PromocionesServiceException {
-    	mostrarTrazaReducida();
+        if (registrandoTicket.get()) {
+            log.warn("inicializarTicket() - ignorado mientras se registra el ticket");
+            return;
+        }
+        mostrarTrazaReducida();
         super.inicializarTicket();
+    }
+
+    @Override
+    public void nuevoTicket() throws DocumentoException, PromocionesServiceException {
+        if (registrandoTicket.get()) {
+            log.warn("nuevoTicket() - ignorado mientras se registra el ticket");
+            return;
+        }
+        super.nuevoTicket();
     }
 
     public void mostrarTrazaReducida() {
