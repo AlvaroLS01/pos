@@ -1,0 +1,1 @@
+package com.comerzzia.ametller.pos.devices;
