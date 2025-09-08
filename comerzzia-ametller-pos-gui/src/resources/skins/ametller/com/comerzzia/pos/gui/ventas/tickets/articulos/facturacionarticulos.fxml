@@ -14,7 +14,7 @@
 <?import javafx.scene.text.*?>
 <?scenebuilder-preview-i18n-resource ../../../i18n/Bundle.properties?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1024.0" style="&#10;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.pos.gui.ventas.tickets.articulos.FacturacionArticulosController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1024.0" style="&#10;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.ametller.pos.gui.ventas.tickets.articulos.AmetllerFacturacionArticulosController">
   <children>
     <HBox prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
@@ -147,6 +147,7 @@
                         <Insets />
                       </HBox.margin>
                     </AnchorPane>
+                    <AnchorPane fx:id="panelDescuento25" prefHeight="189.0" prefWidth="150.0" />
                     <AnchorPane minWidth="0.0" prefHeight="193.0" prefWidth="0.0" />
                     <AnchorPane id="AnchorPane" minWidth="246.0" prefHeight="185.0" prefWidth="246.0" HBox.hgrow="NEVER">
                       <children>
