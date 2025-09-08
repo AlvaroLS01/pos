@@ -44,8 +44,20 @@
                                     <Label alignment="CENTER_RIGHT" layoutX="193.0" layoutY="3.0" prefWidth="70.0" text="%Artículo" />
                                   </children>
                                 </Group>
-                                <AnchorPane fx:id="panelMenuTabla" layoutY="47.0" maxHeight="42.0" maxWidth="675.0" minHeight="42.0" minWidth="350.0" prefHeight="42.0" prefWidth="675.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                                <Label fx:id="lblPeso" alignment="CENTER_RIGHT" layoutX="328.0" layoutY="15.0" prefWidth="70.0" text="%/ Peso" visible="false" />
+                                <AnchorPane fx:id="panelMenuTabla"
+                                            layoutY="47.0"
+                                            maxHeight="42.0" maxWidth="675.0"
+                                            minHeight="42.0" minWidth="350.0"
+                                            prefHeight="42.0" prefWidth="675.0"
+                                            AnchorPane.leftAnchor="10.0"
+                                            AnchorPane.rightAnchor="200.0" />
+                                <AnchorPane fx:id="panelDescuento25"
+                                            layoutY="47.0"
+                                            prefHeight="42.0" prefWidth="180.0"
+                                            AnchorPane.rightAnchor="10.0">
+                                </AnchorPane>
+
+							  <Label fx:id="lblPeso" alignment="CENTER_RIGHT" layoutX="328.0" layoutY="15.0" prefWidth="70.0" text="%/ Peso" visible="false" />
                               </children>
                             </AnchorPane>
                             <AnchorPane prefHeight="89.0" prefWidth="93.0" styleClass="park-wrap" HBox.hgrow="NEVER" />
@@ -147,7 +159,6 @@
                         <Insets />
                       </HBox.margin>
                     </AnchorPane>
-                    <AnchorPane fx:id="panelDescuento25" prefHeight="189.0" prefWidth="150.0" />
                     <AnchorPane minWidth="0.0" prefHeight="193.0" prefWidth="0.0" />
                     <AnchorPane id="AnchorPane" minWidth="246.0" prefHeight="185.0" prefWidth="246.0" HBox.hgrow="NEVER">
                       <children>

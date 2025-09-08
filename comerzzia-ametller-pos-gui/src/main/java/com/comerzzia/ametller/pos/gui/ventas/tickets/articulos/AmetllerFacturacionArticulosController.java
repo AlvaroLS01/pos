@@ -23,7 +23,7 @@ public class AmetllerFacturacionArticulosController extends FacturacionArticulos
 
                 btnDescuento25 = new Button("25% DESCUENTO");
                 AnchorPane.setTopAnchor(btnDescuento25, 5.0);
-                AnchorPane.setRightAnchor(btnDescuento25, 5.0);
+                AnchorPane.setLeftAnchor(btnDescuento25, 5.0);  
                 btnDescuento25.setOnAction(e -> {
 			if (ticketManager instanceof AmetllerTicketManager) {
 				AmetllerTicketManager manager = (AmetllerTicketManager) ticketManager;
