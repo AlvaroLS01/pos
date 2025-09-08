@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 @Primary
 public class AmetllerTicketManager extends TicketManager {
 
-	private static final BigDecimal DESCUENTO = new BigDecimal("25.00");
+	private static final BigDecimal DESCUENTO25 = new BigDecimal("25.00");
 
 	private boolean descuento25Activo = false;
 
@@ -35,7 +35,7 @@ public class AmetllerTicketManager extends TicketManager {
 	        boolean esLineaDevolucionPositiva, boolean applyDUN14Factor) throws LineaTicketException {
 		LineaTicket linea = super.nuevaLineaArticulo(codArticulo, desglose1, desglose2, cantidad, stage, idLineaDocOrigen, esLineaDevolucionPositiva, applyDUN14Factor);
 		if (descuento25Activo && linea != null) {
-			linea.setDescuentoManual(DESCUENTO);
+			linea.setDescuentoManual(DESCUENTO25);
 		}
 		return linea;
 	}

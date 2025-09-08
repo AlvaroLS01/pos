@@ -37,6 +37,7 @@
         <ShowLoggedIn>false</ShowLoggedIn>
     </Interfaz>
     <login>BIENVENIDA</login>
+    <Skin>ametller</Skin>
     <!-- <AccionInicio>210</AccionInicio> -->
 
     <InStoreEngine>
