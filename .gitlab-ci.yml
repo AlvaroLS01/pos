@@ -19,6 +19,6 @@ build:maven:
   script:
     - mvn $MAVEN_CLI_OPTS -U package -DskipTests -Dgenerate-pos-lib
   artifacts:
-    paths:
-      - pos-gui/target/lib
-    expire_in: 1 hour
+      paths:
+        - comerzzia-ametller-pos-gui/target/lib
+      expire_in: 1 hour
