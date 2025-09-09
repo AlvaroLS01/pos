@@ -1,7 +1,7 @@
 <ncrPosConfiguration>
-   <authenticationBypass>true</authenticationBypass>
-   <paymentsCodesMapping>
-        <Credit>0010</Credit>
-        <Cash>0000</Cash>
-    </paymentsCodesMapping>
+  <authenticationBypass>false</authenticationBypass>
+  <paymentsCodesMapping>
+    <Credit>0010</Credit>
+    <Cash>0000</Cash>
+  </paymentsCodesMapping>
 </ncrPosConfiguration>
