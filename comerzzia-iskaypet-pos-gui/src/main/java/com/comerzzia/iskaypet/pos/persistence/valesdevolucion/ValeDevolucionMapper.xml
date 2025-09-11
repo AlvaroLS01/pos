@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comerzzia.iskaypet.pos.persistence.valesdevolucion.ValeDevolucionMapper">
+    <resultMap id="BaseResultMap" type="com.comerzzia.iskaypet.pos.persistence.valesdevolucion.ValeDevolucion">
+        <id column="UID_INSTANCIA" jdbcType="VARCHAR" property="uidInstancia" />
+        <id column="NUMERO_TARJETA" jdbcType="VARCHAR" property="numeroTarjeta" />
+        <result column="SALDO_DISPONIBLE" jdbcType="DECIMAL" property="saldoDisponible" />
+        <result column="FECHA_ACTIVACION" jdbcType="TIMESTAMP" property="fechaActivacion" />
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        UID_INSTANCIA, NUMERO_TARJETA, SALDO_DISPONIBLE, FECHA_ACTIVACION
+    </sql>
+    <select id="selectByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.valesdevolucion.ValeDevolucionExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from x_tarj_vales_dev_tbl
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="com.comerzzia.iskaypet.pos.persistence.valesdevolucion.ValeDevolucionKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from x_tarj_vales_dev_tbl
+        where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+        and NUMERO_TARJETA = #{numeroTarjeta,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.iskaypet.pos.persistence.valesdevolucion.ValeDevolucionKey">
+        delete from x_tarj_vales_dev_tbl
+        where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+          and NUMERO_TARJETA = #{numeroTarjeta,jdbcType=VARCHAR}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.valesdevolucion.ValeDevolucionExample">
+        delete from x_tarj_vales_dev_tbl
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.comerzzia.iskaypet.pos.persistence.valesdevolucion.ValeDevolucion">
+        insert into x_tarj_vales_dev_tbl (UID_INSTANCIA, NUMERO_TARJETA, SALDO_DISPONIBLE,
+                                          FECHA_ACTIVACION)
+        values (#{uidInstancia,jdbcType=VARCHAR}, #{numeroTarjeta,jdbcType=VARCHAR}, #{saldoDisponible,jdbcType=DECIMAL},
+                #{fechaActivacion,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.comerzzia.iskaypet.pos.persistence.valesdevolucion.ValeDevolucion">
+        insert into x_tarj_vales_dev_tbl
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uidInstancia != null">
+                UID_INSTANCIA,
+            </if>
+            <if test="numeroTarjeta != null">
+                NUMERO_TARJETA,
+            </if>
+            <if test="saldoDisponible != null">
+                SALDO_DISPONIBLE,
+            </if>
+            <if test="fechaActivacion != null">
+                FECHA_ACTIVACION,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uidInstancia != null">
+                #{uidInstancia,jdbcType=VARCHAR},
+            </if>
+            <if test="numeroTarjeta != null">
+                #{numeroTarjeta,jdbcType=VARCHAR},
+            </if>
+            <if test="saldoDisponible != null">
+                #{saldoDisponible,jdbcType=DECIMAL},
+            </if>
+            <if test="fechaActivacion != null">
+                #{fechaActivacion,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.valesdevolucion.ValeDevolucionExample" resultType="java.lang.Long">
+        select count(*) from x_tarj_vales_dev_tbl
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update x_tarj_vales_dev_tbl
+        <set>
+            <if test="record.uidInstancia != null">
+                UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+            </if>
+            <if test="record.numeroTarjeta != null">
+                NUMERO_TARJETA = #{record.numeroTarjeta,jdbcType=VARCHAR},
+            </if>
+            <if test="record.saldoDisponible != null">
+                SALDO_DISPONIBLE = #{record.saldoDisponible,jdbcType=DECIMAL},
+            </if>
+            <if test="record.fechaActivacion != null">
+                FECHA_ACTIVACION = #{record.fechaActivacion,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update x_tarj_vales_dev_tbl
+        set UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+        NUMERO_TARJETA = #{record.numeroTarjeta,jdbcType=VARCHAR},
+        SALDO_DISPONIBLE = #{record.saldoDisponible,jdbcType=DECIMAL},
+        FECHA_ACTIVACION = #{record.fechaActivacion,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.iskaypet.pos.persistence.valesdevolucion.ValeDevolucion">
+        update x_tarj_vales_dev_tbl
+        <set>
+            <if test="saldoDisponible != null">
+                SALDO_DISPONIBLE = #{saldoDisponible,jdbcType=DECIMAL},
+            </if>
+            <if test="fechaActivacion != null">
+                FECHA_ACTIVACION = #{fechaActivacion,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+        and NUMERO_TARJETA = #{numeroTarjeta,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.comerzzia.iskaypet.pos.persistence.valesdevolucion.ValeDevolucion">
+        update x_tarj_vales_dev_tbl
+        set SALDO_DISPONIBLE = #{saldoDisponible,jdbcType=DECIMAL},
+            FECHA_ACTIVACION = #{fechaActivacion,jdbcType=TIMESTAMP}
+        where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+          and NUMERO_TARJETA = #{numeroTarjeta,jdbcType=VARCHAR}
+    </update>
+    <select id="selectByExampleWithRowbounds" parameterType="com.comerzzia.iskaypet.pos.persistence.valesdevolucion.ValeDevolucionExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from x_tarj_vales_dev_tbl
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+</mapper>

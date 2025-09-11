@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comerzzia.iskaypet.pos.persistence.ticket.gestion.documentos.ticket.contratos.POSTicketContratoMapper">
+  <resultMap id="BaseResultMap" type="com.comerzzia.iskaypet.pos.persistence.ticket.gestion.documentos.ticket.contratos.POSTicketContrato">
+    <result column="UID_ACTIVIDAD" jdbcType="VARCHAR" property="uidActividad" />
+    <result column="UID_TICKET" jdbcType="VARCHAR" property="uidTicket" />
+    <result column="CODALM" jdbcType="VARCHAR" property="codalm" />
+    <result column="ID_TICKET" jdbcType="BIGINT" property="idTicket" />
+    <result column="FECHA" jdbcType="TIMESTAMP" property="fecha" />
+    <result column="PROCESADO" jdbcType="CHAR" property="procesado" />
+    <result column="FECHA_PROCESO" jdbcType="TIMESTAMP" property="fechaProceso" />
+    <result column="MENSAJE_PROCESO" jdbcType="VARCHAR" property="mensajeProceso" />
+    <result column="CODCAJA" jdbcType="VARCHAR" property="codcaja" />
+    <result column="ID_TIPO_DOCUMENTO" jdbcType="BIGINT" property="idTipoDocumento" />
+    <result column="COD_TICKET" jdbcType="VARCHAR" property="codTicket" />
+    <result column="FIRMA" jdbcType="VARCHAR" property="firma" />
+    <result column="SERIE_TICKET" jdbcType="VARCHAR" property="serieTicket" />
+    <result column="LOCATOR_ID" jdbcType="VARCHAR" property="locatorId" />
+    <result column="CONTRATO" jdbcType="VARCHAR" property="contrato" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    UID_ACTIVIDAD, UID_TICKET, CODALM, ID_TICKET, FECHA, PROCESADO, FECHA_PROCESO, MENSAJE_PROCESO, 
+    CODCAJA, ID_TIPO_DOCUMENTO, COD_TICKET, FIRMA, SERIE_TICKET, LOCATOR_ID, CONTRATO
+  </sql>
+  <select id="selectByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.gestion.documentos.ticket.contratos.POSTicketContratoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_tickets_contract
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.gestion.documentos.ticket.contratos.POSTicketContratoExample">
+    delete from x_tickets_contract
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.gestion.documentos.ticket.contratos.POSTicketContrato">
+    insert into x_tickets_contract (UID_ACTIVIDAD, UID_TICKET, CODALM, 
+      ID_TICKET, FECHA, PROCESADO, 
+      FECHA_PROCESO, MENSAJE_PROCESO, CODCAJA, 
+      ID_TIPO_DOCUMENTO, COD_TICKET, FIRMA, 
+      SERIE_TICKET, LOCATOR_ID, CONTRATO
+      )
+    values (#{uidActividad,jdbcType=VARCHAR}, #{uidTicket,jdbcType=VARCHAR}, #{codalm,jdbcType=VARCHAR}, 
+      #{idTicket,jdbcType=BIGINT}, #{fecha,jdbcType=TIMESTAMP}, #{procesado,jdbcType=CHAR}, 
+      #{fechaProceso,jdbcType=TIMESTAMP}, #{mensajeProceso,jdbcType=VARCHAR}, #{codcaja,jdbcType=VARCHAR}, 
+      #{idTipoDocumento,jdbcType=BIGINT}, #{codTicket,jdbcType=VARCHAR}, #{firma,jdbcType=VARCHAR}, 
+      #{serieTicket,jdbcType=VARCHAR}, #{locatorId,jdbcType=VARCHAR}, #{contrato,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.gestion.documentos.ticket.contratos.POSTicketContrato">
+    insert into x_tickets_contract
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        UID_ACTIVIDAD,
+      </if>
+      <if test="uidTicket != null">
+        UID_TICKET,
+      </if>
+      <if test="codalm != null">
+        CODALM,
+      </if>
+      <if test="idTicket != null">
+        ID_TICKET,
+      </if>
+      <if test="fecha != null">
+        FECHA,
+      </if>
+      <if test="procesado != null">
+        PROCESADO,
+      </if>
+      <if test="fechaProceso != null">
+        FECHA_PROCESO,
+      </if>
+      <if test="mensajeProceso != null">
+        MENSAJE_PROCESO,
+      </if>
+      <if test="codcaja != null">
+        CODCAJA,
+      </if>
+      <if test="idTipoDocumento != null">
+        ID_TIPO_DOCUMENTO,
+      </if>
+      <if test="codTicket != null">
+        COD_TICKET,
+      </if>
+      <if test="firma != null">
+        FIRMA,
+      </if>
+      <if test="serieTicket != null">
+        SERIE_TICKET,
+      </if>
+      <if test="locatorId != null">
+        LOCATOR_ID,
+      </if>
+      <if test="contrato != null">
+        CONTRATO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        #{uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="uidTicket != null">
+        #{uidTicket,jdbcType=VARCHAR},
+      </if>
+      <if test="codalm != null">
+        #{codalm,jdbcType=VARCHAR},
+      </if>
+      <if test="idTicket != null">
+        #{idTicket,jdbcType=BIGINT},
+      </if>
+      <if test="fecha != null">
+        #{fecha,jdbcType=TIMESTAMP},
+      </if>
+      <if test="procesado != null">
+        #{procesado,jdbcType=CHAR},
+      </if>
+      <if test="fechaProceso != null">
+        #{fechaProceso,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mensajeProceso != null">
+        #{mensajeProceso,jdbcType=VARCHAR},
+      </if>
+      <if test="codcaja != null">
+        #{codcaja,jdbcType=VARCHAR},
+      </if>
+      <if test="idTipoDocumento != null">
+        #{idTipoDocumento,jdbcType=BIGINT},
+      </if>
+      <if test="codTicket != null">
+        #{codTicket,jdbcType=VARCHAR},
+      </if>
+      <if test="firma != null">
+        #{firma,jdbcType=VARCHAR},
+      </if>
+      <if test="serieTicket != null">
+        #{serieTicket,jdbcType=VARCHAR},
+      </if>
+      <if test="locatorId != null">
+        #{locatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="contrato != null">
+        #{contrato,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.gestion.documentos.ticket.contratos.POSTicketContratoExample" resultType="java.lang.Long">
+    select count(*) from x_tickets_contract
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update x_tickets_contract
+    <set>
+      <if test="record.uidActividad != null">
+        UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uidTicket != null">
+        UID_TICKET = #{record.uidTicket,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codalm != null">
+        CODALM = #{record.codalm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idTicket != null">
+        ID_TICKET = #{record.idTicket,jdbcType=BIGINT},
+      </if>
+      <if test="record.fecha != null">
+        FECHA = #{record.fecha,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.procesado != null">
+        PROCESADO = #{record.procesado,jdbcType=CHAR},
+      </if>
+      <if test="record.fechaProceso != null">
+        FECHA_PROCESO = #{record.fechaProceso,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mensajeProceso != null">
+        MENSAJE_PROCESO = #{record.mensajeProceso,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codcaja != null">
+        CODCAJA = #{record.codcaja,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idTipoDocumento != null">
+        ID_TIPO_DOCUMENTO = #{record.idTipoDocumento,jdbcType=BIGINT},
+      </if>
+      <if test="record.codTicket != null">
+        COD_TICKET = #{record.codTicket,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firma != null">
+        FIRMA = #{record.firma,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serieTicket != null">
+        SERIE_TICKET = #{record.serieTicket,jdbcType=VARCHAR},
+      </if>
+      <if test="record.locatorId != null">
+        LOCATOR_ID = #{record.locatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contrato != null">
+        CONTRATO = #{record.contrato,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update x_tickets_contract
+    set UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      UID_TICKET = #{record.uidTicket,jdbcType=VARCHAR},
+      CODALM = #{record.codalm,jdbcType=VARCHAR},
+      ID_TICKET = #{record.idTicket,jdbcType=BIGINT},
+      FECHA = #{record.fecha,jdbcType=TIMESTAMP},
+      PROCESADO = #{record.procesado,jdbcType=CHAR},
+      FECHA_PROCESO = #{record.fechaProceso,jdbcType=TIMESTAMP},
+      MENSAJE_PROCESO = #{record.mensajeProceso,jdbcType=VARCHAR},
+      CODCAJA = #{record.codcaja,jdbcType=VARCHAR},
+      ID_TIPO_DOCUMENTO = #{record.idTipoDocumento,jdbcType=BIGINT},
+      COD_TICKET = #{record.codTicket,jdbcType=VARCHAR},
+      FIRMA = #{record.firma,jdbcType=VARCHAR},
+      SERIE_TICKET = #{record.serieTicket,jdbcType=VARCHAR},
+      LOCATOR_ID = #{record.locatorId,jdbcType=VARCHAR},
+      CONTRATO = #{record.contrato,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.comerzzia.iskaypet.pos.persistence.ticket.gestion.documentos.ticket.contratos.POSTicketContratoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_tickets_contract
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

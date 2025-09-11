@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="450.0" maxWidth="700.0" minHeight="450.0" prefHeight="280.0" prefWidth="700.0" styleClass="mainFxmlClass, pantalla-detalle" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comerzzia.pos.gui.ventas.cajas.apuntes.InsertarApunteController">
+    <children>
+        <VBox prefHeight="294.0" prefWidth="697.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <AnchorPane minHeight="40.0" prefHeight="40.0" prefWidth="678.0" style="&#10;" styleClass="titulo-ventana">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="678.0" text="%Insertar Apunte" AnchorPane.bottomAnchor="6.26" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.74" />
+                    </children>
+                </AnchorPane>
+                <FlowPane alignment="CENTER_LEFT" hgap="5.0" prefHeight="50.0" prefWidth="200.0">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="140.0" rotate="0.0" style="fx-label-padding: 6 0 18 6;" text="%Concepto">
+                            <font>
+                                <Font size="16.0" fx:id="x1" />
+                            </font>
+                        </Label>
+                        <TextField id="tfCodDoc" fx:id="tfCodConcepto" editable="true" prefHeight="30.0" prefWidth="100.0" />
+                        <TextField fx:id="tfDescConcepto" prefHeight="30.0" prefWidth="260.0" />
+                        <Button fx:id="btBuscarConceptos" minHeight="36.0" minWidth="39.0" mnemonicParsing="false" onAction="#accionBuscarConceptos" prefHeight="36.000099999997474" prefWidth="45.0" styleClass="btBuscar" text="" />
+                    </children>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </FlowPane>
+                <FlowPane hgap="5.0" prefHeight="40.0" prefWidth="200.0">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" font="$x1" prefHeight="50.0" prefWidth="140.0" rotate="0.0" style="fx-label-padding: 6 0 18 6;" text="%Importe" />
+                        <TextFieldImporte id="tfArticulos" fx:id="tfImporte" disable="false" editable="true" focusTraversable="true" prefHeight="30.0" prefWidth="147.0" />
+                        <Button fx:id="btContarSaldo" minHeight="30.0" mnemonicParsing="false" onAction="#accionContarImporte" prefHeight="30.0" prefWidth="34.0" styleClass="btRecuento" text="Recuento por monedas" visible="false" />
+                        <Label fx:id="lbTipoImporte" alignment="CENTER_LEFT" font="$x1" prefHeight="50.0" prefWidth="250.0" rotate="0.0" style="" styleClass="labelTipoRetirada" text="" />
+                    </children>
+                </FlowPane>
+          	<FlowPane fx:id="fpPanelDocumento" hgap="5.0" prefHeight="40.0" prefWidth="200.0">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" font="$x1" prefHeight="50.0" prefWidth="140.0" rotate="0.0" style="fx-label-padding: 6 0 18 6;" text="%Documento" />
+                        <TextField id="tfArticulos" fx:id="tfDocumento" disable="false" editable="true" focusTraversable="true" prefHeight="30.0" prefWidth="406.0" text="" />
+                    </children>
+             </FlowPane>
+            <VBox fx:id="vBPanelEyS" alignment="TOP_CENTER" minHeight="200.0" prefHeight="285.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <FlowPane id="panelEspecie" alignment="CENTER_LEFT" hgap="4.0" prefHeight="33.0" prefWidth="600.0" VBox.vgrow="NEVER">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" minHeight="30.0" prefHeight="30.0" prefWidth="140.0" text="%Motivo">
+                           <FlowPane.margin>
+                              <Insets />
+                           </FlowPane.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField id="" fx:id="tfCodMotivo" alignment="CENTER_LEFT" editable="false" prefHeight="30.0" prefWidth="100.0">
+                           <FlowPane.margin>
+                              <Insets />
+                           </FlowPane.margin>
+                        </TextField>
+                        <TextField id="tfDescripcionMotivo" fx:id="tfDesMotivo" editable="false" prefHeight="30.0" prefWidth="260.0" />
+                        <Button id="proveedor" fx:id="btAyuda" minHeight="23.0" minWidth="25.0" mnemonicParsing="false" onAction="#accionBuscarMotivos" prefHeight="30.0" prefWidth="36.0" styleClass="btTipoDoc" text="Button" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </FlowPane>
+                  <FlowPane hgap="4.0" prefHeight="15.0" prefWidth="200.0" />
+                  <FlowPane hgap="4.0" prefHeight="83.0" prefWidth="600.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="140.0" text="%Observaciones">
+                           <FlowPane.margin>
+                              <Insets bottom="65.0" />
+                           </FlowPane.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="tfObservaciones" prefHeight="130.0" prefWidth="364.0" wrapText="true">
+                           <FlowPane.margin>
+                              <Insets />
+                           </FlowPane.margin>
+                        </TextArea>
+                     </children>
+                  </FlowPane>
+               </children>
+               <padding>
+                  <Insets />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </VBox>
+                <AnchorPane prefHeight="44.0" prefWidth="697.0" style="&#10;">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="44.0" prefWidth="697.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                            <children>
+                                <Label fx:id="lbError" alignment="CENTER" contentDisplay="LEFT" prefHeight="30.0" prefWidth="428.0" styleClass="lbError" text="" textFill="#cc0000" />
+                            </children>
+                        </HBox>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="50.0" prefHeight="57.0" prefWidth="700.0">
+                    <children>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="697.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <Button id="btAceptar" fx:id="btAceptar" alignment="CENTER" font="$x1" minHeight="42.0" minWidth="115.0" mnemonicParsing="false" onAction="#accionAceptar" prefHeight="42.0" prefWidth="115.0" style="" styleClass="btAceptar" text="%Aceptar" textAlignment="LEFT" />
+                                <Button id="btCancelar" fx:id="btCancelar" font="$x1" minHeight="42.0" minWidth="115.0" mnemonicParsing="false" onAction="#accionCancelar" prefHeight="42.0" prefWidth="115.0" styleClass="btCancelar" text="%Cancelar" />
+                            </children>
+                        </HBox>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+    </children>
+    <stylesheets>
+        <URL value="@../../../styles/styles.css" />
+    </stylesheets>
+</AnchorPane>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import com.comerzzia.pos.core.gui.componentes.datepicker.* ?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.* ?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet ../../../../../../../../../../../../../../../../../../Downloads/styles.css?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="890.0" styleClass="pantalla-modal" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comerzzia.iskaypet.pos.gui.contrato.mascota.BarraProgresoController">
+   <children>
+      <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="210.0" prefWidth="550.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="550.0" styleClass="titulo-ventana" VBox.vgrow="NEVER">
+                     <children>
+                        <Label fx:id="lbTitulo" />
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="110.0" prefWidth="550.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <HBox fx:id="hbBarraProgreso" alignment="CENTER" prefHeight="110.0" prefWidth="550.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <ProgressBar fx:id="pbBarraProgreso" prefHeight="33.0" prefWidth="490.0" progress="0.0" />
+                           </children></HBox>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="550.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button fx:id="btContinuar" mnemonicParsing="false" onAction="#continuar" styleClass="btAceptar" text="%Continuar" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

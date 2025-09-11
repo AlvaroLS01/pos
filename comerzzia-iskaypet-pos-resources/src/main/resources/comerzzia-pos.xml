@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuracion fecha="10/02/2014">
+	<BaseDatos>
+		<Driver>com.mysql.jdbc.Driver</Driver>
+		<URL>jdbc:mysql://172.16.102.35:33062/czz_iskaypet</URL>
+		<Usuario>czz_iskaypet</Usuario>
+		<Password>czz_iskaypet</Password>
+	</BaseDatos>
+    <InStoreEngine>
+        <RestUrl>http://comerzzia-master:8080/comerzzia-inStoreEngine/ws/</RestUrl>
+        <!-- valor 0, desactivado. Por defecto 30 segundos
+        <SegundosPeticionNotificaciones></SegundosPeticionNotificaciones>
+        -->
+    </InStoreEngine>
+
+    <Interfaz>
+      <Ancho>1024</Ancho>
+      <Alto>720</Alto>
+      <PantallaCompleta>false</PantallaCompleta>
+      <EfectoFondoVentanaModales>true</EfectoFondoVentanaModales>
+      <MostrarPreloader>true</MostrarPreloader>
+    </Interfaz>
+
+    <!-- Por defecto usuario/clave. El estilo botonera es parecido al modo bienvenida de windows-->
+    <login>BOTONERA</login>
+
+    <!-- Eliminar tag para eliminar modo desarrollo
+      <Desarrollo>
+          <Usuario>administrador</Usuario>
+          <Password>cmz</Password>
+      </Desarrollo>
+      -->
+
+    <Skin>iskaypet</Skin>
+    <!--<AccionInicio>200</AccionInicio>    -->
+
+    <!--
+    <Localizacion>
+    <idioma>ES</idioma>
+    <pais>es</pais>
+    </Localizacion>
+    -->
+
+    <!--
+    <formatoFecha></formatoFecha>
+    <separadorDecimal></separadorDecimal>
+    <separadorGrupos></separadorGrupos>
+    <numeroDecimales></numeroDecimales>
+    -->
+
+    <!--
+    <Aplicacion>JPOS</Aplicacion>
+    <Menu>POS PROFESIONAL</Menu>
+    <SegundosInactividad></SegundosInactividad>
+    -->
+
+    <!--
+    <ImagenesArticulos>
+    <RutaImagenes></RutaImagenes>
+    <ImagenDefecto></ImagenDefecto>
+    </ImagenesArticulos>
+    -->
+
+    <!--
+    <RutasBasePaquetesContextoString></RutasBasePaquetesContextoString>
+    -->
+
+    <!--
+    <SystemProperties>
+      <prism.verbose>true</prism.verbose>
+      <prism.order>j2d</prism.order>
+    </SystemProperties>
+    -->
+</configuracion>

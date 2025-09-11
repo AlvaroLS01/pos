@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import com.comerzzia.pos.core.gui.componentes.datepicker.* ?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.* ?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet ../../../../../../../../../../../../../../../../../../Downloads/styles.css?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="680.0" styleClass="pantalla-modal" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comerzzia.iskaypet.pos.gui.contrato.mascota.EnvioContratoMascotaGestionDocumentosController">
+   <children>
+      <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="450.0" prefWidth="680.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="680.0" styleClass="titulo-ventana" VBox.vgrow="NEVER">
+                     <children>
+                        <Label fx:id="lbTitulo" text="%Resumen Operaciones" />
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="350.0" prefWidth="680.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <HBox fx:id="hbEnvios" prefHeight="290.0" prefWidth="680.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <TableView fx:id="tvContratos" onMouseClicked="#aceptarDocDobleClick" prefHeight="290.0" prefWidth="610.0" HBox.hgrow="ALWAYS">
+                                <columns>
+                                  <TableColumn fx:id="tcCodigo" prefWidth="75.0" text="%CÓDIGO" />
+                                  <TableColumn fx:id="tcDescripcion" prefWidth="150.0" text="%DESCRIPCIÓN" />
+                                    <TableColumn fx:id="tcEnviado" prefWidth="75.0" text="%ENVIADO" />
+                                </columns>
+                              </TableView>
+                              <AnchorPane fx:id="panelMenuTabla" prefHeight="290.0" prefWidth="70.0" HBox.hgrow="NEVER">
+                                 <HBox.margin>
+                                    <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
+                                 </HBox.margin>
+                              </AnchorPane>
+                           </children></HBox>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="680.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Button fx:id="btImprimirTodos" mnemonicParsing="false" onAction="#accionImprimirTodos" styleClass="btnImprimir" text="%Imprimir Selección">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children></HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="400.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Button fx:id="btSalir" mnemonicParsing="false" onAction="#accionSalir" styleClass="btCancelar" text="%Salir" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

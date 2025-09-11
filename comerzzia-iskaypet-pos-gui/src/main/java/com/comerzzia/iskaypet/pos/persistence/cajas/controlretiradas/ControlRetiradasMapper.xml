@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comerzzia.iskaypet.pos.persistence.cajas.controlretiradas.ControlRetiradasMapper">
+    <resultMap id="dcdtResultMap" type="com.comerzzia.iskaypet.pos.persistence.cajas.controlretiradas.ControlRetiradas">
+        <id property="uidActividad" column="uid_actividad"/>
+        <id property="uidDiarioCaja" column="uid_diario_caja"/>
+        <result property="saldoEfectivo" column="saldo_efectivo"/>
+    </resultMap>
+
+    <select id="consultarTotalesRecuentoEfectivo" resultMap="dcdtResultMap">
+        select
+            uid_actividad,
+            uid_diario_caja,
+            sum(cargo - abono) as saldo_efectivo
+        from
+            D_CAJA_DET_TBL dcdt
+        where
+            uid_actividad = #{uidActividad}
+            and uid_diario_caja = #{uidDiarioCaja}
+            and codmedpag = #{codMedPago}
+        group by uid_actividad, uid_diario_caja
+    </select>
+    
+    <select id="consultarSaldoInicial" resultType="BigDecimal">
+        select
+            sum(cargo - abono)
+        from
+            D_CAJA_DET_TBL dcdt
+        where
+            uid_actividad = #{uidActividad}
+            and uid_diario_caja = #{uidDiarioCaja}
+            and codconcepto_mov = '00'
+    </select>
+
+</mapper>

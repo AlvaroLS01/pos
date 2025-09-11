@@ -1,0 +1,4 @@
+<plantilla>
+	<documento salida="impresora2" titulo="Contrato" procesador="JASPER" fichero="facturas/contratos/ContratoMascota">		
+	</documento>
+</plantilla>

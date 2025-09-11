@@ -1,0 +1,6 @@
+.btImprimirCupones {
+    -fx-background-image: url("imprimirCupones.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px center;
+    -fx-padding: 10 10 10 40;
+}

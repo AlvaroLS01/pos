@@ -1,0 +1,9 @@
+**/.project
+**/.classpath
+**/.settings
+**/target/
+/.metadata/
+**/uid_pos.properties
+.idea/
+qodana.yaml
+comerzzia-iskaypet-pos-resources/src/main/resources/pos_config.xml

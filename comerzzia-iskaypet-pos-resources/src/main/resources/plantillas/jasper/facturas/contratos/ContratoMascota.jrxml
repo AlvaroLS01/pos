@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ContratoMascota" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="545" leftMargin="25" rightMargin="25" topMargin="25" bottomMargin="25" whenResourceMissingType="Empty" uuid="646eef7a-0257-407e-a8ea-957b2a7de73b">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LOGO" class="java.io.InputStream"/>
+	<parameter name="datosCabecera" class="com.comerzzia.iskaypet.pos.persistence.ticket.contrato.mascotas.DatosCabeceraContrato">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="uidActividad" class="java.lang.String">
+		<parameterDescription><![CDATA[uidActividad]]></parameterDescription>
+	</parameter>
+	<parameter name="lstLaws" class="java.util.ArrayList"/>
+	<parameter name="lstAnexo" class="java.util.ArrayList"/>
+	<parameter name="idiomaStore" class="java.lang.String"/>
+	<parameter name="empresa" class="com.comerzzia.pos.persistence.core.empresas.EmpresaBean"/>
+	<parameter name="CHIP" class="java.lang.String"/>
+	<parameter name="ANILLA" class="java.lang.String"/>
+	<parameter name="CITES" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="law" class="java.lang.String"/>
+	<group name="blas">
+		<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
+		<groupHeader>
+			<band height="392">
+				<line>
+					<reportElement uuid="16c75a56-9dc0-4d58-baba-18242eb6ff71" x="0" y="41" width="545" height="1"/>
+				</line>
+				<textField>
+					<reportElement uuid="09d38076-d934-4b06-b535-469026fc2152" x="177" y="43" width="124" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "Data do contrato:":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "Data de contractació:":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "Kontratatze-data:":
+"Fecha de contratación:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="19243db8-47c9-44e5-ac6e-f5e4aa4f0cfd" x="177" y="224" width="105" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "Sexo:":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "Sexe:":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "Sexua:":
+"Sexo:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="5a714b8a-8aed-40ce-8922-5ae76527ec47" x="177" y="304" width="105" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "Preço":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "Preu:":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "Prezioa:":
+"Precio:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="b4dcdc8b-4553-4114-a978-bcfe152a7ec4" x="2" y="22" width="169" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "Dados do/a COMPRADOR/A (CLIENTE)":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "Dades CLIENT/A o COMPRADOR/A":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "BEZEROAREN edo EROSLEAREN datuak":
+"Datos CLIENTE/A o COMPRADOR/A"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0d03f6f8-66dc-4890-a84c-c3038e4a2b23" x="177" y="123" width="194" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "Email:":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "Correu electrònic:":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "Helbide elektronikoa:":
+"Correo electrónico:"]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="276c09ea-443b-40fa-ae33-8b778b72f432" x="171" y="41" width="1" height="282"/>
+				</line>
+				<textField>
+					<reportElement uuid="7fa747da-4dfe-4803-9098-3c4c7d2298c1" x="177" y="164" width="105" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "Espécie:":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "Espècie:":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "Espècie:":
+"Especie:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="4ae83004-6e2e-4e22-bed5-c0aa8343be31" x="1" y="254" width="55" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "NIF:":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "DNI/CIF:":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "NAN/IFK:":
+"DNI/CIF:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="b5bcf565-53df-43db-b2a1-0df5eb4350da" x="1" y="194" width="100" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "Email:":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "Correu electrònic:":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "Helbide elektronikoa:":
+"Correo electrónico:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="8bb5051a-9a0a-4bba-89df-8bc54dfde9d8" x="177" y="204" width="105" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "Peso no momento da venda:":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "Pes a la sortida:":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "Pisua irtetean:":
+"Peso a la salida:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="e1381903-eaff-42d1-bf63-2a110adbb45c" x="1" y="103" width="100" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "Morada:":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "Adreça:":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "Helbidea:":
+"Dirección:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="17f1b55a-2397-45ab-aa30-b9927665ce91" x="1" y="42" width="100" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "Nome:":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "Nom i cognoms:":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "Izen-abizenak:":
+"Nombre y apellidos:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="33632cf3-17d3-4dd3-a19f-5a4970a90083" x="172" y="22" width="373" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "Dados do ANIMAL DE COMPANHIA E LOJA":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "Dades BOTIGA I ANIMAL":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "DENDAREN ETA ANIMALIAREN datuak":
+"Datos TIENDA Y ANIMAL"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="1da2b92e-9990-47ec-9435-f03fcf03d5a2" x="177" y="63" width="161" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "Loja:":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "Botiga:":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "Denda:":
+"Tienda:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="88736658-492b-4731-a93f-d18c6841310e" x="177" y="244" width="105" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["CHIP:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="88736658-492b-4731-a93f-d18c6841310e" x="177" y="264" width="105" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["ANILLA:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="88736658-492b-4731-a93f-d18c6841310e" x="177" y="284" width="105" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["CITES:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="b1bac22e-d902-4ceb-ac7a-a42cabf1eab0" x="177" y="184" width="105" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "Raça:":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "Raça:":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "Arraza:":
+"Raza:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="a671c626-4a1c-4d27-840a-c7fdca21f365" x="1" y="234" width="56" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "Telefone:":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "Telèfon:":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "Telefonoa:":
+"Teléfono:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" x="282" y="224" width="224" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{datosCabecera}.getSexo()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" x="282" y="184" width="262" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{datosCabecera}.getRaza()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" x="282" y="164" width="262" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{datosCabecera}.getEspecie()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" x="1" y="63" width="170" height="40"/>
+					<textElement verticalAlignment="Top"/>
+					<textFieldExpression><![CDATA[$P{datosCabecera}.getNombre()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" x="56" y="254" width="115" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{datosCabecera}.getDocIdentidad()]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" x="1" y="123" width="170" height="20"/>
+					<textElement verticalAlignment="Top"/>
+					<textFieldExpression><![CDATA[$P{datosCabecera}.getDireccion()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" x="1" y="143" width="170" height="20"/>
+					<textElement verticalAlignment="Top"/>
+					<textFieldExpression><![CDATA[$P{datosCabecera}.getPoblacion() != null && !$P{datosCabecera}.getPoblacion().isEmpty() ? $P{datosCabecera}.getPoblacion() + ", " + $P{datosCabecera}.getLocalidad() : $P{datosCabecera}.getLocalidad()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" x="1" y="163" width="170" height="20"/>
+					<textElement verticalAlignment="Top"/>
+					<textFieldExpression><![CDATA[$P{datosCabecera}.getCp()+", "+$P{datosCabecera}.getProvincia()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" x="1" y="214" width="213" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{datosCabecera}.getEmail()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" x="57" y="234" width="114" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{datosCabecera}.getTlf()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" x="301" y="43" width="205" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{datosCabecera}.getFechaContrato()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" x="177" y="83" width="367" height="40"/>
+					<textElement verticalAlignment="Top"/>
+					<textFieldExpression><![CDATA[$P{datosCabecera}.getDatosTienda()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" x="177" y="143" width="329" height="21"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{datosCabecera}.getCorreoTienda()]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" x="282" y="204" width="224" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{datosCabecera}.getPeso() != null && !$P{datosCabecera}.getPeso().isEmpty()
+						? ((int) Math.round(Double.parseDouble($P{datosCabecera}.getPeso()))) + " g" : ""]]>
+					</textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" stretchType="RelativeToBandHeight" x="282" y="244" width="224" height="20">
+						<printWhenExpression><![CDATA[!$P{CHIP}.equals("-")]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{CHIP}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" x="282" y="304" width="224" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{datosCabecera}.getPrecio() + " €"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="4686d4e6-8b42-406c-9b36-437817d0e07c" x="1" y="324" width="545" height="68"/>
+					<textElement verticalAlignment="Top">
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "Dados de VENDEDORA:" + $P{empresa}.getDesEmpresa() + " com sede en " + $P{empresa}.getDomicilio() + " " + $P{empresa}.getCp() + " " + $P{empresa}.getPoblacion() + " " + $P{empresa}.getProvincia() + " (Portugal)., titular do número de identificação de pessoa coletiva 513904689, na Conservatória do Registo Comercial matriculada sob o mesmo número.\n\nDoravante abreviadamente designados por, respetivamente, “COMPRADOR/A” (ou “CLIENTE”), “VENDEDORA”, “LOJA” e “ANIMAL DE COMPANHIA”.\n A VENDEDORA e o/a COMPRADOR/A aceitam subscrever o presente contrato de compra e venda de animal de companhia (doravante, indistintamente, o “CONTRATO”), nos termos das cláusulas e do anexo seguintes: ":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? $P{empresa}.getDesEmpresa() + " (d'ara endavant, “KIWOKO”) i EL/LA CLIENT/A acorden la formalització de les presents Condicions generals de compravenda d'un animal (d'ara endavant, les “CONDICIONS DE COMPRAVENDA”) que s'incorporen i formen part del present contracte.":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? $P{empresa}.getDesEmpresa() + " (aurrerantzean, “KIWOKO”) enpresak eta BEZEROAK, animalia baten salerosketako baldintza orokor hauek (aurrerantzean, “SALEROSKETAKO BALDINTZAK”) formalizatzea erabaki dute, eta kontratu honetan sartu direlarik, haren parte dira."
+: $P{empresa}.getDesEmpresa() + " (en adelante, “KIWOKO”) y EL/LA CLIENTE/A, acuerdan la formalización de las presentes Condiciones Generales de compraventa de un animal (en adelante, las “CONDICIONES DE COMPRAVENTA”) que se incorporan y forman parte del presente contrato."]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="bc0ba939-1d43-47a0-be64-b91580d023bf" x="0" y="0" width="545" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "CONTRATO DE COMPRA E VENDA DE ANIMAL DE COMPANHIA":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "CONTRACTE DE COMPRAVENDA D'ANIMALS":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "ANIMALIAK SALEROSTEKO KONTRATUA":
+"CONTRATO COMPRAVENTA DE ANIMALES"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" x="282" y="264" width="224" height="20">
+						<printWhenExpression><![CDATA[!$P{ANILLA}.equals("-")]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{ANILLA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0f88f4dc-8094-4ed7-ab91-b1e1a6f8d942" x="282" y="284" width="224" height="20">
+						<printWhenExpression><![CDATA[!$P{CITES}.equals("-")]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{CITES}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<subreport>
+					<reportElement uuid="8c779365-0cbb-4164-bba3-6f302db77bea" positionType="Float" stretchType="RelativeToTallestObject" x="-2" y="0" width="546" height="20"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{lstLaws})]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ContratoMascota_LAWS.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+			<band height="143">
+				<textField>
+					<reportElement uuid="2521f06c-e66e-4af9-a009-4c3c7f6ac031" x="-1" y="28" width="547" height="31"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "O/A COMPRADOR/A aceita expressamente o presente CONTRATO, que compreende e leu na íntegra, sendo o mesmo assinado pelas partes na morada da LOJA e na data indicados no cabeçalho.":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "EL/LA COMPRADOR/A, després de la seva lectura íntegra, accepta expressament les CONDICIONS GENERALS DE COMPRAVENDA i signa de conformitat en el lloc i la data indicats a l'encapçalament.":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "EROSLEAK osorik irakurri ditu SALEROSKETAKO BALDINTZA OROKORRAK, eta berariaz onartzen dituela agerian uzteko, sinatu egiten ditu goiburuan adierazitako tokian eta datan.":
+"EL/LA COMPRADOR/A tras su lectura íntegra acepta expresamente las CONDICIONES GENERALES DE COMPRAVENTA y firma de conformidad en el lugar y la fecha indicada en el encabezado."]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="cb427db9-085c-4c5c-8067-f1bdd4f82f26" x="402" y="123" width="144" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{idiomaStore}.equalsIgnoreCase("PT") ? "O/A COMPRADOR/A,":
+$P{idiomaStore}.equalsIgnoreCase("CA") ? "Signat: EL/LA COMPRADOR/A	":
+$P{idiomaStore}.equalsIgnoreCase("EU") ? "Sinadura.- EROSLEA":
+"Fdo.- EL/LA COMPRADOR/A"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<pageHeader>
+		<band height="53" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="587c3162-b742-4642-8226-5e98775d50fa" x="0" y="35" width="545" height="10" forecolor="#FF3333" backcolor="#FF0000"/>
+			</rectangle>
+			<image>
+				<reportElement uuid="4c5bd3b2-85ee-470e-bdca-d8ee64ab5ab2" x="11" y="0" width="109" height="50"/>
+				<imageExpression><![CDATA[$P{SUBREPORT_DIR}+ "logoCabecera.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="50">
+			<rectangle>
+				<reportElement uuid="7bf4fb44-ec70-46e1-acc5-dd2007883727" x="0" y="30" width="545" height="20" forecolor="#FF3333" backcolor="#FF0000"/>
+			</rectangle>
+			<image>
+				<reportElement uuid="0d7bd4ef-3707-4ac0-84e2-9c7f4b74a30d" x="1" y="0" width="95" height="50"/>
+				<imageExpression><![CDATA[$P{SUBREPORT_DIR}+ "logoPie.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="39d3d580-8957-4dc6-84c1-840efe5fc4b9" x="57" y="30" width="488" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{empresa}.getDesEmpresa() + " - " + $P{empresa}.getDomicilio() + " " + $P{empresa}.getCp() + " " + $P{empresa}.getPoblacion() + " " + $P{empresa}.getProvincia()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="efa28d88-aaae-4dcc-b179-e2f62b73c1cd" x="513" y="5" width="32" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="e0b26e2e-cc89-4f75-b04a-d09e86131cf0" x="510" y="6" width="1" height="15" forecolor="#FF0000"/>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>

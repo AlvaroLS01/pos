@@ -1,0 +1,57 @@
+<plantilla>
+    <documento>
+		#set( $imprimirDatosFacturacion =  false)
+		#parse("./plantillas/datos_cabecera_cupon_pt.xml")
+		<linea line-size = "1">
+			<texto size="41" align="center">TALÃO OFERTA</texto>
+		</linea>
+		<linea>
+			<texto align="left" size="20" style="1">Nº Documento:</texto>
+			<texto align="right" size="21" style="1">${ticket.getCabecera().getCodTicket()}</texto>
+		</linea>
+		<linea>
+			<texto align="left" size="20" style="1">Data:</texto>
+			<texto align="right" size="21" style="1">${ticket.getCabecera().getFechaAsLocale()}</texto>
+		</linea>
+		#printLineaEnBlanco()
+
+		<linea> <texto style ="3">DESCRIÇÃO                             UDS</texto> </linea>
+		## LINEAS
+		#foreach ($linea in $lineas)
+			#if(${linea.isImprimirTicketRegalo()})
+				<linea>
+					<texto size="50" align="left" fontsize="4">${linea.getArticulo().getDesArticulo()}</texto>
+				</linea>
+				<linea>
+					<texto size="44" align="left" fontsize="4">${linea.getArticulo().getCodArticulo()}</texto>
+					<texto size="10" align="right" fontsize="4">${linea.getCantidad().setScale(0,4)}</texto>
+				</linea>
+			#end
+		#end
+		<linea><texto size="41" align="center">-----------------------------------------</texto></linea>
+		<codbar align="center" tipo-leyenda="2" >${ticket.getCabecera().getLocalizador()}</codbar>
+
+		<linea><texto size="41" align="center">-----------------------------------------</texto></linea>
+
+		#if (${ticket.getCabecera().getUidActividad().contains("KIWOKO_PT")})
+			<linea> <texto size="55" align="left" fontsize="4" >Foram colocados a disposição do cliente as</texto> </linea>
+			<linea> <texto size="55" align="left" fontsize="4" >mercadorias/produtos nesta data. Indispensável para</texto> </linea>
+			<linea> <texto size="55" align="left" fontsize="4" >trocas/devoluções num prazo de 15 dias na mesma loja.</texto> </linea>
+			<linea> <texto size="55" align="left" fontsize="4" >Não são aceites devoluções/trocas de medicamentos</texto> </linea>
+			<linea> <texto size="55" align="left" fontsize="4" >veterinários, seres vivos, artigos de higiene ou outro que não</texto> </linea>
+			<linea> <texto size="55" align="left" fontsize="4" >esteja na embalagem original e/ou que apresente sinais de</texto> </linea>
+			<linea> <texto size="55" align="left" fontsize="4" >uso.</texto> </linea>
+			<linea> <texto size="55" align="left" fontsize="4" >Devoluções feitas no mesmo método de pagamento com</texto> </linea>
+			<linea> <texto size="55" align="left" fontsize="4" >exibição do respetivo talão e comprovativo da operação, nos</texto> </linea>
+			<linea> <texto size="55" align="left" fontsize="4" >casos aplicáveis.</texto> </linea>
+		#end
+
+		#if($imprimirLogo)
+			<linea><texto></texto></linea>
+			<linea><texto></texto></linea>
+			<linea><texto></texto></linea>
+		#end
+
+		<corte></corte>
+	</documento>
+</plantilla>

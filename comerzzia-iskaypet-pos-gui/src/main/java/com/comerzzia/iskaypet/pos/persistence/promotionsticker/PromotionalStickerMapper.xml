@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comerzzia.iskaypet.pos.persistence.promotionsticker.PromotionalStickerMapper">
+  <resultMap id="BaseResultMap" type="com.comerzzia.iskaypet.pos.persistence.promotionsticker.PromotionalSticker">
+    <id column="ACTIVITY_ID" jdbcType="VARCHAR" property="activityId" />
+    <id column="BARCODE" jdbcType="VARCHAR" property="barcode" />
+    <result column="CREATION_DATE" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="ITEM_CODE" jdbcType="VARCHAR" property="itemCode" />
+    <result column="ITEM_DES" jdbcType="VARCHAR" property="itemDes" />
+    <result column="DISCOUNT" jdbcType="DECIMAL" property="discount" />
+    <result column="REASON_CODE" jdbcType="BIGINT" property="reasonCode" />
+    <result column="AVAILABLE" jdbcType="CHAR" property="available" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ACTIVITY_ID, BARCODE, CREATION_DATE, ITEM_CODE, ITEM_DES, DISCOUNT, REASON_CODE, 
+    AVAILABLE
+  </sql>
+  <select id="selectByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.promotionsticker.PromotionalStickerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_items_promotional_sticker_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.comerzzia.iskaypet.pos.persistence.promotionsticker.PromotionalStickerKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from x_items_promotional_sticker_tbl
+    where ACTIVITY_ID = #{activityId,jdbcType=VARCHAR}
+      and BARCODE = #{barcode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.iskaypet.pos.persistence.promotionsticker.PromotionalStickerKey">
+    delete from x_items_promotional_sticker_tbl
+    where ACTIVITY_ID = #{activityId,jdbcType=VARCHAR}
+      and BARCODE = #{barcode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.promotionsticker.PromotionalStickerExample">
+    delete from x_items_promotional_sticker_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.iskaypet.pos.persistence.promotionsticker.PromotionalSticker">
+    insert into x_items_promotional_sticker_tbl (ACTIVITY_ID, BARCODE, CREATION_DATE, 
+      ITEM_CODE, ITEM_DES, DISCOUNT, 
+      REASON_CODE, AVAILABLE)
+    values (#{activityId,jdbcType=VARCHAR}, #{barcode,jdbcType=VARCHAR}, #{creationDate,jdbcType=TIMESTAMP}, 
+      #{itemCode,jdbcType=VARCHAR}, #{itemDes,jdbcType=VARCHAR}, #{discount,jdbcType=DECIMAL}, 
+      #{reasonCode,jdbcType=BIGINT}, #{available,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.iskaypet.pos.persistence.promotionsticker.PromotionalSticker">
+    insert into x_items_promotional_sticker_tbl
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="activityId != null">
+        ACTIVITY_ID,
+      </if>
+      <if test="barcode != null">
+        BARCODE,
+      </if>
+      <if test="creationDate != null">
+        CREATION_DATE,
+      </if>
+      <if test="itemCode != null">
+        ITEM_CODE,
+      </if>
+      <if test="itemDes != null">
+        ITEM_DES,
+      </if>
+      <if test="discount != null">
+        DISCOUNT,
+      </if>
+      <if test="reasonCode != null">
+        REASON_CODE,
+      </if>
+      <if test="available != null">
+        AVAILABLE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="activityId != null">
+        #{activityId,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null">
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemCode != null">
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDes != null">
+        #{itemDes,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="reasonCode != null">
+        #{reasonCode,jdbcType=BIGINT},
+      </if>
+      <if test="available != null">
+        #{available,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.promotionsticker.PromotionalStickerExample" resultType="java.lang.Long">
+    select count(*) from x_items_promotional_sticker_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update x_items_promotional_sticker_tbl
+    <set>
+      <if test="record.activityId != null">
+        ACTIVITY_ID = #{record.activityId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.barcode != null">
+        BARCODE = #{record.barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creationDate != null">
+        CREATION_DATE = #{record.creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.itemCode != null">
+        ITEM_CODE = #{record.itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemDes != null">
+        ITEM_DES = #{record.itemDes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discount != null">
+        DISCOUNT = #{record.discount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.reasonCode != null">
+        REASON_CODE = #{record.reasonCode,jdbcType=BIGINT},
+      </if>
+      <if test="record.available != null">
+        AVAILABLE = #{record.available,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update x_items_promotional_sticker_tbl
+    set ACTIVITY_ID = #{record.activityId,jdbcType=VARCHAR},
+      BARCODE = #{record.barcode,jdbcType=VARCHAR},
+      CREATION_DATE = #{record.creationDate,jdbcType=TIMESTAMP},
+      ITEM_CODE = #{record.itemCode,jdbcType=VARCHAR},
+      ITEM_DES = #{record.itemDes,jdbcType=VARCHAR},
+      DISCOUNT = #{record.discount,jdbcType=DECIMAL},
+      REASON_CODE = #{record.reasonCode,jdbcType=BIGINT},
+      AVAILABLE = #{record.available,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.iskaypet.pos.persistence.promotionsticker.PromotionalSticker">
+    update x_items_promotional_sticker_tbl
+    <set>
+      <if test="creationDate != null">
+        CREATION_DATE = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemCode != null">
+        ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDes != null">
+        ITEM_DES = #{itemDes,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        DISCOUNT = #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="reasonCode != null">
+        REASON_CODE = #{reasonCode,jdbcType=BIGINT},
+      </if>
+      <if test="available != null">
+        AVAILABLE = #{available,jdbcType=CHAR},
+      </if>
+    </set>
+    where ACTIVITY_ID = #{activityId,jdbcType=VARCHAR}
+      and BARCODE = #{barcode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.iskaypet.pos.persistence.promotionsticker.PromotionalSticker">
+    update x_items_promotional_sticker_tbl
+    set CREATION_DATE = #{creationDate,jdbcType=TIMESTAMP},
+      ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      ITEM_DES = #{itemDes,jdbcType=VARCHAR},
+      DISCOUNT = #{discount,jdbcType=DECIMAL},
+      REASON_CODE = #{reasonCode,jdbcType=BIGINT},
+      AVAILABLE = #{available,jdbcType=CHAR}
+    where ACTIVITY_ID = #{activityId,jdbcType=VARCHAR}
+      and BARCODE = #{barcode,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.comerzzia.iskaypet.pos.persistence.promotionsticker.PromotionalStickerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_items_promotional_sticker_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

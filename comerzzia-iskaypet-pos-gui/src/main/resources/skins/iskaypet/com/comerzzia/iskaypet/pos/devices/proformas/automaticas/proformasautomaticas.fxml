@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="447.0" prefWidth="609.0" styleClass="pantalla-detalle" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.iskaypet.pos.devices.proformas.automaticas.ProformasAutomaticasController">
+  <children>
+    <VBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      </padding>
+      <!-- Title Section -->
+      <AnchorPane minHeight="36.0" prefHeight="36.0" styleClass="titulo-ventana">
+        <children>
+          <Label fx:id="lbTitulo" alignment="CENTER" text="%FACTURACIÓN PROFORMAS AUTOMÁTICAS" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0" />
+        </children>
+      </AnchorPane>
+      <!-- TableView Section -->
+      <AnchorPane prefHeight="316.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+        <children>
+          <TableView fx:id="tblProformas" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columns>
+              <TableColumn prefWidth="100.0" text="%ID" fx:id="colIdProforma" />
+              <TableColumn prefWidth="150.0" text="%TIPO" fx:id="colTipoDocumento" />
+              <TableColumn prefWidth="200.0" text="%FECHA" fx:id="colFechaCreacion" />
+              <TableColumn prefWidth="150.0" text="%ESTADO" fx:id="colEstado" />
+            </columns>
+          </TableView>
+        </children>
+      </AnchorPane>
+      <!-- Button Panel -->
+      <AnchorPane>
+        <children>
+          <HBox alignment="CENTER_RIGHT" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+              <Button fx:id="btAceptar" onAction="#accionAceptar" prefHeight="45.0" prefWidth="112.0" styleClass="btAceptar" text="Aceptar" />
+            </children>
+            <padding>
+              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+          </HBox>
+          <Label id="lbMessage" fx:id="lbMessage" alignment="TOP_LEFT" layoutX="10.0" layoutY="18.0" prefHeight="28.0" prefWidth="500.0" text="%Message" textAlignment="LEFT" />
+        </children>
+      </AnchorPane>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

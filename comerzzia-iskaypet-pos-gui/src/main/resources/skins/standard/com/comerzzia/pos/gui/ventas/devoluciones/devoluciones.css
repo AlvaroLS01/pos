@@ -1,0 +1,13 @@
+.btBuscarFid {
+    -fx-background-image: url("cliente.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px center;
+    -fx-padding: 10 10 10 40;
+}
+.btBuscarProformas {
+    -fx-background-image: url("proforma.png");
+    -fx-background-size: 48px 48px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px center;
+    -fx-padding: 10 10 10 40;
+}

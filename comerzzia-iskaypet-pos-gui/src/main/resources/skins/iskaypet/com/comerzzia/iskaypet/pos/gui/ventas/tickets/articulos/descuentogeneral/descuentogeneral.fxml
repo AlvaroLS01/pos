@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" minHeight="147.0" prefHeight="191.0" prefWidth="440.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.iskaypet.pos.gui.ventas.tickets.articulos.descuentogeneral.DescuentoGeneralController">
+  <children>
+    <HBox prefHeight="191.0" prefWidth="644.0000999999975" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane minHeight="119.0" prefHeight="119.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
+          <children>
+            <VBox prefHeight="251.0" prefWidth="645.9998779296875" styleClass="mainFxmlClass, pantalla-detalle" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane minHeight="30.0" prefHeight="37.0" prefWidth="600.0" styleClass="titulo-ventana" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lbTitulo" alignment="CENTER" prefHeight="37.0" prefWidth="479.0" text="%Aplicar descuento general" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  </children>
+                </AnchorPane>
+                <AnchorPane minHeight="52.0" prefHeight="96.0" prefWidth="646.0" VBox.vgrow="ALWAYS">
+                  <children>
+                    <VBox minHeight="43.5" prefHeight="43.5" prefWidth="600.0" AnchorPane.bottomAnchor="21.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <children>
+                        <AnchorPane id="AnchorPane" prefHeight="266.5" prefWidth="569.0">
+                          <children>
+                            <Label alignment="CENTER_RIGHT" layoutX="56.0" layoutY="39.0" prefWidth="111.0" text="% % Descuento" />
+                            <TextField fx:id="tfDescuento" layoutX="185.0" layoutY="30.0" onKeyReleased="#aceptarIntro" prefHeight="37.0" prefWidth="133.0" />
+                          </children>
+                        </AnchorPane>
+                      </children>
+                    </VBox>
+                  </children>
+                </AnchorPane>
+                <AnchorPane minHeight="51.999900000002526" prefHeight="51.999900000002526" prefWidth="578.0" VBox.vgrow="NEVER">
+                  <children>
+                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                      <children>
+                        <Button mnemonicParsing="false" onAction="#aceptar" onKeyReleased="#aceptarIntro" prefHeight="42.0" prefWidth="122.0" styleClass="btAceptar" text="%Aceptar" />
+                        <Button mnemonicParsing="false" onAction="#accionCancelar" prefHeight="42.0" prefWidth="128.0" styleClass="btCancelar" text="%Cancelar" />
+                      </children>
+                    </HBox>
+                  </children>
+                </AnchorPane>
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../Vistas/Producto/Comerzzia/trunk/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

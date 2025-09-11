@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" minHeight="160.0" prefHeight="160.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comerzzia.iskaypet.pos.gui.configuracion.mediospago.sipay.BusquedaFicherosSipayController">
+  <children>
+    <HBox prefHeight="160.0" prefWidth="646.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane minHeight="160.0" prefHeight="160.0" prefWidth="646.0" HBox.hgrow="ALWAYS">
+          <children>
+            <VBox prefHeight="160.0" prefWidth="646.0" styleClass="mainFxmlClass, pantalla-detalle" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane minHeight="30.0" prefHeight="37.0" prefWidth="646.0" styleClass="titulo-ventana" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lbTitulo" alignment="CENTER" prefHeight="37.0" prefWidth="479.0" text="\%" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  </children>
+                </AnchorPane>
+                <AnchorPane minHeight="30.0" prefHeight="62.0" prefWidth="646.0" VBox.vgrow="ALWAYS">
+                  <children>
+                              <HBox alignment="CENTER" minHeight="30.0" prefHeight="30.0" prefWidth="646.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                      <Label alignment="CENTER_RIGHT" text="%Seleccionar fichero" />
+                      <TextField id="tfNumTarjetaRegalo" fx:id="tfRutaFichero" editable="false" onKeyReleased="#accionAceptarIntro" prefWidth="400.0" />
+                                    <Button fx:id="btBuscarFichero" minHeight="36.0" minWidth="40.0" mnemonicParsing="false" onAction="#accionBuscarFichero" prefHeight="36.0" prefWidth="40.0" text="%. . ." />
+                                 </children>
+                              </HBox>
+                  </children>
+                </AnchorPane>
+                <AnchorPane minHeight="60.0" prefHeight="60.0" prefWidth="646.0" VBox.vgrow="NEVER">
+                  <children>
+                    <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <children>
+                        <AnchorPane prefHeight="138.0" prefWidth="91.0" HBox.hgrow="ALWAYS" />
+                        <TilePane alignment="BOTTOM_RIGHT" hgap="10.0" minHeight="52.0" prefHeight="52.0" prefWidth="480.0" HBox.hgrow="NEVER">
+                          <children>
+                            <Button mnemonicParsing="false" onAction="#accionAceptar" prefHeight="42.0" prefWidth="115.0" styleClass="btAceptar" text="%Aceptar" />
+                            <Button mnemonicParsing="false" onAction="#accionCancelar" prefHeight="42.0" prefWidth="115.0" styleClass="btCancelar" text="%Cancelar">
+                              <TilePane.margin>
+                                <Insets right="10.0" />
+                              </TilePane.margin>
+                            </Button>
+                          </children>
+                          <padding>
+                            <Insets bottom="10.0" left="10.0" top="10.0" />
+                          </padding>
+                        </TilePane>
+                      </children>
+                    </HBox>
+                  </children>
+                </AnchorPane>
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../Vistas/Producto/Comerzzia/trunk/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+  
+<generatorConfiguration>
+	<classPathEntry location="C:\Tier1\UTILS\mysql-connector-java-8.0.27.jar" />
+	<context id="Comerzzia" targetRuntime="MyBatis3">
+	
+		<plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"/>
+		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+	
+		<commentGenerator>
+			<property name="suppressAllComments" value="true"/>
+		</commentGenerator>	
+	    
+	    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+	        connectionURL="jdbc:mysql://127.0.0.1:3306/isk_pos"
+	        userId="isk_pos"
+	        password="isk_pos">
+	    </jdbcConnection>
+	    
+		<javaModelGenerator targetPackage="com.comerzzia.iskaypet.pos.persistence.notifications" targetProject="comerzzia-iskaypet-pos-gui/src/main/java">
+	      <property name="enableSubPackages" value="false" />
+	      <property name="trimStrings" value="true" />
+	    </javaModelGenerator>
+	    																											
+	    <sqlMapGenerator targetPackage="com.comerzzia.iskaypet.pos.persistence.notifications"  targetProject="comerzzia-iskaypet-pos-gui/src/main/java">
+	      <property name="enableSubPackages" value="false" />
+	    </sqlMapGenerator>
+	
+	    <javaClientGenerator type="XMLMAPPER" targetPackage="com.comerzzia.iskaypet.pos.persistence.notifications"  targetProject="comerzzia-iskaypet-pos-gui/src/main/java">
+	      <property name="enableSubPackages" value="false" />
+	    </javaClientGenerator>
+	
+	    <table tableName="X_NOTIFICATIONS_VERSION_TBL" domainObjectName="NotificationsVersion">  	
+	    </table>
+	</context>
+</generatorConfiguration>

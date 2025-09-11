@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comerzzia.iskaypet.pos.persistence.cajas.cierre.ConsultaCierreMapper">
+  <select id="getFechaAperturaHoy" resultType="java.util.Date">
+  	SELECT MAX(FECHA_APERTURA)
+  	FROM D_CAJA_CAB_TBL 
+  	WHERE 
+  		UID_ACTIVIDAD = #{uidActividad}
+  		AND CODALM = #{codAlm}
+		AND FECHA_APERTURA &lt; #{fecha}
+  </select>
+</mapper>

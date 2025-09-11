@@ -1,0 +1,1557 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <JESUS.AVILA@ISKAYPET.COM>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+# Contadora
+msgid "Calculadora"
+msgstr "Calculadora"
+
+msgid "Billetes"
+msgstr "Notas"
+
+msgid "Monedas"
+msgstr "Moedas"
+
+msgid "Tienda"
+msgstr "Loja"
+
+msgid "Caja"
+msgstr "Caixa"
+
+msgid "Fecha"
+msgstr "Data"
+
+msgid "Vendedor/a"
+msgstr "Vendedor/a"
+
+msgid "Vales"
+msgstr "Vales"
+
+msgid "Tarjeta GPRS"
+msgstr "Cartão GPRS"
+
+msgid "Total tarjeta Pasarela Pago"
+msgstr "Total cartão Passarela de Pagamento"
+
+msgid "Total tarjeta Manual"
+msgstr "Total cartão Manual"
+
+# Gestión de caja
+msgid "ABRIR CAJON"
+msgstr "ABRIR GAVETA"
+
+msgid "RETIRADA EFECTIVO"
+msgstr "RETIRADA DINHEIRO"
+
+msgid "SALIDA CAJA"
+msgstr "SAÍDA DE CAIXA"
+
+msgid "ENTRADA CAJA"
+msgstr "ENTRADA DE CAIXA"
+
+# Medios de pago
+msgid "EFECTIVO"
+msgstr "DINHEIRO"
+
+msgid "TARJETA"
+msgstr "CARTÃO"
+
+msgid "VALE"
+msgstr "VALE"
+
+msgid "PAGO REMOTO"
+msgstr "PAGAMENTO REMOTO"
+
+msgid "TARJETA GPRS"
+msgstr "CARTÃO GPRS"
+
+msgid "TRANSFERENCIA"
+msgstr "TRANSFERÊNCIA"
+
+msgid "FINANCIACIÓN"
+msgstr "FINANCIAMENTO"
+
+# Devoluciones
+msgid "No se ha encontrado el documento de origen, se va a acceder a una DEVOLUCIÓN LIBRE. ¿Está seguro de continuar?"
+msgstr "O documento de origem não foi encontrado, será acedido para uma DEVOLUÇÃO GRATUITA. Tem a certeza de que quer continuar?"
+
+msgid "No se ha encontrado el documento de origen y no se permite realizar devoluciones libres de factura completa"
+msgstr "Documento de origem não encontrado e não é permitido fazer devoluções sem fatura completa"
+
+# Cuponesw
+msgid "CUPÓN POR DIFERENCIA "
+msgstr "CUPÃO POR DIFERENÇA "
+
+msgid "CUPÓN MUNDO KIWOKO"
+msgstr "CUPÃO MUNDO KIWOKO "
+
+msgid "Podrá usar este cupón a partir del "
+msgstr "Poderá usar este cupão a partir de "
+
+msgid "CUPÓN DEVOLUCIÓN"
+msgstr "CUPÃO DE DEVOLUÇÃO"
+
+# # NEW
+msgid "No se ha podido actualizar el registro de uso de la pegatina especial '{0}'."
+msgstr "Não foi possível atualizar o registro de uso do adesivo especial '{0}'."
+
+msgid "Error al comprobar/actualizar los datos de la pegatina promocional '{0}' : "
+msgstr "Erro ao verificar/atualizar os dados do adesivo promocional '{0}' : "
+
+msgid "Error al aplicar el precio de descuento especial a la linea : "
+msgstr "Erro ao aplicar o preço de desconto especial na linha : "
+
+msgid "El importe indicado supera el saldo de la tarjeta."
+msgstr "O valor indicado excede o saldo do cartão."
+
+msgid "El importe indicado supera el importe pendiente de la venta."
+msgstr "O valor indicado excede o valor pendente da venda."
+
+msgid "Error al consultar las notificaciones de versión : "
+msgstr "Erro ao consultar as notificações de versão : "
+
+msgid "Error al marcar las notificaciones de versión como vistas : "
+msgstr "Erro ao marcar as notificações de versão como vistas : "
+
+msgid "Error al generar el código de cupón para fidelizados : "
+msgstr "Erro ao gerar o código do cupão para fidelizados : "
+
+msgid "Error al consultar los datos para comprobar si existe un cierre previo : "
+msgstr "Erro ao consultar os dados para verificar se existe um fechamento anterior : "
+
+msgid "Error realizando cierre de caja"
+msgstr "Erro ao realizar fechamento de caixa"
+
+msgid "Ya existe una caja abierta en el sistema"
+msgstr "Já existe uma caixa aberta no sistema"
+
+msgid "Error realizando apertura de caja"
+msgstr "Erro ao realizar abertura de caixa"
+
+msgid "No existe caja abierta en el sistema"
+msgstr "Não existe caixa aberta no sistema"
+
+msgid "Error al consultar caja abierta en sesión del sistema"
+msgstr "Erro ao consultar caixa aberta na sessão do sistema"
+
+msgid "Error al consultar el último movimiento de caja con ventas en el sistema"
+msgstr "Erro ao consultar o último movimento de caixa com vendas no sistema"
+
+msgid "No puede realizarse la retirada porque el resultante queda por debajo del saldo inicial ("
+msgstr "Não é possível realizar a retirada porque o resultado fica abaixo do saldo inicial ("
+
+msgid "No existen cajas cerrada en el sistema"
+msgstr "Não existem caixas fechadas no sistema"
+
+msgid "El artículo no puede ser nulo"
+msgstr "O artigo não pode ser nulo"
+
+msgid "Error procesando lotes"
+msgstr "Erro ao processar lotes"
+
+msgid "Error procesando devolución. Revise configuración."
+msgstr "Erro ao processar devolução. Verifique a configuração."
+
+msgid "No se ha podido aplicar el cupón."
+msgstr "Não foi possível aplicar o cupão."
+
+msgid "Error procesando el código de barras. Revise configuración."
+msgstr "Erro ao processar o código de barras. Verifique a configuração."
+
+msgid "No se ha podido pesar el artículo, compruebe la configuración de la balanza."
+msgstr "Não foi possível pesar o artigo, verifique a configuração da balança."
+
+msgid "Este artículo no puede ser introducido sin ser pesado previamente."
+msgstr "Este artigo não pode ser inserido sem ser pesado previamente."
+
+msgid "El total de la venta con servicios es superior a {0}€, es obligatorio sacar factura completa"
+msgstr "O total da venda com serviços é superior a {0}€, é obrigatório emitir a fatura completa"
+
+msgid "El total de la venta sin impuestos es superior a  {0}€, es obligatorio sacar factura completa"
+msgstr "O total da venda sem impostos é superior a {0}€, é obrigatório emitir a fatura completa"
+
+msgid "El total de la venta es superior a {0}€, es obligatorio sacar factura completa"
+msgstr "O total da venda é superior a {0}€, é obrigatório emitir a fatura completa"
+
+msgid "El artículo {0} no se ha encontrado en el documento origen de la devolución."
+msgstr "O artigo {0} não foi encontrado no documento de origem da devolução."
+
+msgid "La cantidad a devolver del artículo supera a la cantidad vendida."
+msgstr "A quantidade a ser devolvida do artigo excede a quantidade vendida."
+
+msgid "Lo sentimos, ha ocurrido un error al recuperar el ticket"
+msgstr "Desculpe, ocorreu um erro ao recuperar o ticket"
+
+msgid "La cantidad que se ha anotado supera el importe total de las lineas a devolver"
+msgstr "A quantidade anotada excede o valor total das linhas a devolver"
+
+msgid ""
+"El método de pago a devolver es distinto al ticket origen. \n"
+"¿Está seguro de querer anotar el pago?"
+msgstr ""
+"O método de pagamento a ser devolvido é diferente do ticket original. \n"
+"Tem certeza de que deseja anotar o pagamento?"
+
+msgid ""
+"El método de pago a devolver supera la cantidad usada en origen. \n"
+" ¿Está seguro de querer anotar el pago?"
+msgstr ""
+"O método de pagamento a ser devolvido excede o valor usado originalmente. \n"
+"Tem certeza de que deseja anotar o pagamento?"
+
+msgid "Ha habido un error al recuperar el medio de pago"
+msgstr "Ocorreu um erro ao recuperar o meio de pagamento"
+
+msgid "No se ha especificado una acción correcta para este botón"
+msgstr "Não foi especificada uma ação correta para este botão"
+
+msgid "Ha habido un error al autorizar el medio de pago. Contacte con un administrador"
+msgstr "Ocorreu um erro ao autorizar o meio de pagamento. Entre em contato com um administrador"
+
+msgid "Lo sentimos, ha ocurrido un error al imprimir."
+msgstr "Desculpe, ocorreu um erro ao imprimir."
+
+msgid "Factura completa generada correctamente"
+msgstr "Fatura completa gerada corretamente"
+
+msgid "nombre"
+msgstr "nome"
+
+msgid "apellidos o razón social"
+msgstr "sobrenome ou razão social"
+
+msgid "tipo de documento"
+msgstr "tipo de documento"
+
+msgid "documento"
+msgstr "documento"
+
+msgid "código postal"
+msgstr "código postal"
+
+msgid "localidad"
+msgstr "localidade"
+
+msgid "dirección"
+msgstr "direção"
+
+msgid "provincia"
+msgstr "distrito"
+
+msgid "país"
+msgstr "país"
+
+msgid "Es necesario rellenar el siguiente dato en la ficha del cliente: "
+msgstr "É necessário preencher o seguinte dado na ficha do cliente: "
+
+msgid "Es necesario rellenar los siguientes datos en la ficha del cliente: "
+msgstr "É necessário preencher os seguintes dados na ficha do cliente: "
+
+msgid "Es necesario corregir el documento en la ficha del cliente"
+msgstr "É necessário corrigir o documento na ficha do cliente"
+
+msgid "La cantidad total del ticket a pagar supera el límite máximo permitido de {0}€ para pagos en efectivo"
+msgstr "O montante total do ticket a pagar excede o limite máximo permitido de {0}€ para pagamentos em dinheiro"
+
+msgid "La cantidad que se quiere pagar en efectivo supera el máximo permitido {0}€"
+msgstr "O montante que deseja pagar em dinheiro excede o máximo permitido {0}€"
+
+msgid "Se han efectuados pagos. Debe cancelarlos para volver atrás."
+msgstr "Foram efetuados pagamentos. Você deve cancelá-los para voltar atrás."
+
+msgid "Saldo"
+msgstr "Saldo"
+
+msgid "Lea o escriba el código de barras del vale"
+msgstr "Leia ou escreva o código de barras do vale"
+
+msgid "La tarjeta introducida está dada de baja."
+msgstr "O cartão inserido está desativado."
+
+msgid "Lo sentimos, ha ocurrido un error en la petición."
+msgstr "Desculpe, ocorreu um erro na solicitação."
+
+msgid "No se ha podido conectar con el servidor"
+msgstr "Não foi possível conectar-se ao servidor"
+
+msgid "El servidor ha tardado demasiado tiempo en responder"
+msgstr "O servidor demorou muito para responder"
+
+msgid "Lo sentimos, ha ocurrido un error en la petición"
+msgstr "Desculpe, ocorreu um erro na solicitação"
+
+msgid "El importe restante está completo."
+msgstr "O montante restante está completo."
+
+msgid ""
+"No se ha encontrado la tarjeta con número {0} \r\n"
+"¿Desea realiza la entrada manual?"
+msgstr ""
+"O cartão com o número {0} não foi encontrado. \r\n"
+"Deseja fazer a entrada manual?"
+
+msgid "El importe no es válido"
+msgstr "O montante não é válido"
+
+msgid ""
+"Va a cancelar la introducción manual del vale, \n"
+" ¿Está seguro?"
+msgstr ""
+"Você vai cancelar a entrada manual do voucher, \n"
+"Tem certeza?"
+
+msgid "El importe no puede ser menor a 0"
+msgstr "O montante não pode ser menor que 0"
+
+msgid "Debe tener un cliente asociado para poder realizar ventas de mascotas"
+msgstr "Você deve ter um cliente associado para poder realizar vendas de animais de estimação"
+
+msgid "No hay caja abierta. Deberá ir a la gestión de caja para abrirla."
+msgstr "Não há caixa aberta. Você deve ir para a gestão de caixa para abri-la."
+
+msgid "No hay caja abierta. Se abrirá automáticamente."
+msgstr "Não há caixa aberta. Será aberta automaticamente."
+
+msgid "No se puede realizar la venta. El día de apertura de la caja {0} no coincide con el del sistema {1}"
+msgstr "Não é possível realizar a venda. O dia de abertura da caixa {0} não coincide com o do sistema {1}"
+
+msgid "Faltan datos del fidelizado, debe completarlos antes de continuar: "
+msgstr "Faltam dados do cliente fidelizado, você deve completá-los antes de continuar: "
+
+msgid "No puede hacer contratos de un ticket vacio"
+msgstr "Não pode fazer contratos de um ticket vazio"
+
+msgid "Solo puede realizar contratos a mascotas"
+msgstr "Só pode realizar contratos para animais de estimação"
+
+msgid "Error comprobando medicamentos."
+msgstr "Erro ao verificar medicamentos."
+
+msgid "Hay medicamentos sin lote asignado."
+msgstr "Existem medicamentos sem lote atribuído."
+
+msgid "Hay mascotas sin contrato asociado."
+msgstr "Existem animais de estimação sem contrato associado."
+
+msgid "La venta contiene únicamente artículos canjeados por puntos, por lo que el importe total debe ser mayor que 0 para finalizar la operación"
+msgstr "A venda contém apenas artigos trocados por pontos, por isso o montante total deve ser superior a 0 para concluir a operação"
+
+msgid "¿Está seguro de querer eliminar todas las líneas del ticket?"
+msgstr "Tem certeza de que deseja excluir todas as linhas do ticket?"
+
+msgid "Ha habido un error al autorizar el cambio de precio. Contacte con un administrador."
+msgstr "Ocorreu um erro ao autorizar a mudança de preço. Entre em contato com um administrador."
+
+msgid "No se puede cancelar una venta con pagos asociados."
+msgstr "Não é possível cancelar uma venda com pagamentos associados."
+
+msgid "---NUEVO CLIENTE---"
+msgstr "---NOVO CLIENTE---"
+
+msgid "No se pueden negar lineas con puntos aplicados."
+msgstr "Não é possível negar linhas com pontos aplicados."
+
+msgid "Error creando el ticket de venta."
+msgstr "Erro ao criar o ticket de venda."
+
+msgid "Error insertando línea."
+msgstr "Erro ao inserir linha."
+
+msgid "Promoción fidelizado:"
+msgstr "Promoção fidelizado:"
+
+msgid "DTO."
+msgstr "DESC."
+
+msgid "PVP"
+msgstr "PVU"
+
+msgid "Ha habido un error al autorizar el descuento general. Contacte con un administrador."
+msgstr "Ocorreu um erro ao autorizar o desconto geral. Entre em contato com um administrador."
+
+msgid "Ha habido un error: "
+msgstr "Ocorreu um erro: "
+
+msgid "El ticket no contiene líneas de artículo."
+msgstr "O ticket não contém linhas de artigo."
+
+msgid "Ha superado el límite de efectivo. Deberá realizar una retirada de "
+msgstr "Você ultrapassou o limite de dinheiro em caixa. Deve fazer um levantamento de "
+
+msgid "Debe realizar una retirada de efectivo, de "
+msgstr "Deve fazer um levantamento de dinheiro, de "
+
+msgid "Para volver a cargar un cliente debe eliminar del ticket los artículos que han sido canjeados por puntos"
+msgstr "Para recarregar um cliente, você deve excluir do ticket os artigos que foram trocados por pontos"
+
+msgid "La tarjeta de fidelización {0} no está activa"
+msgstr "O cartão de fidelização {0} não está ativo"
+
+msgid "Debe seleccionar una línea del documento para poder realizar el proceso de canjeo de puntos."
+msgstr "Você deve selecionar uma linha do documento para poder realizar o processo de troca de pontos."
+
+msgid "¿Está seguro de querer eliminar esta línea del ticket?"
+msgstr "Tem certeza de que deseja excluir esta linha do ticket?"
+
+msgid "La línea seleccionada no se puede modificar."
+msgstr "A linha selecionada não pode ser modificada."
+
+msgid "No tiene permisos para borrar una línea"
+msgstr "Você não tem permissão para apagar uma linha"
+
+msgid "No se ha podido eliminar el cupón"
+msgstr "Não foi possível excluir o cupão"
+
+msgid "No se pueden editar lineas con puntos aplicados."
+msgstr "Não é possível editar linhas com pontos aplicados."
+
+msgid "Error al añadir línea."
+msgstr "Erro ao adicionar linha."
+
+msgid "Existe un ticket sin finalizar. Se tiene que terminar ese ticket antes de poder vender."
+msgstr "Existe um ticket não finalizado. Você deve concluir esse ticket antes de poder vender."
+
+msgid "Existe un ticket guardado con pagos realizados. Se tiene que terminar ese ticket antes de poder vender."
+msgstr "Existe um ticket salvo com pagamentos realizados. Você deve concluir esse ticket antes de poder vender."
+
+msgid "Existe una venta sin finalizar. ¿Desea recuperarla?"
+msgstr "Existe uma venda não finalizada. Deseja recuperá-la?"
+
+msgid "Es necesario identificar al cliente para la venta del medicamento con receta"
+msgstr "É necessário identificar o cliente para a venda de medicamentos com receita"
+
+msgid "Es necesario identificar al cliente para la venta del medicamento sin receta"
+msgstr "É necessário identificar o cliente para a venda de medicamentos sem receita"
+
+msgid "Error en la comprobación de medicamentos."
+msgstr "Erro na verificação de medicamentos."
+
+msgid "La devolución de medicamentos solo está permitida para casos de alerta sanitaria y otras excepciones ver Procedimiento xxx. ¿Desea continuar?"
+msgstr "A devolução de medicamentos só é permitida para casos de alerta sanitária e outras exceções ver Procedimento xxx. Deseja continuar?"
+
+msgid "Devolución de medicamentos cancelada."
+msgstr "Devolução de medicamentos cancelada."
+
+msgid "Devolución de medicamentos no autorizada."
+msgstr "Devolução de medicamentos não autorizada."
+
+msgid "Error procesando devolución de medicamento. Revise configuración."
+msgstr "Erro ao processar a devolução do medicamento. Verifique as configurações."
+
+msgid "Ha ocurrido un error en la selección de lotes"
+msgstr "Ocorreu um erro na seleção de lotes"
+
+msgid "No se ha asignado el lote, la pantalla se cerrará, ¿Está seguro?"
+msgstr "O lote não foi atribuído, a tela será fechada, tem certeza?"
+
+msgid "¿Quiere cancelar la introducción manual de lote?"
+msgstr "Deseja cancelar a introdução manual do lote?"
+
+msgid "Debe seleccionar un lote"
+msgstr "Você deve selecionar um lote"
+
+msgid "Los datos indicados no son correctos o no coinciden"
+msgstr "Os dados indicados estão incorretos ou não coincidem"
+
+msgid "El lote introducido existe en la lista, selecciónelo"
+msgstr "O lote inserido já existe na lista, selecione-o"
+
+msgid "Se van a añadir {0} artículos más. ¿Desea continuar?"
+msgstr "Serão adicionados {0} itens a mais. Deseja continuar?"
+
+msgid "La descripción no debe estar vacía"
+msgstr "A descrição não deve estar vazia"
+
+msgid "No tiene permisos para realizar una devolución"
+msgstr "Você não tem permissão para fazer uma devolução"
+
+msgid "La cantidad debe ser menor que {0}"
+msgstr "A quantidade deve ser menor que {0}"
+
+msgid "La cantidad debe ser distinta de cero."
+msgstr "A quantidade deve ser diferente de zero."
+
+msgid "El campo debe ser menor que {0}"
+msgstr "O campo deve ser menor que {0}"
+
+msgid "El descuento debe ser un valor entre 0 y 100."
+msgstr "O desconto deve ser um valor entre 0 e 100."
+
+msgid "¿Desea vender el artículo a precio 0?"
+msgstr "Deseja vender o artigo por preço 0?"
+
+msgid "No está permitida la venta a precio 0."
+msgstr "A venda por preço 0 não é permitida."
+
+msgid "El valor del descuento tiene que estar entre 1 y 99."
+msgstr "O valor do desconto deve estar entre 1 e 99."
+
+msgid "El campo especie no puede estar vacio"
+msgstr "O campo espécie não pode estar vazio"
+
+msgid "El campo raza no puede estar vacio"
+msgstr "O campo raça não pode estar vazio"
+
+msgid "El campo sexo no puede estar vacio"
+msgstr "O campo sexo não pode estar vazio"
+
+msgid "El peso supera el límite establecido"
+msgstr "Peso ultrapassa o limite estabelecido"
+
+msgid "El campo fecha de nacimiento no puede tener una fecha futura"
+msgstr "O campo data de nascimento não pode ter uma data futura"
+
+msgid "El campo tipo identificación no puede estar vacio"
+msgstr "O campo tipo de identificação não pode estar vazio"
+
+msgid "El campo número identificación no puede estar vacio"
+msgstr "O campo número de identificação não pode estar vazio"
+
+msgid "No se pudo obtener el ticket con el localizador introducido."
+msgstr "Não foi possível obter o ticket com o localizador inserido."
+
+msgid "Se produjo un error procesando el localizador. "
+msgstr "Ocorreu um erro processando o localizador. "
+
+msgid "No es posible visualizar este tipo de documento"
+msgstr "Não é possível visualizar este tipo de documento"
+
+msgid "Error leyendo información de ticket."
+msgstr "Erro ao ler informações do ticket."
+
+msgid "No tiene permisos para cancelar la devolución."
+msgstr "Você não tem permissão para cancelar a devolução."
+
+msgid "No se puede continuar con el proceso de pagos ya que falta seleccionar el motivo a devolver de una o más líneas seleccionadas"
+msgstr "Não é possível continuar com o processo de pagamentos pois falta selecionar o motivo para devolução de uma ou mais linhas selecionadas"
+
+msgid ""
+"Va a realizar la devolución de una mascota, \n"
+" ¿Está seguro?"
+msgstr ""
+"Você vai realizar a devolução de um animal de estimação, \n"
+" tem certeza?"
+
+msgid "Ha sido cancelada la devolución de la mascota seleccionada"
+msgstr "A devolução do animal de estimação selecionado foi cancelada"
+
+msgid "La cantidad introducida es mayor a la cantidad disponible para devolver"
+msgstr "A quantidade inserida é maior que a quantidade disponível para devolução"
+
+msgid "Se van a devolver "
+msgstr "Serão devolvidos "
+
+msgid " unidades del artículo "
+msgstr " unidades do artigo "
+
+msgid "¿Está seguro?"
+msgstr "Tem certeza?"
+
+msgid "Ha sido cancelada la introducción de las "
+msgstr "A introdução dos "
+
+msgid " unidades"
+msgstr " unidades foi cancelada"
+
+msgid "No se permite añadir artículos no presentes en el ticket original"
+msgstr "Não é permitido adicionar artigos não presentes no ticket original"
+
+msgid "Este artículo ya está completamente devuelto en la venta original"
+msgstr "Este artigo já foi completamente devolvido na venda original"
+
+msgid "No se puede editar una línea con cantidad negativa."
+msgstr "Não é possível editar uma linha com quantidade negativa."
+
+msgid "No tiene permisos para modificar una línea."
+msgstr "Você não tem permissão para modificar uma linha."
+
+msgid "No tiene permisos para borrar una línea."
+msgstr "Você não tem permissão para excluir uma linha."
+
+msgid "El ticket fue realizando en una tienda con un tratamiento fiscal diferente al de esta tienda. No se puede realizar esta devolución."
+msgstr "O ticket foi feito em uma loja com um tratamento fiscal diferente desta loja. Esta devolução não pode ser feita."
+
+msgid "Error cargando pantalla. Para mas información consulte el log."
+msgstr "Erro ao carregar a tela. Para mais informações, consulte o log."
+
+msgid "No se han podido recuperar las líneas devueltas desde la central. Por favor, compruebe el ticket impreso para ver las líneas ya devueltas."
+msgstr "Não foi possível recuperar as linhas devolvidas do central. Por favor, verifique o ticket impresso para ver as linhas já devolvidas."
+
+msgid "No se ha encontrado ningún ticket con esos datos"
+msgstr "Nenhum ticket foi encontrado com esses dados"
+
+msgid "Ha habido un error en el proceso de autorización. Contacte con un administrador."
+msgstr "Ocorreu um erro no processo de autorização. Entre em contato com um administrador."
+
+msgid "Ha habido un error al consultar el plazo de devolución. Contacte con un administrador."
+msgstr "Ocorreu um erro ao consultar o prazo de devolução. Entre em contato com um administrador."
+
+msgid "La venta asociada a este ticket ha superado un periodo de {0} días. ¿Está seguro de querer hacer la devolución?"
+msgstr "A venda associada a este ticket superou um período de {0} dias. Tem certeza de que deseja fazer a devolução?"
+
+msgid "Ya existe una caja abierta en el sistema."
+msgstr "Já existe uma caixa aberta no sistema."
+
+msgid "No es posible realizar la apertura de caja. Existe un cierre Z registrado para hoy."
+msgstr "Não é possível realizar a abertura da caixa. Existe um fechamento Z registrado para hoje."
+
+msgid "No es posible realizar la apertura de caja. No se ha realizado el cierre Z correspondiente al día "
+msgstr "Não é possível realizar a abertura da caixa. O fechamento Z correspondente ao dia não foi realizado "
+
+msgid "Caja CERRADA"
+msgstr "Caixa FECHADA"
+
+msgid "Caja ABIERTA"
+msgstr "Caixa ABERTA"
+
+msgid "Para realizar el recuento de caja se deben cerrar todas las pantallas abiertas. ¿Desea continuar?"
+msgstr "Para fazer o fechamento do caixa, todas as telas abertas devem ser fechadas. Deseja continuar?"
+
+msgid "Ya existe un recuento de la caja. ¿Desea borrarlo y empezar de nuevo?"
+msgstr "Já existe um fechamento de caixa. Deseja apagá-lo e começar de novo?"
+
+msgid "AVISO_RETIRADA_EFECTIVO"
+msgstr "AVISO_RETIRADA_EFECTIVO"
+
+msgid "Ha ocurrido un error intentando mostrar apunte, concepto no encontrado"
+msgstr "Ocorreu um erro ao tentar mostrar a entrada, conceito não encontrado"
+
+msgid "No se puede insertar un apunte manual. El día de apertura de la caja {0} no coincide con el del sistema {1}"
+msgstr "Não é possível inserir uma entrada manual. O dia de abertura do caixa {0} não coincide com o do sistema {1}"
+
+msgid "Importe a retirar"
+msgstr "Valor a retirar"
+
+msgid "TITULO_CALCULADORA"
+msgstr "TÍTULO_CALCULADORA"
+
+msgid "Total efectivo"
+msgstr "Total em dinheiro"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "El importe a retirar debe ser {0}€, por favor reviselo de nuevo"
+msgstr "O valor a ser retirado deve ser de {0}€, por favor, verifique novamente"
+
+msgid "El importe de la dotación para esta caja no es correcto, por favor reviselo de nuevo"
+msgstr "O valor da dotação para este caixa não está correto, por favor, verifique novamente"
+
+msgid "Para cerrar la caja se deben cerrar todas las pantallas abiertas. ¿Desea continuar?"
+msgstr "Para fechar o caixa, todas as telas abertas devem ser fechadas. Deseja continuar?"
+
+msgid "Recuerda sacar de la caja el siguiente efectivo: {0} €"
+msgstr "Lembre-se de retirar do caixa o seguinte valor em dinheiro: {0} €"
+
+msgid "Debe seleccionar un motivo de la lista."
+msgstr "Você deve selecionar um motivo da lista."
+
+msgid "ENTRADA EN CAJA"
+msgstr "ENTRADA NO CAIXA"
+
+msgid "SALIDA DE CAJA"
+msgstr "SAÍDA DO CAIXA"
+
+msgid "Anulación línea"
+msgstr "Cancelamento da linha"
+
+msgid "Anulación orden completa"
+msgstr "Cancelamento do pedido completo"
+
+msgid "Devolución"
+msgstr "Devolução"
+
+msgid "Cambio de precio"
+msgstr "Mudança de preço"
+
+msgid "Descuento completo a una compra"
+msgstr "Desconto completo na compra"
+
+msgid "Debe rellenar el campo de confirmación de email"
+msgstr "Você deve preencher o campo de confirmação de email"
+
+msgid "El campo de email y confirmación de email no coinciden"
+msgstr "O campo de email e confirmação de email não coincidem"
+
+msgid "Documento no valido"
+msgstr "Documento inválido"
+
+msgid "Error validando el documento de identificación: "
+msgstr "Erro ao validar o documento de identificação: "
+
+msgid "email"
+msgstr "email"
+
+msgid "teléfono"
+msgstr "telefone"
+
+msgid "Ya existe un cliente con este "
+msgstr "Já existe um cliente com este "
+
+msgid "Cliente creado correctamente"
+msgstr "Cliente criado com sucesso"
+
+msgid "Cliente editado correctamente"
+msgstr "Cliente editado com sucesso"
+
+msgid "Razón social"
+msgstr "Razão social"
+
+msgid "Error en la búsqueda de tipos de documento"
+msgstr "Erro na busca de tipos de documento"
+
+msgid "Error en la búsqueda, país no encontrado"
+msgstr "Erro na busca, país não encontrado"
+
+msgid "Apellidos"
+msgstr "Sobrenomes"
+
+msgid "No hay notificaciones"
+msgstr "Não há notificações"
+
+msgid "¿Está seguro que desea salir?"
+msgstr "Tem certeza de que deseja sair?"
+
+msgid "IMPRIMIR"
+msgstr "IMPRIMIR"
+
+msgid "No está cofigurado el envío de contratos a Evicertia. {0}"
+msgstr "O envio de contratos para a Evicertia não está configurado. {0}"
+
+msgid "Generando contratos sin envío..."
+msgstr "Gerando contratos sem envio..."
+
+msgid "Enviado {0} contratos a Evicertia..."
+msgstr "Enviado {0} contratos para a Evicertia..."
+
+msgid "Enviado {0} contrato a Evicertia..."
+msgstr "Enviado {0} contrato para a Evicertia..."
+
+msgid "Primero debe seleccionar un fichero"
+msgstr "Primeiro você deve selecionar um arquivo"
+
+msgid "La linea seleccionada no tiene disponible la funcionalidad de canjeo de puntos."
+msgstr "A linha selecionada não possui a funcionalidade de troca de pontos disponível."
+
+msgid "Se necesita un fidelizado cargado para utilizar la funcionalidad de canjeo de puntos."
+msgstr "É necessário ter um cliente fidelizado carregado para utilizar a funcionalidade de troca de pontos."
+
+msgid "La linea seleccionada tiene un cambio de precio manual, no se puede canjear por puntos."
+msgstr "A linha selecionada possui uma mudança de preço manual, não pode ser trocada por pontos."
+
+msgid ""
+"El fidelizado no dispone de saldo suficiente para realizar el canjeo. \n"
+"Saldo actual : {0} \n"
+"Puntos necesarios : {1}"
+msgstr ""
+"O cliente fidelizado não possui saldo suficiente para fazer a troca. \n"
+"Saldo atual: {0} \n"
+"Pontos necessários: {1}"
+
+msgid "Error al consultar o comprobar las condiciones del artículo de puntos : "
+msgstr "Erro ao consultar ou verificar as condições do artigo de pontos: "
+
+msgid "Error al comprobar si el artículo '{0}' es canjeable por puntos : "
+msgstr "Erro ao verificar se o artigo '{0}' é trocável por pontos: "
+
+msgid "Error al insertar el artículo canjeable por puntos con código '{0}' en la linea {1} : "
+msgstr "Erro ao inserir o artigo trocável por pontos com código '{0}' na linha {1}: "
+
+msgid "La linea seleccionada ya tiene aplicados puntos para ese artículo."
+msgstr "A linha selecionada já tem pontos aplicados para este artigo."
+
+msgid "¿Está seguro que desea canjear por puntos el artículo '"
+msgstr "Tem certeza de que deseja trocar o artigo por pontos '"
+
+msgid "Puntos a utilizar : "
+msgstr "Pontos a utilizar: "
+
+msgid "Precio total del artículo : "
+msgstr "Preço total do artigo: "
+
+msgid "Error al modificar de la lista de artículos canjeables por puntos la línea {0} :"
+msgstr "Erro ao modificar a lista de artigos trocáveis por pontos na linha {0}:"
+
+msgid "Error al eliminar de la lista de artículos canjeables por puntos la línea {0} : "
+msgstr "Erro ao eliminar da lista de artigos trocáveis por pontos na linha {0}: "
+
+msgid "Número de tarjeta de acceso no configurado. Consulte a su administrador."
+msgstr "Número do cartão de acesso não configurado. Consulte o seu administrador."
+
+msgid "Debe introducir un número de tarjeta"
+msgstr "Você deve inserir um número de cartão"
+
+msgid "Número de tarjeta incorrecto"
+msgstr "Número de cartão incorreto"
+
+msgid "Número de tarjeta no encontrado"
+msgstr "Número de cartão não encontrado"
+
+msgid "El fidelizado se ha consultado correctamente, pero ha ocurrido un error cargando sus cupones disponibles. Consulte con el administrador."
+msgstr "O cliente fidelizado foi consultado corretamente, mas ocorreu um erro ao carregar seus cupãos disponíveis. Consulte o administrador."
+
+msgid "Id tienda"
+msgstr "ID da loja"
+
+msgid "Id pos"
+msgstr "ID do POS"
+
+msgid "Idioma"
+msgstr "Idioma"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Tiempo de espera agotado, vuelva a realizar la operación"
+msgstr "Tempo de espera esgotado, tente a operação novamente"
+
+msgid "Error realizando operación con el TEF de Sipay"
+msgstr "Erro ao realizar operação com o TEF da Sipay"
+
+msgid "Debe seleccionar un fidelizado de la lista."
+msgstr "Você deve selecionar um cliente fidelizado da lista."
+
+msgid "Selección de Cliente"
+msgstr "Seleção de Cliente"
+
+msgid "Devoluciones cliente"
+msgstr "Devoluções do cliente"
+
+msgid "Ventas realizadas en los últimos "
+msgstr "Vendas realizadas nos últimos "
+
+msgid "¿Está seguro de inciar la devolución?"
+msgstr "Tem certeza de que deseja iniciar a devolução?"
+
+msgid "No se ha podido recuperar el ticket para imprimir. Contacte con un administrador"
+msgstr "Não foi possível recuperar o ticket para impressão. Entre em contato com o administrador"
+
+msgid "Alta cliente"
+msgstr "Registo cliente"
+
+msgid "Es necesario rellenar al menos uno de los campos de búsqueda"
+msgstr "É necessário preencher pelo menos um dos campos de pesquisa"
+
+msgid "No se ha encontrado ningún fidelizado con los datos introducidos"
+msgstr "Nenhum cliente fidelizado foi encontrado com os dados inseridos"
+
+msgid "El fidelizado no dispone de una tarjeta"
+msgstr "O cliente fidelizado não possui um cartão"
+
+msgid "No se ha podido establecer la conexión con la central, revise que la conexión es adecuada."
+msgstr "Não foi possível estabelecer a conexão com a central, verifique se a conexão é adequada."
+
+msgid "Ha ocurrido un error durante la petición a la central, consulte con el administrador."
+msgstr "Ocorreu um erro durante a solicitação à central, consulte o administrador."
+
+msgid "Error leyendo información de ticket"
+msgstr "Erro ao ler informações do ticket"
+
+msgid "Total en caja:"
+msgstr "Total no caixa:"
+
+msgid "Importe a retirar:"
+msgstr "Valor a retirar:"
+
+msgid "Resultante:"
+msgstr "Resultado:"
+
+msgid "El total de la venta es superior a {0}€, es obligatorio sacar factura completa "
+msgstr "O total da venda é superior a {0}€, é obrigatório emitir uma fatura completa "
+
+msgid "No se puede insertar un apunte manual. El día de apertura de la caja {0} no coincide con el del sistema {1} "
+msgstr "Não é possível inserir uma entrada manual. O dia de abertura do caixa {0} não coincide com o do sistema {1} "
+
+msgid "Autorización Gerente"
+msgstr "Autorização do gestor"
+
+msgid "Contraseña del colaborador"
+msgstr "Senha do colaborador"
+
+msgid "Contraseña no configurada. Consulte a su administrador."
+msgstr "Senha não configurada. Consulte o seu administrador."
+
+msgid "Debe introducir una contraseña"
+msgstr "Você deve inserir uma senha"
+
+msgid "Contraseña incorrecta"
+msgstr "Senha incorreta"
+
+msgid "CLIENTE:"
+msgstr "CLIENTE:"
+
+msgid "Identificación de cliente"
+msgstr "Identificação do cliente"
+
+msgid "Buscar"
+msgstr "Pesquisar"
+
+msgid "DATOS PROMOCIÓN:"
+msgstr "DADOS DA PROMOÇÃO:"
+
+msgid "PVP PROMOCIÓN"
+msgstr "PVU PROMOÇÃO"
+
+msgid "Para poder seleccionar el pago por transferencia es necesario identificar al cliente"
+msgstr "Para poder selecionar o pagamento por transferência, é necessário identificar o cliente"
+
+msgid "Para poder seleccionar el pago por transferencia es necesario que sea factura completa"
+msgstr "Para poder selecionar o pagamento por transferência, é necessário que seja uma fatura completa"
+
+msgid "Vacío"
+msgstr "Vazio"
+
+msgid "SALDO DISPONIBLE:"
+msgstr "SALDO DISPONÍVEL:"
+
+msgid "COLECTIVO/S:"
+msgstr "COLETIVO/S:"
+
+msgid "Lote"
+msgstr "Lote"
+
+msgid "¿Necesita el cliente el NIF en el recibo de venta?"
+msgstr "O cliente precisa do NIF no recibo de venda?"
+
+msgid "Sí"
+msgstr "Sim"
+
+msgid "No"
+msgstr "Não"
+
+msgid "INSERTAR NIF DEL CLIENTE"
+msgstr "INSERIR NIF DO CLIENTE"
+
+msgid "El documento introducido no es válido. Por favor, introduzca un documento válido."
+msgstr "O documento inserido não é válido. Por favor, insira um documento válido."
+
+msgid "Contrato"
+msgstr "Contrato"
+
+msgid "¿Cómo desea introducir el motivo del cambio de precio a las {0} unidades?"
+msgstr "Como deseja inserir o motivo da mudança de preço para as {0} unidades?"
+
+msgid "¿Cómo desea introducir el motivo de la devolución a las {0} unidades?"
+msgstr "Como deseja inserir o motivo da devolução para as {0} unidades?"
+
+msgid "Motivo"
+msgstr "Motivo"
+
+msgid "TITULO"
+msgstr "TÍTULO"
+
+msgid "Por unidad"
+msgstr "Por unidade"
+
+msgid "** Promo: {0}"
+msgstr "** Promo : {0}"
+
+msgid "** Promo demarca"
+msgstr "** Promo demarca"
+
+msgid "** Promo: Articulo a canjear por: {0} puntos."
+msgstr "** Promo : Article à échanger contre : {0} points."
+
+msgid "Lote: {0}"
+msgstr "Lote : {0}"
+
+msgid "Fecha Caducidad: "
+msgstr "Data de validade: "
+
+# ###### CUPONES ###### -
+msgid "Se selecciono un cupón navision con el valor"
+msgstr "Foi selecionado um cupão navision com o valor"
+
+msgid "¿Está seguro de querer insertarlo en esta venta?"
+msgstr "Tem certeza de que deseja inseri-lo nesta promoção?"
+
+msgid "No se ha encontrado el código indicado como artículo en el sistema \n¿Desea buscarlo en central como un cupón?"
+msgstr "O código indicado como item não foi encontrado no sistema, \nDeseja procurá_lo na central como cupão?"
+
+# #### TICKET ENVIO POR CORREO #####
+msgid "Introduzca un correo"
+msgstr "Insira um e-mail"
+
+msgid "Correo del cliente"
+msgstr "E-mail do cliente"
+
+msgid "Enviado ticket por correo electronico a {0}"
+msgstr "Ticket enviado por e-mail para {0}"
+
+msgid "El cliente tiene el check de ticket digital marcado pero no tiene mail relleno"
+msgstr "O cliente marcou a opção de comprovante digital, mas não preencheu o e-mail."
+
+msgid "El email no contiene un formato correcto"
+msgstr "O e-mail não está em um formato correto"
+
+msgid "El email introducido no coincide con el introducido en el paso previo"
+msgstr "O e-mail inserido não coincide com o inserido na etapa anterior"
+
+msgid "Email para envío de ticket"
+msgstr "E-mail para envio de ticket"
+
+msgid "Confirmación Email para envío de ticket"
+msgstr "Confirmação de e-mail para envio de ticket"
+
+msgid "Imprimir Ticket"
+msgstr "Impresion del ticket"
+
+msgid "Enviar Email"
+msgstr "Enviar E-mail"
+
+msgid "Imprimir y Enviar Email"
+msgstr "Imprimir e Enviar E-mail"
+
+## Motivos auditorias
+msgid "El cliente no lo quiere"
+msgstr "O cliente não quer"
+
+msgid "Error de tienda"
+msgstr "Erro da loja"
+
+msgid "Error EAN"
+msgstr "Erro EAN"
+
+msgid "Otros"
+msgstr "Outros"
+
+msgid "Diferente PVP -Etiqueta Linea y TPV"
+msgstr "Diferente PVP - Etiqueta Linha e TPV"
+
+msgid "No aplica Oferta"
+msgstr "Não se aplica a oferta"
+
+msgid "Precio WEB"
+msgstr "Preço WEB"
+
+msgid "PMG"
+msgstr "PMG"
+
+msgid "OTROS"
+msgstr "OUTROS"
+
+msgid "No lo quiere"
+msgstr "Não quer"
+
+msgid "Producto Defectuoso"
+msgstr "Produto com defeito"
+
+msgid "Error de compra en el producto"
+msgstr "Erro de compra no produto"
+
+msgid "No salta la oferta"
+msgstr "A oferta não aparece"
+
+msgid "No salta cupón descuento"
+msgstr "O cupão de desconto não aparece"
+
+msgid "Gastos de Tienda"
+msgstr "Despesas da loja"
+
+msgid "Gastos limpieza"
+msgstr "Despesas de limpeza"
+
+msgid "Gastos papel"
+msgstr "Despesas de papel"
+
+msgid "Gastos Agua empl."
+msgstr "Despesas de água"
+
+msgid "Faltante de arqueo Efectivo"
+msgstr "Faltante de arqueo Efectivo"
+
+msgid "Sobrante de arqueo Efectivo"
+msgstr "Sobrante de arqueo Efectivo"
+
+msgid "Compensación de caja: Positiva"
+msgstr "Compensação de caja: Positiva"
+
+msgid "Compensación de caja: Negativa"
+msgstr "Compensação de caja: Negativa"
+
+msgid "Gastos de navidad"
+msgstr "Despesas de Natal"
+
+## PAGOS
+msgid "ENTREGADO"
+msgstr "ENTREGUE"
+
+msgid "TOTAL"
+msgstr "TOTAL"
+
+msgid "CAMBIO"
+msgstr "TROCO"
+
+msgid "PENDIENTE"
+msgstr "PENDENTE"
+
+## Lotes
+msgid "Lote y fecha de caducidad"
+msgstr "Lote e data de validade"
+
+msgid "Información complementaria medicamento"
+msgstr "Informação complementar do medicamento"
+
+msgid "Fecha de caducidad"
+msgstr "Data de validade"
+
+msgid "Lote (confirmación)"
+msgstr "Lote (confirmação)"
+
+msgid "Introducción manual"
+msgstr "Introdução manual"
+
+msgid "Previsualización"
+msgstr "Pré-visualização"
+
+msgid "Datos de la mascota"
+msgstr "Dados da mascote"
+
+msgid "Especie"
+msgstr "Espécie"
+
+msgid "Raza"
+msgstr "Raça"
+
+msgid "Peso(g)"
+msgstr "Peso (g)"
+
+msgid "Tipo Identificador"
+msgstr "Tipo de Identificador"
+
+msgid "Número Identificador"
+msgstr "Número de Identificação"
+
+msgid "No se puede asegurar"
+msgstr "Não é possível garantir"
+
+msgid "Macho"
+msgstr "Macho"
+
+msgid "Hembra"
+msgstr "Fêmea"
+
+msgid "Ninguno"
+msgstr "Nenhum"
+
+msgid "Cites"
+msgstr "Cites"
+
+msgid "Microchip"
+msgstr "Microchip"
+
+msgid "Anilla"
+msgstr "Anilha"
+
+msgid "La apertura del visor de PDF no es compatible en este sistema."
+msgstr "A abertura do visualizador de PDF não é compatível neste sistema."
+
+msgid "Pagos origen"
+msgstr "Pagamentos de origem"
+
+msgid "Solo se pueden consultar los pagos de origen en una devolución."
+msgstr "Apenas os pagamentos de origem podem ser consultados em uma devolução."
+
+msgid "No se puede consultar los pagos de origen en una devolución sin origen."
+msgstr "Não é possível consultar os pagamentos de origem em uma devolução sem origem."
+
+msgid "FORMA DE PAGO ORIGEN"
+msgstr "FORMA DE PAGAMENTO DE ORIGEM"
+
+msgid "El importe a devolver por este medio de pago no puede ser superior al de origen"
+msgstr "O valor a ser devolvido por este meio de pagamento não pode ser superior ao de origem"
+
+msgid "El medio de pago seleccionado no permite pagos mixtos."
+msgstr "O meio de pagamento selecionado não permite pagamentos mistos."
+
+msgid "El medio de pago seleccionado solo admite pagos integros (total a pagar)."
+msgstr "O meio de pagamento selecionado só aceita pagamentos integrais (total a pagar)."
+
+msgid "Ha ocurrido un error al intentar guardar el vale de devolución en tienda"
+msgstr "Ocorreu um erro ao tentar salvar o cupão de devolução na loja"
+
+msgid "No se ha encontrado el vale de devolución con el número de tarjeta indicado"
+msgstr "O cupão de devolução não foi encontrado com o número de cartão indicado"
+
+msgid "No se dispone de un código de validación para generar un ATCUD. Revise la configuración."
+msgstr "Não há um código de validação disponível para gerar um ATCUD. Verifique a configuração."
+
+msgid "No se ha encontrado un contador disponible"
+msgstr "Nenhum contador disponível foi encontrado"
+
+msgid "Error comprobando configuracion de ATCUD: {0}"
+msgstr "Erro ao verificar a configuração do ATCUD: {0}"
+
+msgid "Impresión de prueba"
+msgstr "Impressão de teste"
+
+msgid "Cajón de prueba"
+msgstr "Gaveta de teste"
+
+msgid "Para continuar con la impresión de prueba, por favor asegúrate de haber guardado previamente la configuración y de haber reiniciado el POS. ¿Estás seguro de que deseas proceder con la impresión?"
+msgstr "Para continuar com a impressão de teste, por favor, certifique-se de ter guardado previamente a configuração e de ter reiniciado o POS. Tem certeza de que deseja prosseguir com a impressão?"
+
+msgid "unidades"
+msgstr "unidades"
+
+msgid "Máximo"
+msgstr "Máximo"
+
+msgid "Has introducido más unidades de este lote de las que hay en el ticket origen"
+msgstr "Você inseriu mais unidades deste lote do que as que estão no ticket de origem"
+
+msgid "Debe introducir un número de unidades"
+msgstr "Você deve inserir um número de unidades"
+
+msgid "La fecha de caducidad no puede ser anterior a la fecha actual"
+msgstr "A data de validade não pode ser anterior à data atual"
+
+msgid "El localizador introducido es demasiado largo y supera el límite de caracteres"
+msgstr "O localizador inserido é muito longo e excede o limite de caracteres"
+
+msgid "Existe un ticket sin finalizar. Se tiene que terminar ese ticket antes de poder realizar una devolución."
+msgstr "Existe um ticket não finalizado. Você deve concluir esse ticket antes de poder fazer uma devolução."
+
+msgid "Existe un ticket guardado con pagos realizados. Se tiene que terminar ese ticket antes de poder realizar una devolución."
+msgstr "Existe um ticket salvo com pagamentos realizados. Você deve concluir esse ticket antes de poder fazer uma devolução."
+
+msgid "Se han encontrado nuevas etiquetas de artículos para su impresión"
+msgstr "Foram encontradas novas etiquetas de artigos para impressão"
+
+msgid "Se han encontrado nuevas etiquetas de precios para su impresión"
+msgstr "Foram encontradas novas etiquetas de preços para impressão"
+
+msgid "Se han encontrado nuevas etiquetas de promoción para su impresión"
+msgstr "Foram encontradas novas etiquetas de promoção para impressão"
+
+msgid "El importe a devolver por este medio de pago es superior al de origen"
+msgstr "O valor a ser devolvido por este meio de pagamento é superior ao de origem"
+
+msgid "El método de pago a devolver supera la cantidad usada en origen. \n¿Está seguro de querer anotar el pago?"
+msgstr "O método de pagamento a ser devolvido excede a quantidade usada na origem. \nTem certeza de que deseja registrar o pagamento?"
+
+msgid "Error al consultar los detalles para la mascota"
+msgstr "Erro ao consultar os detalhes para a mascote"
+
+msgid "Datos del contrato"
+msgstr "Dados do contrato"
+
+msgid "Identificación del Animal"
+msgstr "Identificação do Animal"
+
+msgid "Hay animales sin identificación asignada."
+msgstr "Existem animais sem identificação atribuída."
+
+msgid "Información complementaria animal"
+msgstr "Informação complementar do animal"
+
+msgid "No se ha asignado identificación animal, la pantalla se cerrará, ¿Está seguro?"
+msgstr "A identificação do animal não foi atribuída, a tela será fechada, tem certeza?"
+
+msgid "Para poder continuar con la venta de animales es necesario que sea factura completa"
+msgstr "Para poder continuar com a venda de animais, é necessário que seja uma fatura completa"
+
+msgid "No existe trazabildad para las mascotas en este almacén"
+msgstr "Não há rastreabilidade para os animais neste armazém"
+
+msgid "Justifique un motivo"
+msgstr "Justifique o motivo"
+
+msgid "Debe tener un cliente asociado para poder realizar ventas de planes de salud"
+msgstr "Deve ter um cliente associado para poder realizar vendas de planos de saúde"
+
+msgid "Debe tener un cliente asociado para poder realizar devoluciones de planes de salud"
+msgstr "Deve ter um cliente associado para poder realizar devoluções de planos de saúde"
+
+msgid "Para poder continuar con la venta de planes de salud es necesario que sea factura completa"
+msgstr "Para poder continuar com a venda de planos de saúde, é necessário que seja uma fatura completa"
+
+msgid "El pinpad no está disponible, por favor reinicie el pinpad."
+msgstr "O pinpad não está disponível, por favor reinicie o pinpad."
+
+msgid "No se ha definido la clase de validación para el tipo de documento {0}"
+msgstr "A classe de validação não foi definida para o tipo de documento {0}"
+
+msgid "No se puede seleccionar este cliente con artículos en la cesta. Para este tipo de cliente debe de introducir primero el cliente con la cesta vacía y luego los artículos."
+msgstr "Não é possível selecionar este cliente com artigos no cesto. Para este tipo de cliente, deve primeiro introduzir o cliente com o cesto vazio e depois os artigos."
+
+msgid "No existe una región configurada para este almacén"
+msgstr "Não existe uma região configurada para este armazém"
+
+msgid "No se puede previsualizar un ticket vacío"
+msgstr "Não é possível pré-visualizar um ticket vazio"
+
+msgid "Código: {0}"
+msgstr "Código: {0}"
+
+msgid "Cliente INTERCOMPANY solo puede pagar con TRANSFERENCIA"
+msgstr "Cliente INTERCOMPANY só pode pagar com TRANSFERÊNCIA"
+
+msgid "Solo se puede realizar una venta INTERCOMPANY con factura completa."
+msgstr "Apenas uma venda INTERCOMPANY pode ser feita com uma fatura completa."
+
+msgid "Su contraseña ha expirado, debe renovarla"
+msgstr "A sua palavra-passe expirou, tem de a renovar"
+
+msgid "La contraseña del usuario indicado ha expirado"
+msgstr "A palavra-passe do utilizador especificado expirou"
+
+msgid "Vale manual ya canjeado"
+msgstr "Vale manual já trocado"
+
+msgid "No se puede anotar un pago de 0€"
+msgstr "Não se pode registrar um pagamento de 0€"
+
+msgid "No se puede modificar una línea de un ticket proforma"
+msgstr "Não é possível modificar uma linha de um ticket proforma"
+
+msgid "No se puede aparcar un ticket de una proforma, anule el ticket"
+msgstr "Não é possível estacionar um ticket de uma proforma, cancele o ticket"
+
+msgid "No se puede eliminar un registro de una proforma"
+msgstr "Não é possível excluir um registro de uma proforma"
+
+msgid "No se puede aplicar descuento general a una proforma"
+msgstr "Não é possível aplicar desconto geral a uma proforma"
+
+msgid "No se puede realizar el canjeo de articulos por puntos a un ticket proforma"
+msgstr "Não é possível realizar a troca de artigos por pontos em um ticket proforma"
+
+msgid "No se puede añadir lineas a la devolución de una proforma"
+msgstr "Não é possível adicionar linhas à devolução de uma proforma"
+
+msgid "SELECCIÓN DE PROFORMA"
+msgstr "SELEÇÃO DE PROFORMA"
+
+msgid "No se puede realizar la venta de medicamentos sin servicios asociados."
+msgstr "Não é possível realizar a venda de medicamentos sem serviços associados."
+
+msgid "No se puede insertar un artículo en una proforma"
+msgstr "Não é possível inserir um artigo em uma proforma"
+
+msgid "No se puede modificar el cliente en una proforma"
+msgstr "Não é possível modificar o cliente em uma proforma"
+
+msgid "No se puede realizar la búsqueda de un cliente en una proforma"
+msgstr "Não é possível realizar a busca de um cliente em uma proforma"
+
+msgid "Es necesario corregir el documento en la ficha del cliente, documento no valido."
+msgstr "É necessário corrigir o documento na ficha do cliente, documento inválido."
+
+msgid "El tipo de documento {0} no esta configurado"
+msgstr "O tipo de documento {0} não está configurado"
+
+msgid "Cantidad suministrada: {0}"
+msgstr "Quantidade fornecida: {0}"
+
+msgid "Modificar lote"
+msgstr "Modificar lote"
+
+msgid "Modificar IDs animal"
+msgstr "Modificar IDs animal"
+
+msgid "Modificar inyectable"
+msgstr "Modificar injetável"
+
+msgid "Información inyectable"
+msgstr "Informação injetável"
+
+msgid "Información complementaria"
+msgstr "Informação complementar"
+
+msgid "Cantidad convertida"
+msgstr "Quantidade convertida"
+
+msgid "Cantidad suministrada"
+msgstr "Quantidade fornecida"
+
+msgid "Unidad medida suministrada"
+msgstr "Unidade medida fornecida"
+
+msgid "Hay artículos inyectables sin información asignada."
+msgstr "Há artigos injetáveis sem informação atribuída."
+
+msgid "El código postal del cliente no es válido. Por favor, asegúrese de que el código tenga el formato correcto {0} y solo contenga números."
+msgstr "O código postal do cliente não é válido. Por favor, certifique-se de que o código tenha o formato correto {0} e contenha apenas números."
+
+msgid "Código postal no válido: debe tener entre 4 y 8 caracteres, con letras, números y un guion (no al inicio ni al final)."
+msgstr "Código postal inválido: deve ter entre 4 e 8 caracteres, com letras, números e um hífen (não no início nem no final)."
+
+
+msgid "No se pueden canjear más artículos de los que hay disponibles en el ticket."
+msgstr "Não é possível resgatar mais itens do que os disponíveis no ticket."
+
+msgid "No se pueden utilizar más puntos de los que tiene disponibles el fidelizado."
+msgstr "Não é possível utilizar mais pontos do que os disponíveis para o cliente fidelizado."
+
+msgid "¿Está seguro que desea canjear por puntos '{0}'"
+msgstr "Tem certeza de que deseja resgatar por pontos '{0}'"
+
+msgid "  unidad"
+msgstr "  unidade"
+
+msgid " del artículo: '{0}' - '{1}'?"
+msgstr " do item: '{0}' - '{1}' ?"
+
+msgid "Puntos a utilizar por artículo: '{0}'"
+msgstr "Pontos a utilizar por item: '{0}'"
+
+msgid "Puntos a utilizar totales: '{0}'"
+msgstr "Total de pontos a utilizar: '{0}'"
+
+msgid "Artículo canjeado '"
+msgstr "Item resgatado '"
+
+msgid "Puntos usados : "
+msgstr "Pontos usados : "
+
+msgid "Precio total canjeado : "
+msgstr "Preço total resgatado : "
+
+msgid "Edición artículo por puntos"
+msgstr "Edição de item por pontos"
+
+msgid "Cantidad total disponible"
+msgstr "Quantidade total disponível"
+
+msgid "Cantidad de unidades a canjear"
+msgstr "Quantidade de unidades a resgatar"
+
+msgid "Puntos disponibles del cliente"
+msgstr "Pontos disponíveis do cliente"
+
+msgid "Puntos necesarios por unidad"
+msgstr "Pontos necessários por unidade"
+
+msgid "Total de puntos necesarios"
+msgstr "Total de pontos necessários"
+
+
+msgid "FACTURACIÓN PROFORMAS AUTOMÁTICAS"
+msgstr "FATURAMENTO PROFORMAS AUTOMÁTICAS"
+
+msgid "Proformas automaticas facturada {0} de "
+msgstr "Proformas automáticas faturadas {0} de "
+
+msgid "Esta opción NO abona el importe al Cliente ¿Estás conforme?"
+msgstr "Esta opção NÃO credita o valor ao cliente. Você está de acordo?"
+
+msgid "Seleccione medio de pago"
+msgstr "Selecione meio de pagamento"
+
+msgid "Imprimir Copia"
+msgstr "Imprimir Cópia"
+
+msgid "Imprimir cupones"
+msgstr "Imprimir Cupons"
+
+msgid "TÍTULO"
+msgstr "TÍTULO"
+
+msgid "CÓDIGO"
+msgstr "CÓDIGO"
+
+msgid "FECHA INICIO"
+msgstr "DATA DE INÍCIO"
+
+msgid "FECHA FIN"
+msgstr "DATA DE TÉRMINO"
+
+msgid "¿Desea quitar el fidelizado?"
+msgstr "Deseja remover o fidelizado?"
+
+msgid "El cupón {0} está asociado a un cliente fidelizado y no puede utilizarse de forma anónima"
+msgstr "O cupão {0} está associado a um cliente fidelizado e não pode ser utilizado de forma anónima"
+
+msgid "Registro no encontrado"
+msgstr "Registo não encontrado"
+
+msgid "El cupón no se activará hasta {0}"
+msgstr "O cupão só será ativado a partir de {0}"
+msgid "Reenvío a Evicertia realizado, consulta el estado en el resumen de operaciones."
+msgstr "Reenvio para a Evicertia realizado, consulte o estado no resumo de operações."
+
+msgid "¿Está seguro que desea reenviar a Evicertia?"
+msgstr "Tem certeza de que deseja reenviar para a Evicertia?"
+
+msgid "Todos los contratos se enviaron correctamente a Evicertia"
+msgstr "Todos os contratos foram enviados corretamente para a Evicertia"
+
+msgid "Contrato Firmado"
+msgstr "Contrato Assinado"
+
+msgid "Reenviar Evicertia"
+msgstr "Reenviar para a Evicertia"
+
+msgid "Aparcar ticket"
+msgstr "Colocar bilhete em espera"
+
+msgid "ENVIADO EVICERTIA"
+msgstr "ENVIADO PARA A EVICERTIA"
+
+msgid "ENVIADO"
+msgstr "ENVIADO"
+
+msgid "Por favor, selecciona los contratos que quiere reenviar a Evicertia"
+msgstr "Por favor, selecione os contratos que deseja reenviar para a Evicertia"
+
+msgid "¿Está seguro que desea reenviar a Evicertia los contratos seleccionados?"
+msgstr "Tem certeza de que deseja reenviar os contratos selecionados para a Evicertia?"
+
+msgid "SELECCIONADO"
+msgstr "SELECIONADO"
+
+msgid "Resumen Envío Evicertia"
+msgstr "Resumo Envio Evicertia"
+
+msgid "DESCRIPCIÓN"
+msgstr "DESCRIÇÃO"
+
+msgid "Por favor, selecciona los contratos que quiere imprimir"
+msgstr "Por favor, selecione os contratos que deseja imprimir"
+
+msgid "Enviando {0} contrato a Evicertia..."
+msgstr "Enviando {0} contrato para a Evicertia..."
+
+msgid "Enviados {0} contratos a Evicertia."
+msgstr "{0} contratos enviados para a Evicertia."
+
+msgid "Reenvío a Evicertia realizado, consulta el estado en la pantalla de resumen"
+msgstr "Reenvio para a Evicertia realizado, verifique o estado na tela de resumo"
+
+
+msgid "Vale"
+msgstr "Voucher"
+
+msgid "Vale incorrecto"
+msgstr "Voucher incorreto"
+
+msgid ""
+"No se ha encontrado el vale con número {0} \r\n"
+"¿Desea realiza la entrada manual?"
+msgstr ""
+"O voucher com o número {0} não foi encontrado. \r\n"
+"Deseja fazer a entrada manual?"
+
+msgid "Vale no encontrado"
+msgstr "Voucher não encontrado"
+
+msgid "El vale introducido está dado de baja."
+msgstr "O voucher inserido foi cancelado."
+
+msgid "Enviado 1 contrato a Evicertia."
+msgstr "1 contrato enviado para a Evicertia."

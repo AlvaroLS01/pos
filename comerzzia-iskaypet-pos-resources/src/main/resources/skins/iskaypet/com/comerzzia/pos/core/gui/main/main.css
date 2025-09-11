@@ -1,0 +1,5 @@
+.topMain-background {
+	-fx-background-image: url("../../../../../../../../logos/logo.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center center;
+}

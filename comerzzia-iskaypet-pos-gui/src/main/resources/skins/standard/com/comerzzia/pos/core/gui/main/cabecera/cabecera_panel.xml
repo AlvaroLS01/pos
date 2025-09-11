@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Panel>
+    <LineaBotones>
+    	<Boton>
+			<texto></texto>
+            <clave>newLabelsNotifications</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido>Ctrl + 8</teclaAccesoRapido>
+			<visible>S</visible>
+        </Boton>
+    	<Boton>
+			<texto></texto>
+            <clave>goToLockTPV</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido>Ctrl + 1</teclaAccesoRapido>
+			<visible>S</visible>
+        </Boton>
+        <Boton>
+			<texto></texto>
+            <clave>goToCambioPw</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido>Ctrl + 2</teclaAccesoRapido>
+			<visible>S</visible>
+        </Boton> 
+        <Boton>
+			<texto></texto>
+            <clave>openNotifications</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido>Ctrl + 3</teclaAccesoRapido>
+			<visible>S</visible>
+        </Boton>  
+        <Boton>
+			<texto></texto>
+            <clave>gotoAcercaDe</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido>Ctrl + 4</teclaAccesoRapido>
+			<visible>S</visible>
+        </Boton>
+        <Boton>
+            <texto></texto>
+            <clave>gotoPermisos</clave>
+            <tipo>METODO</tipo>
+	    	<teclaAccesoRapido>Ctrl + 5</teclaAccesoRapido>
+    		<visible>S</visible>
+        </Boton>
+        <Boton>
+			<texto></texto>
+            <clave>gotoLogin</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido>Ctrl + 6</teclaAccesoRapido>
+			<visible>S</visible>
+        </Boton>
+        <Boton>
+			<texto></texto>
+            <clave>accionCerrar</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido>Ctrl + 7</teclaAccesoRapido>
+			<visible>S</visible>
+        </Boton>
+	</LineaBotones>
+</Panel>

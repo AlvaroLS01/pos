@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comerzzia.iskaypet.pos.persistence.auditorias.motivos.MotivosAuditoriaMapper">
+  <resultMap id="BaseResultMap" type="com.comerzzia.iskaypet.pos.persistence.auditorias.motivos.MotivosAuditoria">
+    <id column="UID_ACTIVIDAD" jdbcType="VARCHAR" property="uidActividad" />
+    <id column="CODEMP" property="codEmp" jdbcType="VARCHAR" />
+    <id column="TIPO_AUDITORIA" jdbcType="VARCHAR" property="tipoAuditoria" />
+    <id column="COD_MOTIVO" jdbcType="BIGINT" property="codMotivo" />
+    <result column="DES_MOTIVO" jdbcType="VARCHAR" property="desMotivo" />
+    <result column="PERMITE_OBSERVACIONES" jdbcType="CHAR" property="permiteObservaciones" />
+    <result column="ACTIVO" property="motivoActivo" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    UID_ACTIVIDAD, CODEMP, TIPO_AUDITORIA, COD_MOTIVO, DES_MOTIVO, PERMITE_OBSERVACIONES, ACTIVO
+  </sql>
+  <select id="selectByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.auditorias.motivos.MotivosAuditoriaExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_motivos_auditoria_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.comerzzia.iskaypet.pos.persistence.auditorias.motivos.MotivosAuditoriaKey" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from x_motivos_auditoria_tbl
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and CODEMP = #{codEmp,jdbcType=VARCHAR}
+      and TIPO_AUDITORIA = #{tipoAuditoria,jdbcType=VARCHAR}
+      and COD_MOTIVO = #{codMotivo,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.iskaypet.pos.persistence.auditorias.motivos.MotivosAuditoriaKey">
+    delete from x_motivos_auditoria_tbl
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and CODEMP = #{codEmp,jdbcType=VARCHAR}
+      and TIPO_AUDITORIA = #{tipoAuditoria,jdbcType=VARCHAR}
+      and COD_MOTIVO = #{codMotivo,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.auditorias.motivos.MotivosAuditoriaExample">
+    delete from x_motivos_auditoria_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.iskaypet.pos.persistence.auditorias.motivos.MotivosAuditoria">
+    insert into x_motivos_auditoria_tbl (UID_ACTIVIDAD, CODEMP, TIPO_AUDITORIA, COD_MOTIVO,
+      DES_MOTIVO, PERMITE_OBSERVACIONES, ACTIVO)
+    values (#{uidActividad,jdbcType=VARCHAR}, #{codEmp,jdbcType=VARCHAR},
+      #{tipoAuditoria,jdbcType=VARCHAR}, #{codMotivo,jdbcType=BIGINT},
+      #{desMotivo,jdbcType=VARCHAR}, #{permiteObservaciones,jdbcType=CHAR}, #{motivoActivo,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.iskaypet.pos.persistence.auditorias.motivos.MotivosAuditoria">
+    insert into x_motivos_auditoria_tbl
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        UID_ACTIVIDAD,
+      </if>
+      <if test="codEmp != null" >
+        CODEMP,
+      </if>
+      <if test="tipoAuditoria != null" >
+        TIPO_AUDITORIA,
+      </if>
+      <if test="codMotivo != null">
+        COD_MOTIVO,
+      </if>
+      <if test="desMotivo != null">
+        DES_MOTIVO,
+      </if>
+      <if test="permiteObservaciones != null">
+        PERMITE_OBSERVACIONES,
+      </if>
+      <if test="motivoActivo != null" >
+        ACTIVO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        #{uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="codEmp != null" >
+        #{codEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="tipoAuditoria != null">
+        #{tipoAuditoria,jdbcType=VARCHAR},
+      </if>
+      <if test="codMotivo != null">
+        #{codMotivo,jdbcType=BIGINT},
+      </if>
+      <if test="desMotivo != null">
+        #{desMotivo,jdbcType=VARCHAR},
+      </if>
+      <if test="permiteObservaciones != null">
+        #{permiteObservaciones,jdbcType=CHAR},
+      </if>
+      <if test="motivoActivo != null" >
+        #{motivoActivo,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.auditorias.motivos.MotivosAuditoriaExample" resultType="java.lang.Long">
+    select count(*) from x_motivos_auditoria_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update x_motivos_auditoria_tbl
+    <set>
+      <if test="row.uidActividad != null">
+        UID_ACTIVIDAD = #{row.uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codEmp != null" >
+        CODEMP = #{record.codEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="row.tipoAuditoria != null">
+        TIPO_AUDITORIA = #{row.tipoAuditoria,jdbcType=VARCHAR},
+      </if>
+      <if test="row.codMotivo != null">
+        COD_MOTIVO = #{row.codMotivo,jdbcType=BIGINT},
+      </if>
+      <if test="row.desMotivo != null">
+        DES_MOTIVO = #{row.desMotivo,jdbcType=VARCHAR},
+      </if>
+      <if test="row.permiteObservaciones != null">
+        PERMITE_OBSERVACIONES = #{row.permiteObservaciones,jdbcType=CHAR},
+      </if>
+      <if test="record.motivoActivo != null" >
+        ACTIVO = #{record.motivoActivo,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update x_motivos_auditoria_tbl
+    set UID_ACTIVIDAD = #{row.uidActividad,jdbcType=VARCHAR},
+      CODEMP = #{record.codEmp,jdbcType=VARCHAR},
+      TIPO_AUDITORIA = #{row.tipoAuditoria,jdbcType=VARCHAR},
+      COD_MOTIVO = #{row.codMotivo,jdbcType=BIGINT},
+      DES_MOTIVO = #{row.desMotivo,jdbcType=VARCHAR},
+      PERMITE_OBSERVACIONES = #{row.permiteObservaciones,jdbcType=CHAR},
+      ACTIVO = #{record.motivoActivo,jdbcType=TINYINT}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.iskaypet.pos.persistence.auditorias.motivos.MotivosAuditoria">
+    update x_motivos_auditoria_tbl
+    <set>
+      <if test="desMotivo != null">
+        DES_MOTIVO = #{desMotivo,jdbcType=VARCHAR},
+      </if>
+      <if test="permiteObservaciones != null">
+        PERMITE_OBSERVACIONES = #{permiteObservaciones,jdbcType=CHAR},
+      </if>
+      <if test="motivoActivo != null" >
+        ACTIVO = #{motivoActivo,jdbcType=TINYINT},
+      </if>
+    </set>
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and CODEMP = #{codEmp,jdbcType=VARCHAR}
+      and TIPO_AUDITORIA = #{tipoAuditoria,jdbcType=VARCHAR}
+      and COD_MOTIVO = #{codMotivo,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.iskaypet.pos.persistence.auditorias.motivos.MotivosAuditoria">
+    update x_motivos_auditoria_tbl
+    set DES_MOTIVO = #{desMotivo,jdbcType=VARCHAR},
+        PERMITE_OBSERVACIONES = #{permiteObservaciones,jdbcType=CHAR},
+        ACTIVO = #{motivoActivo,jdbcType=TINYINT}
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and CODEMP = #{codEmp,jdbcType=VARCHAR}
+      and TIPO_AUDITORIA = #{tipoAuditoria,jdbcType=VARCHAR}
+      and COD_MOTIVO = #{codMotivo,jdbcType=BIGINT}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.comerzzia.iskaypet.pos.persistence.auditorias.motivos.MotivosAuditoriaExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_motivos_auditoria_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

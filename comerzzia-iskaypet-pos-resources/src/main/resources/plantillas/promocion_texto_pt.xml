@@ -1,0 +1,45 @@
+<plantilla>
+	<!-- Promociones de tipo texto que deben imprimirse en el ticket	-->
+	#foreach ($promocion in $ticket.getPromociones())
+		#if(${promocion.getIdTipoPromocion()} == 13)
+			#if (!${promocion.getAdicionales()} || ${promocion.getAdicionales().get("imprimirAparte").equals(false)})
+				#foreach ($lineaTexto in $textUtils.divideLines(${promocion.getTextoPromocion()}, 40))
+				<linea>
+					<texto size="41" align="center">${lineaTexto}</texto>
+				</linea>
+				#end
+			#end
+		#end
+	#end
+
+	<!-- Promociones de tipo texto que se deben imprimir aparte	-->
+	#foreach ($promocion in $ticket.getPromociones())
+			#if(${promocion.getIdTipoPromocion()} == 13)
+				#if (${promocion.getAdicionales()} && ${promocion.getAdicionales().get("imprimirAparte").equals(true)})
+					#if($imprimirLogo)
+						<linea><texto></texto></linea>
+						<linea><texto></texto></linea>
+						<linea><texto></texto></linea>
+					#end
+					<corte></corte>
+					<!-- Se añade codificacion de la impresora	-->
+					<linea><texto pre-command="27;116;16"></texto></linea>
+					#set( $imprimirDatosFacturacion = false )
+					#parse("./plantillas/datos_cabecera_cupon_pt.xml")
+					#printLineaSubrayado()
+					#printLineaEnBlanco()
+					#foreach ($lineaTexto in $textUtils.divideLines(${promocion.getTextoPromocion()}, 40))
+						<linea line-size = "1">
+							<texto size="41" align="center">${lineaTexto}</texto>
+						</linea>
+					#end
+					#printLineaEnBlanco()
+					#printLineaSubrayado()
+					<linea>
+						<texto size="41" align="center">OBRIGADO PELA VISITA</texto>
+					</linea>
+				#end
+			#end
+	#end
+
+</plantilla>

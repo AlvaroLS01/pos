@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comerzzia.iskaypet.pos.persistence.colectivos.LocalColectivosMapper">
+  <resultMap id="BaseResultMap" type="com.comerzzia.iskaypet.pos.persistence.colectivos.LocalColectivos">
+    <id column="UID_INSTANCIA" jdbcType="VARCHAR" property="uidInstancia" />
+    <id column="COD_COLECTIVO" jdbcType="VARCHAR" property="codColectivo" />
+    <result column="DES_COLECTIVO" jdbcType="VARCHAR" property="desColectivo" />
+    <result column="CODTIPCOLECTIVO" jdbcType="VARCHAR" property="codtipcolectivo" />
+    <result column="DESTIPCOLECTIVO" jdbcType="VARCHAR" property="destipcolectivo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    UID_INSTANCIA, COD_COLECTIVO, DES_COLECTIVO, CODTIPCOLECTIVO, DESTIPCOLECTIVO
+  </sql>
+  <select id="selectByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.colectivos.LocalColectivosExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_local_colectivos_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.comerzzia.iskaypet.pos.persistence.colectivos.LocalColectivosKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from x_local_colectivos_tbl
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and COD_COLECTIVO = #{codColectivo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.iskaypet.pos.persistence.colectivos.LocalColectivosKey">
+    delete from x_local_colectivos_tbl
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and COD_COLECTIVO = #{codColectivo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.colectivos.LocalColectivosExample">
+    delete from x_local_colectivos_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.iskaypet.pos.persistence.colectivos.LocalColectivos">
+    insert into x_local_colectivos_tbl (UID_INSTANCIA, COD_COLECTIVO, DES_COLECTIVO, 
+      CODTIPCOLECTIVO, DESTIPCOLECTIVO)
+    values (#{uidInstancia,jdbcType=VARCHAR}, #{codColectivo,jdbcType=VARCHAR}, #{desColectivo,jdbcType=VARCHAR}, 
+      #{codtipcolectivo,jdbcType=VARCHAR}, #{destipcolectivo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.iskaypet.pos.persistence.colectivos.LocalColectivos">
+    insert into x_local_colectivos_tbl
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uidInstancia != null">
+        UID_INSTANCIA,
+      </if>
+      <if test="codColectivo != null">
+        COD_COLECTIVO,
+      </if>
+      <if test="desColectivo != null">
+        DES_COLECTIVO,
+      </if>
+      <if test="codtipcolectivo != null">
+        CODTIPCOLECTIVO,
+      </if>
+      <if test="destipcolectivo != null">
+        DESTIPCOLECTIVO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uidInstancia != null">
+        #{uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="codColectivo != null">
+        #{codColectivo,jdbcType=VARCHAR},
+      </if>
+      <if test="desColectivo != null">
+        #{desColectivo,jdbcType=VARCHAR},
+      </if>
+      <if test="codtipcolectivo != null">
+        #{codtipcolectivo,jdbcType=VARCHAR},
+      </if>
+      <if test="destipcolectivo != null">
+        #{destipcolectivo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.colectivos.LocalColectivosExample" resultType="java.lang.Integer">
+    select count(*) from x_local_colectivos_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update x_local_colectivos_tbl
+    <set>
+      <if test="record.uidInstancia != null">
+        UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codColectivo != null">
+        COD_COLECTIVO = #{record.codColectivo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desColectivo != null">
+        DES_COLECTIVO = #{record.desColectivo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codtipcolectivo != null">
+        CODTIPCOLECTIVO = #{record.codtipcolectivo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.destipcolectivo != null">
+        DESTIPCOLECTIVO = #{record.destipcolectivo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update x_local_colectivos_tbl
+    set UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      COD_COLECTIVO = #{record.codColectivo,jdbcType=VARCHAR},
+      DES_COLECTIVO = #{record.desColectivo,jdbcType=VARCHAR},
+      CODTIPCOLECTIVO = #{record.codtipcolectivo,jdbcType=VARCHAR},
+      DESTIPCOLECTIVO = #{record.destipcolectivo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.iskaypet.pos.persistence.colectivos.LocalColectivos">
+    update x_local_colectivos_tbl
+    <set>
+      <if test="desColectivo != null">
+        DES_COLECTIVO = #{desColectivo,jdbcType=VARCHAR},
+      </if>
+      <if test="codtipcolectivo != null">
+        CODTIPCOLECTIVO = #{codtipcolectivo,jdbcType=VARCHAR},
+      </if>
+      <if test="destipcolectivo != null">
+        DESTIPCOLECTIVO = #{destipcolectivo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and COD_COLECTIVO = #{codColectivo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.iskaypet.pos.persistence.colectivos.LocalColectivos">
+    update x_local_colectivos_tbl
+    set DES_COLECTIVO = #{desColectivo,jdbcType=VARCHAR},
+      CODTIPCOLECTIVO = #{codtipcolectivo,jdbcType=VARCHAR},
+      DESTIPCOLECTIVO = #{destipcolectivo,jdbcType=VARCHAR}
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and COD_COLECTIVO = #{codColectivo,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.comerzzia.iskaypet.pos.persistence.colectivos.LocalColectivosExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_local_colectivos_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

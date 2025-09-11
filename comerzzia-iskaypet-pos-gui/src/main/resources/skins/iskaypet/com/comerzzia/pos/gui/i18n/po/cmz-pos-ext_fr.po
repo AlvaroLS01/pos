@@ -1,0 +1,923 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-20 08:57+0200\n"
+"PO-Revision-Date: 2020-12-14 11:08+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+
+msgid "Error leyendo XML de configuración de dispositivos"
+msgstr "Erreur lors de la lecture du code XML de configuration de l'appareil"
+
+msgid "El dispositivo de fidelización no está configurado"
+msgstr "Le dispositif de fidélité n'est pas configuré"
+
+#, java-format
+msgid "Ha ocurrido un error al conectar el dispositivo {0}"
+msgstr "Une erreur s'est produite lors de la connexion de l'appareil {0}"
+
+msgid "El POS no contiene configuración de dispositivos. Posiblemente aun no esta configurado."
+msgstr "Le POS ne contient pas de configuration de périphérique. Peut-être pas encore configuré."
+
+msgid "Error parseando el xml de configuracion: "
+msgstr "Erreur lors de l'analyse du xml de configuration: "
+
+msgid "Tipo de dispositivo no existe."
+msgstr "Le type d'appareil n'existe pas."
+
+msgid "Modelo/conexión no disponible"
+msgstr "Modèle / connexion non disponible"
+
+msgid "Error cargando dispositivo"
+msgstr "Erreur lors du chargement de l'appareil"
+
+#, java-format
+msgid "2008-{0} Comerzzia S.L. Todos los derechos reservados. comerzzia es una marca registrada de Comerzzia S.L."
+msgstr "2008- {0} Comerzzia S.L. Tous droits réservés. Comerzzia est une marque déposée de Comerzzia S.L."
+
+msgid "No tiene permisos para realizar esta operación"
+msgstr "Vous ne disposez pas des autorisations nécessaires pour effectuer cette opération"
+
+msgid "Lunes"
+msgstr "Lunes"
+
+msgid "Martes"
+msgstr "Mardi"
+
+msgid "Miércoles"
+msgstr "Mercredi"
+
+msgid "Jueves"
+msgstr "Jeudi"
+
+msgid "Viernes"
+msgstr "Vendredi"
+
+msgid "Sábado"
+msgstr "Samedi"
+
+msgid "Domingo"
+msgstr "Dimanche"
+
+msgid "Hoy"
+msgstr "Aujourd'hui"
+
+msgid "Aceptar"
+msgstr "Accepter"
+
+msgid "Pulse Escape para continuar"
+msgstr "Appuyez sur Echap pour continuer"
+
+msgid "Cancelar"
+msgstr "Annuler"
+
+msgid "Ver Detalle"
+msgstr "Voir détail"
+
+msgid "Ocultar Detalle"
+msgstr "Masquer les détails"
+
+msgid "Lo sentimos, ha ocurrido un error."
+msgstr "Désolé, une erreur s'est produite."
+
+msgid "Error inesperado. Para mas información consulte el log."
+msgstr "Erreur inattendue. Pour plus d'informations, consultez le journal."
+
+msgid "La información de stock no está disponible en estos momentos."
+msgstr "Les informations sur les stocks ne sont pas disponibles pour le moment."
+
+msgid "El artículo introducido no existe."
+msgstr "L'article saisi n'existe pas."
+
+msgid "No hay stock en la tienda"
+msgstr "Pas de stock en magasin"
+
+msgid "No hay stock en el resto de tiendas"
+msgstr "Pas de stock dans les autres magasins"
+
+msgid "Ha habido un error al cargar los desgloses del artículo. Se cargará el desglose seleccionado anteriormente."
+msgstr "Une erreur s'est produite lors du chargement des décompositions des articles. La décomposition précédemment sélectionnée sera chargée."
+
+msgid "Debe introducir el código de artículo o código de barras"
+msgstr "Vous devez saisir le code article ou le code-barres"
+
+msgid "Error cargando pantalla. Para mas información consulte el log."
+msgstr "Erreur de chargement de l'écran. Pour plus d'informations, consultez le journal."
+
+msgid "Error de validación"
+msgstr "Erreur de validation"
+
+msgid "El campo permite un máximo de {max} caracteres"
+msgstr "Le champ autorise un maximum de {max} caractères"
+
+msgid "Debe ingresar un nombre de usuario."
+msgstr "Vous devez entrer un nom d'utilisateur."
+
+msgid "Debe ingresar un password."
+msgstr "Vous devez entrer un mot de passe."
+
+msgid "La longitud del usuario debe estar entre {min} y {max} caracteres."
+msgstr "La longueur de l'utilisateur doit être comprise entre {min} et {max} caractères."
+
+msgid "La longitud del campo debe estar entre {min} y {max} caracteres."
+msgstr "La longueur du champ doit être comprise entre {min} et {max} caractères."
+
+#, java-format
+msgid "Caja abierta por el usuario {0}"
+msgstr "Caisse ouverte par l'utilisateur {0}"
+
+msgid "El usuario no tiene permisos para ejecutar la pantalla activa."
+msgstr "L'utilisateur n'a pas l'autorisation d'exécuter l'écran actif."
+
+msgid "Salir"
+msgstr "Sortir"
+
+msgid "Los campos contraseña nueva y confirmar contraseña no coinciden"
+msgstr "Le nouveau mot de passe et les champs de confirmation du mot de passe ne correspondent pas"
+
+msgid "Clave cambiada correctamente"
+msgstr "Le mot de passe a été changé avec succès"
+
+msgid "No se pudo cambiar el password"
+msgstr "Le mot de passe n'a pas pu être changé"
+
+msgid "La clave actual no es correcta"
+msgstr "La clé actuelle n'est pas correcte"
+
+msgid "Error. No se ha encontrado el menú de la aplicación."
+msgstr "Erreur. Le menu de l'application est introuvable."
+
+msgid "Error cargando menú de la aplicación."
+msgstr "Erreur lors du chargement de menu de l'application."
+
+msgid "Ocultar Menú"
+msgstr "Masquer le menu"
+
+msgid "Mostrar Menú"
+msgstr "Afficher le menu"
+
+msgid "No hay notificaciones"
+msgstr "Aucune notification"
+
+msgid "Se ha detectado una actualización del software. Por favor, cierre la aplicación para proceder a la actualización"
+msgstr "Une mise à jour logicielle a été détectée. Veuillez fermer l'application pour procéder à la mise à jour"
+
+msgid "No tiene permisos para realizar la acción"
+msgstr "Vous n'êtes pas autorisé à effectuer l'action"
+
+msgid "Seleccionar Usuario"
+msgstr "Sélectionnez un utilisateur"
+
+msgid "Usuario"
+msgstr "Utilisateur"
+
+msgid "Nombre"
+msgstr "Nom"
+
+msgid "Seleccionar Grupo"
+msgstr "Sélectionnez un groupe"
+
+msgid "Grupo"
+msgstr "Groupe"
+
+msgid "Debe seleccionar un grupo"
+msgstr "Vous devez sélectionner un groupe"
+
+msgid "Debe seleccionar un usuario"
+msgstr "Vous devez sélectionner un utilisateur"
+
+msgid "El titular que se deseaba añadir ya esta conteido en la tabla de permisos"
+msgstr "Le titulaire à ajouter est déjà contenu dans le tableau des autorisations"
+
+msgid "Ha habido errores al cargar la configuración de dispositivos disponibles. Por favor, revise el archivo devices.xml"
+msgstr "Des erreurs se sont produites lors du chargement de la configuration de périphérique disponible. Veuillez vérifier le fichier devices.xml"
+
+msgid "Aún no se han configurado los dispositivos"
+msgstr "Les périphériques n'ont pas encore été configurés"
+
+msgid "Ha ocurrido un error al inicializar el POS."
+msgstr "Une erreur s'est produite lors de l'initialisation du POS."
+
+msgid "Esta caja está asociada a otro POS. Si continúa, la caja puede quedar desconfigurada. ¿Desea continuar?"
+msgstr "Cette boîte est associée à un autre POS. Si vous continuez, la boîte est peut-être déformée. souhaitez-vous continuer?"
+
+msgid "¿Desea cerrar la aplicación?"
+msgstr "Voulez-vous fermer l'application?"
+
+#, java-format
+msgid "La fecha autorizada para la vigencia de {0} caduca el día {1}. Por favor, solicite una nueva autorización a la entidad competente"
+msgstr "La date d'entrée en vigueur autorisée de {0} expire le {1}. Veuillez demander une nouvelle autorisation à l'entité compétente"
+
+msgid "Lo sentimos, ha ocurrido un error en la petición"
+msgstr "Désolé, une erreur de demande s'est produite"
+
+msgid "El servidor ha tardado demasiado tiempo en responder"
+msgstr "Le serveur a mis trop de temps à répondre"
+
+msgid "No se ha podido conectar con el servidor"
+msgstr "Ne peut se connecter au serveur"
+
+msgid "El campo debe estar en mayúsculas"
+msgstr "Le champ doit être en majuscules"
+
+msgid "El campo debe estar en minúsculas"
+msgstr "Le champ doit être en minuscules"
+
+msgid "La fecha introducida no es válida"
+msgstr "La date saisie n'est pas valide"
+
+msgid "La fecha introducida no puede ser una fecha futura"
+msgstr "La date saisie ne peut pas être une date future"
+
+msgid "La fecha introducida no puede ser una fecha pasada"
+msgstr "La date saisie ne peut pas être une date passée"
+
+msgid "El campo no es un número válido."
+msgstr "Le champ n'est pas un nombre valide."
+
+msgid "El campo permite un maximo de {decimales} decimales."
+msgstr "Le champ autorise un maximum de {décimales} décimales."
+
+msgid "El importe introducido no es válido."
+msgstr "Le montant saisi n'est pas valide."
+
+#, java-format
+msgid "El campo permite un máximo de {0} caracteres"
+msgstr "Le champ autorise un maximum de {0} caractères"
+
+msgid "SALDO DISPONIBLE:"
+msgstr "SOLDE DISPONIBLE:"
+
+msgid "COLECTIVO/S:"
+msgstr "COLLECTIF/S:"
+
+msgid "Lote"
+msgstr "Lot"
+
+msgid "¿Necesita el cliente el NIF en el recibo de venta?"
+msgstr "Le client a-t-il besoin du NIF sur le reçu de vente?"
+
+msgid "Sí"
+msgstr "Oui"
+
+msgid "No"
+msgstr "Non"
+
+msgid "INSERTAR NIF DEL CLIENTE"
+msgstr "INSÉRER LE NIF DU CLIENT"
+
+msgid "El documento introducido no es válido. Por favor, introduzca un documento válido."
+msgstr "Le document saisi n'est pas valide. Veuillez saisir un document valide."
+
+msgid "Contrato"
+msgstr "Contrat"
+
+msgid "¿Cómo desea introducir el motivo del cambio de precio a las {0} unidades?"
+msgstr "Comment souhaitez-vous introduire la raison du changement de prix pour les {0} unités?"
+
+msgid "¿Cómo desea introducir el motivo de la devolución a las {0} unidades?"
+msgstr "Comment souhaitez-vous introduire la raison du retour pour les {0} unités?"
+
+msgid "Motivo"
+msgstr "Raison"
+
+msgid "TITULO"
+msgstr "TITRE"
+
+msgid "Por unidad"
+msgstr "Par unité"
+
+msgid "** Promo: {0}"
+msgstr "** Promo : {0}"
+
+msgid "** Promo demarca"
+msgstr "** Promo demarca"
+
+msgid "** Promo: Articulo a canjear por: {0} puntos."
+msgstr "** Promo : Article à échanger contre : {0} points."
+
+msgid "Lote: {0}"
+msgstr "Lot : {0}"
+
+msgid "Fecha Caducidad: "
+msgstr "Date d'expiration : "
+
+# ###### CUPONES ###### -
+msgid "Se selecciono un cupón navision con el valor"
+msgstr "Un coupon navision a été sélectionné avec la valeur"
+
+msgid "¿Está seguro de querer insertarlo en esta venta?"
+msgstr "Êtes-vous sûr de vouloir l'insérer dans cette vente?"
+
+msgid "No se ha encontrado el código indicado como artículo en el sistema \n¿Desea buscarlo en central como un cupón?"
+msgstr "Le code indiqué n'a pas été trouvé comme article dans le système \nVoulez-vous le rechercher dans le central comme un coupon?"
+
+# #### TICKET ENVIO POR CORREO #####
+msgid "Introduzca un correo"
+msgstr "Entrez un email"
+
+msgid "Correo del cliente"
+msgstr "Email du client"
+
+msgid "Enviado ticket por correo electronico a {0}"
+msgstr "Ticket envoyé par email à {0}"
+
+msgid "El cliente tiene el check de ticket digital marcado pero no tiene mail relleno"
+msgstr "Le client a coché le ticket numérique mais n'a pas renseigné l'email."
+
+msgid "El email no contiene un formato correcto"
+msgstr "L'email ne contient pas un format correct"
+
+msgid "El email introducido no coincide con el introducido en el paso previo"
+msgstr "L'email saisi ne correspond pas à celui saisi à l'étape précédente"
+
+msgid "Email para envío de ticket"
+msgstr "Email pour l'envoi du ticket"
+
+msgid "Confirmación Email para envío de ticket"
+msgstr "Confirmation de l'email pour l'envoi du ticket"
+
+msgid "Imprimir Ticket"
+msgstr "Imprimer le ticket"
+
+msgid "Enviar Email"
+msgstr "Envoyer un email"
+
+msgid "Imprimir y Enviar Email"
+msgstr "Imprimer et envoyer un email"
+
+
+## Motivos auditorias
+msgid "El cliente no lo quiere"
+msgstr "Le client ne le veut pas"
+
+msgid "Error de tienda"
+msgstr "Erreur de magasin"
+
+msgid "Error EAN"
+msgstr "Erreur EAN"
+
+msgid "Otros"
+msgstr "Autres"
+
+msgid "Diferente PVP -Etiqueta Linea y TPV"
+msgstr "Différent PVP - Étiquette Ligne et TPV"
+
+msgid "No aplica Oferta"
+msgstr "Aucune offre"
+
+msgid "Precio WEB"
+msgstr "Prix WEB"
+
+msgid "PMG"
+msgstr "PMG"
+
+msgid "OTROS"
+msgstr "AUTRES"
+
+msgid "No lo quiere"
+msgstr "Il ne le veut pas"
+
+msgid "Producto Defectuoso"
+msgstr "Produit défectueux"
+
+msgid "Error de compra en el producto"
+msgstr "Erreur d'achat du produit"
+
+msgid "No salta la oferta"
+msgstr "L'offre ne saute pas"
+
+msgid "No salta cupón descuento"
+msgstr "Le coupon de réduction ne saute pas"
+
+msgid "Gastos de Tienda"
+msgstr "Frais de magasin"
+
+msgid "Gastos limpieza"
+msgstr "Frais de nettoyage"
+
+msgid "Gastos papel"
+msgstr "Frais de papier"
+
+msgid "Gastos Agua empl."
+msgstr "Frais d'eau empl."
+
+msgid "Faltante de arqueo Efectivo"
+msgstr "Manquant de caisse en espèces"
+
+msgid "Sobrante de arqueo Efectivo"
+msgstr "Excédent de caisse en espèces"
+
+msgid "Compensación de caja: Positiva"
+msgstr "Compensation de caisse : Positive"
+
+msgid "Compensación de caja: Negativa"
+msgstr "Compensation de caisse : Négative"
+
+msgid "Gastos de navidad"
+msgstr "Frais de Noël"
+
+## PAGOS
+msgid "ENTREGADO"
+msgstr "RENDU"
+
+msgid "TOTAL"
+msgstr "TOTAL"
+
+msgid "CAMBIO"
+msgstr "MONNAIE"
+
+msgid "PENDIENTE"
+msgstr "EN ATTENTE"
+
+## Lotes
+msgid "Lote y fecha de caducidad"
+msgstr "Lot et date d'expiration"
+
+msgid "Información complementaria medicamento"
+msgstr "Informations complémentaires sur les médicaments"
+
+msgid "Fecha de caducidad"
+msgstr "Date d'expiration"
+
+msgid "Lote (confirmación)"
+msgstr "Lot (confirmation)"
+
+msgid "Introducción manual"
+msgstr "Introduction manuelle"
+
+msgid "Previsualización"
+msgstr "Prévisualisation"
+
+msgid "Datos de la mascota"
+msgstr "Données de l'animal de compagnie"
+
+msgid "Especie"
+msgstr "Espèce"
+
+msgid "Raza"
+msgstr "Race"
+
+msgid "Peso(g)"
+msgstr "Poids (g)"
+
+msgid "Tipo Identificador"
+msgstr "Type d'Identifiant"
+
+msgid "Número Identificador"
+msgstr "Numéro d'Identification"
+
+msgid "No se puede asegurar"
+msgstr "On ne peut pas garantir"
+
+msgid "Macho"
+msgstr "Mâle"
+
+msgid "Hembra"
+msgstr "Femelle"
+
+msgid "Ninguno"
+msgstr "Aucun"
+
+msgid "Cites"
+msgstr "Cites"
+
+msgid "Microchip"
+msgstr "Puce électronique"
+
+msgid "Anilla"
+msgstr "Bague"
+
+msgid "La apertura del visor de PDF no es compatible en este sistema."
+msgstr "L'ouverture du visualiseur PDF n'est pas compatible avec ce système."
+
+msgid "Pagos origen"
+msgstr "Paiements d'origine"
+
+msgid "Solo se pueden consultar los pagos de origen en una devolución."
+msgstr "Vous ne pouvez consulter les paiements d'origine que dans un retour."
+
+msgid "No se puede consultar los pagos de origen en una devolución sin origen."
+msgstr "Vous ne pouvez pas consulter les paiements d'origine dans un retour sans origine."
+
+msgid "FORMA DE PAGO ORIGEN"
+msgstr "MODE DE PAIEMENT D'ORIGINE"
+
+msgid "El importe a devolver por este medio de pago no puede ser superior al de origen"
+msgstr "Le montant à rembourser par ce moyen de paiement ne peut pas être supérieur à celui d'origine"
+
+msgid "El medio de pago seleccionado no permite pagos mixtos."
+msgstr "Le mode de paiement sélectionné n'accepte pas les paiements mixtes."
+
+msgid "El medio de pago seleccionado solo admite pagos integros (total a pagar)."
+msgstr "Le mode de paiement sélectionné n'accepte que les paiements intégraux (total à payer)."
+
+msgid "Ha ocurrido un error al intentar guardar el vale de devolución en tienda"
+msgstr "Une erreur s'est produite lors de la tentative d'enregistrement du bon de retour en magasin"
+
+msgid "No se ha encontrado el vale de devolución con el número de tarjeta indicado"
+msgstr "Le bon de retour avec le numéro de carte indiqué n'a pas été trouvé"
+
+msgid "No se dispone de un código de validación para generar un ATCUD. Revise la configuración."
+msgstr "Il n'y a pas de code de validation pour générer un ATCUD. Vérifiez la configuration."
+
+msgid "El peso supera el límite establecido"
+msgstr "Le poids dépasse la limite établie"
+
+msgid "No se ha encontrado un contador disponible"
+msgstr "Aucun compteur disponible n'a été trouvé"
+
+msgid "Error comprobando configuracion de ATCUD: {0}"
+msgstr "Erreur lors de la vérification de la configuration de l'ATCUD : {0}"
+
+msgid "Impresión de prueba"
+msgstr "Impression de test"
+
+msgid "Cajón de prueba"
+msgstr "Tiroir d'essai"
+
+msgid "Para continuar con la impresión de prueba, por favor asegúrate de haber guardado previamente la configuración y de haber reiniciado el POS. ¿Estás seguro de que deseas proceder con la impresión?"
+msgstr "Pour continuer avec l'impression de test, veuillez vous assurer d'avoir préalablement sauvegardé la configuration et redémarré le POS. Êtes-vous sûr de vouloir continuer l'impression ?"
+
+msgid "unidades"
+msgstr "unités"
+
+msgid "Máximo"
+msgstr "Maximum"
+
+msgid "Has introducido más unidades de este lote de las que hay en el ticket origen"
+msgstr "Vous avez saisi plus d'unités de ce lot que celles figurant sur le ticket d'origine"
+
+msgid "Debe introducir un número de unidades"
+msgstr "Vous devez saisir un nombre d'unités"
+
+msgid "La fecha de caducidad no puede ser anterior a la fecha actual"
+msgstr "La date d'expiration ne peut pas être antérieure à la date actuelle"
+
+msgid "El localizador introducido es demasiado largo y supera el límite de caracteres"
+msgstr "Le localisateur saisi est trop long et dépasse la limite de caractères"
+
+msgid "Existe un ticket sin finalizar. Se tiene que terminar ese ticket antes de poder realizar una devolución."
+msgstr "Il y a un ticket non finalisé. Vous devez terminer ce ticket avant de pouvoir effectuer un retour."
+
+msgid "Existe un ticket guardado con pagos realizados. Se tiene que terminar ese ticket antes de poder realizar una devolución."
+msgstr "Il y a un ticket enregistré avec des paiements effectués. Vous devez terminer ce ticket avant de pouvoir effectuer un retour."
+
+msgid "Se han encontrado nuevas etiquetas de artículos para su impresión"
+msgstr "De nouvelles étiquettes d'articles ont été trouvées pour l'impression"
+
+msgid "Se han encontrado nuevas etiquetas de precios para su impresión"
+msgstr "De nouvelles étiquettes de prix ont été trouvées pour l'impression"
+
+msgid "Se han encontrado nuevas etiquetas de promoción para su impresión"
+msgstr "De nouvelles étiquettes de promotion ont été trouvées pour l'impression"
+
+msgid "El importe a devolver por este medio de pago es superior al de origen"
+msgstr "Le montant à rembourser par ce moyen de paiement est supérieur à celui d'origine"
+
+msgid "El método de pago a devolver supera la cantidad usada en origen. \n¿Está seguro de querer anotar el pago?"
+msgstr "La méthode de paiement à rembourser dépasse le montant utilisé à l'origine. \nÊtes-vous sûr de vouloir enregistrer le paiement?"
+
+msgid "Error al consultar los detalles para la mascota"
+msgstr "Erreur lors de la consultation des détails pour l'animal de compagnie"
+
+msgid "Datos del contrato"
+msgstr "Données du contrat"
+
+msgid "Identificación del Animal"
+msgstr "Identification de l'animal"
+
+msgid "Hay animales sin identificación asignada."
+msgstr "Il y a des animaux sans identification attribuée."
+
+msgid "Información complementaria animal"
+msgstr "Informations complémentaires sur l'animal"
+
+msgid "No se ha asignado identificación animal, la pantalla se cerrará, ¿Está seguro?"
+msgstr "Aucune identification animale n'a été attribuée, l'écran se fermera, êtes-vous sûr?"
+
+msgid "Para poder continuar con la venta de animales es necesario que sea factura completa"
+msgstr "Pour pouvoir continuer la vente d'animaux, il est nécessaire que ce soit une facture complète"
+
+msgid "No existe trazabildad para las mascotas en este almacén"
+msgstr "Il n'y a pas de traçabilité pour les animaux dans cet entrepôt"
+
+msgid "Justifique un motivo"
+msgstr "Justifiez une raison"
+
+msgid "Debe tener un cliente asociado para poder realizar ventas de planes de salud"
+msgstr "Vous devez avoir un client associé pour pouvoir vendre des plans de santé"
+
+msgid "Debe tener un cliente asociado para poder realizar devoluciones de planes de salud"
+msgstr "Vous devez avoir un client associé pour pouvoir effectuer des retours de plans de santé"
+
+msgid "Para poder continuar con la venta de planes de salud es necesario que sea factura completa"
+msgstr "Pour pouvoir continuer la vente de plans de santé, il est nécessaire que ce soit une facture complète"
+
+msgid "El pinpad no está disponible, por favor reinicie el pinpad."
+msgstr "Le pinpad n'est pas disponible, veuillez redémarrer le pinpad."
+
+msgid "No se ha definido la clase de validación para el tipo de documento {0}"
+msgstr "La classe de validation n'a pas été définie pour le type de document {0}"
+
+msgid "No se puede seleccionar este cliente con artículos en la cesta. Para este tipo de cliente debe de introducir primero el cliente con la cesta vacía y luego los artículos."
+msgstr "Il n’est pas possible de sélectionner ce client avec des articles dans le panier. Pour ce type de client, vous devez d’abord introduire le client avec le panier vide, puis les articles."
+
+msgid "No existe una región configurada para este almacén"
+msgstr "Il n'y a pas de région configurée pour cet entrepôt"
+
+msgid "No se puede previsualizar un ticket vacío"
+msgstr "Vous ne pouvez pas prévisualiser un ticket vide"
+
+msgid "Código: {0}"
+msgstr "Code : {0}"
+
+msgid "Contraseña del colaborador"
+msgstr "Mot de passe du collaborateur"
+
+msgid "Contraseña no configurada. Consulte a su administrador."
+msgstr "Mot de passe non configuré. Consultez votre administrateur."
+
+msgid "Debe introducir una contraseña"
+msgstr "Vous devez entrer un mot de passe"
+
+msgid "Contraseña incorrecta"
+msgstr "Mot de passe incorrect"
+
+msgid "Número de tarjeta no encontrado"
+msgstr "Numéro de carte non trouvé"
+
+msgid "Cliente INTERCOMPANY solo puede pagar con TRANSFERENCIA"
+msgstr "Le client INTERCOMPANY ne peut payer qu'avec un VIREMENT"
+
+msgid "Solo se puede realizar una venta INTERCOMPANY con factura completa."
+msgstr "Vous ne pouvez effectuer qu'une vente INTERCOMPANY avec facture complète."
+
+msgid "Su contraseña ha expirado, debe renovarla"
+msgstr "Votre mot de passe a expiré, vous devez le renouveler"
+
+msgid "La contraseña del usuario indicado ha expirado"
+msgstr "Le mot de passe de l'utilisateur spécifié a expiré"
+
+msgid "Lea o escriba el código de barras del vale"
+msgstr "Lisez ou écrivez le code-barres du bon"
+
+msgid "Vale manual ya canjeado"
+msgstr "Bon manuel déjà échangé"
+
+msgid "La cantidad total del ticket a pagar supera el límite máximo permitido de {0}€ para pagos en efectivo"
+msgstr "Le montant total du ticket à payer dépasse la limite maximale autorisée de {0 }€ pour les paiements en espèces"
+
+msgid "No se puede anotar un pago de 0€"
+msgstr "Il est impossible d'enregistrer un paiement de 0€"
+
+msgid "No se puede modificar una línea de un ticket proforma"
+msgstr "Impossible de modifier une ligne d'un ticket proforma"
+
+msgid "No se puede aparcar un ticket de una proforma, anule el ticket"
+msgstr "Impossible de garer un ticket proforma, annulez le ticket"
+
+msgid "No se puede eliminar un registro de una proforma"
+msgstr "Impossible de supprimer un enregistrement d'une proforma"
+
+msgid "No se puede aplicar descuento general a una proforma"
+msgstr "Impossible d'appliquer une remise générale à une proforma"
+
+msgid "No se puede realizar el canjeo de articulos por puntos a un ticket proforma"
+msgstr "Impossible d'échanger des articles contre des points sur un ticket proforma"
+
+msgid "No se puede añadir lineas a la devolución de una proforma"
+msgstr "Impossible d'ajouter des lignes au retour d'une proforma"
+
+msgid "SELECCIÓN DE PROFORMA"
+msgstr "SÉLECTION DE PROFORMA"
+
+msgid "No se puede realizar la venta de medicamentos sin servicios asociados."
+msgstr "Impossible de vendre des médicaments sans services associés."
+
+msgid "No se puede insertar un artículo en una proforma"
+msgstr "Impossible d'insérer un article dans une proforma"
+
+msgid "No se puede modificar el cliente en una proforma"
+msgstr "Impossible de modifier le client dans une proforma"
+
+msgid "No se puede realizar la búsqueda de un cliente en una proforma"
+msgstr "Impossible d'effectuer la recherche d'un client dans une proforma"
+
+msgid "Es necesario corregir el documento en la ficha del cliente, documento no valido."
+msgstr "Il est nécessaire de corriger le document dans la fiche client, document non valide."
+
+msgid "El tipo de documento {0} no esta configurado"
+msgstr "Le type de document {0} n'est pas configuré"
+
+msgid "Cantidad suministrada: {0}"
+msgstr "Quantité fournie : {0}"
+
+msgid "Modificar lote"
+msgstr "Modifier le lot"
+
+msgid "Modificar IDs animal"
+msgstr "Modifier les ID animal"
+
+msgid "Modificar inyectable"
+msgstr "Modifier injectable"
+
+msgid "Información inyectable"
+msgstr "Informations injectables"
+
+msgid "Información complementaria"
+msgstr "Informations complémentaires"
+
+msgid "Cantidad convertida"
+msgstr "Quantité convertie"
+
+msgid "Cantidad suministrada"
+msgstr "Quantité fournie"
+
+msgid "Unidad medida suministrada"
+msgstr "Unité de mesure fournie"
+
+msgid "Hay artículos inyectables sin información asignada."
+msgstr "Il y a des articles injectables sans informations attribuées."
+
+msgid "El código postal del cliente no es válido. Por favor, asegúrese de que el código tenga el formato correcto {0} y solo contenga números."
+msgstr "Le code postal du client n'est pas valide. Veuillez vous assurer que le code respecte le format correct {0} et ne contienne que des chiffres."
+
+msgid "Código postal no válido: debe tener entre 4 y 8 caracteres, con letras, números y un guion (no al inicio ni al final)."
+msgstr "Code postal invalide : il doit comporter entre 4 et 8 caractères, avec des lettres, des chiffres et un tiret (pas au début ni à la fin)."
+
+
+msgid " unidades"
+msgstr " unités"
+
+msgid "No se pueden canjear más artículos de los que hay disponibles en el ticket."
+msgstr "Il n'est pas possible d'échanger plus d'articles que ceux disponibles sur le ticket."
+
+msgid "No se pueden utilizar más puntos de los que tiene disponibles el fidelizado."
+msgstr "Il n'est pas possible d'utiliser plus de points que ceux dont dispose le client fidélisé."
+
+msgid "¿Está seguro que desea canjear por puntos {0}"
+msgstr "Êtes-vous sûr de vouloir échanger contre des points {0}"
+
+msgid "  unidad"
+msgstr "  unité"
+
+msgid " del artículo: {0} - {1}?"
+msgstr " de l'article : {0} - {1} ?"
+
+msgid "Puntos a utilizar por artículo: {0}"
+msgstr "Points à utiliser par article : {0}"
+
+msgid "Puntos a utilizar totales: {0}"
+msgstr "Total des points à utiliser : {0}"
+
+msgid "Artículo canjeado '"
+msgstr "Article échangé '"
+
+msgid "Puntos usados : "
+msgstr "Points utilisés : "
+
+msgid "Precio total canjeado : "
+msgstr "Prix total échangé : "
+
+msgid "Edición artículo por puntos"
+msgstr "Édition de l'article par points"
+
+msgid "Cantidad total disponible"
+msgstr "Quantité totale disponible"
+
+msgid "Cantidad de unidades a canjear"
+msgstr "Quantité d'unités à échanger"
+
+msgid "Puntos disponibles del cliente"
+msgstr "Points disponibles du client"
+
+msgid "Puntos necesarios por unidad"
+msgstr "Points nécessaires par unité"
+
+msgid "Total de puntos necesarios"
+msgstr "Total de points nécessaires"
+
+
+msgid "FACTURACIÓN PROFORMAS AUTOMÁTICAS"
+msgstr "FACTURATION PROFORMAS AUTOMATIQUES"
+
+msgid "Proformas automaticas facturada {0} de "
+msgstr "Proformas automatiques facturées {0} de "
+
+msgid "Esta opción NO abona el importe al Cliente ¿Estás conforme?"
+msgstr "Cette option NE crédite PAS le montant au client. Êtes-vous d'accord ?"
+
+msgid "Seleccione medio de pago"
+msgstr "Sélectionnez le moyen de paiement"
+
+msgid "Imprimir Copia"
+msgstr "Imprimer copie"
+
+msgid "Imprimir cupones"
+msgstr "Imprimer des coupons"
+
+msgid "TÍTULO"
+msgstr "TITRE"
+
+msgid "CÓDIGO"
+msgstr "CODE"
+
+msgid "FECHA INICIO"
+msgstr "DATE DE DÉBUT"
+
+msgid "FECHA FIN"
+msgstr "DATE DE FIN"
+
+msgid "¿Desea quitar el fidelizado?"
+msgstr "Souhaitez-vous supprimer le fidélisé?"
+
+msgid "El cupón {0} está asociado a un cliente fidelizado y no puede utilizarse de forma anónima"
+msgstr "Le coupon {0} est associé à un client fidélisé et ne peut pas être utilisé de manière anonyme"
+
+msgid "Registro no encontrado"
+msgstr "Enregistrement non trouvé"
+
+msgid "El cupón no se activará hasta {0}"
+msgstr "Le coupon ne sera activé qu'à partir du {0}"
+msgid "Reenvío a Evicertia realizado, consulta el estado en el resumen de operaciones."
+msgstr "Réenvoi à Evicertia effectué, consultez l'état dans le résumé des opérations."
+
+msgid "¿Está seguro que desea reenviar a Evicertia?"
+msgstr "Êtes-vous sûr de vouloir renvoyer à Evicertia?"
+
+msgid "Todos los contratos se enviaron correctamente a Evicertia"
+msgstr "Tous les contrats ont été envoyés correctement à Evicertia"
+
+msgid "Contrato Firmado"
+msgstr "Contrat Signé"
+
+msgid "Reenviar Evicertia"
+msgstr "Renvoyer à Evicertia"
+
+msgid "Aparcar ticket"
+msgstr "Mettre le ticket en attente"
+
+msgid "ENVIADO EVICERTIA"
+msgstr "ENVOYÉ À EVICERTIA"
+
+msgid "ENVIADO"
+msgstr "ENVOYÉ"
+
+msgid "Vale"
+msgstr "Bon"
+
+msgid "Vale incorrecto"
+msgstr "Bon incorrect"
+
+msgid ""
+"No se ha encontrado el vale con número {0} \r\n"
+"¿Desea realiza la entrada manual?"
+msgstr "Bon avec numéro {0} non trouvé \r\n"
+"Voulez-vous faire une saisie manuelle ?"
+
+msgid "Vale no encontrado"
+msgstr "Bon non trouvé"
+
+msgid "El vale introducido está dado de baja."
+msgstr "Le bon saisi est annulé."
+msgid "Por favor, selecciona los contratos que quiere reenviar a Evicertia"
+msgstr "Veuillez sélectionner les contrats que vous souhaitez renvoyer à Evicertia"
+
+msgid "¿Está seguro que desea reenviar a Evicertia los contratos seleccionados?"
+msgstr "Êtes-vous sûr de vouloir renvoyer les contrats sélectionnés à Evicertia ?"
+
+msgid "SELECCIONADO"
+msgstr "SÉLECTIONNÉ"
+
+msgid "Resumen Envío Evicertia"
+msgstr "Résumé Envoi Evicertia"
+
+msgid "DESCRIPCIÓN"
+msgstr "DESCRIPTION"
+
+msgid "Por favor, selecciona los contratos que quiere imprimir"
+msgstr "Veuillez sélectionner les contrats que vous souhaitez imprimer"
+
+msgid "Enviando {0} contrato a Evicertia..."
+msgstr "Envoi de {0} contrat à Evicertia..."
+
+msgid "Enviados {0} contratos a Evicertia."
+msgstr "{0} contrats envoyés à Evicertia."
+
+msgid "Reenvío a Evicertia realizado, consulta el estado en la pantalla de resumen"
+msgstr "Renvoi à Evicertia effectué, consultez l'état sur l'écran de résumé"
+
+msgid "Enviado 1 contrato a Evicertia."
+msgstr "1 contrat envoyé à Evicertia."

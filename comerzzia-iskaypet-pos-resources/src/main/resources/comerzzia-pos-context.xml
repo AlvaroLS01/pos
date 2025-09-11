@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+     http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd"
+	 default-lazy-init="true" >
+
+	<!-- this beans must be initialized in lazy-init=false -->
+	<bean id="promocionPuntosBean" class="com.comerzzia.iskaypet.pos.services.promociones.tipos.especificos.IskaypetPromocionPuntosBean" scope="prototype" />
+	<bean id="promocionDescuentoDetalles" class="com.comerzzia.iskaypet.pos.services.promociones.tipos.especificos.IskaypetPromocionDescuentoDetalles" scope="prototype" />
+	<bean id="promocionEscaladoDetalles" class="com.comerzzia.iskaypet.pos.services.promociones.tipos.especificos.IskaypetPromocionEscaladoDetalles" scope="prototype" />
+	<bean id="promocionNxMDetalles" class="com.comerzzia.iskaypet.pos.services.promociones.tipos.especificos.IskaypetPromocionNxMDetalles" scope="prototype" />
+	<bean id="promocionDescuentoCabeceraBean" class="com.comerzzia.iskaypet.pos.services.promociones.tipos.especificos.IskaypetPromocionDescuentoCabeceraBean" scope="prototype" />
+    <bean id="promocionAplicacionCupon" class="com.comerzzia.iskaypet.pos.services.promociones.tipos.especificos.IskaypetPromocionAplicacionCupon" scope="prototype" />
+	<bean id="promocionDescuentoNxMBean" class="com.comerzzia.iskaypet.pos.services.promociones.tipos.especificos.IskaypetPromocionDescuentoNxMBean" scope="prototype" />
+	<bean id="promocionTextoBean" class="com.comerzzia.iskaypet.pos.services.promociones.tipos.especificos.IskaypetPromocionTextoBean" scope="prototype" />
+	<bean id="promocionGeneracionCuponesBean" class="com.comerzzia.iskaypet.pos.services.promociones.tipos.especificos.IskaypetPromocionGeneracionCuponesBean" scope="prototype" />
+    <bean id="filtroLineasPromocion" class="com.comerzzia.iskaypet.pos.services.promociones.filtros.IskaypetFiltroLineasPromocion" scope="prototype" />
+
+	<!-- global services scan -->
+	<context:component-scan base-package="com.comerzzia.core.servicios, com.comerzzia.pos, com.comerzzia.iskaypet.pos"/>
+    <mybatis:scan base-package="com.comerzzia.core.persistencia, com.comerzzia.pos.persistence, com.comerzzia.iskaypet.pos" />
+
+	<!-- custom project scans -->
+	<context:component-scan base-package="com.comerzzia.iskaypet.librerias.utils" />
+	<mybatis:scan base-package="com.comerzzia.iskaypet.librerias.utils" />
+
+	<tx:annotation-driven />
+</beans>

@@ -1,0 +1,98 @@
+<plantilla>
+    <documento>
+
+		#if($imprimirLogo)
+		    <logo alignLogo="center"></logo>
+		#end
+
+		<!-- DATOS EMPRESA	-->
+		<!-- #printIfLinea(${empresa.getDesEmpresa()} "center" "1")-->
+		#foreach($lineaEmpresa in $textUtils.divideLines(${empresa.getDesEmpresa()}, 40))
+		<linea>
+			<texto size="41" align="center" style="1">${lineaEmpresa}</texto>
+		</linea>
+		#end
+
+		#set( $direccionEmpresa = "")
+		#if( $empresa.getDomicilio() && !$empresa.getDomicilio().isEmpty() )
+			#set( $direccionEmpresa = "${direccionEmpresa}${empresa.getDomicilio()}" )
+		#end
+		#if( $empresa.getCp() && !$empresa.getCp().isEmpty() )
+			#set( $direccionEmpresa = "${direccionEmpresa} ${empresa.getCp()}" )
+		#end
+		#if( $empresa.getPoblacion() && !$empresa.getPoblacion().isEmpty() )
+			#set( $direccionEmpresa = "${direccionEmpresa} - ${empresa.getPoblacion()}" )
+		#end
+
+		#foreach($lineaDireccionEmpresa in $textUtils.divideLines(${direccionEmpresa}, 54))
+		<linea>
+			<texto size="55" align="center" fontsize="4">${lineaDireccionEmpresa}</texto>
+		</linea>
+		#end
+
+		#set($registroNIPC = "Registrada na conservatoria do registro comercial al de Entroncamento, sob o NIPC: ${empresa.getCif()}")
+		#foreach($lineaNIPC in $textUtils.divideLines(${registroNIPC}, 54))
+		<linea>
+			<texto size="55" align="center" fontsize="4">${lineaNIPC}</texto>
+		</linea>
+		#end
+
+		#if (${uidActividad.contains("KIWOKO_PT")})
+		<linea>
+			<texto size="55" align="center" fontsize="4">Capital social: 100.000 EUR</texto>
+		</linea>
+		#end
+
+		#if (${uidActividad.contains("TIENDA_ANIMAL_PT")})
+		<linea>
+			<texto size="55" align="center" fontsize="4">Capital social: 3.000 EUR</texto>
+		</linea>
+		#end
+
+		<linea>
+			<texto size="55" align="center" fontsize="4">ATCUD: TESTE</texto>
+		</linea>
+
+		<linea><texto size="41" align="center">-----------------------------------------</texto></linea>
+
+		<!-- DATOS TIENDA	-->
+		#printIfLinea(${tienda.getDesAlmacen()} "center" "1")
+
+		#set( $direccionTienda = "")
+		#if( $tienda.getDomicilio() && !$tienda.getDomicilio().isEmpty() )
+			#set( $direccionTienda = "${direccionTienda}${tienda.getDomicilio()}" )
+		#end
+		#if( $tienda.getCp() && !$tienda.getCp().isEmpty() )
+			#set( $direccionTienda = "${direccionTienda} ${tienda.getCp()}" )
+		#end
+		#if( $tienda.getPoblacion() && !$tienda.getPoblacion().isEmpty() )
+			#set( $direccionTienda = "${direccionTienda} - ${tienda.getPoblacion()}" )
+		#end
+		#if( $tienda.getTelefono1() && !$tienda.getTelefono1().isEmpty() )
+			#set( $direccionTienda = "${direccionTienda} ${tienda.getTelefono1()}" )
+		#end
+		#foreach($lineaDireccionTienda in $textUtils.divideLines(${direccionTienda}, 54))
+		<linea>
+			<texto size="55" align="center" fontsize="4">${lineaDireccionTienda}</texto>
+		</linea>
+		#end
+
+		<linea><texto size="41" align="center">-----------------------------------------</texto></linea>
+
+		<linea><texto size="41" align="center">ESTA É UMA IMPRESSÃO DE TESTE</texto></linea>
+
+
+		<linea><texto size="41" align="center">-----------------------------------------</texto></linea>
+
+		<codbar type="QR">123456</codbar>
+		<codbar align="center" tipo-leyenda="2" >123456</codbar>
+
+		<linea><texto></texto></linea>
+		#if($imprimirLogo)
+			<linea><texto></texto></linea>
+			<linea><texto></texto></linea>
+			<linea><texto></texto></linea>
+		#end
+		<corte></corte>
+	</documento>
+</plantilla>

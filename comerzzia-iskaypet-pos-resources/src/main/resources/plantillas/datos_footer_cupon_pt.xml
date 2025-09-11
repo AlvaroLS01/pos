@@ -1,0 +1,41 @@
+<!--Esta plantilla usa un parámetro $imprimirDatosFacturacion que no llega desde el POS. Se debe asignar como (con un solo corchete): ##set( $imprimirDatosFacturacion = true )
+-->
+<plantilla>
+
+	<linea><texto size="47" style="2"> </texto></linea>
+
+	#foreach($lineaEmpresa in $textUtils.divideLines(${ticket.getCabecera().getEmpresa().getDesEmpresa()}, 40))
+	<linea>
+		<texto size="40" align="center" style="1">${lineaEmpresa}</texto>
+	</linea>
+	#end
+
+	#foreach($lineaDireccion in $textUtils.divideLines(${ticket.getCabecera().getEmpresa().getDomicilio().trim()}, 46))
+		<linea>
+			<texto size="47" align="center">${lineaDireccion}</texto>
+		</linea>
+	#end
+
+
+	#printIfLinea("${ticket.getCabecera().getEmpresa().getCp()} - ${ticket.getCabecera().getEmpresa().getPoblacion()}" "center")
+
+	#foreach($lineaNIPC in $textUtils.divideLines("Registada na conservatória do registo comercial do Entroncamento, sob o", 46))
+	<linea>
+		<texto size="47" align="center" style="1">${lineaNIPC}</texto>
+	</linea>
+	#end
+	#printIfLineaEtiqueta("NIPC" ${ticket.getCabecera().getEmpresa().getCif()} "center")
+
+	#if (${ticket.getCabecera().getUidActividad().contains("KIWOKO_PT")})
+		#printIfLineaEtiqueta("Capital social: " "100.000 EUR" "center")
+	#end
+
+	#if (${ticket.getCabecera().getUidActividad().contains("TIENDA_ANIMAL_PT")})
+		#printIfLineaEtiqueta("Capital social: " "3.000 EUR" "center")
+	#end
+
+	#if(${ticket.getCabecera().getFiscalData().getProperty("ATCUD")})
+		#printIfLineaEtiqueta("ATCUD: " ${ticket.getCabecera().getFiscalData().getProperty("ATCUD").getValue()} "center")-->
+	#end
+
+</plantilla>

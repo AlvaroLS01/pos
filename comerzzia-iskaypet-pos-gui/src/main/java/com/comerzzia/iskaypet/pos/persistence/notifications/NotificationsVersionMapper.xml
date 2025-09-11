@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comerzzia.iskaypet.pos.persistence.notifications.NotificationsVersionMapper">
+  <resultMap id="BaseResultMap" type="com.comerzzia.iskaypet.pos.persistence.notifications.NotificationsVersion">
+    <id column="ACTIVITY_UID" jdbcType="VARCHAR" property="activityUid" />
+    <id column="NOTIFICATION_UID" jdbcType="VARCHAR" property="notificationUid" />
+    <result column="MSG" jdbcType="VARCHAR" property="msg" />
+    <result column="VIEWED" jdbcType="CHAR" property="viewed" />
+    <result column="NOTIFICATION_DATE" jdbcType="TIMESTAMP" property="notificationDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ACTIVITY_UID, NOTIFICATION_UID, MSG, VIEWED, NOTIFICATION_DATE
+  </sql>
+  <select id="selectByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.notifications.NotificationsVersionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_notifications_version_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.comerzzia.iskaypet.pos.persistence.notifications.NotificationsVersionKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from x_notifications_version_tbl
+    where ACTIVITY_UID = #{activityUid,jdbcType=VARCHAR}
+      and NOTIFICATION_UID = #{notificationUid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.iskaypet.pos.persistence.notifications.NotificationsVersionKey">
+    delete from x_notifications_version_tbl
+    where ACTIVITY_UID = #{activityUid,jdbcType=VARCHAR}
+      and NOTIFICATION_UID = #{notificationUid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.notifications.NotificationsVersionExample">
+    delete from x_notifications_version_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.iskaypet.pos.persistence.notifications.NotificationsVersion">
+    insert into x_notifications_version_tbl (ACTIVITY_UID, NOTIFICATION_UID, MSG, 
+      VIEWED, NOTIFICATION_DATE)
+    values (#{activityUid,jdbcType=VARCHAR}, #{notificationUid,jdbcType=VARCHAR}, #{msg,jdbcType=VARCHAR}, 
+      #{viewed,jdbcType=CHAR}, #{notificationDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.iskaypet.pos.persistence.notifications.NotificationsVersion">
+    insert into x_notifications_version_tbl
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="activityUid != null">
+        ACTIVITY_UID,
+      </if>
+      <if test="notificationUid != null">
+        NOTIFICATION_UID,
+      </if>
+      <if test="msg != null">
+        MSG,
+      </if>
+      <if test="viewed != null">
+        VIEWED,
+      </if>
+      <if test="notificationDate != null">
+        NOTIFICATION_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="activityUid != null">
+        #{activityUid,jdbcType=VARCHAR},
+      </if>
+      <if test="notificationUid != null">
+        #{notificationUid,jdbcType=VARCHAR},
+      </if>
+      <if test="msg != null">
+        #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="viewed != null">
+        #{viewed,jdbcType=CHAR},
+      </if>
+      <if test="notificationDate != null">
+        #{notificationDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.iskaypet.pos.persistence.notifications.NotificationsVersionExample" resultType="java.lang.Long">
+    select count(*) from x_notifications_version_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update x_notifications_version_tbl
+    <set>
+      <if test="record.activityUid != null">
+        ACTIVITY_UID = #{record.activityUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.notificationUid != null">
+        NOTIFICATION_UID = #{record.notificationUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.msg != null">
+        MSG = #{record.msg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.viewed != null">
+        VIEWED = #{record.viewed,jdbcType=CHAR},
+      </if>
+      <if test="record.notificationDate != null">
+        NOTIFICATION_DATE = #{record.notificationDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update x_notifications_version_tbl
+    set ACTIVITY_UID = #{record.activityUid,jdbcType=VARCHAR},
+      NOTIFICATION_UID = #{record.notificationUid,jdbcType=VARCHAR},
+      MSG = #{record.msg,jdbcType=VARCHAR},
+      VIEWED = #{record.viewed,jdbcType=CHAR},
+      NOTIFICATION_DATE = #{record.notificationDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.iskaypet.pos.persistence.notifications.NotificationsVersion">
+    update x_notifications_version_tbl
+    <set>
+      <if test="msg != null">
+        MSG = #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="viewed != null">
+        VIEWED = #{viewed,jdbcType=CHAR},
+      </if>
+      <if test="notificationDate != null">
+        NOTIFICATION_DATE = #{notificationDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ACTIVITY_UID = #{activityUid,jdbcType=VARCHAR}
+      and NOTIFICATION_UID = #{notificationUid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.iskaypet.pos.persistence.notifications.NotificationsVersion">
+    update x_notifications_version_tbl
+    set MSG = #{msg,jdbcType=VARCHAR},
+      VIEWED = #{viewed,jdbcType=CHAR},
+      NOTIFICATION_DATE = #{notificationDate,jdbcType=TIMESTAMP}
+    where ACTIVITY_UID = #{activityUid,jdbcType=VARCHAR}
+      and NOTIFICATION_UID = #{notificationUid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.comerzzia.iskaypet.pos.persistence.notifications.NotificationsVersionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_notifications_version_tbl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectDistinctMsg" parameterType="map" resultMap="BaseResultMap">
+  	select distinct ACTIVITY_UID, MSG ,VIEWED, NOTIFICATION_UID
+	from x_notifications_version_tbl 
+    where ACTIVITY_UID = #{activityUid,jdbcType=VARCHAR}
+    	and VIEWED = 'N'
+    ORDER BY NOTIFICATION_DATE LIMIT 99
+  </select>
+  <select id="selectMsgDistinct" parameterType="map" resultMap="BaseResultMap">
+  	select distinct ACTIVITY_UID, MSG ,VIEWED
+	from x_notifications_version_tbl 
+    where ACTIVITY_UID = #{activityUid,jdbcType=VARCHAR}
+    	and VIEWED = 'N'
+    ORDER BY NOTIFICATION_DATE LIMIT 99
+  </select>
+  
+</mapper>
