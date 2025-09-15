@@ -44,6 +44,8 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
@@ -403,20 +405,34 @@ public class IskaypetTicketService extends TicketsService {
 
 
 
-	@Override
-	public synchronized void registrarTicket(Ticket ticket, TipoDocumentoBean tipoDocumento, boolean procesarTicket) throws TicketsServiceException {
-		log.debug("registrarTicket() - Registrando ticket con id: " + ticket.getIdTicket() + ", total entregado de: " + ticket.getCabecera().getTotales().getEntregadoAsString() + " y un total a pagar de: " + ticket.getCabecera().getTotales().getTotalAPagar());
-		log.debug("registrarTicket() - Cantidad total de líneas: " + ticket.getLineas().size());
-		try {
-			for (Object obj : ticket.getPagos()) {
-				IPagoTicket pago = (IPagoTicket) obj;
-				log.debug("registrarTicket() - Pago del ticket con medio de pago: " + pago.getDesMedioPago() + " y un importe de: " + pago.getImporte());
-			}
-		}
-		catch (Exception e) {
-			log.error("registrarTicket() - Error al recorrer los pagos del ticket" + e.getMessage(), e);
-		}
-		super.registrarTicket(ticket, tipoDocumento, procesarTicket);
-	}
+        @Override
+        @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+        public synchronized void registrarTicket(Ticket ticket, TipoDocumentoBean tipoDocumento, boolean procesarTicket) throws TicketsServiceException {
+                log.debug("registrarTicket() - Registrando ticket con id: " + ticket.getIdTicket() + ", total entregado de: " + ticket.getCabecera().getTotales().getEntregadoAsString() + " y un total a pagar de: " + ticket.getCabecera().getTotales().getTotalAPagar());
+                log.debug("registrarTicket() - Cantidad total de líneas: " + ticket.getLineas().size());
+
+                BigDecimal totalAPagar = ticket.getCabecera().getTotales().getTotalAPagar();
+                if (ticket.getLineas().isEmpty()
+                                || (ticket.getPagos().isEmpty() && totalAPagar.compareTo(BigDecimal.ZERO) != 0)) {
+                        throw new IllegalStateException("El ticket debe contener líneas y pagos");
+                }
+
+                BigDecimal totalEntregado = ticket.getCabecera().getTotales().getEntregado();
+                if (totalEntregado.compareTo(totalAPagar) < 0) {
+                        throw new IllegalStateException("El total entregado es inferior al total a pagar");
+                }
+
+                try {
+                        for (Object obj : ticket.getPagos()) {
+                                IPagoTicket pago = (IPagoTicket) obj;
+                                log.debug("registrarTicket() - Pago del ticket con medio de pago: " + pago.getDesMedioPago() + " y un importe de: " + pago.getImporte());
+                        }
+                        super.registrarTicket(ticket, tipoDocumento, procesarTicket);
+                }
+                catch (Exception e) {
+                        log.error("registrarTicket() - Error al registrar el ticket", e);
+                        throw e;
+                }
+        }
 
 }
