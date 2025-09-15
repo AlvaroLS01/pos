@@ -88,7 +88,6 @@ import com.comerzzia.pos.services.payments.configuration.PaymentsMethodsConfigur
 import com.comerzzia.pos.services.payments.events.PaymentOkEvent;
 import com.comerzzia.pos.services.payments.events.PaymentsOkEvent;
 import com.comerzzia.pos.services.payments.events.PaymentsSelectEvent;
-import com.comerzzia.pos.services.payments.events.PaymentsErrorEvent;
 import com.comerzzia.pos.services.payments.methods.PaymentMethodManager;
 import com.comerzzia.pos.services.payments.methods.types.BasicPaymentMethodManager;
 import com.comerzzia.pos.services.payments.methods.types.GiftCardManager;
@@ -1553,28 +1552,23 @@ public class IskaypetPagosController extends PagosController {
 		}
 	}
 
-        private void gestionarPagoSipay() {
-                try {
-                        if (StringUtils.isNotBlank(medioPagoSeleccionado.getCodMedioPago()) &&
-                                        SipayConstants.MANAGER_CONTROL_CLASS.equals(medioPagoSeleccionado.getClaseControl()) &&
-                                        BigDecimalUtil.isIgualACero(ticketManager.getTicket().getTotales().getPendiente()) &&
-                                        !ticketManager.getTicket().getPagos().isEmpty()) {
-                                if (ticketManager instanceof IskaypetTicketManager &&
-                                                ((IskaypetTicketManager) ticketManager).isPaymentError()) {
-                                        return;
-                                }
-                                aceptar();
-                        }
-                }
-                catch (Exception e) {
-                        log.error("gestionarPagoSipay() - " + e.getMessage());
-                        VentanaDialogoComponent.crearVentanaError(e.getMessage(), getStage());
-                }
-        }
+	private void gestionarPagoSipay() {
+		try {
+			if (StringUtils.isNotBlank(medioPagoSeleccionado.getCodMedioPago()) &&
+					SipayConstants.MANAGER_CONTROL_CLASS.equals(medioPagoSeleccionado.getClaseControl()) &&
+					BigDecimalUtil.isIgualACero(ticketManager.getTicket().getTotales().getPendiente())) {
+				aceptar();
+			}
+		}
+		catch (Exception e) {
+			log.error("gestionarPagoSipay() - " + e.getMessage());
+			VentanaDialogoComponent.crearVentanaError(e.getMessage(), getStage());
+		}
+	}
 
 	@Override
-        protected void processPaymentOk(PaymentsOkEvent event) {
-                PaymentOkEvent eventOk = event.getOkEvent();
+	protected void processPaymentOk(PaymentsOkEvent event) {
+		PaymentOkEvent eventOk = event.getOkEvent();
 
 		if (!eventOk.isCanceled()) {
 			addPayment(eventOk);
@@ -1583,26 +1577,15 @@ public class IskaypetPagosController extends PagosController {
 			deletePayment(eventOk);
 		}
 
-                Platform.runLater(() -> {
-                        refrescarDatosPantalla();
-                        // Si se ha pagado a través de Sipay y el importe restante a pagar es 0, se acepta automáticamente
-                        gestionarPagoSipay();
-                        if (!isDevolucion()) {
-                                selectDefaultPaymentMethod();
-                        }
-                });
-        }
-
-        @Override
-        protected void processPaymentError(PaymentsErrorEvent event) {
-                super.processPaymentError(event);
-
-                if (ticketManager instanceof IskaypetTicketManager) {
-                        ((IskaypetTicketManager) ticketManager).setPaymentError(true);
-                }
-
-                enProceso = false;
-        }
+		Platform.runLater(() -> {
+			refrescarDatosPantalla();
+			// Si se ha pagado a través de Sipay y el importe restante a pagar es 0, se acepta automáticamente
+			gestionarPagoSipay();
+			if (!isDevolucion()) {
+				selectDefaultPaymentMethod();
+			}
+		});
+	}
 
 	/*
 	 * ##############################################################################################################
@@ -1663,21 +1646,18 @@ public class IskaypetPagosController extends PagosController {
 			addCustomPaymentData(eventOk, payment);
 		}
 
-                if (paymentMethod.getTarjetaCredito() != null && paymentMethod.getTarjetaCredito()) {
-                        if (eventOk.getExtendedData().containsKey(BasicPaymentMethodManager.PARAM_RESPONSE_TEF)) {
-                                log.debug("addPayment() - Adding extended data.");
-                                DatosRespuestaPagoTarjeta datosRespuestaPagoTarjeta = (DatosRespuestaPagoTarjeta) eventOk.getExtendedData().get(BasicPaymentMethodManager.PARAM_RESPONSE_TEF);
-                                payment.setDatosRespuestaPagoTarjeta(datosRespuestaPagoTarjeta);
-                                for (String key : eventOk.getExtendedData().keySet()) {
-                                        payment.addExtendedData(key, eventOk.getExtendedData().get(key));
-                                }
-                        }
-                }
-                if (ticketManager instanceof IskaypetTicketManager) {
-                        ((IskaypetTicketManager) ticketManager).setPaymentError(false);
-                }
-                ticketManager.guardarCopiaSeguridadTicket();
-        }
+		if (paymentMethod.getTarjetaCredito() != null && paymentMethod.getTarjetaCredito()) {
+			if (eventOk.getExtendedData().containsKey(BasicPaymentMethodManager.PARAM_RESPONSE_TEF)) {
+				log.debug("addPayment() - Adding extended data.");
+				DatosRespuestaPagoTarjeta datosRespuestaPagoTarjeta = (DatosRespuestaPagoTarjeta) eventOk.getExtendedData().get(BasicPaymentMethodManager.PARAM_RESPONSE_TEF);
+				payment.setDatosRespuestaPagoTarjeta(datosRespuestaPagoTarjeta);
+				for (String key : eventOk.getExtendedData().keySet()) {
+					payment.addExtendedData(key, eventOk.getExtendedData().get(key));
+				}
+			}
+		}
+		ticketManager.guardarCopiaSeguridadTicket();
+	}
 
 	@Override
 	public void asociarPagoTarjetaRegalo(Boolean venta, GiftCardBean giftCard) {

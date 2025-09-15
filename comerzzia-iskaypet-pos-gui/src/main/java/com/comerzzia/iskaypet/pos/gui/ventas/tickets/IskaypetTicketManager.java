@@ -199,12 +199,6 @@ public class IskaypetTicketManager extends TicketManager {
     @Autowired
     protected SesionImpuestos sesionImpuestos;
 
-    /**
-     * Indica si se ha producido algún error durante el proceso de pagos.
-     * Si es <code>true</code> no se permitirá registrar el ticket.
-     */
-    private boolean paymentError;
-
     @Autowired
     protected ServicioConfigContadores servicioConfigContadores;
 
@@ -810,14 +804,6 @@ public class IskaypetTicketManager extends TicketManager {
         return ticketConsultaPromociones;
     }
 
-    public boolean isPaymentError() {
-        return paymentError;
-    }
-
-    public void setPaymentError(boolean paymentError) {
-        this.paymentError = paymentError;
-    }
-
     @Override
     public void salvarTicketSeguridad(Stage stage, SalvarTicketCallback callback) {
         new SalvarTicketSeguridadIskaypetTask(stage, callback).start();
@@ -923,25 +909,13 @@ public class IskaypetTicketManager extends TicketManager {
 
             redondearImportesTicket();
 
-            if (isPaymentError()) {
-                throw new TicketsServiceException("Error al registrar los pagos del ticket.");
-            }
-
-            if (CollectionUtils.isEmpty(ticketPrincipal.getLineas())) {
-                throw new TicketsServiceException("El ticket no contiene líneas de artículos.");
-            }
-
-            if (CollectionUtils.isEmpty(ticketPrincipal.getPagos())) {
-                throw new TicketsServiceException("El ticket no contiene medios de pago.");
-            }
-
-            confirmarPagosTarjeta(pagosAutorizados, stage);
-
             // boolean processTicket = esDevolucion || esFacturacionVentaCredito ||
             // !ticketPrincipal.getCuponesAplicados().isEmpty();
             boolean processTicket = false;
 
             ticketsService.registrarTicket((Ticket) ticketPrincipal, documentoActivo, processTicket);
+
+            confirmarPagosTarjeta(pagosAutorizados, stage);
 
             return null;
         }
@@ -2920,9 +2894,8 @@ public class IskaypetTicketManager extends TicketManager {
 
     @Override
     public void inicializarTicket() throws DocumentoException, PromocionesServiceException {
-        mostrarTrazaReducida();
+    	mostrarTrazaReducida();
         super.inicializarTicket();
-        paymentError = false;
     }
 
     public void mostrarTrazaReducida() {
