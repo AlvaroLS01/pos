@@ -78,7 +78,6 @@ import com.comerzzia.pos.persistence.tickets.datosfactura.DatosFactura;
 import com.comerzzia.pos.persistence.tiposIdent.TiposIdentBean;
 import com.comerzzia.pos.services.core.documentos.DocumentoException;
 import com.comerzzia.pos.services.core.documentos.Documentos;
-import com.comerzzia.pos.services.payments.events.PaymentErrorEvent;
 import com.comerzzia.pos.services.core.tiposIdent.TiposIdentNotFoundException;
 import com.comerzzia.pos.services.core.tiposIdent.TiposIdentService;
 import com.comerzzia.pos.services.core.tiposIdent.TiposIdentServiceException;
@@ -88,8 +87,6 @@ import com.comerzzia.pos.services.payments.configuration.PaymentMethodConfigurat
 import com.comerzzia.pos.services.payments.configuration.PaymentsMethodsConfiguration;
 import com.comerzzia.pos.services.payments.events.PaymentOkEvent;
 import com.comerzzia.pos.services.payments.events.PaymentsOkEvent;
-import com.comerzzia.pos.services.payments.events.PaymentsErrorEvent;
-import com.comerzzia.pos.services.payments.events.PaymentsCompletedEvent;
 import com.comerzzia.pos.services.payments.events.PaymentsSelectEvent;
 import com.comerzzia.pos.services.payments.methods.PaymentMethodManager;
 import com.comerzzia.pos.services.payments.methods.types.BasicPaymentMethodManager;
@@ -160,9 +157,7 @@ import static com.comerzzia.pos.gui.ventas.tickets.pagos.cambioPagos.VentanaCamb
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class IskaypetPagosController extends PagosController {
 
-        protected Logger log = Logger.getLogger(getClass());
-
-       private PaymentErrorEvent ultimoErrorPago;
+	protected Logger log = Logger.getLogger(getClass());
 
 	public static final String MEDIOS_PAGOS_SIN_AUTORIZACION = "X_POS.MEDIOS_PAGOS_SIN_AUTORIZACION";
 	public static final String MEDIOS_PAGOS_MOSTRAR_CAMBIO = "X_POS.MEDIOS_PAGOS_MOSTRAR_CAMBIO";
@@ -1571,49 +1566,26 @@ public class IskaypetPagosController extends PagosController {
 		}
 	}
 
-        @Override
-        protected void processPaymentOk(PaymentsOkEvent event) {
-                PaymentOkEvent eventOk = event.getOkEvent();
-               if (!eventOk.isCanceled()) {
-                       addPayment(eventOk);
-               } else {
-                       deletePayment(eventOk);
-               }
+	@Override
+	protected void processPaymentOk(PaymentsOkEvent event) {
+		PaymentOkEvent eventOk = event.getOkEvent();
 
-               if (BigDecimalUtil.isIgualACero(ticketManager.getTicket().getTotales().getPendiente())) {
-                       ultimoErrorPago = null;
-               }
+		if (!eventOk.isCanceled()) {
+			addPayment(eventOk);
+		}
+		else {
+			deletePayment(eventOk);
+		}
 
-               Platform.runLater(() -> {
-                       refrescarDatosPantalla();
-                       // Si se ha pagado a través de Sipay y el importe restante a pagar es 0, se acepta automáticamente
-                       gestionarPagoSipay();
-                       if (!isDevolucion()) {
-                               selectDefaultPaymentMethod();
-                       }
-                       boolean pendiente = !BigDecimalUtil.isIgualACero(ticketManager.getTicket().getTotales().getPendiente());
-                       btAceptar.setDisable(ultimoErrorPago != null || pendiente);
-               });
-       }
-
-       @Override
-       protected void processPaymentError(PaymentsErrorEvent event) {
-               super.processPaymentError(event);
-               ultimoErrorPago = event.getErrorEvent();
-               btAceptar.setDisable(true);
-       }
-
-       @Override
-       protected void finishSale(final PaymentsCompletedEvent event) {
-               super.finishSale(event);
-               boolean pendiente = !BigDecimalUtil.isIgualACero(ticketManager.getTicket().getTotales().getPendiente());
-               if (ultimoErrorPago != null || pendiente) {
-                       btAceptar.setDisable(true);
-                       btCancelar.setDisable(false);
-               } else {
-                       btAceptar.setDisable(false);
-               }
-       }
+		Platform.runLater(() -> {
+			refrescarDatosPantalla();
+			// Si se ha pagado a través de Sipay y el importe restante a pagar es 0, se acepta automáticamente
+			gestionarPagoSipay();
+			if (!isDevolucion()) {
+				selectDefaultPaymentMethod();
+			}
+		});
+	}
 
 	/*
 	 * ##############################################################################################################
