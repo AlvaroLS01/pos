@@ -1069,15 +1069,24 @@ public class IskaypetFacturacionArticulosController extends FacturacionArticulos
 				}
 			}
 		}
-		else {
-			log.warn("abrirPagosSinCupones() - Ticket vacio");
-			VentanaDialogoComponent.crearVentanaAviso(I18N.getTexto("El ticket no contiene lineas de articulo."), this.getStage());
-		}
-	}
+                else {
+                        log.warn("abrirPagosSinCupones() - Ticket vacio");
+                        VentanaDialogoComponent.crearVentanaAviso(I18N.getTexto("El ticket no contiene lineas de articulo."), this.getStage());
+                }
+        }
+
+       @Override
+       protected void crearNuevoTicket() throws PromocionesServiceException, DocumentoException {
+               if (ticketManager.isTicketAbierto()) {
+                       log.debug("crearNuevoTicket() - Ticket en curso, no se crea uno nuevo");
+                       return;
+               }
+               super.crearNuevoTicket();
+       }
 
 
-	@Override
-	public void cancelarVenta() {
+       @Override
+       public void cancelarVenta() {
 		log.debug("cancelarVenta()");
 		try {
 			boolean confirmacion = VentanaDialogoComponent.crearVentanaConfirmacion(I18N.getTexto("¿Está seguro de querer eliminar todas las líneas del ticket?"), getStage());
