@@ -677,25 +677,26 @@ public class ByLCajasService extends CajasService {
 	        catch (PaisNotFoundException | PaisServiceException e) {
 	            log.error("procesarMensajeRecuentosCaja() - No se ha podido consultar la moneda del país durante la creación del documento de recuento cierre de caja : " + e.getMessage(), e);
 	        }
-                recuentoCajaBean.setMoneda(moneda);
-                List<RecuentoBean> recuentosBean = new ArrayList<>();
+	        recuentoCajaBean.setMoneda(moneda);
+	        List<RecuentoBean> recuentosBean = new ArrayList<>();
+	        recuentoCajaBean.setRecuentos(recuentosBean);
 
-                for (CajaLineaRecuentoBean lineaRecuento : caja.getLineasRecuento()) {
-                    MedioPagoBean medioPago = mediosPagosService.getMedioPago(lineaRecuento.getCodMedioPago());
-                    if (!medioPago.getRecuentoAutomaticoCaja()) {
-                        RecuentoBean recuentoBean = new RecuentoBean();
-                        recuentoBean.setUidActividad(sesion.getAplicacion().getUidActividad());
-                        recuentoBean.setCodMedioPago(lineaRecuento.getCodMedioPago());
-                        recuentoBean.setCantidad(lineaRecuento.getCantidad());
-                        recuentoBean.setValor(lineaRecuento.getValor().setScale(2));
-                        recuentosBean.add(recuentoBean);
-                    }
-                }
+	        Integer linea = 0;
+	        for (CajaLineaRecuentoBean lineaRecuento : caja.getLineasRecuento()) {
+	            MedioPagoBean medioPago = mediosPagosService.getMedioPago(lineaRecuento.getCodMedioPago());
+	            if (!medioPago.getRecuentoAutomaticoCaja()) {
+	                RecuentoBean recuentoBean = new RecuentoBean();
+	                recuentoBean.setLinea(linea.toString());
+	                recuentoBean.setUidActividad(sesion.getAplicacion().getUidActividad());
+	                recuentoBean.setCodMedioPago(lineaRecuento.getCodMedioPago());
+	                recuentoBean.setCantidad(lineaRecuento.getCantidad());
+	                recuentoBean.setValor(lineaRecuento.getValor().setScale(2));
+	                recuentosBean.add(recuentoBean);
+	                linea++;
+	            }
+	        }
 
-                List<RecuentoBean> recuentosConsolidados = RecuentoExportConsolidator.consolidate(recuentosBean);
-                recuentoCajaBean.setRecuentos(recuentosConsolidados);
-
-                ticket.setTicket(MarshallUtil.crearXML(recuentoCajaBean));
+	        ticket.setTicket(MarshallUtil.crearXML(recuentoCajaBean));
 	        log.debug("TICKET: " + ticket.getUidTicket() + "\n" + new String(ticket.getTicket(), "UTF-8") + "\n");
 
 	        ticketsService.insertarTicket(sqlSession, ticket, false);
