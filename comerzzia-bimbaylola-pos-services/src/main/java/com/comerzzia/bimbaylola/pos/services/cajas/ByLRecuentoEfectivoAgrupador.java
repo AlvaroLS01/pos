@@ -9,74 +9,70 @@ import java.util.List;
 import com.comerzzia.bimbaylola.pos.persistence.cajas.recuentos.RecuentoBean;
 
 /**
- * Agrupa las líneas de efectivo (codMedioPago "0000") de un recuento antes de
- * exportarlo.
+ * Agrupa las líneas de efectivo (codMedioPago "0000") de un recuento antes de guardarlo
  */
 public final class ByLRecuentoEfectivoAgrupador {
 
-    private static final String COD_MEDIO_PAGO_EFECTIVO = "0000";
+	private static final String COD_MEDIO_PAGO_EFECTIVO = "0000";
 
-    private ByLRecuentoEfectivoAgrupador() {
-        // Clase de utilidades
-    }
+	private ByLRecuentoEfectivoAgrupador() {
 
-    public static List<RecuentoBean> agruparLineas(List<RecuentoBean> recuentos) {
-        if (recuentos == null || recuentos.isEmpty()) {
-            return recuentos == null ? Collections.emptyList() : recuentos;
-        }
+	}
 
-        List<RecuentoBean> resultado = new ArrayList<>();
+	public static List<RecuentoBean> agruparLineas(List<RecuentoBean> recuentos) {
+		if (recuentos == null || recuentos.isEmpty()) {
+			return recuentos == null ? Collections.emptyList() : recuentos;
+		}
 
-        BigDecimal totalEfectivo = BigDecimal.ZERO;
-        BigDecimal totalEfectivoAbono = BigDecimal.ZERO;
-        boolean tieneImporteAbono = false;
-        RecuentoBean primeraLineaEfectivo = null;
-        int posicionLineaEfectivo = -1;
+		List<RecuentoBean> resultado = new ArrayList<>();
 
-        for (RecuentoBean recuento : recuentos) {
-            if (COD_MEDIO_PAGO_EFECTIVO.equals(recuento.getCodMedioPago())) {
-                if (primeraLineaEfectivo == null) {
-                    primeraLineaEfectivo = recuento;
-                    posicionLineaEfectivo = resultado.size();
-                }
+		BigDecimal totalEfectivo = BigDecimal.ZERO;
+		BigDecimal totalEfectivoAbono = BigDecimal.ZERO;
+		boolean tieneImporteAbono = false;
+		RecuentoBean primeraLineaEfectivo = null;
+		int posicionLineaEfectivo = -1;
 
-                BigDecimal cantidad = recuento.getCantidad() != null
-                        ? BigDecimal.valueOf(recuento.getCantidad().longValue())
-                        : BigDecimal.ZERO;
-                BigDecimal valor = recuento.getValor() != null ? recuento.getValor() : BigDecimal.ZERO;
-                totalEfectivo = totalEfectivo.add(valor.multiply(cantidad));
+		for (RecuentoBean recuento : recuentos) {
+			if (COD_MEDIO_PAGO_EFECTIVO.equals(recuento.getCodMedioPago())) {
+				if (primeraLineaEfectivo == null) {
+					primeraLineaEfectivo = recuento;
+					posicionLineaEfectivo = resultado.size();
+				}
 
-                BigDecimal valorAbono = recuento.getValorAbono();
-                if (valorAbono != null) {
-                    totalEfectivoAbono = totalEfectivoAbono.add(valorAbono.multiply(cantidad));
-                    tieneImporteAbono = true;
-                }
-            } else {
-                resultado.add(recuento);
-            }
-        }
+				BigDecimal cantidad = recuento.getCantidad() != null ? BigDecimal.valueOf(recuento.getCantidad().longValue()) : BigDecimal.ZERO;
+				BigDecimal valor = recuento.getValor() != null ? recuento.getValor() : BigDecimal.ZERO;
+				totalEfectivo = totalEfectivo.add(valor.multiply(cantidad));
 
-        if (primeraLineaEfectivo != null) {
-            RecuentoBean lineaEfectivoAgrupada = new RecuentoBean();
-            // Reutilizamos el uidActividad de la primera línea de efectivo para mantener
-            // el identificador de actividad esperado por los contratos posteriores.
-            lineaEfectivoAgrupada.setUidActividad(primeraLineaEfectivo.getUidActividad());
-            lineaEfectivoAgrupada.setCodMedioPago(COD_MEDIO_PAGO_EFECTIVO);
-            lineaEfectivoAgrupada.setCantidad(Integer.valueOf(1));
-            lineaEfectivoAgrupada.setValor(totalEfectivo.setScale(2, RoundingMode.HALF_UP));
-            if (tieneImporteAbono) {
-                lineaEfectivoAgrupada.setValorAbono(totalEfectivoAbono.setScale(2, RoundingMode.HALF_UP));
-            }
-            lineaEfectivoAgrupada.setIdD365(primeraLineaEfectivo.getIdD365());
-            lineaEfectivoAgrupada.setIdD365Abono(primeraLineaEfectivo.getIdD365Abono());
+				BigDecimal valorAbono = recuento.getValorAbono();
+				if (valorAbono != null) {
+					totalEfectivoAbono = totalEfectivoAbono.add(valorAbono.multiply(cantidad));
+					tieneImporteAbono = true;
+				}
+			}
+			else {
+				resultado.add(recuento);
+			}
+		}
 
-            resultado.add(posicionLineaEfectivo, lineaEfectivoAgrupada);
-        }
+		if (primeraLineaEfectivo != null) {
+			RecuentoBean lineaEfectivoAgrupada = new RecuentoBean();
+			lineaEfectivoAgrupada.setUidActividad(primeraLineaEfectivo.getUidActividad());
+			lineaEfectivoAgrupada.setCodMedioPago(COD_MEDIO_PAGO_EFECTIVO);
+			lineaEfectivoAgrupada.setCantidad(Integer.valueOf(1));
+			lineaEfectivoAgrupada.setValor(totalEfectivo.setScale(2, RoundingMode.HALF_UP));
+			if (tieneImporteAbono) {
+				lineaEfectivoAgrupada.setValorAbono(totalEfectivoAbono.setScale(2, RoundingMode.HALF_UP));
+			}
+			lineaEfectivoAgrupada.setIdD365(primeraLineaEfectivo.getIdD365());
+			lineaEfectivoAgrupada.setIdD365Abono(primeraLineaEfectivo.getIdD365Abono());
 
-        for (int i = 0; i < resultado.size(); i++) {
-            resultado.get(i).setLinea(String.valueOf(i));
-        }
+			resultado.add(posicionLineaEfectivo, lineaEfectivoAgrupada);
+		}
 
-        return resultado;
-    }
+		for (int i = 0; i < resultado.size(); i++) {
+			resultado.get(i).setLinea(String.valueOf(i));
+		}
+
+		return resultado;
+	}
 }
