@@ -81,9 +81,11 @@ public class ByLTefAdyenCloud extends TefAdyenCloud  implements IFirma{
 	protected Map<String, Object> mapaRespuestas = new HashMap<String, Object>();
 	
 	protected static int contServiceID = 0;
-	protected static String PAYMENTS2 = "PAYMENTS2";
-	
-	protected String payments2;
+        protected static final String PAYMENTS2 = "PAYMENTS2";
+        protected static final String TERMINAL_API_URL = "TERMINAL_API_URL";
+
+        protected String payments2;
+        protected String terminalApiUrl;
 	
 	@Override
 	protected DatosRespuestaPagoTarjeta solicitarDevolucion(DatosPeticionPagoTarjeta request) throws TarjetaException {
@@ -659,12 +661,15 @@ public class ByLTefAdyenCloud extends TefAdyenCloud  implements IFirma{
 			else if (param.equals(AdyenConstans.API_KEY)) {
 				apiKey = config.getParametrosConfiguracion().get(param);
 			}
-			else if (param.equals(AdyenConstans.PAYMENTS)) {
-				payments = config.getParametrosConfiguracion().get(param);
-			}
-			else if (param.equals(PAYMENTS2)) {
-				payments2 = config.getParametrosConfiguracion().get(param);
-			}
+                        else if (param.equals(AdyenConstans.PAYMENTS)) {
+                                payments = config.getParametrosConfiguracion().get(param);
+                        }
+                        else if (param.equals(PAYMENTS2)) {
+                                payments2 = config.getParametrosConfiguracion().get(param);
+                        }
+                        else if (param.equals(TERMINAL_API_URL)) {
+                                terminalApiUrl = config.getParametrosConfiguracion().get(param);
+                        }
 			else if (param.equals(AdyenConstans.MERCHANT_APPLICATION_NAME)) {
 				merchantApplicationName = config.getParametrosConfiguracion().get(param);
 			}
@@ -701,10 +706,12 @@ public class ByLTefAdyenCloud extends TefAdyenCloud  implements IFirma{
 		errorMap.put(ErrorConditionType.UNREACHABLE_HOST, I18N.getTexto("El dispositivo Adyen no puede establecer conexión con el servidor."));
 		errorMap.put(ErrorConditionType.WRONG_PIN, I18N.getTexto("El PIN introducido en el dispositivo Adyen no es correcto."));
 
-		log.debug("cargaConfiguracion() - " + I18N.getTexto(
-		        "Configuración del TEF de Adyen Cloud: " + "\r\n Cliente: " + environment + "\r\n POIID: " + pOIID + " - Protocolo: " + protocol + "\r\n Usuario: " + merchantAccount + " - Moneda: "
-		                + currency + "\r\n Forma de Pago: " + payments + "\r\n Forma de pago 2:" + payments2 +"\r\n Merchant Application: " + "\r\n Nombre: " + merchantApplicationName + " - Versión: " + merchantApplicationVersion
-		                + "\r\n Merchant Device: " + "\r\n Sistema: " + merchantDeviceSystem + " - Referencia: " + merchantDeviceReference + " - Versión: " + merchantDeviceVersion));
+                adyenCloudServices.setTerminalApiEndpoint(StringUtils.trimToNull(terminalApiUrl));
+
+                log.debug("cargaConfiguracion() - " + I18N.getTexto(
+                        "Configuración del TEF de Adyen Cloud: " + "\r\n Cliente: " + environment + "\r\n POIID: " + pOIID + " - Protocolo: " + protocol + "\r\n Usuario: " + merchantAccount + " - Moneda: "
+                                + currency + "\r\n Forma de Pago: " + payments + "\r\n Forma de pago 2:" + payments2 + "\r\n URL API - continente: " + terminalApiUrl + "\r\n Merchant Application: " + "\r\n Nombre: " + merchantApplicationName + " - Versión: " + merchantApplicationVersion
+                                + "\r\n Merchant Device: " + "\r\n Sistema: " + merchantDeviceSystem + " - Referencia: " + merchantDeviceReference + " - Versión: " + merchantDeviceVersion));
 	}
 	
 	@Override
