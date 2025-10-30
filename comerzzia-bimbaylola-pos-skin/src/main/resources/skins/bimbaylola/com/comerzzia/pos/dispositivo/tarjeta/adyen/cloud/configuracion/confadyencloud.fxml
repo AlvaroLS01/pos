@@ -96,20 +96,6 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="620.0">
               <children>
-                <Label prefHeight="30.0" prefWidth="140.0" text="%URL API - continente :">
-                  <HBox.margin>
-                    <Insets left="40.0" fx:id="x1" />
-                  </HBox.margin>
-                </Label>
-                <TextField fx:id="tfTerminalApiUrl" prefWidth="395.0">
-                  <HBox.margin>
-                    <Insets left="10.0" fx:id="x2" />
-                  </HBox.margin>
-                </TextField>
-              </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="620.0">
-              <children>
                 <Label id="lbFormaPagoo" fx:id="lbFormaPago" prefHeight="30.0" prefWidth="140.0" text="%Forma Pago 1 :">
                   <HBox.margin>
                     <Insets left="40.0" fx:id="x1" />

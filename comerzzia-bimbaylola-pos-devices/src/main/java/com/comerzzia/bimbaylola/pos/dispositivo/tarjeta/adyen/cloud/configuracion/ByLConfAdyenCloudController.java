@@ -28,21 +28,20 @@ public class ByLConfAdyenCloudController extends ConfAdyenCloudController{
 	
 	private Logger log = Logger.getLogger(ByLConfAdyenCloudController.class);
 	
-        @FXML
-        protected TextField tfCodFormaPago2, tfDesFormaPago2;
+	@FXML
+	protected TextField tfCodFormaPago2, tfDesFormaPago2;
 	@FXML
 	private Label lbTitle, lbError;
 	@FXML
 	private CheckBox cbClientLive, cbClientTest;
 	@FXML
-        private TextField tfPOIID, tfProtocol, tfMerchantAccount, tfCurrency, tfApiKey, tfTerminalApiUrl, tfCodFormaPago, tfDesFormaPago;
+	private TextField tfPOIID, tfProtocol, tfMerchantAccount, tfCurrency, tfApiKey, tfCodFormaPago, tfDesFormaPago;
 	@FXML
 	private TextField tfMerchantApplicationName, tfMerchantApplicationVersion;
 	@FXML
 	private TextField tfMerchantDeviceSystem, tfMerchantDeviceVersion, tfMerchantDeviceReference;
 	
-        protected static final String PAYMETS2 = "PAYMENTS2";
-        protected static final String TERMINAL_API_URL = "TERMINAL_API_URL";
+	protected static String PAYMETS2 = "PAYMENTS2";
 	
 	@Autowired
 	private MediosPagosService mediosPagosService;
@@ -70,8 +69,7 @@ public class ByLConfAdyenCloudController extends ConfAdyenCloudController{
 		parametrosConfiguracion.put(AdyenConstans.CURRENCY, tfCurrency.getText().trim());
 		parametrosConfiguracion.put(AdyenConstans.PAYMENTS, tfCodFormaPago.getText().trim());
 		parametrosConfiguracion.put(PAYMETS2, tfCodFormaPago2.getText().trim());
-                parametrosConfiguracion.put(AdyenConstans.API_KEY, tfApiKey.getText().trim());
-                parametrosConfiguracion.put(TERMINAL_API_URL, tfTerminalApiUrl.getText().trim());
+		parametrosConfiguracion.put(AdyenConstans.API_KEY, tfApiKey.getText().trim());
 		parametrosConfiguracion.put(AdyenConstans.MERCHANT_APPLICATION_NAME, tfMerchantApplicationName.getText().trim());
 		parametrosConfiguracion.put(AdyenConstans.MERCHANT_APPLICATION_VERSION, tfMerchantApplicationVersion.getText().trim());
 		parametrosConfiguracion.put(AdyenConstans.MERCHANT_DEVICE_SYSTEM, tfMerchantDeviceSystem.getText().trim());
@@ -101,12 +99,9 @@ public class ByLConfAdyenCloudController extends ConfAdyenCloudController{
 			else if (parametro.getKey().equals(AdyenConstans.CURRENCY)) {
 				tfCurrency.setText(parametro.getValue());
 			}
-                        else if (parametro.getKey().equals(AdyenConstans.API_KEY)) {
-                                tfApiKey.setText(parametro.getValue());
-                        }
-                        else if (parametro.getKey().equals(TERMINAL_API_URL)) {
-                                tfTerminalApiUrl.setText(parametro.getValue());
-                        }
+			else if (parametro.getKey().equals(AdyenConstans.API_KEY)) {
+				tfApiKey.setText(parametro.getValue());
+			}
 			else if (parametro.getKey().equals(AdyenConstans.PAYMENTS)) {
 				MedioPagoBean medioPago = mediosPagosService.getMedioPago(parametro.getValue());
 				if (medioPago != null) {
