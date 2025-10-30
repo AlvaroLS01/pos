@@ -1,5 +1,6 @@
 package com.comerzzia.bimbaylola.pos.dispositivo.tarjeta.adyen.cloud.service;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
@@ -17,12 +18,21 @@ import com.google.gson.Gson;
 @Primary
 public class ByLAdyenCloudService extends AdyenCloudService {
 
-	private Logger log = Logger.getLogger(ByLAdyenCloudService.class);
+        private Logger log = Logger.getLogger(ByLAdyenCloudService.class);
+        private String terminalApiEndpoint;
 
-	@Override
-	public TerminalAPIResponse sendRequest(Client client, String tipoMensaje, TerminalAPIRequest peticion) throws AdyenException {
-		TerminalCloudAPI terminalCloudApi = new TerminalCloudAPI(client);
-		/* The words must be in lowercase and the first syllable in uppercase to be able to send it for testing */
+        public void setTerminalApiEndpoint(String terminalApiEndpoint) {
+                this.terminalApiEndpoint = terminalApiEndpoint;
+        }
+
+        @Override
+        public TerminalAPIResponse sendRequest(Client client, String tipoMensaje, TerminalAPIRequest peticion) throws AdyenException {
+                if (StringUtils.isNotBlank(terminalApiEndpoint)) {
+                        client.getConfig().setTerminalApiCloudEndpoint(terminalApiEndpoint);
+                }
+                log.info("Cloud/sendRequest() - Terminal API endpoint configurado: " + client.getConfig().getTerminalApiCloudEndpoint());
+                TerminalCloudAPI terminalCloudApi = new TerminalCloudAPI(client);
+                /* The words must be in lowercase and the first syllable in uppercase to be able to send it for testing */
 		Gson gson = new Gson();
 		String jsonRequest = gson.toJson(peticion);
 		client.setTimeouts(10000, 150000);
