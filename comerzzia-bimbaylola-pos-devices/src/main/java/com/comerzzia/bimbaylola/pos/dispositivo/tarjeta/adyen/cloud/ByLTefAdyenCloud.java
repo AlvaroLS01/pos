@@ -80,14 +80,10 @@ public class ByLTefAdyenCloud extends TefAdyenCloud  implements IFirma{
 	
 	protected Map<String, Object> mapaRespuestas = new HashMap<String, Object>();
 	
-        protected static int contServiceID = 0;
-        protected static final String PAYMENTS2 = "PAYMENTS2";
-        protected static final String TERMINAL_API_URL = "TERMINAL_API_URL";
-        private static final String TERMINAL_API_TEST_URL = "https://terminal-api-test.adyen.com";
-        private static final String TERMINAL_API_LIVE_URL = "https://terminal-api-live.adyen.com";
-
-        protected String payments2;
-        protected String terminalApiUrl;
+	protected static int contServiceID = 0;
+	protected static String PAYMENTS2 = "PAYMENTS2";
+	
+	protected String payments2;
 	
 	@Override
 	protected DatosRespuestaPagoTarjeta solicitarDevolucion(DatosPeticionPagoTarjeta request) throws TarjetaException {
@@ -663,15 +659,12 @@ public class ByLTefAdyenCloud extends TefAdyenCloud  implements IFirma{
 			else if (param.equals(AdyenConstans.API_KEY)) {
 				apiKey = config.getParametrosConfiguracion().get(param);
 			}
-                        else if (param.equals(AdyenConstans.PAYMENTS)) {
-                                payments = config.getParametrosConfiguracion().get(param);
-                        }
-                        else if (param.equals(PAYMENTS2)) {
-                                payments2 = config.getParametrosConfiguracion().get(param);
-                        }
-                        else if (param.equals(TERMINAL_API_URL)) {
-                                terminalApiUrl = StringUtils.trimToNull(config.getParametrosConfiguracion().get(param));
-                        }
+			else if (param.equals(AdyenConstans.PAYMENTS)) {
+				payments = config.getParametrosConfiguracion().get(param);
+			}
+			else if (param.equals(PAYMENTS2)) {
+				payments2 = config.getParametrosConfiguracion().get(param);
+			}
 			else if (param.equals(AdyenConstans.MERCHANT_APPLICATION_NAME)) {
 				merchantApplicationName = config.getParametrosConfiguracion().get(param);
 			}
@@ -708,27 +701,11 @@ public class ByLTefAdyenCloud extends TefAdyenCloud  implements IFirma{
 		errorMap.put(ErrorConditionType.UNREACHABLE_HOST, I18N.getTexto("El dispositivo Adyen no puede establecer conexión con el servidor."));
 		errorMap.put(ErrorConditionType.WRONG_PIN, I18N.getTexto("El PIN introducido en el dispositivo Adyen no es correcto."));
 
-                if (StringUtils.isBlank(terminalApiUrl)) {
-                        Environment resolvedEnvironment = environment != null ? environment : Environment.TEST;
-                        terminalApiUrl = Environment.LIVE.equals(resolvedEnvironment) ? TERMINAL_API_LIVE_URL : TERMINAL_API_TEST_URL;
-                }
-
-                adyenCloudServices.setTerminalApiEndpoint(terminalApiUrl);
-
-                log.debug("cargaConfiguracion() - " + I18N.getTexto(
-                        "Configuración del TEF de Adyen Cloud: " + "\r\n Cliente: " + environment + "\r\n POIID: " + pOIID + " - Protocolo: " + protocol + "\r\n Usuario: " + merchantAccount + " - Moneda: "
-                                + currency + "\r\n Forma de Pago: " + payments + "\r\n Forma de pago 2:" + payments2 + "\r\n URL API - continente: " + terminalApiUrl + "\r\n Merchant Application: " + "\r\n Nombre: " + merchantApplicationName + " - Versión: " + merchantApplicationVersion
-                                + "\r\n Merchant Device: " + "\r\n Sistema: " + merchantDeviceSystem + " - Referencia: " + merchantDeviceReference + " - Versión: " + merchantDeviceVersion));
-        }
-
-        @Override
-        protected void initializeClientAdyenCLoud() throws AdyenException {
-                super.initializeClientAdyenCLoud();
-                if (StringUtils.isNotBlank(terminalApiUrl) && client != null && client.getConfig() != null) {
-                        client.getConfig().setTerminalApiCloudEndpoint(terminalApiUrl);
-                        log.info("initializeClientAdyenCLoud() - URL Request override : " + terminalApiUrl);
-                }
-        }
+		log.debug("cargaConfiguracion() - " + I18N.getTexto(
+		        "Configuración del TEF de Adyen Cloud: " + "\r\n Cliente: " + environment + "\r\n POIID: " + pOIID + " - Protocolo: " + protocol + "\r\n Usuario: " + merchantAccount + " - Moneda: "
+		                + currency + "\r\n Forma de Pago: " + payments + "\r\n Forma de pago 2:" + payments2 +"\r\n Merchant Application: " + "\r\n Nombre: " + merchantApplicationName + " - Versión: " + merchantApplicationVersion
+		                + "\r\n Merchant Device: " + "\r\n Sistema: " + merchantDeviceSystem + " - Referencia: " + merchantDeviceReference + " - Versión: " + merchantDeviceVersion));
+	}
 	
 	@Override
 	public boolean isCodMedPagoAceptado(String medPago) {
