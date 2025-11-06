@@ -856,13 +856,20 @@ public class DinoTicketManager extends TicketManager {
 		boolean esCuponAntiguo = ((DinoCuponesService) cuponesServices).esCuponAntiguo(codArticulo);
 		
 		if(esCuponNuevo) {
-			try {
-				CouponDTO couponDto = ((DinoSesionPromociones) sesionPromociones).validateCoupon(codArticulo);
-				
-				for(CustomerCouponDTO cupon : getCuponesLeidos()) {
-					if(cupon.getCouponCode().equals(codArticulo)) {
-						// A petición de Dinosol, si es un cupón de los nuevos no se puede introducir dos veces en la venta.
-						log.debug("comprobarCupon() - Este cupón ya ha sido introducido en la venta y es un cupón de los nuevos.");
+                        try {
+                                CouponDTO couponDto = ((DinoSesionPromociones) sesionPromociones).validateCoupon(codArticulo);
+
+                                if(couponDto == null) {
+                                        Integer lastStatus = ((DinoSesionPromociones) sesionPromociones).getLastCouponValidationStatus();
+                                        if(lastStatus != null && lastStatus == 400) {
+                                                throw new CuponAplicationException(I18N.getTexto("El cupón ya ha sido redimido."));
+                                        }
+                                }
+
+                                for(CustomerCouponDTO cupon : getCuponesLeidos()) {
+                                        if(cupon.getCouponCode().equals(codArticulo)) {
+                                                // A petición de Dinosol, si es un cupón de los nuevos no se puede introducir dos veces en la venta.
+                                                log.debug("comprobarCupon() - Este cupón ya ha sido introducido en la venta y es un cupón de los nuevos.");
 						throw new CuponAplicationException(I18N.getTexto("Este cupón ya ha sido introducido en la venta actual."));
 					}
 				}
