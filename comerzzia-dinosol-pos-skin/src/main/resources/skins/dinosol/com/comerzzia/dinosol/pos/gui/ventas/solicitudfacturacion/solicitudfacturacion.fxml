@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.tecladonumerico.*?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" minWidth="730.0" opacity="1.0" prefHeight="473.0" prefWidth="730.0" styleClass="contenidosdigitales-window" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.solicitudfacturacion.SolicitudFacturacionController">
+  <children>
+    <HBox prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane minHeight="42.0" prefHeight="600.0" prefWidth="549.0" style="" HBox.hgrow="ALWAYS">
+          <children>
+            <VBox fillWidth="true" prefHeight="62.0" prefWidth="549.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane maxHeight="30.000099999997474" minHeight="30.0" prefHeight="30.0" prefWidth="1024.0" styleClass="titulo-ventana, cabecera-venta" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lbTitulo" alignment="CENTER" maxHeight="30.0" prefHeight="30.0" prefWidth="800.0" styleClass="cabecera-venta" text="Solicitud de Factura" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0" />
+                  </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <children>
+                    <VBox layoutX="0.0" layoutY="-1.0" prefHeight="-1.0" prefWidth="730.0">
+                      <children>
+                        <FlowPane minHeight="-1.0" prefHeight="-1.0" prefWidth="-1.0">
+                          <children>
+                            <Label alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="207.0" styleClass="etiqueta-titulo2" text="%Cod. documento / Localizador">
+                              <FlowPane.margin>
+                                <Insets left="90.0" right="20.0" top="80.0" />
+                              </FlowPane.margin>
+                            </Label>
+                            <TextField fx:id="tfOperacion" alignment="CENTER_LEFT" onKeyReleased="#keyReleased" prefHeight="42.0" prefWidth="320.0">
+                              <FlowPane.margin>
+                                <Insets left="20.0" top="80.0" />
+                              </FlowPane.margin>
+                            </TextField>
+                          </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="-1.0" prefWidth="-1.0">
+                          <children>
+                            <AnchorPane prefHeight="-1.0" prefWidth="-1.0">
+                              <padding>
+                                <Insets bottom="20.0" top="20.0" />
+                              </padding>
+                            </AnchorPane>
+                            <Button fx:id="btAceptar" alignment="CENTER" contentDisplay="CENTER" depthTest="DISABLE" mnemonicParsing="false" onAction="#accionAceptar" prefHeight="73.0" prefWidth="254.0" styleClass="btAceptar" text="%INICIAR SOLICITUD" wrapText="true">
+                              <FlowPane.margin>
+                                <Insets left="370.0" right="50.0" top="50.0" />
+                              </FlowPane.margin>
+                            </Button>
+                          </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="-1.0" prefWidth="-1.0">
+                          <children>
+                            <Label fx:id="lbMensajeError" alignment="CENTER" prefHeight="-1.0" prefWidth="680.0" styleClass="lbError" text="No se ha encontrado ningún ticket con esos datos">
+                              <FlowPane.margin>
+                                <Insets left="70.0" top="30.0" />
+                              </FlowPane.margin>
+                            </Label>
+                          </children>
+                        </FlowPane>
+                      </children>
+                    </VBox>
+                  </children>
+                </AnchorPane>
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../Vistas/Producto/Comerzzia/branches/v4.8/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css" />
+    <URL value="@solicitudfacturacion.css" />
+  </stylesheets>
+</AnchorPane>

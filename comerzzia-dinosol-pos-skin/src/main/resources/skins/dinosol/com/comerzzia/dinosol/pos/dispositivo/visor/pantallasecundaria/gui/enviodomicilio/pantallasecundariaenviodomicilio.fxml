@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.imagenArticulo.*?>
+<?import com.comerzzia.pos.core.gui.componentes.tecladonumerico.*?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="PantallasVentas" maxHeight="-1.0" maxWidth="-1.0" prefHeight="700.0" prefWidth="1024.0" style="" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.dispositivo.visor.pantallasecundaria.gui.enviodomicilio.PantallaSecundariaEnvioDomicilioController">
+  <children>
+    <VBox id="vBox" prefHeight="700.0" prefWidth="-1.0" spacing="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox alignment="CENTER" minHeight="80.0" prefHeight="86.0" prefWidth="1024.0" styleClass="cabecera" VBox.vgrow="NEVER">
+          <children>
+            <AnchorPane minHeight="80.0" prefHeight="80.0" prefWidth="1024.0" styleClass="cabecera, letra" HBox.hgrow="ALWAYS">
+              <children>
+                <Label alignment="CENTER" prefHeight="80.0" prefWidth="1024.0" styleClass="cabecera, letra" text="%Envío a domicilio" textAlignment="LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <AnchorPane prefHeight="80.0" prefWidth="1024.0" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                  <children>
+                    <ImageView fx:id="logoEmpresa" fitHeight="116.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                    <ImageView fitHeight="73.0" fitWidth="540.2" layoutX="0.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="-4.0">
+                      <image>
+                        <Image url="@cabecera-logo.png" />
+                      </image>
+                    </ImageView>
+                  </children>
+                </AnchorPane>
+              </children>
+            </AnchorPane>
+          </children>
+        </HBox>
+        <HBox prefHeight="614.0" prefWidth="1024.0" styleClass="letra">
+          <children>
+            <VBox alignment="TOP_CENTER" prefHeight="73.0" prefWidth="406.0" style="" styleClass="letra">
+              <children>
+                <VBox fx:id="containerFechaDisponibleUno" alignment="TOP_CENTER" prefHeight="73.0" prefWidth="495.0" style="" styleClass="linea-fechas, letra" />
+                <HBox alignment="TOP_CENTER" style="" styleClass="letra">
+                  <VBox fx:id="containerTramoDisponibleUno" alignment="TOP_CENTER" prefHeight="614.0" prefWidth="341.0" style="" styleClass="linea-tramos, letra">
+                    <HBox.margin>
+                      <Insets />
+                    </HBox.margin>
+                  </VBox>
+                </HBox>
+              </children>
+              <HBox.margin>
+                <Insets />
+              </HBox.margin>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="73.0" prefWidth="406.0">
+              <children>
+                <VBox fx:id="containerFechaDisponibleDos" alignment="TOP_CENTER" prefHeight="73.0" prefWidth="495.0" styleClass="linea-fechas" />
+                <HBox alignment="TOP_CENTER">
+                  <VBox fx:id="containerTramoDisponibleDos" alignment="TOP_CENTER" prefHeight="600.0" prefWidth="341.0" styleClass="linea-tramos" />
+                </HBox>
+              </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="73.0" prefWidth="406.0">
+              <children>
+                <VBox fx:id="containerFechaDisponibleTres" alignment="TOP_CENTER" prefHeight="73.0" prefWidth="495.0" styleClass="linea-fechas" />
+                <HBox alignment="TOP_CENTER">
+                  <VBox fx:id="containerTramoDisponibleTres" alignment="TOP_CENTER" prefHeight="614.0" prefWidth="341.0" styleClass="linea-tramos" />
+                </HBox>
+              </children>
+            </VBox>
+          </children>
+          <VBox.margin>
+            <Insets top="20.0" fx:id="x1" />
+          </VBox.margin>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@pantallasecundariaenviodomicilio.css" />
+  </stylesheets>
+</AnchorPane>

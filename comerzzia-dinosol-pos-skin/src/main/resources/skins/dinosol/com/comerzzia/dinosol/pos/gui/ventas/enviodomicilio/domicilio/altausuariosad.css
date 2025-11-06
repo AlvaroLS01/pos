@@ -1,0 +1,15 @@
+.cabecera-venta {
+	-fx-background-color: #85b037;
+	-fx-text-fill: #ffffff;
+    -fx-height: 42px;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.cabecera-offline {
+	-fx-background-color: #c7290a;
+	-fx-text-fill: #ffffff;
+    -fx-height: 42px;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}

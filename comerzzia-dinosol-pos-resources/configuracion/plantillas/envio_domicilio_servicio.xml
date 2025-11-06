@@ -1,0 +1,14 @@
+<plantilla>
+	<documento salida="impresora1" charset="Windows-1252" line-cols="44">
+		#parse("./plantillas/envio_domicilio_cliente.xml")
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>		
+		<linea><texto></texto></linea>	
+		<corte></corte>
+		#parse("./plantillas/envio_domicilio_tienda.xml")
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>		
+		<linea><texto></texto></linea>	
+		<corte></corte>
+	</documento>
+</plantilla>

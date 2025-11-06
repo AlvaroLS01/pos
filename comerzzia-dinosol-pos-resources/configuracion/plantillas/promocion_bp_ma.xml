@@ -1,0 +1,12 @@
+#set($tarjetaBp =  $ticket.getCabecera().buscarTarjeta("BP"))
+#foreach ($promocion in $ticket.getPromociones())
+	#if($promocion.getIdTipoPromocion().intValue() == 1003)
+		#set($promocionBp = $promocion)
+	#end
+#end
+
+#if($promocionBp)
+	#foreach ($lineaTexto in $textUtils.divideLines($promocionBp.getTextoPromocion(), 40, "|"))
+		<linea><texto align="center">$lineaTexto</texto></linea>
+	#end
+#end

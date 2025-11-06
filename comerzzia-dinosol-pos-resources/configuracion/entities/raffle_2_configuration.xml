@@ -1,0 +1,24 @@
+
+<configuracionSorteo>
+    <configuracionSorteoVisor>
+        <textosVisorImagenesSorteos>
+            <textoVisorImagenSorteo id="textoVisorConPremioSinApp"/>
+            <textoVisorImagenSorteo id="textoVisorSinPremioSinApp"/>
+            <textoVisorImagenSorteo id="textoVisorIdentificadoTicketFisico"/>
+            <textoVisorImagenSorteo id="textoVisorIdentificadoTicketDigital"/>
+            <textoVisorImagenSorteo id="textoVisorIncidenciaTecnica"/>
+        </textosVisorImagenesSorteos>
+    </configuracionSorteoVisor>
+    <configuracionSorteoTextoQR>
+        <textosTicketsParticipaciones>
+            <textoTicketParticipacion id="textoTicketSinPremioSinApp"/>
+            <textoTicketParticipacion id="textoTicketConPremioSinApp"/>
+            <textoTicketParticipacion id="textoTicketIdentificadoTicketDigital"/>
+            <textoTicketParticipacion id="textoTicketIdentificadoTicketFisico"/>
+            <textoTicketParticipacion id="textoTicketIncidenciaTecnica"/>
+        </textosTicketsParticipaciones>
+        <enlacesQr>
+            <enlaceQR id="enlaceQr"/>
+        </enlacesQr>
+    </configuracionSorteoTextoQR>
+</configuracionSorteo>

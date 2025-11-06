@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.imagenArticulo.*?>
+<?import com.comerzzia.pos.core.gui.componentes.tecladonumerico.*?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet ../../../../../../../../../../../../../../../../Productos/Comerzzia/branches/4.8/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css?>
+
+<AnchorPane id="AnchorPane" minHeight="147.0" prefHeight="169.0" prefWidth="568.9999000000025" style="&#10;" styleClass="mainFxmlClass, pantalla-detalle" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.solicitudfacturacion.ComprobacionClienteFacturaController">
+  <children>
+    <HBox prefHeight="600.0" prefWidth="800.0" styleClass="linea-negativa, table-cell, table-row-cell, table-view" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane prefHeight="161.0" prefWidth="565.0" style="" HBox.hgrow="ALWAYS">
+          <children>
+            <VBox fillWidth="true" prefHeight="161.0" prefWidth="568.9998779296875" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane maxHeight="30.000099999997474" minHeight="30.0" prefHeight="30.0" prefWidth="1024.0" styleClass="titulo-ventana, cabecera-venta" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lbTitulo" alignment="CENTER" maxHeight="30.0" prefHeight="30.0" prefWidth="800.0" styleClass="cabecera-venta" text="%Introduzca el NIF" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0" />
+                  </children>
+                </AnchorPane>
+                <HBox alignment="CENTER" prefHeight="87.0" prefWidth="569.0">
+                  <children>
+                    <TextField fx:id="tfNif" onKeyReleased="#keyReleased" prefHeight="40.0" prefWidth="476.0" />
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="569.0" spacing="15.0">
+                  <children>
+                    <Button fx:id="btAceptar" mnemonicParsing="false" onAction="#accionAceptar" prefHeight="42.0" prefWidth="115.0" styleClass="btAceptar" text="%Aceptar" />
+                    <Button mnemonicParsing="false" onAction="#accionCancelar" prefHeight="42.0" prefWidth="115.0" styleClass="btCancelar" text="%Cancelar" />
+                  </children>
+                  <padding>
+                    <Insets right="15.0" />
+                  </padding>
+                </HBox>
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../Vistas/Producto/Comerzzia/branches/v4.8/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css" />
+    <URL value="@comprobacionclientefactura.css" />
+  </stylesheets>
+</AnchorPane>

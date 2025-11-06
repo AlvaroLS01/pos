@@ -1,0 +1,7 @@
+.cabecera-devolucion {
+	-fx-text-fill: #0082aa;
+	-fx-background-color: #feee00;
+    -fx-height: 42px;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.imagenArticulo.*?>
+<?import com.comerzzia.pos.core.gui.componentes.tecladonumerico.*?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet ../../../../../../../../../../../../../../../../../../../producto/Comerzzia/branches/v4.8/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css?>
+<?scenebuilder-stylesheet dinopagorow.css?>
+
+<fx:root type="javafx.scene.layout.AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1024.0" minHeight="67.0" minWidth="-1.0" opacity="1.0" prefHeight="67.0" prefWidth="972.0001220703125" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.dispositivo.visor.pantallasecundaria.gui.pagos.DinoPagoRowController">
+  <children>
+    <HBox id="lbImage" fx:id="hbox" fillHeight="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-1.0" prefHeight="79.0" prefWidth="972.0001220703125" spacing="5.0" styleClass="linea-ventana, linea-total" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <VBox minHeight="-1.0" prefHeight="88.0" prefWidth="1024.0">
+          <children>
+            <HBox minHeight="-1.0" prefHeight="60.0" prefWidth="1024.0">
+              <children>
+                <VBox prefHeight="67.0" prefWidth="460.0">
+                  <children>
+                    <Label fx:id="lbFormaPago" alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="427.0" styleClass="linea-ventana-sub" text="FormaPago">
+                      <VBox.margin>
+                        <Insets />
+                      </VBox.margin>
+                    </Label>
+                  </children>
+                  <HBox.margin>
+                    <Insets left="140.0" right="210.0" />
+                  </HBox.margin>
+                </VBox>
+                <VBox prefHeight="54.0" prefWidth="228.0">
+                  <children>
+                    <Label fx:id="lbImportePago" alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="228.0" styleClass="linea-ventana-sub" text="ImportePago">
+                      <VBox.margin>
+                        <Insets left="-140.0" />
+                      </VBox.margin>
+                    </Label>
+                  </children>
+                  <padding>
+                    <Insets left="-20.0" />
+                  </padding>
+                </VBox>
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </HBox>
+  </children>
+</fx:root>

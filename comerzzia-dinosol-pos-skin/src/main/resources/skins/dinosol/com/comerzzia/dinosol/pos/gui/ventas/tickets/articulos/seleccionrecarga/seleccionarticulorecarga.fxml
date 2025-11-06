@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet ../../../../../../../pos/gui/styles/styles.css?>
+
+<AnchorPane id="" maxHeight="-1.0" maxWidth="-1.0" minHeight="267.0" prefHeight="575.0" prefWidth="707.0000999999975" styleClass="mainFxmlClass, pantalla-detalle" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.tickets.articulos.seleccionrecarga.SeleccionArticuloRecargaController">
+  <children>
+    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane minHeight="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="&#10;" styleClass="titulo-ventana">
+          <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="678.0" text="%Recargas" AnchorPane.bottomAnchor="6.26" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.74" />
+          </children>
+        </AnchorPane>
+        <HBox fx:id="hbImporte" alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="625.0001220703125">
+          <children>
+            <TextFieldImporte fx:id="tfImporte" prefHeight="35.0" prefWidth="161.0" />
+            <Label alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="78.0" rotate="0.0" style="" text="%Importe" wrapText="false">
+              <font>
+                <Font size="16.0" fx:id="x1" />
+              </font>
+              <HBox.margin>
+                <Insets left="30.0" right="10.0" />
+              </HBox.margin>
+            </Label>
+          </children>
+          <VBox.margin>
+            <Insets left="120.0" />
+          </VBox.margin>
+        </HBox>
+        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="false" prefHeight="389.0" prefWidth="708.0" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
+          <content>
+            <FlowPane fx:id="fpBotones" alignment="CENTER" hgap="15.0" prefHeight="200.0" prefWidth="200.0" vgap="15.0">
+              <children>
+                <Button id="btCargaTarjeta" fx:id="btPinPrinting" focusTraversable="false" minHeight="36.0" minWidth="39.0" mnemonicParsing="false" onAction="#cargaPinPrinting" prefHeight="76.0" prefWidth="104.0" styleClass="btCargaTarjeta" text="" />
+                <Button id="btCargaTelefonica" fx:id="btRecargaMovil" focusTraversable="false" minHeight="36.0" minWidth="39.0" mnemonicParsing="false" onAction="#cargaRecargaMovil" prefHeight="76.0" prefWidth="104.0" styleClass="btCargaTelefonica" text="" />
+                <Button id="btCargaContenidoDigital" fx:id="btPosaCard" focusTraversable="false" minHeight="36.0" minWidth="39.0" mnemonicParsing="false" onAction="#cargaPosaCard" prefHeight="76.0" prefWidth="104.0" styleClass="btCargaContenidoDigital" text="" />              	
+              </children>
+            </FlowPane>
+          </content>
+        </ScrollPane>
+        <HBox alignment="CENTER_RIGHT" minWidth="-1.0" prefHeight="62.0" prefWidth="626.0" spacing="15.0">
+          <children>
+            <Button fx:id="btVolver" mnemonicParsing="false" onAction="#mostrarBotonesPrincipales" styleClass="btAtras" text="%Volver" />
+            <Button id="btCancelar" focusTraversable="false" font="$x1" minHeight="-1.0" minWidth="-1.0" mnemonicParsing="false" onAction="#accionCancelar" prefHeight="-1.0" prefWidth="-1.0" styleClass="btCancelar" text="%Cancelar">
+              <HBox.margin>
+                <Insets right="15.0" />
+              </HBox.margin>
+            </Button>
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.imagenArticulo.*?>
+<?import com.comerzzia.pos.core.gui.componentes.tecladonumerico.*?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet pantallasecundariapagos.css?>
+<?scenebuilder-stylesheet ../../../../../../../../../../../../../../../../../../producto/Comerzzia/branches/v4.8/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1024.0" style="&#10;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.pos.dispositivo.visor.pantallasecundaria.gui.pagos.PantallaSecundariaPagosController">
+  <children>
+    <VBox fillWidth="true" prefHeight="700.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox alignment="CENTER" minHeight="80.0" prefHeight="86.0" prefWidth="1024.0" styleClass="cabecera" VBox.vgrow="NEVER">
+          <children>
+            <AnchorPane minHeight="80.0" prefHeight="80.0" prefWidth="1024.0" HBox.hgrow="ALWAYS">
+              <children>
+                <Label alignment="CENTER" prefHeight="80.0" prefWidth="1024.0" text="%Pagos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <AnchorPane minHeight="97.99990000000253" prefHeight="97.99990000000253" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <children>
+                    <ImageView fx:id="logoEmpresa" fitHeight="116.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                    <ImageView fitHeight="73.0" fitWidth="540.2" layoutX="0.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@cabecera-logo.png" />
+                      </image>
+                    </ImageView>
+                  </children>
+                </AnchorPane>
+              </children>
+            </AnchorPane>
+          </children>
+        </HBox>
+        <VBox fx:id="containerPagos" fillWidth="true" maxHeight="-1.0" maxWidth="-1.0" minHeight="0.0" prefHeight="295.0" prefWidth="1024.0" VBox.vgrow="ALWAYS" />
+        <HBox alignment="TOP_CENTER" prefHeight="95.0" prefWidth="1024.0" styleClass="wrap-totales">
+          <children>
+            <VBox prefHeight="95.0" prefWidth="369.0001220703125">
+              <children>
+                <Label fx:id="lbTipo" prefHeight="82.0" prefWidth="457.0" styleClass="label-foot" text="lbTipo">
+                  <font>
+                    <Font size="36.0" fx:id="x1" />
+                  </font>
+                  <VBox.margin>
+                    <Insets fx:id="x3" />
+                  </VBox.margin>
+                </Label>
+              </children>
+              <HBox.margin>
+                <Insets top="-5.0" />
+              </HBox.margin>
+            </VBox>
+            <VBox prefHeight="95.0" prefWidth="318.9998779296875">
+              <children>
+                <Label fx:id="lbTotal" alignment="CENTER_RIGHT" font="$x1" prefHeight="82.0" prefWidth="299.0" styleClass="label-foot-negro" text="lbTotal" textAlignment="RIGHT">
+                  <VBox.margin>
+                    <Insets left="15.0" />
+                  </VBox.margin>
+                </Label>
+              </children>
+              <HBox.margin>
+                <Insets top="-5.0" />
+              </HBox.margin>
+            </VBox>
+          </children>
+          <VBox.margin>
+            <Insets top="50.0" />
+          </VBox.margin>
+        </HBox>
+        <VBox minHeight="142.0" prefHeight="206.0" prefWidth="1024.0" styleClass="pie">
+          <children>
+            <HBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="1024.0" styleClass="wrap-importe-estado">
+              <children>
+                <VBox prefHeight="54.0" prefWidth="228.0">
+                  <children>
+                    <Label font="$x1" prefHeight="70.0" prefWidth="218.0" styleClass="label-foot-blanco" text="ENTREGADO">
+                      <VBox.margin>
+                        <Insets top="-10.0" fx:id="x4" />
+                      </VBox.margin>
+                    </Label>
+                  </children>
+                  <padding>
+                    <Insets fx:id="x3" />
+                  </padding>
+                  <HBox.margin>
+                    <Insets right="200.0" fx:id="x2" />
+                  </HBox.margin>
+                </VBox>
+                <VBox alignment="TOP_LEFT" prefHeight="54.0" prefWidth="256.9998779296875">
+                  <children>
+                    <Label fx:id="lbTotalPagado" alignment="CENTER_RIGHT" font="$x1" prefHeight="70.0" prefWidth="257.0" styleClass="label-foot-blanco" text="lbTotalPagado" textAlignment="RIGHT" VBox.margin="$x4" />
+                  </children>
+                </VBox>
+              </children>
+              <VBox.margin>
+                <Insets top="10.0" fx:id="x5" />
+              </VBox.margin>
+            </HBox>
+            <HBox alignment="TOP_CENTER" minHeight="-1.0" prefHeight="60.0" prefWidth="1024.0" styleClass="wrap-importe-estado">
+              <children>
+                <VBox prefHeight="54.0" prefWidth="257.0">
+                  <children>
+                    <Label prefHeight="56.0" prefWidth="228.0" styleClass="label-foot-blanco" text="%PENDIENTE">
+                      <VBox.margin>
+                        <Insets bottom="-20.0" />
+                      </VBox.margin>
+                    </Label>
+                  </children>
+                  <padding>
+                    <Insets fx:id="x3" />
+                  </padding>
+                  <HBox.margin>
+                    <Insets right="200.0" fx:id="x2" />
+                  </HBox.margin>
+                </VBox>
+                <VBox alignment="TOP_LEFT" prefHeight="54.0" prefWidth="228.0">
+                  <children>
+                    <Label fx:id="lbPendiente" alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="228.00009999999747" styleClass="label-foot-blanco" text="lbPendiente" textAlignment="LEFT" />
+                  </children>
+                  <HBox.margin>
+                    <Insets fx:id="x3" />
+                  </HBox.margin>
+                </VBox>
+              </children>
+              <VBox.margin>
+                <Insets top="-10.0" fx:id="x4" />
+              </VBox.margin>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="1024.0" styleClass="wrap-importe-estado" VBox.margin="$x3">
+              <children>
+                <VBox prefHeight="54.0" prefWidth="228.0">
+                  <children>
+                    <Label prefHeight="60.0" prefWidth="228.0" styleClass="label-foot-blanco" text="%CAMBIO">
+                      <VBox.margin>
+                        <Insets fx:id="x3" />
+                      </VBox.margin>
+                    </Label>
+                  </children>
+                  <padding>
+                    <Insets fx:id="x3" />
+                  </padding>
+                  <HBox.margin>
+                    <Insets right="200.0" top="-5.0" fx:id="x6" />
+                  </HBox.margin>
+                </VBox>
+                <VBox alignment="TOP_LEFT" prefHeight="54.0" prefWidth="256.9998779296875" HBox.margin="$x4">
+                  <children>
+                    <Label fx:id="lbCambio" alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="257.0" styleClass="label-foot-blanco" text="lbCambio" textAlignment="LEFT" VBox.margin="$x3" />
+                  </children>
+                </VBox>
+              </children>
+            </HBox>
+          </children>
+          <VBox.margin>
+            <Insets bottom="-4.0" top="-10.0" />
+          </VBox.margin>
+        </VBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@pantallasecundariapagos.css" />
+  </stylesheets>
+</AnchorPane>

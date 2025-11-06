@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<articulos_recargas>
+
+	<recarga_movil>
+		<articulo>1752182</articulo>
+		<articulo>2047447</articulo>
+		<articulo>508339</articulo>
+	</recarga_movil>
+	
+	<pin_printing>
+		<articulo>1173888</articulo>
+		<articulo>1173819</articulo>
+	</pin_printing>
+	
+	<posa_card>
+		<articulo>100062</articulo>
+	</posa_card>
+	
+</articulos_recargas>

@@ -1,0 +1,28 @@
+.cabecera-venta {
+	-fx-background-color: #85b037;
+	-fx-text-fill: #ffffff;
+    -fx-height: 42px;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+.label-importe{
+	-fx-font-size: 12	px;
+}
+.btCargaTelefonica {
+    -fx-background-image: url("recarga_unificada.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 20px center;
+    -fx-padding: 40 40 40 40;
+}
+.btCargaTarjeta {
+	-fx-background-image: url("pinprinting.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: 20px center;
+	-fx-padding: 40 40 40 40;
+}
+.btCargaContenidoDigital {
+   	-fx-background-image: url("posacard.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 20px center;
+    -fx-padding: 40 40 40 40;
+}

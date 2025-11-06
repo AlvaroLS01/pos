@@ -1,19 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.comerzzia.byl</groupId>
-	<artifactId>comerzzia-bimbaylola-pos</artifactId>
-	<version>4.6.14</version>
+	<groupId>com.comerzzia.dinosol.pos</groupId>
+	<artifactId>comerzzia-dinosol-pos</artifactId>
+	<version>${revision}</version>
 	<packaging>pom</packaging>
-	<name>comerzzia-bimbaylola-pos</name>
+	<name>comerzzia-dinosol-pos</name>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<revision>25-SNAPSHOT</revision>
+		<project.scm.url>https://gitlab.des.tier1.es/clientes/dinosol/comerzzia/pos.git</project.scm.url>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.test.skip>true</maven.test.skip>		
-		<cmzVersion>4.6.14</cmzVersion>
-		<bo.webservices.version>4.6.14-SNAPSHOT</bo.webservices.version>
+		<java.version>1.8</java.version>
+		<maven.test.skip>true</maven.test.skip>
+		<czz.version>4.8.0-SNAPSHOT</czz.version>
+		<spring.version>4.1.6.RELEASE</spring.version>
 	</properties>
+
+	<scm>
+		<connection>scm:git:${project.scm.url}</connection>
+		<developerConnection>scm:git:[push=]${project.scm.url}[fetch=]${project.scm.url}</developerConnection>
+		<url>${project.scm.url}</url>
+		<tag>HEAD</tag>
+	</scm>
 
 	<repositories>
 		<repository>
@@ -24,18 +34,27 @@
 			<id>clientes</id>
 			<url>http://software.tier1.es/artifactory/clientes.local/</url>
 		</repository>
-		<repository>
-			<id>tier1</id>
-			<url>http://software.tier1.es/artifactory/tier1-external-libs.local/</url>
-		</repository>
 	</repositories>
 
 	<pluginRepositories>
 		<pluginRepository>
-			<id>artifactory</id>
+			<id>comerzzia</id>
 			<url>http://repo.comerzzia.com/artifactory/comerzzia/</url>
 		</pluginRepository>
 	</pluginRepositories>
+
+	<distributionManagement>
+		<repository>
+			<id>artifactory</id>
+			<name>vm-bugtrac.mpcorporacion.com-releases</name>
+			<url>http://software.tier1.es/artifactory/clientes.local</url>
+		</repository>
+		<snapshotRepository>
+			<id>artifactory</id>
+			<name>vm-bugtrac.mpcorporacion.com-snapshots</name>
+			<url>http://software.tier1.es/artifactory/clientes.local</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<build>
 		<pluginManagement>
@@ -43,7 +62,6 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.3.2</version>
 					<configuration>
 						<encoding>${project.build.sourceEncoding}</encoding>
 						<source>${java.version}</source>
@@ -58,16 +76,31 @@
 						<encoding>${project.build.sourceEncoding}</encoding>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>flatten-maven-plugin</artifactId>
+					<version>1.2.7</version>
+					<executions>
+						<execution>
+							<phase>process-resources</phase>
+							<goals>
+								<goal>flatten</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<updatePomFile>true</updatePomFile>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
 
 	<modules>
-		<module>comerzzia-bimbaylola-pos-util</module>
-		<module>comerzzia-bimbaylola-pos-persistence</module>
-		<module>comerzzia-bimbaylola-pos-services</module>
-		<module>comerzzia-bimbaylola-pos-gui</module>
-		<module>comerzzia-bimbaylola-pos-skin</module>
-		<module>comerzzia-bimbaylola-pos-devices</module>
+		<module>comerzzia-dinosol-pos-util</module>
+		<module>comerzzia-dinosol-pos-persistence</module>
+		<module>comerzzia-dinosol-pos-services</module>
+		<module>comerzzia-dinosol-pos-gui</module>
+		<module>comerzzia-dinosol-pos-skin</module>
 	</modules>
 </project>

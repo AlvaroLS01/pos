@@ -1,0 +1,80 @@
+.cabecera {
+	-fx-background-color: #ffffff;
+}
+.cabecera .label{
+	-fx-text-fill: rgba(0,99,66);
+	-fx-font-size: 31px;
+	-fx-border-color: red, yellow, blue, #0082AA;
+	-fx-border-width: 0 0 1 0;
+}
+.wrap-totales{
+	-fx-background-color: #ffffff;
+	-fx-border-color: rgba(0,99,66);
+	-fx-border-width: 1 1 0 1;
+}
+.wrap-totales .label{
+	-fx-font-size: 60px;
+}
+.wrap-importe-estado .label{
+	-fx-font-size: 35px;
+}
+.wrap-table-formas{
+	-fx-padding: 30px 0 0 0;
+}
+.tbPagos .column-header-background {
+	visibility: hidden;
+	-fx-padding: -1em;
+}
+.tbPagos {
+	-fx-control-inner-background: #ffffff; /* Color Tabla Activa*/
+    -fx-background-color: #ffffff; /* Color Tabla Desactivada*/
+    -fx-border-color: #ffffff; /* Bordes tabla */
+	-fx-table-cell-border-color: #ffffff; /* Bordes tabla */
+	-fx-base: yellow; /* Pulsar encima */
+}
+.table-row-cell:selected .text {
+	-fx-fill: #ffffff;
+	-fx-font-size: 30px;
+}
+.tbPagos .table-row-cell:selected  {
+   -fx-background-color: #0082AA;
+   -fx-font-size: 30px;
+}
+.tbPagos .table-row-cell:odd {
+	-fx-background-color: #EDEDED;
+	-fx-font-size: 30px;
+}
+.tbPagos .table-row-cell:odd .text{
+	-fx-fill: #000000;
+	-fx-font-size: 30px;
+}
+.titular-formasPago .label{
+	-fx-font-size: 20px;
+}
+.importe-entregado {
+	-fx-text-fill: #B0B0B0;
+}
+.importe-total {
+	-fx-text-fill: #0082AA;
+}
+.importe-pendiente {
+	-fx-text-fill: #000000;
+}
+.formaPago .label{
+	-fx-text-fill: #000000;
+}
+.linea-aumento .table-cell{
+    -fx-text-fill: red;
+}
+.label-foot{
+    -fx-text-fill: rgba(0,99,66);
+}
+.label-foot-negro{
+	-fx-text-fill: #000000;
+}
+.label-foot-blanco{
+    -fx-text-fill: #ffffff;
+}
+.pie {
+	-fx-background-color: rgba(0,99,66);
+}

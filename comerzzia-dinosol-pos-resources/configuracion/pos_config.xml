@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Parametros>
+	<!-- ONLINE -->
+	<!-- <tpv> -->
+	<!-- <uid_instancia>DINOSOL</uid_instancia> -->
+	<!-- <uid_actividad>HIPERDINO</uid_actividad> -->
+	<!-- <uid_caja>90036ec5-19b1-4013-b485-8d31a30c6a5d</uid_caja> -->
+	<!-- </tpv> -->
+	<tpv>
+		<uid_instancia>DINOSOL</uid_instancia>
+		<uid_actividad>HIPERDINO</uid_actividad>
+		<uid_caja>90036ec5-19b1-4013-b485-8d31a30c6a5d</uid_caja>
+	</tpv>
+	<!-- DESARROLLO -->
+	<!-- <tpv> -->
+	<!-- <uid_instancia>DINOSOL</uid_instancia> -->
+	<!-- <uid_actividad>HIPERDINO</uid_actividad> -->
+	<!-- <uid_caja>27ce19aa-d325-4861-9286-13bbfa5bc5d2</uid_caja> -->
+	<!-- </tpv> -->
+	<!-- PRE -->
+	<!-- <tpv> -->
+	<!-- <uid_instancia>DINOSOL</uid_instancia> -->
+	<!-- <uid_actividad>HIPERDINO</uid_actividad> -->
+	<!-- <uid_caja>36fe5bb1-5aff-4861-8dab-67da06e985dd</uid_caja> -->
+	<!-- </tpv> -->
+</Parametros>

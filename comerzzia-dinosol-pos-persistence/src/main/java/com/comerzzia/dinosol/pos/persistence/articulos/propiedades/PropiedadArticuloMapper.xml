@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comerzzia.dinosol.pos.persistence.articulos.propiedades.PropiedadArticuloMapper">
+  <resultMap id="BaseResultMap" type="com.comerzzia.dinosol.pos.persistence.articulos.propiedades.PropiedadArticulo">
+    <id column="UID_ACTIVIDAD" jdbcType="VARCHAR" property="uidActividad" />
+    <id column="ID_CLASE" jdbcType="VARCHAR" property="idClase" />
+    <id column="ID_OBJETO" jdbcType="VARCHAR" property="idObjeto" />
+    <id column="PARAMETRO" jdbcType="VARCHAR" property="parametro" />
+    <result column="VALOR" jdbcType="VARCHAR" property="valor" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    UID_ACTIVIDAD, ID_CLASE, ID_OBJETO, PARAMETRO, VALOR
+  </sql>
+  <select id="selectByExample" parameterType="com.comerzzia.dinosol.pos.persistence.articulos.propiedades.PropiedadArticuloExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from D_CLASES_OBJ_PAR_VALORES_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.comerzzia.dinosol.pos.persistence.articulos.propiedades.PropiedadArticuloKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from D_CLASES_OBJ_PAR_VALORES_TBL
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and ID_CLASE = #{idClase,jdbcType=VARCHAR}
+      and ID_OBJETO = #{idObjeto,jdbcType=VARCHAR}
+      and PARAMETRO = #{parametro,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.dinosol.pos.persistence.articulos.propiedades.PropiedadArticuloKey">
+    delete from D_CLASES_OBJ_PAR_VALORES_TBL
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and ID_CLASE = #{idClase,jdbcType=VARCHAR}
+      and ID_OBJETO = #{idObjeto,jdbcType=VARCHAR}
+      and PARAMETRO = #{parametro,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.dinosol.pos.persistence.articulos.propiedades.PropiedadArticuloExample">
+    delete from D_CLASES_OBJ_PAR_VALORES_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.dinosol.pos.persistence.articulos.propiedades.PropiedadArticulo">
+    insert into D_CLASES_OBJ_PAR_VALORES_TBL (UID_ACTIVIDAD, ID_CLASE, ID_OBJETO, 
+      PARAMETRO, VALOR)
+    values (#{uidActividad,jdbcType=VARCHAR}, #{idClase,jdbcType=VARCHAR}, #{idObjeto,jdbcType=VARCHAR}, 
+      #{parametro,jdbcType=VARCHAR}, #{valor,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.dinosol.pos.persistence.articulos.propiedades.PropiedadArticulo">
+    insert into D_CLASES_OBJ_PAR_VALORES_TBL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        UID_ACTIVIDAD,
+      </if>
+      <if test="idClase != null">
+        ID_CLASE,
+      </if>
+      <if test="idObjeto != null">
+        ID_OBJETO,
+      </if>
+      <if test="parametro != null">
+        PARAMETRO,
+      </if>
+      <if test="valor != null">
+        VALOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        #{uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="idClase != null">
+        #{idClase,jdbcType=VARCHAR},
+      </if>
+      <if test="idObjeto != null">
+        #{idObjeto,jdbcType=VARCHAR},
+      </if>
+      <if test="parametro != null">
+        #{parametro,jdbcType=VARCHAR},
+      </if>
+      <if test="valor != null">
+        #{valor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.dinosol.pos.persistence.articulos.propiedades.PropiedadArticuloExample" resultType="java.lang.Long">
+    select count(*) from D_CLASES_OBJ_PAR_VALORES_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update D_CLASES_OBJ_PAR_VALORES_TBL
+    <set>
+      <if test="record.uidActividad != null">
+        UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idClase != null">
+        ID_CLASE = #{record.idClase,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idObjeto != null">
+        ID_OBJETO = #{record.idObjeto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parametro != null">
+        PARAMETRO = #{record.parametro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.valor != null">
+        VALOR = #{record.valor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update D_CLASES_OBJ_PAR_VALORES_TBL
+    set UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      ID_CLASE = #{record.idClase,jdbcType=VARCHAR},
+      ID_OBJETO = #{record.idObjeto,jdbcType=VARCHAR},
+      PARAMETRO = #{record.parametro,jdbcType=VARCHAR},
+      VALOR = #{record.valor,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.dinosol.pos.persistence.articulos.propiedades.PropiedadArticulo">
+    update D_CLASES_OBJ_PAR_VALORES_TBL
+    <set>
+      <if test="valor != null">
+        VALOR = #{valor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and ID_CLASE = #{idClase,jdbcType=VARCHAR}
+      and ID_OBJETO = #{idObjeto,jdbcType=VARCHAR}
+      and PARAMETRO = #{parametro,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.dinosol.pos.persistence.articulos.propiedades.PropiedadArticulo">
+    update D_CLASES_OBJ_PAR_VALORES_TBL
+    set VALOR = #{valor,jdbcType=VARCHAR}
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and ID_CLASE = #{idClase,jdbcType=VARCHAR}
+      and ID_OBJETO = #{idObjeto,jdbcType=VARCHAR}
+      and PARAMETRO = #{parametro,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.comerzzia.dinosol.pos.persistence.articulos.propiedades.PropiedadArticuloExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from D_CLASES_OBJ_PAR_VALORES_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

@@ -1,0 +1,65 @@
+<plantilla>
+	<documento charset="Windows-1252">
+		<linea>
+			<texto></texto>
+		</linea>
+		#if($esCopia)
+		<linea>
+			<texto align="center" size="40">COPIA DINOSOL</texto>
+		</linea>
+		<linea>
+			<texto></texto>
+		</linea>
+		#end
+		<linea > 
+			<texto align="center" size="40">RECARGA DE MÓVIL</texto>
+		</linea>
+		<linea>
+			<texto></texto>
+		</linea>
+		<linea>
+			<texto size="40" align ="left">Ticket de venta: ${documento.getCodTicketOriginal()}</texto>
+		</linea>
+		<linea>
+			<texto size="40" align ="left">Número de operación: ${documento.getIdTicket()}</texto>
+		</linea>
+		<linea>
+			<texto size="40" align ="left">Teléfono Móvil: ${documento.getTelefono()}</texto>
+		</linea>
+		<linea>
+			<texto size="40" align ="left">Fecha de la recarga: ${documento.getFechaStr()}</texto>
+		</linea>
+		<linea>
+			<texto>----------------------------------------</texto>
+		</linea>
+		#foreach ($lineaTexto in $textUtils.divideLines(${documento.getMensaje()}, 40, "\n"))
+			<linea> 
+				 <texto size="40" align="center">${lineaTexto}</texto>
+			</linea>
+		#end
+		<linea>
+			<texto>----------------------------------------</texto>
+		</linea>
+		<linea > 
+			<texto align="left" size="40">Le ha atendido: ${documento.getCajero()}</texto>
+		</linea>
+		
+		<linea > 
+			<texto align="left" size="40">Referencia DISA: ${documento.getCodReferenciaProveedor()}</texto>
+		</linea>
+		
+		<linea> <texto size="40" align="left">                                        </texto> </linea>
+		
+		<codbar type="QR">${documento.getUidTicket()}</codbar>
+		
+		<linea> <texto size="40" align="left">                                        </texto> </linea>
+		<linea> <texto size="40" align="left">                                        </texto> </linea>
+		<linea> <texto size="40" align="left">                                        </texto> </linea>
+		<linea> <texto size="40" align="left">                                        </texto> </linea>
+		<linea> <texto size="40" align="left">                                        </texto> </linea>
+		<linea> <texto size="40" align="left">                                        </texto> </linea>
+		<linea> <texto size="40" align="left">                                        </texto> </linea>
+		
+		<corte></corte>
+	</documento>
+</plantilla>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" minHeight="147.0" prefHeight="380.0" prefWidth="570.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.enviodomicilio.recuperarticket.EnvioDomicilioUsuarioController">
+  <children>
+    <HBox prefHeight="380.0" prefWidth="570.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane minHeight="119.0" prefHeight="380.0" prefWidth="570.0" HBox.hgrow="ALWAYS">
+          <children>
+            <VBox prefHeight="380.0" prefWidth="570.0" styleClass="mainFxmlClass, pantalla-detalle" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane minHeight="30.0" prefHeight="35.0" prefWidth="570.0" styleClass="cabecera-venta" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lbTitulo" alignment="CENTER" prefHeight="35.0" styleClass="cabecera-venta" prefWidth="570.0" text="%Búsqueda de Cliente en Servicio a Domicilio" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  </children>
+                </AnchorPane>
+                <VBox alignment="CENTER" prefHeight="250.0" prefWidth="570.0">
+                  <children>
+                    <HBox alignment="CENTER" prefHeight="60.0" prefWidth="570.0">
+                      <children>
+                        <Label prefWidth="130.0" text="%Número de Tarjeta :">
+                          <HBox.margin>
+                            <Insets right="10.0" fx:id="x1" />
+                          </HBox.margin>
+                        </Label>
+                        <TextField fx:id="tfNumeroTarjeta" onKeyReleased="#keyReleased" prefHeight="40.0" prefWidth="350.0" />
+                      </children>
+                    </HBox>
+                    <HBox alignment="CENTER" prefHeight="60.0" prefWidth="570.0">
+                      <children>
+                        <Label prefWidth="130.0" text="%NIF/NIE :" HBox.margin="$x1" />
+                        <TextField fx:id="tfDNI" onKeyReleased="#keyReleased" prefHeight="40.0" prefWidth="350.0" />
+                      </children>
+                    </HBox>
+                    <HBox alignment="CENTER" prefHeight="60.0" prefWidth="570.0">
+                      <children>
+                        <Label prefWidth="130.0" text="%Nº Teléfono :" HBox.margin="$x1" />
+                        <TextField fx:id="tfTelefono" onKeyReleased="#keyReleased" prefHeight="40.0" prefWidth="350.0" />
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+                <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0">
+                  <children>
+                    <Label fx:id="lbError" text="" />
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="65.0" prefWidth="567.0" spacing="15.0">
+                  <children>
+                    <Button fx:id="bAltaFidelizado" mnemonicParsing="false" onAction="#irAltaFidelizado" prefHeight="42.0" prefWidth="145.0" text="%Nuevo Cliente">
+                      <HBox.margin>
+                        <Insets right="130.0" />
+                      </HBox.margin>
+                    </Button>
+                    <Button mnemonicParsing="false" onAction="#buscarUsuarioSad" prefHeight="42.0" prefWidth="115.0" styleClass="btAceptar" text="%Aceptar" />
+                    <Button mnemonicParsing="false" onAction="#accionCancelar" prefHeight="42.0" prefWidth="115.0" styleClass="btCancelar" text="%Cancelar" />
+                  </children>
+                  <padding>
+                    <Insets right="15.0" />
+                  </padding>
+                </HBox>
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../Vistas/Producto/Comerzzia/branches/v4.8/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/styles/styles.css" />
+    <URL value="@enviodomiciliousuario.css" />
+  </stylesheets>
+</AnchorPane>

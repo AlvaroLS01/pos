@@ -1,0 +1,8 @@
+<ncrPosConfiguration>
+   <authenticationBypass>true</authenticationBypass>
+   <paymentsCodesMapping>
+        <Credit>0002</Credit>
+        <Cash>0000</Cash>
+        <DinoBp>0101</DinoBp>
+    </paymentsCodesMapping>
+</ncrPosConfiguration>

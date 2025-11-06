@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plantilla>
+	<documento>
+		<linea>
+			<texto size="44" align="center">QR DE CAJERO</texto>
+		</linea>
+		<linea><texto></texto></linea>
+		<linea>
+			<texto size="20" align="right">Fecha emisión: </texto><texto align="left">${fechaEmision}</texto>
+		</linea>
+		<linea>
+			<texto size="20" align="right">Cajero autorizador: </texto><texto align="left">${usuarioAutorizador}</texto>
+		</linea>
+		<linea>
+			<texto size="20" align="right">Cajero autorizado: </texto><texto align="left">${usuarioQr}</texto>
+		</linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<codbar type="QR">${qrCajero}</codbar>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<corte></corte>
+	</documento>
+</plantilla>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Panel>
+    <LineaBotones>
+		<Boton>
+			<texto>EFECTIVO</texto>
+            <clave>seleccionarMedioPago</clave>
+            <tipo>METODO</tipo>
+			<rutaImagen>importes/efectivo.png</rutaImagen>
+			<parametros>
+				<entry>
+					<key>codMedioPago</key>
+					<value>0001</value>
+				</entry>				
+			</parametros>
+		</Boton>
+		<Boton>
+			<texto>DATÁFONO</texto>
+            <clave>seleccionarMedioPago</clave>
+            <tipo>METODO</tipo>
+			<rutaImagen>importes/datafono.png</rutaImagen>
+			<parametros>
+				<entry>
+					<key>codMedioPago</key>
+					<value>0003</value>
+				</entry>				
+			</parametros>
+		</Boton>
+		<Boton>
+			<texto>EFT</texto>
+            <clave>seleccionarMedioPago</clave>
+            <tipo>METODO</tipo>
+			<rutaImagen>importes/eft.png</rutaImagen>
+			<parametros>
+				<entry>
+					<key>codMedioPago</key>
+					<value>0002</value>
+				</entry>				
+			</parametros>
+		</Boton>
+		<Boton>
+			<texto>TARJETAS</texto>
+            <clave>introducirTarjeta</clave> <tipo>METODO</tipo>
+			<rutaImagen>importes/tarjetas.png</rutaImagen>
+		</Boton>
+		<Boton>
+			<texto>VALE</texto>
+            <clave>seleccionarMedioPago</clave>
+            <tipo>METODO</tipo>
+			<rutaImagen>importes/vale.png</rutaImagen>
+			<parametros>
+				<entry>
+					<key>codMedioPago</key>
+					<value>1XXX</value>
+				</entry>				
+			</parametros>
+		</Boton>
+<!-- 		<Boton> -->
+<!-- 			<texto>CUPÓN ONLINE</texto> -->
+<!--             <clave>introducirCuponOnline</clave> -->
+<!--             <tipo>METODO</tipo> -->
+<!-- 			<rutaImagen>importes/cupononline.png</rutaImagen> -->
+<!-- 		</Boton> -->
+	</LineaBotones>
+</Panel>

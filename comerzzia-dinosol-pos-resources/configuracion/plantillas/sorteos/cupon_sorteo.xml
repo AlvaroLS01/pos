@@ -1,0 +1,42 @@
+<plantilla>
+    <documento line-cols="44">
+		<logo></logo>    
+
+		#set( $imprimirDatosFacturacion = false )
+		#parse("./plantillas/datos_cabecera.xml")
+		
+		<linea><texto size="44" style="1" align="center">${ticket.getParticipaciones().getNombreSorteo()}</texto></linea>
+		
+		<linea><texto size="44" style="1" align="center" fontsize="1">¡Enhorabuena!</texto></linea>
+		
+		#set($descripcionCupon = "Has conseguido 1 " + $cupon.getDescripcionCupon())
+		#foreach($lineaDescripcion in $textUtils.divideLines(${descripcionCupon}, 44, "|"))
+		   <linea><texto size="44" align="center">${lineaDescripcion}</texto></linea>
+		#end
+
+		<linea><texto></texto></linea>
+		
+		<codbar type="QR">${cupon.getCodigoCupon()}</codbar>
+	
+		<linea><texto align="center">${cupon.getCodigoCupon()}</texto></linea>
+		
+		<linea><texto></texto></linea>
+		
+		<linea line-cols="56">
+			<texto>  </texto>
+			<texto size="7" align="left">${ticket.getCabecera().getTienda().getCodAlmacen()}</texto>
+			<texto size="6" align="left">${ticket.getCabecera().getCajero().getUsuario()}</texto>
+			<texto>  </texto>
+			<texto>${ticket.getCabecera().getCodTicket()} ${ticket.getCabecera().getFechaAsLocale()}</texto>
+	    </linea>
+		<linea><texto></texto></linea>
+		<linea><texto align="center" fontsize="4">Cupón emitido el día ${fechaEmision}</texto></linea>
+		
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<corte></corte>
+	</documento>
+</plantilla>

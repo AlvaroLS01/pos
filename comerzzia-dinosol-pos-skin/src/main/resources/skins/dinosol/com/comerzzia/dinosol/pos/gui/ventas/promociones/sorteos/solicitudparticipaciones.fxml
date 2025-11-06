@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?scenebuilder-stylesheet solicitudparticipaciones.css?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" snapToPixel="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.promociones.sorteos.SolicitudParticipacionesController">
+  <children>
+    <VBox prefHeight="700.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane maxHeight="30.0" minHeight="30.0" prefHeight="51.0" prefWidth="800.0" VBox.vgrow="NEVER">
+          <children>
+            <Label alignment="CENTER" prefHeight="52.0" prefWidth="528.0" styleClass="cabecera-venta" text="%Solicitud de Participaciones" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0" />
+          </children>
+        </AnchorPane>
+        <AnchorPane minHeight="42.0" prefHeight="403.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
+          <children>
+            <HBox alignment="CENTER" prefHeight="200.0" prefWidth="695.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="2.0">
+              <children>
+                <VBox prefHeight="670.0" prefWidth="697.0" spacing="8.0">
+                  <children>
+                    <AnchorPane prefHeight="95.0" prefWidth="697.0">
+                      <children>
+                        <Label alignment="CENTER" layoutX="42.0" layoutY="47.0" prefWidth="614.0" styleClass="etiqueta-titulo2" text="%DATOS DEL TICKET ORIGINAL" />
+                      </children>
+                    </AnchorPane>
+                    <FlowPane alignment="TOP_LEFT" hgap="5.0" prefHeight="50.0" prefWidth="697.0">
+                      <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="180.0" styleClass="etiqueta-titulo2" text="%Cod. Documento:">
+                          <FlowPane.margin>
+                            <Insets left="80.0" />
+                          </FlowPane.margin>
+                        </Label>
+                        <TextField fx:id="tfDocumento" onKeyReleased="#keyReleased" prefHeight="42.0" prefWidth="241.0">
+                          <FlowPane.margin>
+                            <Insets />
+                          </FlowPane.margin>
+                        </TextField>
+                      </children>
+                    </FlowPane>
+                    <FlowPane alignment="BOTTOM_CENTER" prefHeight="128.0" prefWidth="697.0">
+                      <children>
+                        <Label fx:id="lbMensajeError" alignment="CENTER" prefHeight="51.0" prefWidth="616.0" styleClass="lbError" text="" />
+                        <Button fx:id="btAceptar" mnemonicParsing="false" onAction="#accionAceptar" prefHeight="73.0" prefWidth="313.0" styleClass="btAceptar" text="%SOLICITAR PARTICIPACIONES" />
+                      </children>
+                    </FlowPane>
+                    <AnchorPane prefHeight="50.0" prefWidth="180.0" />
+                  </children>
+                </VBox>
+              </children>
+            </HBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@solicitudparticipaciones.css" />
+    <URL value="@../../styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

@@ -1,0 +1,51 @@
+<!-- Si entra en este if son cupones procedentes de un sorteo, el formato es distinto -->
+#if($cupon.getIdPromocionOrigen() == $cupon.getIdPromocionAplicacion())
+	#parse("./plantillas/sorteos/cupon_sorteo.xml")
+#else
+<plantilla>
+    <documento line-cols="44">
+		<logo></logo>    
+		#set( $imprimirDatosFacturacion = false )
+		#parse("./plantillas/datos_cabecera.xml")
+		<linea><texto style="1" align="center">${cupon.getTituloCupon()}</texto></linea>
+		<linea><texto></texto></linea>
+		#foreach($lineaDescripcion in $textUtils.divideLines(${cupon.getDescripcionCupon()}, 44, "|"))
+		   <linea><texto align="center">${lineaDescripcion}</texto></linea>
+		#end
+		<linea><texto></texto></linea>
+		<codbar type="QR">${cupon.getCodigoCupon()}</codbar>
+		<linea><texto></texto></linea>
+		<linea><texto align="center">${cupon.getCodigoCupon()}</texto></linea>
+		<linea><texto></texto></linea>
+		## Si el codCaja esta entre 40 y 50, significa que es un SCO de NCR
+		#set($Integer = 0)
+		#set($codCaja = $Integer.parseInt($ticket.getCabecera().getCodCaja()))
+		#if($codCaja > 40 && $codCaja <= 50)
+			<linea line-cols="56">
+				<texto size="6" align="left">${ticket.getCabecera().getTienda().getCodAlmacen()}</texto>
+				<texto size="21" align="left">${ticket.getCabecera().getCodTicket()} </texto>
+				<texto size="1">${ticket.getCabecera().getFechaAsLocale()}</texto>
+		    </linea>
+		#else
+			<linea line-cols="56">
+				<texto>  </texto>
+				<texto size="7" align="left">${ticket.getCabecera().getTienda().getCodAlmacen()}</texto>
+				<texto size="6" align="left">${ticket.getCabecera().getCajero().getUsuario()}</texto>
+				<texto>  </texto>
+				<texto>${ticket.getCabecera().getCodTicket()} ${ticket.getCabecera().getFechaAsLocale()}</texto>
+		    </linea>
+		#end
+		<linea><texto></texto></linea>
+		<linea><texto align="center" fontsize="4">Cupón emitido el día ${fechaEmision}</texto></linea>
+		#if(${fechaFin})
+		<linea><texto align="center" fontsize="4">Válido hasta el ${fechaFin}</texto></linea>
+		#end
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<corte></corte>
+	</documento>
+</plantilla>
+#end

@@ -1,0 +1,13 @@
+.btExtravio {
+    -fx-background-image: url("problem.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px center;
+    -fx-padding: 10 10 10 40;
+}
+
+.btEliminar {
+    -fx-background-image: url("delete.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px center;
+    -fx-padding: 10 10 10 40;
+}

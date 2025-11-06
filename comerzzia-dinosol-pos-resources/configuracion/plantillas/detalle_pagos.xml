@@ -1,0 +1,97 @@
+﻿<linea> <texto size="44" align="left" style ="1">Detalle de pagos</texto> </linea>
+
+## Imprimir resto de formas de pago
+#foreach ($pago in $ticket.getPagos())
+	#if($pago.getCodMedioPago() != "0001")
+		<linea>
+			<texto size="33" align="right">$textUtils.capitalizeText(${pago.getDesMedioPago()}):</texto>
+			<texto size="11" align="right">${pago.getImporteAsString()}</texto> 
+		</linea>
+		#if($pago.getCodMedioPago().startsWith("02"))
+			<linea>
+				<texto align="left">NºTarjeta: </texto>
+				<texto align="left">$textUtils.maskCardNumber(${pago.getExtendedData().get("numeroTarjeta")}, 9, 4)</texto> 
+			</linea>
+			<linea>
+				<texto align="left">Saldo: </texto>
+				<texto align="left">${pago.getExtendedData().get("balanceAmount")} ${euro}</texto> 
+			</linea>
+		#end
+	#end	
+#end
+
+#set($acumEfectivo =  0.0)
+## Acumular forma de pago de efectivo
+#foreach ($pago in $ticket.getPagos())
+   #if($pago.getCodMedioPago() == "0001")
+      #set($acumEfectivo = $acumEfectivo + $pago.getImporte().doubleValue())
+   #end
+#end
+
+#set($totalAPagar = 0.0)
+## Acumular formas de pago efectivo, datafono y virtual money
+#foreach ($pago in $ticket.getPagos())
+    #if($pago.getCodMedioPago() == "0001" || $pago.getCodMedioPago() == "0002" || $pago.getCodMedioPago() == "0003" || $pago.getCodMedioPago() == "0201"|| $pago.getCodMedioPago() == "0200"|| $pago.getCodMedioPago() == "0205")
+        #set($totalAPagar = $totalAPagar + $pago.getImporte())
+    #end
+#end
+#set($totalAPagarStr = $String.valueOf($totalAPagar).replace(".",","))
+
+## Imprimir efectivo
+#if($acumEfectivo != 0.0)
+<linea>
+	<texto size="33" align="right">Efectivo:</texto>
+	<texto size="11" align="right">${ticket.getPagoAcumulado("0001").getImporteAsString()}</texto> 
+</linea>
+#end
+
+#if($ticket.getTotales().getCambio().getImporte() != 0.0)
+<linea>
+	<texto size="33" align="right">Entregado:</texto>
+	#set($totalEntregado = $ticket.getTotales().getEntregado().doubleValue())
+	#set($totalEntregadoStr = $String.valueOf($totalEntregado).replace(".",","))
+	<texto size="11" align="right">${fmt.formateaImporte($fmt.desformateaImporte($totalEntregadoStr))}</texto>
+</linea>
+<linea>
+	<texto size="33" align="right">A devolver:</texto>
+	<texto size="11" align="right">${ticket.getTotales().getCambioAsString()}</texto> 
+</linea>
+#end
+
+<linea line-size = "1"><texto size="44" style="3">                                            </texto></linea>
+<linea line-size = "1">
+	<texto size="33" align="right" style ="3">TOTAL A PAGAR:</texto>
+	<texto size="11" align="right" style ="3">${fmt.formateaImporte($fmt.desformateaImporte($totalAPagarStr))}</texto>
+</linea>
+<linea><texto></texto></linea>
+#set($totalDescuentos =  $ticket.getTotales().getTotalPromociones())
+#set($dtosPagos = 0.0)
+#foreach ($pago in $ticket.getPagos())
+	#if($pago.getCodMedioPago() != "0001" and $pago.getCodMedioPago() != "0002" and $pago.getCodMedioPago() != "0003" and $pago.getCodMedioPago() != "0400" and $pago.getCodMedioPago() != "0200")
+		#set($dtosPagos = $dtosPagos + $pago.getImporte())
+	#end
+#end
+#set($totalDescuentos =  $totalDescuentos + $dtosPagos)
+#set($totalDescuentosStr = $String.valueOf($totalDescuentos).replace(".",","))
+
+#if($totalDescuentos > 0.0)
+<linea>
+	<texto size="33" align="right" style ="1">TE HAS AHORRADO:</texto>
+	<texto size="11" align="right" >${fmt.formateaImporte($fmt.desformateaImporte($totalDescuentosStr))}</texto>
+</linea>
+<linea><texto></texto></linea>
+#end
+
+## Imprimir boletas
+#foreach ($pago in $ticket.getPagos())
+	#if($pago.getCodMedioPago() == "0002")
+		#set($esBoletaCompleta = false)
+		#if (${pago.tieneDatosRespuestaPagoTarjeta()} && $pago.getDatosRespuestaPagoTarjeta().getAdicionales() && 
+				$pago.getDatosRespuestaPagoTarjeta().getAdicionales().get("sipay") && !$pago.getDatosRespuestaPagoTarjeta().getAdicionales().get("sipay").isEmpty())
+	   		#parse("./plantillas/detalle_pagos_boletas_sipay.xml")
+		#else
+	   		#parse("./plantillas/detalle_pagos_boletas.xml")
+		#end
+	#end	
+#end
+ 

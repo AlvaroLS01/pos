@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="500.0" styleClass="mainFxmlClass, pantalla-modal" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.tickets.pagos.selecciontarjetapago.SeleccionTarjetaPagoController">
+  <children>
+    <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="450.0" prefWidth="680.0" HBox.hgrow="ALWAYS">
+          <children>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="500.0" styleClass="titulo-ventana" VBox.vgrow="NEVER">
+              <children>
+                <Label fx:id="lbTitulo" text="Selección de Tarjeta" />
+              </children>
+              <padding>
+                <Insets fx:id="x1" />
+              </padding>
+            </HBox>
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+              <children>
+                <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefHeight="400.0" prefWidth="350.0" HBox.hgrow="ALWAYS">
+                  <children>
+                    <TableView fx:id="tvTarjetas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-1.0" prefHeight="325.0" prefWidth="350.0" tableMenuButtonVisible="false" HBox.hgrow="ALWAYS" HBox.margin="$x1">
+                      <columns>
+                        <TableColumn maxWidth="250.0" minWidth="250.0" prefWidth="244.0" text="%Número Tarjeta" fx:id="tcNumeroTarjeta" />
+                        <TableColumn maxWidth="100.0" minWidth="95.0" prefWidth="100.0" text="%Importe" fx:id="tcImporte" />
+                      </columns>
+                    </TableView>
+                  </children>
+                  <padding>
+                    <Insets left="10.0" />
+                  </padding>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="350.0" prefWidth="80.0" HBox.hgrow="NEVER">
+                  <children>
+                    <AnchorPane fx:id="panelMenuTabla" prefWidth="70.0" HBox.hgrow="ALWAYS">
+                      <HBox.margin>
+                        <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
+                      </HBox.margin>
+                    </AnchorPane>
+                  </children>
+                </HBox>
+              </children>
+              <padding>
+                <Insets top="10.0" />
+              </padding>
+            </HBox>
+            <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="500.0">
+              <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="400.0" HBox.hgrow="ALWAYS">
+                  <children>
+                    <Button fx:id="btAceptar" mnemonicParsing="false" onAction="#accionAceptar" styleClass="btAceptar" text="%Aceptar">
+                      <HBox.margin>
+                        <Insets right="10.0" />
+                      </HBox.margin>
+                    </Button>
+                    <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#accionCancelar" styleClass="btCancelar" text="%Cancelar">
+                      <HBox.margin>
+                        <Insets right="10.0" />
+                      </HBox.margin>
+                    </Button>
+                  </children>
+                </HBox>
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </HBox>
+  </children>
+</AnchorPane>

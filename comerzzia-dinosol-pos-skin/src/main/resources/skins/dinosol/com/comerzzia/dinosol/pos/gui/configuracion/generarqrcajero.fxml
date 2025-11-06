@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.tecladonumerico.*?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet C:/Users/DAP/Documents/styles.css?>
+
+<AnchorPane id="AnchorPane" minWidth="730.0" opacity="1.0" prefHeight="473.0" prefWidth="730.0" styleClass="contenidosdigitales-window" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.configuracion.GenerarQRCajeroController">
+  <children>
+    <VBox fillWidth="true" prefHeight="473.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox alignment="TOP_CENTER" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="cabecera-venta, titulo-ventana" VBox.vgrow="ALWAYS">
+          <children>
+            <Label fx:id="lbTitulo" alignment="CENTER" maxHeight="30.0" prefHeight="30.0" prefWidth="730.0" styleClass="cabecera-venta" text="%Login de usuario mediante QR" HBox.hgrow="ALWAYS" />
+          </children>
+        </HBox>
+        <VBox prefHeight="-1.0" prefWidth="730.0" VBox.vgrow="ALWAYS">
+          <children>
+            <HBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" spacing="20.0">
+              <children>
+                <Label alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="67.0" styleClass="etiqueta-titulo2" text="%Usuario" />
+                <TextField id="tfOperacion" fx:id="tfUsuario" alignment="CENTER_LEFT" onKeyReleased="#keyReleased" prefHeight="42.0" prefWidth="362.0" />
+              </children>
+              <padding>
+                <Insets bottom="20.0" top="50.0" />
+              </padding>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+              <children>
+                <Button id="btAceptar" fx:id="btGenerarQR" alignment="CENTER" contentDisplay="CENTER" depthTest="DISABLE" mnemonicParsing="false" onAction="#accionGenerarQR" prefHeight="73.0" prefWidth="254.0" styleClass="btAceptar" text="%Generar QR" wrapText="true" />
+              </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+              <children>
+                <Label fx:id="lbMensajeError" alignment="CENTER" prefHeight="-1.0" prefWidth="680.0" styleClass="lbError" text="Su usuario está inactivo. Contacte con un responsable" />
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../Vistas/Producto/Comerzzia/branches/v4.8/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css" />
+    <URL value="@../ventas/solicitudfacturacion/solicitudfacturacion.css" />
+  </stylesheets>
+</AnchorPane>

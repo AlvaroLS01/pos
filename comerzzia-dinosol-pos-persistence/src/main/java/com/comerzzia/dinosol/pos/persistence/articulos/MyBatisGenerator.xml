@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+  
+<generatorConfiguration>
+	<classPathEntry location=".\libs\jdbc\ojdbc6.jar" />
+	<context id="Comerzzia" targetRuntime="MyBatis3">
+	
+		<plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"/>
+		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+		<plugin type="org.mybatis.generator.plugins.ScrollInsensitivePlugin"/>
+		<plugin type="org.mybatis.generator.plugins.ViewPlugin"/>
+	
+		<commentGenerator>
+			<property name="suppressAllComments" value="true"/>
+		</commentGenerator>	
+	    
+	     <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+	        connectionURL="jdbc:oracle:thin:@vm-orasoft.tier1.es:1521:CLIENTES"
+	        userId="CZZ_DINOSOL"
+	        password="CZZ_DINOSOL">
+	    </jdbcConnection>
+	    
+	    
+	    <javaModelGenerator targetPackage="com.comerzzia.dinosol.pos.persistence.articulos" targetProject="comerzzia-dinosol-pos-persistence/src/main/java">
+	      <property name="enableSubPackages" value="false" />
+	      <property name="trimStrings" value="true" />
+	    </javaModelGenerator>
+	    
+	    <sqlMapGenerator targetPackage="com.comerzzia.dinosol.pos.persistence.articulos"  targetProject="comerzzia-dinosol-pos-persistence/src/main/java">
+	      <property name="enableSubPackages" value="false" />
+	    </sqlMapGenerator>
+	
+	    <javaClientGenerator type="XMLMAPPER" targetPackage="com.comerzzia.dinosol.pos.persistence.articulos"  targetProject="comerzzia-dinosol-pos-persistence/src/main/java">
+	      <property name="enableSubPackages" value="false" />
+	    </javaClientGenerator>
+	
+	    <table tableName="D_ARTICULOS_TBL" domainObjectName="Articulo">
+	    	<columnOverride column="CODART" property="codArticulo" />
+	    	<columnOverride column="DESART" property="desArticulo" />
+	    	<columnOverride column="CODFAM" property="codFamilia" />
+	    	<columnOverride column="CODCAT" property="codCategorizacion" />
+    		<columnOverride column="CODPRO" property="codProveedor" />
+	    	<columnOverride column="CODFAB" property="codFabricante" />
+	    	<columnOverride column="CODIMP" property="codImpuesto" />
+	    	<columnOverride column="CODMARCA" property="codMarca" />
+	    	
+	    	<columnOverride column="ACT_AUTOMATICA_COSTO" javaType="java.lang.Boolean" jdbcType="CHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+	    	<columnOverride column="ACTIVO" javaType="java.lang.Boolean" jdbcType="CHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+			<columnOverride column="NUMEROS_SERIE" javaType="java.lang.Boolean" jdbcType="CHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+			<columnOverride column="DESGLOSE1" javaType="java.lang.Boolean" jdbcType="CHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+			<columnOverride column="DESGLOSE2" javaType="java.lang.Boolean" jdbcType="CHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+			<columnOverride column="GENERICO" javaType="java.lang.Boolean" jdbcType="CHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+			<columnOverride column="ESCAPARATE" javaType="java.lang.Boolean" jdbcType="CHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+	    </table>
+	</context>
+</generatorConfiguration>

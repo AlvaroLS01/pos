@@ -1,0 +1,44 @@
+#set($esArticuloPeso = $linea.getCantidad().stripTrailingZeros().scale() > 0)
+
+#if($linea.getCantidad().doubleValue() == 1.0)
+  <linea> 
+       <texto size="36" align="left">${linea.getArticulo().getDesArticulo()}</texto>
+        #if($linea.getDescuento().doubleValue() < 0.0)
+       	<texto size="8" align="right">${linea.getImporteTotalConDtoAsString()}</texto>
+       #else
+       	<texto size="8" align="right">${linea.getImporteTotalSinDtoAsString()}</texto>
+       #end
+  </linea>
+  #parse("./plantillas/linea_ticket_promociones.xml")
+#else 
+  <linea> 
+       <texto size="36" align="left">${linea.getArticulo().getDesArticulo()}</texto>
+	   <texto size="8" align="right"></texto>
+  </linea>
+  <linea>       
+       #if(${linea.isParking()})
+          <texto size="6" align="right">${fmt.formateaNumero($linea.getCantidad(),0)}MIN</texto>
+       #elseif($esArticuloPeso)
+          <texto size="6" align="right">${linea.getCantidadAsString()}</texto>          
+       #else
+          <texto size="6" align="right">${fmt.formateaNumero($linea.getCantidad())} UDS</texto>          
+       #end
+       
+       <texto size="3" align="left"> x </texto>  
+       
+       #if($linea.getDescuento().doubleValue() < 0.0)
+       	<texto size="12" align="left">${linea.getPrecioTotalConDtoAsString()} ${euro}</texto>
+       #else
+       	<texto size="12" align="left">${linea.getPrecioTotalSinDtoAsString()} ${euro}</texto>
+       #end
+       
+       <texto size="15" align="left"></texto> 
+       
+       #if($linea.getDescuento().doubleValue() < 0.0)
+       	<texto size="8" align="right">${linea.getImporteTotalConDtoAsString()}</texto>
+       #else
+       	<texto size="8" align="right">${linea.getImporteTotalSinDtoAsString()}</texto>
+       #end
+  </linea>
+  #parse("./plantillas/linea_ticket_promociones.xml")
+#end

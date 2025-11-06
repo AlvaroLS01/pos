@@ -1,0 +1,16 @@
+.linea-negativa .table-cell {
+    -fx-text-fill: red;
+}
+
+.table-view .linea-negativa.table-row-cell:focused .table-cell {
+    -fx-text-fill: #ff0000;
+}
+
+.cabecera-venta {
+	-fx-background-color: #85b037;
+	-fx-text-fill: #ffffff;
+    -fx-height: 42px;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+

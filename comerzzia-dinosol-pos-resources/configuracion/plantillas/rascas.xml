@@ -1,0 +1,9 @@
+#if(${ticket.getCabecera().getNumRascasEntregados()})
+	<linea><texto></texto></linea>
+	#if(${ticket.getCabecera().getNumRascasEntregados()} == 1)
+		<linea><texto align="center">${ticket.getCabecera().getNumRascasEntregados()} Sello Entregado</texto></linea>
+	#else
+		<linea><texto align="center">${ticket.getCabecera().getNumRascasEntregados()} Sellos Entregados</texto></linea>
+	#end
+	<linea><texto></texto></linea>
+#end

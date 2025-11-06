@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tarjetas_regalos>
+	<tarjeta_regalo>
+		<codart>TRG01</codart>
+		<prefijo>236</prefijo>
+		<importe_minimo>2.0</importe_minimo>
+		<importe_maximo>15.0</importe_maximo>
+		<dias_vigencias>0</dias_vigencias>
+	</tarjeta_regalo>
+	<tarjeta_regalo>
+		<codart>TRG02</codart>
+		<prefijo>236</prefijo>
+		<importe_minimo>20.0</importe_minimo>
+		<importe_maximo>150.0</importe_maximo>
+		<dias_vigencias>30</dias_vigencias>
+	</tarjeta_regalo>
+</tarjetas_regalos>

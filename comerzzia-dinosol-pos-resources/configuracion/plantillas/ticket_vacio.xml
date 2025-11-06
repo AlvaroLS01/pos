@@ -1,0 +1,61 @@
+<plantilla>
+	<documento salida="impresora1" charset="Windows-1252" line-cols="44">
+		<logo></logo>
+		
+		#set($String = "")
+		
+		#set( $imprimirDatosFacturacion =  $ticket.getCabecera().getCliente().getDatosFactura())
+	
+	       ## Variables que almacenan el simbolo del euro en el charset 1252
+	       #set ($string = " ")
+	       #set ($char = $string.charAt(0))
+	       #set ($chars = $char.toChars(128))
+	       #set ($euro = $string.copyValueOf($chars))
+	
+	
+		#parse("./plantillas/datos_cabecera.xml")
+		
+	       ## ************************************************** DATOS DEL DOCUMENTO
+		<linea line-cols="56"><texto style="1">Centro Vend.   Documento            Fecha      Hora</texto></linea>                                              
+		<linea line-cols="56">
+	          <texto size="7" align="left">${ticket.getCabecera().getTienda().getCodAlmacen()}</texto>
+	          <texto size="6" align="left">${ticket.getCabecera().getCajero().getUsuario()}</texto>
+			  <texto>  </texto>
+	          <texto>${ticket.getCabecera().getCodTicket()} ${ticket.getCabecera().getFechaAsLocale()}</texto>
+	       </linea>
+		<linea><texto></texto> </linea>
+	
+	       ## ************************************************** LINEAS DE VENTA
+		<linea> <texto style ="3">ARTICULO                             IMPORTE</texto> </linea>
+		#foreach ($linea in $ticket.getLineaAgrupadas())
+			#parse("./plantillas/linea_ticket.xml")
+		#end
+		<linea><texto></texto></linea>
+		<linea> <texto size="44" align="left" style="3">Total Artículos: ${ticket.getCabecera().getCantidadArticulosAsString()} </texto> </linea>
+		<linea><texto></texto></linea>
+	
+		<linea line-size = "1">
+			<texto size="33" align="right" style ="1">TOTAL COMPRA: </texto>
+			#if($dtoEmpleado > 0.0)
+				#set($totalCompra = $ticket.getTotales().getTotalAPagar().doubleValue() - $dtoEmpleado)
+		   		#set($totalCompraStr = $String.valueOf($totalCompra).replace(".",","))
+				<texto size="11" align="right" style ="1">${fmt.formateaImporte($fmt.desformateaImporte($totalCompraStr))}</texto> 
+			#else
+				<texto size="11" align="right" >${ticket.getTotales().getTotalAPagarAsString()}</texto>
+			#end
+		</linea>
+		<linea><texto></texto></linea>
+		
+		<linea line-cols="56"> <texto align="center">Comerciante minorista - ${ticket.getCabecera().getDesTipoDocumento()}</texto> </linea>
+		
+		<linea><texto></texto></linea>
+	
+	    <linea><texto align="center" style="1">TRANSACCIÓN ANULADA</texto></linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+	    <corte></corte>
+   </documento>
+</plantilla>

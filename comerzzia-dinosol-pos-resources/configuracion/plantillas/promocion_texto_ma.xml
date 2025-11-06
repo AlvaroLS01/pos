@@ -1,0 +1,21 @@
+<plantilla>
+	#foreach ($promocion in $ticket.getPromociones())
+		#if(${promocion.getAcceso()} != "CAJERO" && (${promocion.getIdTipoPromocion()} == 13 || (${promocion.getIdTipoPromocion()} == 1001 && !${promocion.getAdicionales().get("id_sorteo")}) ) )
+			#foreach ($lineaTexto in $textUtils.divideLines(${promocion.getTextoPromocion()}, 40, "|"))
+				#if ($lineaTexto.startsWith("#QR#"))
+					<linea><texto></texto></linea>
+					#set($lineaTexto = $lineaTexto.replaceAll("#QR#", ""))
+					#set($lineaTexto = $lineaTexto.replaceAll("#/QR#", ""))
+					<codbar type="QR">${lineaTexto}</codbar>
+					<linea><texto></texto></linea>
+				#else
+				<linea>
+					<texto align="center">${lineaTexto}</texto> 
+				</linea>
+				#end
+			#end
+			<linea> <texto> </texto> </linea>
+			<linea> <texto> </texto> </linea>
+		#end
+	#end
+</plantilla>

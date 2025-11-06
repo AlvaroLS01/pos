@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" minHeight="147.0" prefHeight="339.0" prefWidth="568.9999000000025" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.tickets.pagos.vales.ValesPagosController">
+  <children>
+    <HBox prefHeight="200.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane minHeight="119.0" prefHeight="119.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
+          <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="mainFxmlClass, pantalla-detalle" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane minHeight="30.0" prefHeight="37.0" prefWidth="600.0" styleClass="titulo-ventana" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lbTitulo" alignment="CENTER" prefHeight="37.0" prefWidth="479.0" text="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  </children>
+                </AnchorPane>
+                <AnchorPane minHeight="52.0" prefHeight="52.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+                  <children>
+                    <VBox minHeight="43.5" prefHeight="52.0" prefWidth="569.0" AnchorPane.bottomAnchor="144.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    <VBox layoutX="0.0" layoutY="72.0" minHeight="43.5" prefHeight="52.0" prefWidth="569.0" />
+                    <AnchorPane id="AnchorPane" layoutX="0.0" layoutY="50.0" prefHeight="44.0" prefWidth="569.0001220703125">
+                      <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="36.0" layoutY="11.0" prefWidth="146.0" text="%Medios de Pago :" />
+                        <ComboBox id="CBMediosPago" fx:id="cbMediosPago" layoutX="208.0" prefHeight="35.0" prefWidth="250.0" AnchorPane.topAnchor="3.0">
+                          <items>
+                            <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Item 1" />
+                              <String fx:value="Item 2" />
+                              <String fx:value="Item 3" />
+                            </FXCollections>
+                          </items>
+                        </ComboBox>
+                      </children>
+                    </AnchorPane>
+                    <AnchorPane id="AnchorPane" layoutX="0.0" prefHeight="52.0" prefWidth="570.0" AnchorPane.topAnchor="96.0">
+                      <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="36.0" layoutY="11.0" prefWidth="146.0" text="%Código :" />
+                        <TextFieldImporte fx:id="tfCodigo" layoutX="206.0" layoutY="7.0" onKeyReleased="#accionAceptarIntro" prefWidth="250.0" />
+                      </children>
+                    </AnchorPane>
+                    <AnchorPane id="AnchorPane" layoutX="0.0" prefHeight="62.0" prefWidth="568.9999000000025" AnchorPane.topAnchor="150.0">
+                      <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="36.0" layoutY="11.0" prefWidth="146.0" text="%Importe :" />
+                        <TextFieldImporte fx:id="tfImporte" layoutX="208.0" layoutY="8.0" onKeyReleased="#accionAceptarIntro" prefWidth="114.0" />
+                        <Label fx:id="lbError" layoutX="147.0" layoutY="54.0" prefWidth="408.0" styleClass="lbError" text="" textFill="#ff3333" />
+                      </children>
+                    </AnchorPane>
+                  </children>
+                </AnchorPane>
+                <AnchorPane minHeight="51.999900000002526" prefHeight="89.0" prefWidth="569.0" VBox.vgrow="NEVER">
+                  <children>
+                    <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-7.0">
+                      <children>
+                        <AnchorPane prefHeight="52.0" prefWidth="92.0" HBox.hgrow="ALWAYS" />
+                        <TilePane alignment="BOTTOM_RIGHT" hgap="10.0" minHeight="52.0" prefHeight="52.0" prefWidth="480.0" HBox.hgrow="NEVER">
+                          <children>
+                            <Button mnemonicParsing="false" onAction="#accionAceptar" prefHeight="42.0" prefWidth="115.0" styleClass="btAceptar" text="%Aceptar">
+                              <TilePane.margin>
+                                <Insets top="-10.0" />
+                              </TilePane.margin>
+                            </Button>
+                            <Button mnemonicParsing="false" onAction="#accionCancelar" prefHeight="42.0" prefWidth="115.0" styleClass="btCancelar" text="%Cancelar">
+                              <TilePane.margin>
+                                <Insets right="10.0" top="-10.0" />
+                              </TilePane.margin>
+                            </Button>
+                          </children>
+                          <padding>
+                            <Insets bottom="10.0" left="10.0" top="10.0" />
+                          </padding>
+                        </TilePane>
+                      </children>
+                    </HBox>
+                  </children>
+                </AnchorPane>
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../Vistas/Producto/Comerzzia/branches/v4.8/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

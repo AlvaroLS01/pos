@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-stylesheet seleccionardomicilio.css?>
+<?scenebuilder-stylesheet ../../../../../../../../../../../../../../../../../Productos/Comerzzia/branches/4.8/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css?>
+
+<AnchorPane id="AnchorPane" minHeight="147.0" prefHeight="560.0" prefWidth="570.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.enviodomicilio.domicilio.SeleccionarDomicilioController">
+  <children>
+    <HBox prefHeight="530.0" prefWidth="570.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane minHeight="119.0" prefHeight="530.0" prefWidth="570.0" HBox.hgrow="ALWAYS">
+          <children>
+            <VBox prefHeight="530.0" prefWidth="570.0" styleClass="mainFxmlClass, pantalla-detalle" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane minHeight="30.0" prefHeight="40.0" prefWidth="570.0" styleClass="cabecera-venta" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lbTitulo" alignment="CENTER" prefHeight="37.0" prefWidth="479.0" styleClass="cabecera-venta" text="%Selección de Domicilio" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  </children>
+                </AnchorPane>
+                <VBox alignment="CENTER" prefHeight="65.0" prefWidth="570.0">
+                  <children>
+                    <Label fx:id="lbNombre" styleClass="label-total, lb-destacado" text="" />
+                    <Label fx:id="lbDni" styleClass="label-total" text="" />
+                  </children>
+                </VBox>
+                <HBox alignment="CENTER" prefHeight="400.0" prefWidth="570.0" VBox.vgrow="ALWAYS">
+                  <children>
+                    <TableView id="tv" fx:id="tvDirecciones" prefHeight="485.0" prefWidth="570.0">
+                      <columns>
+                        <TableColumn minWidth="570.0" prefWidth="75.0" resizable="true" sortable="true" text="" fx:id="tcDatosDirecciones" />
+                      </columns>
+                      <HBox.margin>
+                        <Insets />
+                      </HBox.margin>
+                    </TableView>
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="120.0" prefWidth="570.0" spacing="15.0">
+                  <children>
+                    <VBox alignment="CENTER_LEFT" prefHeight="120.0" prefWidth="285.0">
+                      <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="285.0">
+                          <children>
+                            <Button fx:id="bAltaDireccion" mnemonicParsing="false" onAction="#altaDireccion" prefHeight="40.0" prefWidth="150.0" text="%Nuevo Domicilio">
+                              <HBox.margin>
+                                <Insets left="20.0" fx:id="x1" />
+                              </HBox.margin>
+                            </Button>
+                          </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="285.0">
+                          <children>
+                            <Button id="bAltaFidelizado" fx:id="bModificarDireccion" mnemonicParsing="false" onAction="#modificarDireccion" prefHeight="40.0" prefWidth="115.0" text="%Modificar" HBox.margin="$x1" />
+                            <Button fx:id="bBorrarDireccion" mnemonicParsing="false" onAction="#borrarDireccion" prefHeight="40.0" prefWidth="115.0" text="%Borrar">
+                              <HBox.margin>
+                                <Insets left="10.0" fx:id="x2" />
+                              </HBox.margin>
+                            </Button>
+                          </children>
+                        </HBox>
+                      </children>
+                    </VBox>
+                    <VBox prefHeight="120.0" prefWidth="285.0">
+                      <children>
+                        <HBox prefHeight="60.0" prefWidth="285.0" />
+                        <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="285.0">
+                          <children>
+                            <Button mnemonicParsing="false" onAction="#seleccionarDireccion" prefHeight="40.0" prefWidth="115.0" styleClass="btAceptar" text="%Aceptar">
+                              <HBox.margin>
+                                <Insets right="10.0" />
+                              </HBox.margin>
+                            </Button>
+                            <Button mnemonicParsing="false" onAction="#accionCancelar" prefHeight="40.0" prefWidth="115.0" styleClass="btCancelar" text="%Cancelar" HBox.margin="$x2" />
+                          </children>
+                        </HBox>
+                      </children>
+                    </VBox>
+                  </children>
+                  <padding>
+                    <Insets right="15.0" />
+                  </padding>
+                  <VBox.margin>
+                    <Insets top="10.0" />
+                  </VBox.margin>
+                </HBox>
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../Vistas/Producto/Comerzzia/branches/v4.8/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/styles/styles.css" />
+    <URL value="@seleccionardomicilio.css" />
+  </stylesheets>
+</AnchorPane>

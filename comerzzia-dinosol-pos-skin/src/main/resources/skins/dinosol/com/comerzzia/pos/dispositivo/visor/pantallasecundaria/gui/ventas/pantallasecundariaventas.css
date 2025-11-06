@@ -1,0 +1,33 @@
+.cabecera {
+	-fx-background-color: #ffffff;
+}
+.cabecera .label{
+	-fx-text-fill: rgba(0,99,66);
+	-fx-font-size: 31px;
+	-fx-border-color: red, yellow, blue, #0082AA;
+	-fx-border-width: 0 0 1 0;
+}
+.pie {
+	-fx-background-color: rgba(0,99,66);
+}
+.pie .label{
+	-fx-text-fill: #ffffff;
+	-fx-font-size: 35px;
+}
+.txt-total {
+	-fx-font-size: 70px;
+}
+.total-listado .label{
+	-fx-text-fill: #ffffff;
+	-fx-font-size: 100px;
+	-fx-padding-left: 7px;
+}
+.wrap-unidades-totales .label{
+	-fx-padding: 10px 0 0 30px;
+}
+.articulo-listado .label{
+	-fx-text-fill: #ffffff;
+	-fx-font-size: 65px;
+	-fx-padding-left: 7px;
+}
+

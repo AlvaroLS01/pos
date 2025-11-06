@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.imagenArticulo.*?>
+<?import com.comerzzia.pos.core.gui.componentes.tecladonumerico.*?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-stylesheet pantallasecundariaencuestas.css?>
+
+<AnchorPane fx:id="PantallasVentas" maxHeight="-1.0" maxWidth="-1.0" prefHeight="700.0" prefWidth="1024.0" style="" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.dispositivo.visor.pantallasecundaria.gui.encuestas.PantallaSecundariaEncuestasController">
+  <children>
+    <VBox id="vBox" prefHeight="700.0" prefWidth="-1.0" spacing="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox alignment="CENTER" minHeight="80.0" prefHeight="86.0" prefWidth="1024.0" styleClass="cabecera" VBox.vgrow="NEVER">
+          <children>
+            <Label fx:id="lbDescripcionEncuesta" alignment="CENTER" prefHeight="80.0" prefWidth="1024.0" styleClass="cabecera, letra" text="%Descripción encuesta" textAlignment="LEFT" HBox.hgrow="ALWAYS" />
+          </children>
+        </HBox>
+        <VBox id="vbNoAplicados" fx:id="vbPregunta" alignment="CENTER" prefHeight="73.0" prefWidth="406.0" styleClass="letra, linea-tramos" VBox.vgrow="ALWAYS">
+          <children>
+            <FlowPane fx:id="fpRespuestas" alignment="CENTER" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+          </children>
+        </VBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@pantallasecundariaenviodomicilio.css" />
+  </stylesheets>
+</AnchorPane>

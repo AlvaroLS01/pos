@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Panel>
+    <LineaBotones>
+    	<Boton>
+			<texto>abrir cajón (no visible)</texto>
+            <clave>ABRIR CAJON</clave>
+            <tipo>OPERACION</tipo>
+			<teclaAccesoRapido>Ctrl + O</teclaAccesoRapido>
+			<rutaImagen>iconos/ticket_aparcar.png</rutaImagen>
+			<visible>N</visible>
+        </Boton>
+        <Boton>
+			<texto>APARCAR TICKET</texto>
+            <clave>aparcarTicket</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido></teclaAccesoRapido>
+			<rutaImagen>iconos/ticket_aparcar.png</rutaImagen>
+			<visible>S</visible>
+        </Boton> 
+        <Boton>
+			<texto>RECUPERAR TICKET</texto>
+            <clave>recuperarTicket</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido></teclaAccesoRapido>
+			<rutaImagen>iconos/ticket_recuperar.png</rutaImagen>
+			<visible>S</visible>
+        </Boton>  
+        <Boton>
+			<texto>ANULAR TICKET</texto>
+            <clave>CANCELAR VENTA</clave>
+            <tipo>OPERACION</tipo>
+			<teclaAccesoRapido></teclaAccesoRapido>
+			<rutaImagen>iconos/ticket_anular.png</rutaImagen>
+			<visible>S</visible>
+        </Boton>
+		<Boton>
+			<texto>IMPRIMIR ÚLTIMO TICKET</texto>
+            <clave>imprimirUltimo</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido></teclaAccesoRapido>
+			<rutaImagen>iconos/imprimir-ticket.png</rutaImagen>
+			<visible>S</visible>
+		</Boton>
+        <Boton>
+			<texto>PAGOS</texto>
+            <clave>abrirPagos</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido></teclaAccesoRapido>
+			<rutaImagen>iconos/pagos.png</rutaImagen>
+			<visible>S</visible>
+        </Boton>
+	</LineaBotones>
+	<LineaBotones>
+        <Boton>
+			<texto>PARKING</texto>
+            <clave>introducirArticuloParking</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido></teclaAccesoRapido>
+			<rutaImagen>iconos/car.png</rutaImagen>
+			<visible>S</visible>
+		</Boton>
+        <Boton>
+			<texto>SELECCIÓN MANUAL</texto>
+            <clave>abrirSeleccionManual</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido></teclaAccesoRapido>
+			<rutaImagen>iconos/seleccion_manual.png</rutaImagen>
+			<visible>S</visible>
+		</Boton>
+       	<Boton>
+			<texto>CONSULTA SALDO</texto>
+            <clave>consultarSaldoTarjeta</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido></teclaAccesoRapido>
+			<rutaImagen>importes/tarjetasVenta.png</rutaImagen>
+			<visible>S</visible>
+        </Boton>
+		<Boton>
+			<texto>RECARGAS</texto>
+            <clave>recargasArticulos</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido></teclaAccesoRapido>
+			<rutaImagen>menu/recargas_unificadas.png</rutaImagen>
+			<visible>S</visible>
+		</Boton>
+		<Boton>
+			<texto>SERVICIO A DOMICILIO</texto>
+			<clave>modificarPortes</clave>
+			<tipo>METODO</tipo>
+			<teclaAccesoRapido></teclaAccesoRapido>
+			<rutaImagen>iconos/truck.png</rutaImagen>
+			<visible>S</visible>
+		</Boton>
+    </LineaBotones> 
+</Panel>

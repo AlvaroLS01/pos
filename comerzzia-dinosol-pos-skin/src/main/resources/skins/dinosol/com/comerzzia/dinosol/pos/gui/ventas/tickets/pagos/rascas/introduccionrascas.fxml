@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-stylesheet ../../../../../../../../../../../../../../../../../../Productos/Comerzzia/trunk/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="177.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.tickets.pagos.rascas.IntroduccionRascasController">
+  <children>
+<VBox prefHeight="177.0" prefWidth="651.0" styleClass="pantalla-modal">
+  <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="titulo-ventana">
+               <children>
+        <Label fx:id="lbTitulo" alignment="CENTER" prefHeight="37.0" prefWidth="650.0" text="%SELLOS OBTENIDOS" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="lbCodTicket" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label style="-fx-font-weight: bold;-fx-font-size: 25px;" text="%Total" />
+                  <TextField fx:id="tfTotal" prefHeight="42.0" prefWidth="70.0" style="-fx-background-color: yellow; -fx-font-weight: bold;-fx-font-size: 25px;">
+                               </TextField>
+                  <Label disable="true" text="%Restantes" visible="false" />
+                  <TextField fx:id="tfRestantes" focusTraversable="false" prefHeight="42.0" prefWidth="70.0" visible="false">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="90.0" />
+               </padding>
+            </HBox>
+    <HBox alignment="CENTER" VBox.vgrow="NEVER">
+      <children>
+        <TextField fx:id="tfCodigoRasca" maxHeight="0.0" minHeight="0.0" onAction="#introducirRasca" onKeyReleased="#introducirRascaIntro" />
+      </children>
+    </HBox>
+    <HBox alignment="CENTER_RIGHT" prefHeight="65.0" prefWidth="567.0" spacing="15.0">
+      <children>
+        <Button focusTraversable="false" mnemonicParsing="false" onAction="#accionCancelar" prefHeight="45.0" prefWidth="161.0" styleClass="btAceptar" text="%Continuar" />
+      </children>
+      <padding>
+        <Insets right="15.0" />
+      </padding>
+    </HBox>
+  </children>
+</VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../Vistas/Producto/Comerzzia/branches/v4.8/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

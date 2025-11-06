@@ -1,0 +1,18 @@
+[
+  {
+    "couponTypeCode": "DEFAULT",
+    "couponTypeName": "DEFAULT",
+    "defManualSelect": true,
+    "prefix": "95",
+    "maxLength": 8,
+    "generationMode": 0
+  },
+  {
+    "couponTypeCode": "CUMPLE",
+    "couponTypeName": "CUMPLE",
+    "defManualSelect": true,
+    "prefix": "2373",
+    "maxLength": 8,
+    "generationMode": 0
+  }
+]

@@ -1,0 +1,20 @@
+.linea-total .label{
+	-fx-padding: 0 10px 0 0; 
+}
+.linea-ventana {
+	-fx-background-color: #ffffff;
+	-fx-padding: 5px 0px 5px 0px;
+}
+.linea-ventana .label{
+	-fx-font-size: 50px;
+	-fx-text-fill: #000000;
+}
+.linea-ventana-sub .label{
+	-fx-font-size: 50px;
+	-fx-text-fill: #464646;
+}
+.linea-pago-fondo {
+	-fx-background-color: #EDEDED;
+}
+
+

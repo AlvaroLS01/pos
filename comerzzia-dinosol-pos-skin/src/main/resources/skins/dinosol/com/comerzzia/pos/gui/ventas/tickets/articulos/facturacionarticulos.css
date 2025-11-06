@@ -1,0 +1,33 @@
+.linea-negativa .table-cell {
+    -fx-text-fill: red;
+}
+
+.table-view .linea-negativa.table-row-cell:focused .table-cell {
+    -fx-text-fill: #ff0000;
+}
+
+.cabecera-venta {
+	-fx-background-color: #85b037;
+	-fx-text-fill: #0082aa;
+    -fx-height: 42px;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.icono-descuento {
+	-fx-graphic: url("coupon.png");
+    -fx-graphic-text-gap : 10;
+}
+
+.solicitarQr {
+	-fx-text-fill: #569900;
+	-fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.btBorrarFidelizado {
+    -fx-background-image: url("borrar_fidelizado.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-padding: 10 10 10 10; 
+}

@@ -1,0 +1,12 @@
+<linea>
+	<texto size="44" align="center" style ="1">VALIDACIÓN DE SALIDA</texto>
+</linea>
+<linea><texto></texto></linea>
+<linea>
+	<texto size="44" align="center">Escanea este código en la salida</texto>
+</linea>
+<linea>
+	<texto size="44" align="center">para abrir la barrera</texto>
+</linea>
+<codbar type="QR">${ticket.getCodigoValidacionBarreraSCO()}</codbar>
+<corte></corte>

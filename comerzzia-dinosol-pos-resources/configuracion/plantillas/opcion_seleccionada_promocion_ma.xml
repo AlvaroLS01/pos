@@ -1,0 +1,8 @@
+<linea> <texto align="center"> </texto> </linea>
+#foreach ($lineaTexto in $textUtils.divideLines(${ticket.getCabecera().getOpcionPromocionesSeleccionada().getTextoTicket()}, 40, "|"))
+	<linea>
+		<texto align="center" style="1">${lineaTexto}</texto> 
+	</linea>
+#end
+<linea> <texto align="center"> </texto> </linea>
+<linea> <texto align="center"> </texto> </linea>

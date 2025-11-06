@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?scenebuilder-stylesheet ../../../../../../../../../../../../../../../../../../Productos/comerzzia/4.8.0/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css?>
+
+<AnchorPane prefHeight="602.0" prefWidth="927.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.configuracion.mediospago.sipay.modooffline.ModoOfflineSipayController">
+  <children>
+    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox alignment="CENTER" prefHeight="54.0" prefWidth="628.0" styleClass="titulo-ventana">
+          <children>
+            <Label styleClass="titulo-ventana" text="%Configuración medio de pago Offline" />
+          </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="52.0" prefWidth="627.0">
+          <children>
+            <Label fx:id="lbError1" prefHeight="-1.0" prefWidth="-1.0" styleClass="lb-destacado" text="%Modo Offline:">
+              <HBox.margin>
+                <Insets right="5.0" />
+              </HBox.margin>
+            </Label>
+            <Label fx:id="lbModo" prefHeight="47.0" prefWidth="162.0" styleClass="lb-destacado" text="%DESACTIVADO" />
+          </children>
+          <VBox.margin>
+            <Insets top="10.0" />
+          </VBox.margin>
+        </HBox>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+          <children>
+            <VBox fx:id="vbEstado" alignment="CENTER" prefHeight="65.0" prefWidth="627.0">
+              <children>
+                <Button fx:id="btDesactivar" mnemonicParsing="false" onAction="#desactivarModoOffline" prefHeight="45.0" prefWidth="237.0" styleClass="btCancelar" text="%DESACTIVAR modo offline" />
+              </children>
+            </VBox>
+            <VBox fx:id="vbFormulario" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+              <children>
+                <HBox alignment="CENTER" prefHeight="90.0" prefWidth="200.0" spacing="5.0">
+                  <children>
+                    <Label prefHeight="20.0" prefWidth="150.0" text="%Contraseña de activación" />
+                    <PasswordField fx:id="tfPassword" prefHeight="50.0" prefWidth="237.0" />
+                  </children>
+                  <VBox.margin>
+                    <Insets top="10.0" />
+                  </VBox.margin>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="90.0" prefWidth="200.0" spacing="5.0">
+                  <children>
+                    <Label prefHeight="20.0" prefWidth="150.0" text="%Repita la contraseña" />
+                    <PasswordField fx:id="tfPasswordRep" prefHeight="50.0" prefWidth="237.0" />
+                  </children>
+                  <VBox.margin>
+                    <Insets top="10.0" />
+                  </VBox.margin>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="42.0" prefWidth="626.0" styleClass="lbError" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lbError" styleClass="lbError" text="" />
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="60.0" prefWidth="628.0" spacing="5.0">
+                  <children>
+                    <Button fx:id="btCambioModo" mnemonicParsing="false" onAction="#cambiarModo" styleClass="btAceptar" text="%ACTIVAR modo offline">
+                      <HBox.margin>
+                        <Insets right="10.0" />
+                      </HBox.margin>
+                    </Button>
+                  </children>
+                </HBox>
+              </children>
+              <VBox.margin>
+                <Insets top="10.0" />
+              </VBox.margin>
+            </VBox>
+          </children>
+          <padding>
+            <Insets top="50.0" />
+          </padding>
+        </VBox>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>

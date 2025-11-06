@@ -1,0 +1,52 @@
+#set($tarjetaRegalo = $linea.getTarjetaRegalo())
+
+## Variables que almacenan el simbolo del euro en el charset 1252
+#set ($string = " ")
+#set ($char = $string.charAt(0))
+#set ($chars = $char.toChars(128))
+#set($Integer = 0)
+#set($codCaja = $Integer.parseInt($ticket.getCabecera().getCodCaja()))
+#if($codCaja >= 40 && $codCaja <= 50)
+	#set ($euro = "€")
+#else
+	#set ($euro = $string.copyValueOf($chars))
+#end
+
+#if(!$esCopia && !$tarjetaRegalo.getEstado().equals("ANULADA"))
+	<linea>
+		<texto size="44" align="center">COMPROBANTE TARJETA REGALO</texto>
+	</linea>
+	<linea>
+		<texto size="22" align="left">Número de tarjeta: </texto>
+		<texto size="22" align="right">$textUtils.maskCardNumber(${tarjetaRegalo.getNumeroTarjeta()}, 9, 4)</texto>
+	</linea>
+	<linea>
+		<texto size="22" align="left">Estado: </texto>
+		<texto size="22" align="right">${tarjetaRegalo.getEstado()}</texto>
+	</linea>
+	<linea>
+		<texto size="22" align="left">Saldo: </texto>
+		<texto size="22" align="right">${fmt.formateaImporte($tarjetaRegalo.getSaldo())} ${euro}</texto>
+	</linea>
+	#if(${tarjetaRegalo.getFechaCaducidad()})
+		<linea>
+			<texto size="22" align="left">Fecha de caducidad: </texto>
+			<texto size="22" align="right">${fmt.formateaFecha($tarjetaRegalo.getFechaCaducidad())}</texto>
+		</linea>
+	#end
+	#if(${tarjetaRegalo.getPin()})
+		<linea>
+			<texto size="22" align="left">PIN: </texto>
+			<texto size="22" align="right">${tarjetaRegalo.getPin()}</texto>
+		</linea>
+	#end
+	<linea><texto>********************************************</texto></linea>
+	<linea><texto align="center">Incluye esta tarjeta en nuesta app</texto></linea>
+	<linea><texto align="center">introduciendo el número y el PIN.</texto></linea>
+	<linea><texto align="center">Tienes 24 horas para hacerlo.</texto></linea>
+	<linea><texto>********************************************</texto></linea>
+	<linea><texto></texto></linea>
+	<linea><texto></texto></linea>
+	<linea><texto></texto></linea>
+	<corte></corte>
+#end

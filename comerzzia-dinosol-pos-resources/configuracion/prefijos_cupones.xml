@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cupones>
+   <cupon>
+       <codMedioPago>0404</codMedioPago>
+       <prefijos>
+           <prefijo>21</prefijo>
+       </prefijos>
+   </cupon>
+</cupones>

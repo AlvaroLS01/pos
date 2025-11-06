@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.imagenArticulo.*?>
+<?import com.comerzzia.pos.core.gui.componentes.tecladonumerico.*?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet pantallasecundariasorteos.css?>
+
+<AnchorPane fx:id="PantallasVentas" maxHeight="-1.0" maxWidth="-1.0" minHeight="574.875" prefHeight="574.875" prefWidth="1024.0" style="" styleClass="fondo" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.dispositivo.visor.pantallasecundaria.gui.sorteos.PantallaSecundariaSorteosController">
+  <children>
+    <VBox fx:id="vbIncidenciaTecnica" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <Label id="labelMensaje" fx:id="lbIncidenciaTecnica" alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" styleClass="lbMensaje" text="Con esta compra has participado #NP# veces.&#10;Por problemas técnicos, no hemos podido&#10;imprimir tus cupones, guarda este ticket&#10;y pasa en otro momento a solicitarlos.&#10;&#10;Disculpa las molestias." textAlignment="CENTER" visible="true">
+          <font>
+            <Font name="System Bold" size="30.0" fx:id="x1" />
+          </font>
+          <textFill>
+            <Color blue="0.259" green="0.388" red="0.000" fx:id="x2" />
+          </textFill>
+        </Label>
+        <Separator orientation="VERTICAL" prefHeight="50.0" visible="false" />
+      </children>
+    </VBox>
+    <VBox id="vbIncidenciaTecnica" fx:id="vbTicketDigital" alignment="CENTER" prefHeight="574.875" prefWidth="1024.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+      <Label id="labelMensaje" fx:id="lbTicketDigital" alignment="CENTER" font="$x1" prefHeight="-1.0" prefWidth="-1.0" styleClass="lbMensaje" text="Con esta compra has participado&#10;en nuestro Aniversario,&#10;consulta en nuestra app&#10;si has ganado alguno de &#10;nuestros fantásticos premios." textAlignment="CENTER" textFill="$x2" visible="true" />
+        <Separator orientation="VERTICAL" prefHeight="70.0" visible="true" />
+      </children>
+    </VBox>
+    <VBox id="vbIncidenciaTecnica" fx:id="vbTicketFisicoFidelizado" alignment="CENTER" prefHeight="574.875" prefWidth="1024.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <Label id="labelMensaje" fx:id="lbTicketFisicoFidelizado" alignment="CENTER" font="$x1" prefHeight="-1.0" prefWidth="-1.0" styleClass="lbMensaje" text="Con esta compra has participado&#10;#NP# veces en nuestro Aniversario,&#10;consulta en nuestra app&#10;si has ganado alguno de &#10;nuestros fantásticos premios." textAlignment="CENTER" textFill="$x2" visible="true" />
+        <Separator orientation="VERTICAL" prefHeight="70.0" visible="false" />
+      </children>
+    </VBox>
+    <VBox id="vbIncidenciaTecnica" fx:id="vbNoFidelizadoPremios" alignment="CENTER" prefHeight="574.875" prefWidth="1024.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <Label id="labelMensaje" fx:id="lbNoFidelizadoPremios" alignment="CENTER" font="$x1" prefHeight="-1.0" prefWidth="-1.0" styleClass="lbMensaje" text="¡ENHORABUENA!&#10;&#10;Con esta compra&#10;has participado #NP# veces&#10;en nuestro Aniversario y&#10;¡has ganado #NPP# premios!" textAlignment="CENTER" textFill="$x2" visible="true" />
+        <Separator orientation="VERTICAL" prefHeight="70.0" visible="false" />
+      </children>
+    </VBox>
+    <VBox id="vbIncidenciaTecnica" fx:id="vbNoFidelizadoSinPremios" alignment="CENTER" prefHeight="574.875" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <Label id="labelMensaje" fx:id="lbNoFidelizadoSinPremios" alignment="CENTER" font="$x1" prefHeight="-1.0" prefWidth="-1.0" styleClass="lbMensaje" text="Con esta compra has participado&#10;#NP# veces en nuestro Aniversario.&#10;No has conseguido premio directo pero&#10;¡recuerda participar en los sorteos &#10;semanales y el sorteo final!&#10;&#10;¡MUCHA SUERTE!" textAlignment="CENTER" textFill="#006342" visible="true" />
+        <Separator orientation="VERTICAL" prefHeight="70.0" visible="false" />
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@pantallasecundariaenviodomicilio.css" />
+  </stylesheets>
+</AnchorPane>

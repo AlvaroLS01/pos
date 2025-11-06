@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.tecladonumerico.*?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" minWidth="730.0" opacity="1.0" prefHeight="473.0" prefWidth="730.0" styleClass="contenidosdigitales-window" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.enviodomicilio.recuperarticket.RecuperarTicketSadController">
+  <children>
+    <VBox prefHeight="700.0" prefWidth="730.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane minHeight="42.0" prefHeight="42.0" prefWidth="730.0" styleClass="cabecera-venta" VBox.vgrow="NEVER">
+          <children>
+            <Label alignment="CENTER" prefHeight="52.0" prefWidth="528.0" styleClass="cabecera-venta" text="%Servicios a domicilio" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+          </children>
+        </AnchorPane>
+        <AnchorPane minHeight="42.0" prefHeight="516.0" prefWidth="730.0" VBox.vgrow="ALWAYS">
+          <children>
+            <HBox alignment="TOP_CENTER" minHeight="371.0" prefHeight="431.0" prefWidth="730.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <VBox id="vBContenedor" fx:id="vbContenedor" prefHeight="784.0" prefWidth="730.0" spacing="8.0">
+                  <children>
+                    <VBox fx:id="vbPaso1" prefHeight="300.0" prefWidth="730.0">
+                      <children>
+                        <FlowPane hgap="5.0" prefHeight="55.0" prefWidth="730.0">
+                          <children>
+                            <Label alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="220.0" styleClass="etiqueta-titulo2" text="%Tipo de documento" />
+                            <TextField id="tfTipoDoc" fx:id="tfCodDoc" alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="75.0" />
+                            <TextField id="tf" fx:id="tfDesDoc" editable="false" prefHeight="40.0" prefWidth="250.0" />
+                            <Button id="accionBuscarTipoDoc" fx:id="btDoc" maxWidth="51.0" minHeight="27.0" minWidth="25.0" mnemonicParsing="false" onAction="#accionBuscarTipoDoc" prefHeight="40.0" prefWidth="50.0" styleClass="btTipoDoc" text="" />
+                          </children>
+                          <VBox.margin>
+                            <Insets top="20.0" />
+                          </VBox.margin>
+                        </FlowPane>
+                        <FlowPane fx:id="fpDocumento" hgap="5.0" prefHeight="55.0" prefWidth="730.0" VBox.vgrow="NEVER">
+                          <children>
+                            <Label alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="220.0" styleClass="etiqueta-titulo2" text="%Cod. documento / Localizador" />
+                            <TextField fx:id="tfOperacion" alignment="CENTER_LEFT" onKeyReleased="#accionAceptarIntro" prefHeight="40.0" prefWidth="330.0" />
+                          </children>
+                          <VBox.margin>
+                            <Insets top="40.0" />
+                          </VBox.margin>
+                        </FlowPane>
+                        <FlowPane alignment="CENTER" prefHeight="150.0" prefWidth="730.0">
+                          <children>
+                            <Label fx:id="lbMensajeError" alignment="CENTER" prefHeight="25.0" prefWidth="600.0" styleClass="lbError" text="">
+                              <FlowPane.margin>
+                                <Insets fx:id="x1" />
+                              </FlowPane.margin>
+                            </Label>
+                          </children>
+                        </FlowPane>
+                        <FlowPane alignment="CENTER" columnHalignment="LEFT" prefHeight="200.0" prefWidth="730.0">
+                          <children>
+                            <Button fx:id="btAceptar" mnemonicParsing="false" onAction="#accionBuscar" prefHeight="70.0" prefWidth="255.0" styleClass="btAceptar" text="%BUSCAR DOCUMENTO" wrapText="true" FlowPane.margin="$x1" />
+                          </children>
+                        </FlowPane>
+                      </children>
+                      <VBox.margin>
+                        <Insets top="10.0" />
+                      </VBox.margin>
+                    </VBox>
+                  </children>
+                </VBox>
+              </children>
+            </HBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../styles/styles.css" />
+    <URL value="@recuperarticketsad.css" />
+  </stylesheets>
+</AnchorPane>

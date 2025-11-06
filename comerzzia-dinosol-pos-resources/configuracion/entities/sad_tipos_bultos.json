@@ -1,0 +1,32 @@
+[{
+    "id": 6,
+    "nombre": "Seco",
+    "identificador": "01",
+    "codigo": "01",
+    "volumen": 5.0,
+    "description": "Caja Kaimán con tapa"
+}, 
+{
+    "id": 7,
+    "nombre": "Frescos",
+    "identificador": "02",
+    "codigo": "02",
+    "volumen": 6.0,
+    "description": "Bolsa productos frescos"
+}, 
+{
+    "id": 8,
+    "nombre": "Congelados",
+    "identificador": "03",
+    "codigo": "03",
+    "volumen": 1.0,
+    "description": "Bolsa productos congelados"
+}, 
+{
+    "id": 11,
+    "nombre": "Otros",
+    "identificador": "04",
+    "codigo": "04",
+    "volumen": 1000.0,
+    "description": "Productos voluminosos"
+}]

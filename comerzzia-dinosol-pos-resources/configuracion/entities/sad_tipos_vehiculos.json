@@ -1,0 +1,12 @@
+[ {
+    "id": 1,
+    "nombre": "Furgoneta"
+}, 
+{
+    "id": 2,
+    "nombre": "Carretilla"
+}, 
+{
+    "id": 5,
+    "nombre": "Recogida en tienda"
+}]

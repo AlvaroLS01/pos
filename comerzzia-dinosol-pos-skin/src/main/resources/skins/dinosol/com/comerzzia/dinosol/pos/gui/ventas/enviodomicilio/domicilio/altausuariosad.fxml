@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.imagenArticulo.*?>
+<?import com.comerzzia.pos.core.gui.componentes.tecladonumerico.*?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import com.comerzzia.dinosol.pos.gui.componentes.AutocompletionlTextField?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet ../enviodomicilio.css?>
+<?scenebuilder-stylesheet ../../../../../../../../../../../../../../../../../Productos/Comerzzia/branches/4.8.0/javafx-pos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1024.0" style="&#10;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.enviodomicilio.domicilio.AltaUsuarioSADController">
+  <children>
+    <HBox prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane prefHeight="600.0" prefWidth="549.0" style="" HBox.hgrow="ALWAYS">
+          <children>
+            <VBox fillWidth="true" prefHeight="62.0" prefWidth="549.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane fx:id="apTitulo" maxHeight="30.000099999997474" minHeight="30.0" prefHeight="30.0" prefWidth="1024.0" styleClass="titulo-ventana, cabecera-venta" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lbTitulo" alignment="CENTER" maxHeight="30.0" prefHeight="30.0" prefWidth="800.0" text="" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0" />
+                  </children>
+                </AnchorPane>
+                <VBox prefHeight="670.0" prefWidth="1024.0">
+                  <children>
+                    <VBox prefHeight="660.0" prefWidth="100.0">
+                      <children>
+                        <VBox prefHeight="660.0" prefWidth="100.0">
+                          <children>
+                            <VBox alignment="CENTER" padding="$x3" prefHeight="30.0" prefWidth="1024.0">
+                              <children>
+                                <Label text="%Datos del Cliente">
+                                  <VBox.margin>
+                                    <Insets fx:id="x3" />
+                                  </VBox.margin>
+                                </Label>
+                              </children>
+                            </VBox>
+                            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="1024.0">
+                              <children>
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="1024.0">
+                                  <children>
+                                    <Label prefWidth="100.0" text="%Nombre :">
+                                      <graphic>
+                                        <Label text="*" />
+                                      </graphic>
+                                      <HBox.margin>
+                                        <Insets left="30.0" fx:id="x2" />
+                                      </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="tfNombre" onKeyReleased="#keyReleased" prefWidth="400.0">
+                                      <HBox.margin>
+                                        <Insets fx:id="x3" />
+                                      </HBox.margin>
+                                    </TextField>
+                                    <Label prefWidth="100.0" text="%NIF/NIE :">
+                                      <HBox.margin>
+                                        <Insets left="20.0" fx:id="x1" />
+                                      </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="tfDNI" onKeyReleased="#keyReleased" prefWidth="200.0" />
+                                  </children>
+                                </HBox>
+                              </children>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
+                              <children>
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="1024.0">
+                                  <children>
+                                    <Label prefWidth="100.0" text="%Apellidos :" HBox.margin="$x2">
+                                      <graphic>
+                                        <Label text="*" />
+                                      </graphic>
+                                    </Label>
+                                    <TextField fx:id="tfApellidos" onKeyReleased="#keyReleased" prefWidth="400.0" />
+                                  </children>
+                                </HBox>
+                              </children>
+                            </HBox>
+                            <VBox alignment="CENTER" prefHeight="30.0" prefWidth="1024.0">
+                              <children>
+                                <Label text="%Datos de Domicilio">
+                                  <VBox.margin>
+                                    <Insets fx:id="x3" />
+                                  </VBox.margin>
+                                </Label>
+                              </children>
+                              <padding>
+                                <Insets fx:id="x3" />
+                              </padding>
+                            </VBox>
+                            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="500.0">
+                              <children>
+                                <Label id="lbDireccion" prefWidth="100.0" text="%Dirección :" HBox.margin="$x2">
+                                  <graphic>
+                                    <Label text="*" />
+                                  </graphic>
+                                </Label>
+                                <AutocompletionlTextField fx:id="tfDireccion" onKeyReleased="#keyReleased" prefWidth="400.0" />
+                                <Label text="%Tipo de Vía :">
+                                  <graphic>
+                                    <Label text="*" />
+                                  </graphic>
+                                  <HBox.margin>
+                                    <Insets left="20.0" fx:id="x1" />
+                                  </HBox.margin>
+                                </Label>
+                                <ComboBox id="cbMediosTransporte" fx:id="cbTipoVia" prefHeight="35.0" prefWidth="250.0" HBox.margin="$x1">
+                                  <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                      <String fx:value="Item 1" />
+                                      <String fx:value="Item 2" />
+                                      <String fx:value="Item 3" />
+                                    </FXCollections>
+                                  </items>
+                                </ComboBox>
+                              </children>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="500.0">
+                              <children>
+                                <Label id="lbCodigoPostal" prefWidth="100.0" text="%C.P :">
+                                  <graphic>
+                                    <Label text="*" />
+                                  </graphic>
+                                  <HBox.margin>
+                                    <Insets left="30.0" fx:id="x2" />
+                                  </HBox.margin>
+                                </Label>
+                                <TextField fx:id="tfCodigoPostal" onKeyReleased="#keyReleased" prefWidth="60.0" />
+                                <Label id="lbPoblacion" prefWidth="100.0" text="%Población :" HBox.margin="$x1">
+                                  <graphic>
+                                    <Label text="*" />
+                                  </graphic>
+                                </Label>
+                                <TextField fx:id="tfPoblacion" onKeyReleased="#keyReleased" prefWidth="200.0" />
+                                <Label prefWidth="100.0" text="%Provincia :" HBox.margin="$x1" />
+                                <TextField fx:id="tfProvincia" onKeyReleased="#keyReleased" prefWidth="200.0" />
+                              </children>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="500.0">
+                              <children>
+                                <Label prefWidth="100.0" text="%Teléfono :">
+                                  <graphic>
+                                    <Label text="*" />
+                                  </graphic>
+                                  <HBox.margin>
+                                    <Insets left="30.0" fx:id="x2" />
+                                  </HBox.margin>
+                                </Label>
+                                <TextField fx:id="tfTelefono" onKeyReleased="#keyReleased" prefWidth="200.0" />
+                                <Label prefWidth="100.0" text="%Email :" HBox.margin="$x1" />
+                                <TextField fx:id="tfEmail" onKeyReleased="#keyReleased" prefWidth="400.0" />
+                              </children>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="500.0" />
+                            <HBox prefHeight="130.0" prefWidth="1024.0">
+                              <children>
+                                <Label id="lblCampoObligatorios" maxWidth="235.0" minWidth="235.0" prefWidth="235.0" text="%(*) Campos obligatorios">
+                                  <HBox.margin>
+                                    <Insets left="30.0" fx:id="x2" />
+                                  </HBox.margin>
+                                </Label>
+                                <TilePane alignment="TOP_RIGHT" hgap="10.0" minHeight="52.0" prefHeight="63.0" prefWidth="1000.0">
+                                  <children>
+                                    <Button mnemonicParsing="false" onAction="#accionAceptar" prefHeight="42.0" prefWidth="115.0" styleClass="btAceptar" text="%Aceptar" />
+                                    <Button mnemonicParsing="false" onAction="#accionCancelar" prefHeight="42.0" prefWidth="115.0" styleClass="btCancelar" text="%Cancelar">
+                                      <TilePane.margin>
+                                        <Insets right="10.0" />
+                                      </TilePane.margin>
+                                    </Button>
+                                  </children>
+                                  <padding>
+                                    <Insets bottom="10.0" left="10.0" top="10.0" />
+                                  </padding>
+                                  <HBox.margin>
+                                    <Insets fx:id="x3" />
+                                  </HBox.margin>
+                                </TilePane>
+                              </children>
+                            </HBox>
+                            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                          </children>
+                          <VBox.margin>
+                            <Insets top="10.0" />
+                          </VBox.margin>
+                        </VBox>
+                      </children>
+                    </VBox>
+                  </children>
+                </VBox>
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="file:/D:/Proyectos/Clientes/DinoSol/POS/pos/comerzzia-dinosol-pos-skin/src/main/resources/skins/dinosol/com/comerzzia/dinosol/pos/Vistas/Producto/Comerzzia/branches/v4.8/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css" />
+    <URL value="@enviodomicilio.css" />
+  </stylesheets>
+</AnchorPane>

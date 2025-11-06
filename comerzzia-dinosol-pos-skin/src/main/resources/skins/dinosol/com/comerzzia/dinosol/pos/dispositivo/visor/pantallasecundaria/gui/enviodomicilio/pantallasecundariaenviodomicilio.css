@@ -1,0 +1,22 @@
+.cabecera .label{
+	-fx-text-fill: rgba(0,99,66);
+	-fx-font-size: 31px;
+	-fx-border-color: rgba(0,99,66);
+	-fx-border-width: 0 0 1 0;
+	-fx-background-color: #ffffff;
+}
+.linea-fechas .label{
+	-fx-font-size: 35px;
+	-fx-background-color: rgba(0,99,66);
+	-fx-text-fill: #ffffff;
+	-fx-padding: 0px 40px 0px 40px;
+}
+.linea-tramos .label{
+	-fx-font-size: 45px;
+	-fx-text-fill: #000000;
+	-fx-padding: 5px 0px 5px 0px;
+	-fx-font-family: 'Dosis';
+}
+.letra{
+	-fx-font-family: 'Dosis';
+}

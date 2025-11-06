@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.tecladonumerico.*?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet recargas.css?>
+<?scenebuilder-stylesheet ../../../../../../../../../../../../../../../../Productos/Comerzzia/branches/4.8/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css?>
+
+<AnchorPane id="AnchorPane" minWidth="730.0" opacity="1.0" prefHeight="473.0" prefWidth="730.0" styleClass="recargas-window" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.recargas.RecargasController">
+  <children>
+    <VBox prefHeight="700.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane minHeight="42.0" prefHeight="42.0" prefWidth="1000.0" styleClass="titulo-ventana" VBox.vgrow="NEVER">
+          <children>
+            <Label alignment="CENTER" prefHeight="52.0" prefWidth="528.0" text="%Recargas" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+          </children>
+        </AnchorPane>
+        <AnchorPane minHeight="42.0" prefHeight="516.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
+          <children>
+            <HBox alignment="TOP_CENTER" minHeight="371.0" prefHeight="371.0" prefWidth="730.0" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <VBox id="vBContenedor" fx:id="vbContenedor" prefHeight="784.0" prefWidth="722.0" spacing="8.0">
+                  <children>
+                    <VBox fx:id="vbPaso1" prefHeight="200.0" prefWidth="100.0">
+                      <children>
+                        <FlowPane hgap="5.0" prefHeight="55.0" prefWidth="200.0">
+                          <children>
+                            <Label alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="220.0" styleClass="etiqueta-titulo2" text="%Tipo de documento" />
+                            <TextField id="tfTipoDoc" fx:id="tfCodDoc" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="76.0" />
+                            <TextField id="tf" fx:id="tfDesDoc" editable="false" focusTraversable="false" prefHeight="42.0" prefWidth="250.0" />
+                            <Button id="accionBuscarTipoDoc" fx:id="btDoc" focusTraversable="false" maxWidth="51.0" minHeight="27.0" minWidth="25.0" mnemonicParsing="false" onAction="#accionBuscarTipoDoc" prefHeight="42.0" prefWidth="51.0" styleClass="btTipoDoc" text="" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                          <children>
+                            <AnchorPane prefHeight="10.0" prefWidth="200.0" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane fx:id="fpDocumento" hgap="5.0" prefHeight="55.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                          <children>
+                            <Label alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="220.0" styleClass="etiqueta-titulo2" text="%Cod. documento / Localizador" />
+                            <TextField fx:id="tfOperacion" alignment="CENTER_LEFT" onKeyReleased="#keyReleased" prefHeight="42.0" prefWidth="331.0" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                          <children>
+                            <Label id="lbMensajeError" alignment="CENTER" prefHeight="27.0" prefWidth="616.0" styleClass="lbError" text="" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                          <children>
+                            <AnchorPane prefHeight="42.0" prefWidth="180.0" />
+                            <Button fx:id="btAceptar" mnemonicParsing="false" onAction="#accionBuscar" prefHeight="73.0" prefWidth="254.0" styleClass="btAceptar" text="%BUSCAR DOCUMENTO" wrapText="true">
+                              <FlowPane.margin>
+                                <Insets left="80.0" />
+                              </FlowPane.margin>
+                            </Button>
+                          </children>
+                        </FlowPane>
+                      </children>
+                      <VBox.margin>
+                        <Insets top="10.0" />
+                      </VBox.margin>
+                    </VBox>
+                    <VBox fx:id="vbPaso2" prefHeight="517.0" prefWidth="716.0">
+                      <children>
+                        <FlowPane id="fPMovil1" fx:id="fpImporteRecarga1" hgap="5.0" prefHeight="50.0" prefWidth="200.0">
+                          <children>
+                            <Label id="tfMovil1" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="202.0" styleClass="etiqueta-titulo2" text="%Núm. Ticket">
+                              <FlowPane.margin>
+                                <Insets left="20.0" />
+                              </FlowPane.margin>
+                            </Label>
+                            <Label fx:id="lbNumTicket" prefHeight="20.0" prefWidth="256.0">
+                              <FlowPane.margin>
+                                <Insets left="10.0" fx:id="x2" />
+                              </FlowPane.margin>
+                            </Label>
+                          </children>
+                        </FlowPane>
+                        <FlowPane id="fPMovil1" fx:id="fpImporteRecarga2" hgap="5.0" prefHeight="55.0" prefWidth="200.0">
+                          <children>
+                            <Label id="tfMovil1" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="221.0" styleClass="etiqueta-titulo2" text="%Fecha" />
+                            <Label fx:id="lbFechaRecarga" prefWidth="262.0" FlowPane.margin="$x2" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane id="fPMovil1" fx:id="fpImporteRecarga" hgap="5.0" prefHeight="55.0" prefWidth="200.0">
+                          <children>
+                            <Label id="tfMovil1" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="222.0" styleClass="etiqueta-titulo2" text="%Importe de la recarga" />
+                            <Label fx:id="lbImporteRecarga" prefWidth="266.0" FlowPane.margin="$x2" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane hgap="5.0" prefHeight="200.0" prefWidth="200.0">
+                          <children>
+                            <Label id="tfMovil1" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="224.0" styleClass="etiqueta-titulo2" text="%Operador" />
+                            <Label fx:id="lbOperador" text="" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane id="fPMovil1" fx:id="fpMovil1" hgap="5.0" prefHeight="55.0" prefWidth="200.0">
+                          <children>
+                            <Label id="tfMovil1" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="224.0" styleClass="etiqueta-titulo2" text="%Número de teléfono" />
+                            <TextFieldImporte id="tfOperacion" fx:id="tfMovil1" alignment="CENTER_RIGHT" onKeyReleased="#keyReleased" prefHeight="42.0" prefWidth="266.0" />
+                          </children>
+                          <VBox.margin>
+                            <Insets top="15.0" fx:id="x1" />
+                          </VBox.margin>
+                        </FlowPane>
+                        <FlowPane id="fPMovil1" hgap="5.0" prefHeight="55.0" prefWidth="200.0" VBox.margin="$x1">
+                          <children>
+                            <Label id="tfMovil1" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="224.0" styleClass="etiqueta-titulo2" text="%Confirme el número" />
+                            <TextFieldImporte id="tfOperacion" fx:id="tfMovilConfirmar" alignment="CENTER_RIGHT" onKeyReleased="#keyReleased" prefHeight="42.0" prefWidth="266.0" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                          <children>
+                            <Label id="lbMensajeError" alignment="CENTER" prefHeight="27.0" prefWidth="616.0" styleClass="lbError" text="" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="146.0" prefWidth="694.0">
+                          <children>
+                            <AnchorPane prefHeight="73.0" prefWidth="98.0">
+                              <padding>
+                                <Insets left="30.0" right="30.0" />
+                              </padding>
+                            </AnchorPane>
+                            <Button id="btAceptar" fx:id="btRecarga" mnemonicParsing="false" onAction="#realizarAccionRecarga" prefHeight="73.0" prefWidth="237.0" styleClass="btAceptar" text="%INICIAR RECARGA" wrapText="true">
+                              <FlowPane.margin>
+                                <Insets left="20.0" right="12.0" />
+                              </FlowPane.margin>
+                            </Button>
+                            <Button fx:id="btCerrar" mnemonicParsing="false" onAction="#accionCerrar" prefHeight="73.0" prefWidth="238.0" styleClass="btCancelar" text="%CERRAR" wrapText="true" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                          <children>
+                            <AnchorPane prefHeight="42.0" prefWidth="180.0" />
+                          </children>
+                          <padding>
+                            <Insets top="20.0" />
+                          </padding>
+                        </FlowPane>
+                      </children>
+                      <VBox.margin>
+                        <Insets top="10.0" />
+                      </VBox.margin>
+                    </VBox>
+                    <FlowPane prefHeight="200.0" prefWidth="200.0">
+                      <children>
+                        <Label fx:id="lbMensajeError" alignment="CENTER" prefHeight="27.0" prefWidth="616.0" styleClass="lbError" text="" />
+                      </children>
+                      <VBox.margin>
+                        <Insets top="10.0" />
+                      </VBox.margin>
+                    </FlowPane>
+                  </children>
+                </VBox>
+                <VBox alignment="CENTER" prefHeight="370.0000999999975" prefWidth="100.0" />
+              </children>
+            </HBox>
+          </children>
+        </AnchorPane>
+        <AnchorPane prefHeight="159.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+          <children>
+            <HBox alignment="TOP_RIGHT" minWidth="730.0" prefHeight="51.0" prefWidth="730.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="183.0" AnchorPane.topAnchor="-14.0">
+              <children>
+                <AnchorPane minWidth="730.0" prefHeight="118.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+              </children>
+            </HBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../styles/styles.css" />
+    <URL value="@recargas.css" />
+  </stylesheets>
+</AnchorPane>

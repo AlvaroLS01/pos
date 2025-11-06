@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuracion fecha="10/02/2014" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+	<BaseDatos>
+        <Driver>oracle.jdbc.OracleDriver</Driver>
+    	<URL>jdbc:oracle:thin:@vm-orasoft.tier1.es:1521:CLIENTES</URL>
+        <Usuario>CZZ_DINOSOL</Usuario>
+		<Password>CZZ_DINOSOL</Password>
+    </BaseDatos>
+<!-- 	<BaseDatos> -->
+<!--         <Driver>oracle.jdbc.OracleDriver</Driver> -->
+<!--     	<URL>jdbc:oracle:thin:@cmz-pre.c4lal7q1hil8.eu-west-1.rds.amazonaws.com:1521:CMZPRE</URL> -->
+<!--         <Usuario>CZZ_DINOSOL</Usuario> -->
+<!-- 		<Password>fuego</Password> -->
+<!--     </BaseDatos> -->
+
+<!-- 	<BaseDatos> -->
+<!-- 		<Driver>com.mysql.jdbc.Driver</Driver> -->
+<!-- 		<URL>jdbc:mysql://127.0.0.1:3306/czzpos</URL> -->
+<!-- 		<Usuario>czzpos</Usuario> -->
+<!-- 		<Password>czzpos</Password> -->
+<!-- 	</BaseDatos> -->
+
+<!-- 	<BaseDatos> -->
+<!-- 		<Driver>com.mysql.jdbc.Driver</Driver> -->
+<!-- 		<URL>jdbc:mysql://10.0.4.1:3306/czzpos</URL> -->
+<!-- 		<Usuario>czzpos</Usuario> -->
+<!-- 		<Password>czzpos</Password> -->
+<!-- 	</BaseDatos> -->
+    <!-- 
+     <Localizacion>
+    	<pais>CA</pais>
+    	<idioma>ca</idioma>
+    </Localizacion>
+    -->
+    <!-- Eliminar tag para eliminar modo desarrollo -->
+    <Desarrollo> 
+        <Usuario>administrador</Usuario>
+        <Password>cmz</Password>
+    </Desarrollo>
+    <Interfaz>
+        <Ancho>1024</Ancho>
+        <Alto>768</Alto>    
+        <PantallaCompleta>false</PantallaCompleta>
+        <EfectoFondoVentanaModales>true</EfectoFondoVentanaModales>
+        <MostrarTecladoAlfanumerico>true</MostrarTecladoAlfanumerico>
+    </Interfaz>
+    <login>LOGIN</login>
+	<Skin>dinosol</Skin>
+    <!-- <AccionInicio>210</AccionInicio> -->
+    <Menu>POS-DINOSOL</Menu>
+    <InStoreEngine>
+    	<RestUrl>http://localhost:8081/comerzzia-inStoreEngine/ws/</RestUrl>
+    	<SegundosPeticionNotificaciones></SegundosPeticionNotificaciones>
+    </InStoreEngine>
+<!-- 	<SegundosInactividad>10</SegundosInactividad> -->
+    <!--
+	<ImagenesArticulos> 
+		<RutaImagenes></RutaImagenes>
+		<ImagenDefecto></ImagenDefecto>
+	</ImagenesArticulos>
+	-->
+	<SystemProperties>
+		<!-- <prism.verbose>true</prism.verbose> -->
+ 		<!-- <prism.order>j2d</prism.order> -->
+	</SystemProperties>
+	<!--
+	<KeyCodes>
+		<Tablas>
+			<Accion>E</Accion>
+			<AccionGeneral>CTRL+E</AccionGeneral>
+			<UltimoGeneral>CTRL+SHIFT+RIGHT</UltimoGeneral>
+			<PrimeroGeneral>CTRL+SHIFT+LEFT</PrimeroGeneral>
+			<SiguienteGeneral>CTRL+K</SiguienteGeneral>
+			<AnteriorGeneral>CTRL+L</AnteriorGeneral>
+		</Tablas>
+	</KeyCodes>
+	-->
+	
+	<!-- Esta etiqueta es un campo opcional, en el cual se especifica el id de la acción
+		par acceder a la pantalla de fidelizado, en el caso de que se haya cambiado el id 
+		que trae la misma acción por defecto -->
+	<!--<AccionFidelizado>75676</AccionFidelizado> -->
+	
+	<POSApplication>DinoPOSApplication</POSApplication>
+	
+</configuracion>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="javafx.scene.layout.AnchorPane" minHeight="293.0" prefHeight="330.0" prefWidth="232.0" style="" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.pos.core.gui.componentes.tecladonumerico.TecladoNumericoController">
+  <children>
+    <GridPane alignment="CENTER" hgap="5.0" layoutX="0.0" layoutY="-18.0" minHeight="299.0" prefHeight="299.0" prefWidth="227.0" style="" styleClass="teclado-numerico" vgap="5.0">
+      <children>
+        <Button focusTraversable="false" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#actionButton1" prefHeight="86.0" prefWidth="53.0" text="1" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Button focusTraversable="false" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#actionButton2" prefHeight="86.0" prefWidth="53.0" text="2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Button focusTraversable="false" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#actionButton3" prefHeight="86.0" prefWidth="53.0" text="3" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <Button focusTraversable="false" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#actionButton4" prefHeight="86.0" prefWidth="53.0" text="4" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <Button focusTraversable="false" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#actionButton5" prefHeight="86.0" prefWidth="53.0" text="5" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Button focusTraversable="false" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#actionButton6" prefHeight="86.0" prefWidth="53.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+        <Button focusTraversable="false" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#actionButton7" prefHeight="86.0" prefWidth="53.0" text="7" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <Button focusTraversable="false" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#actionButton8" prefHeight="86.0" prefWidth="53.0" text="8" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Button focusTraversable="false" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#actionButton9" prefHeight="86.0" prefWidth="53.0" text="9" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+        <Button fx:id="btSeparadorDecimal" focusTraversable="false" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#actionButtonComa" prefHeight="71.0" prefWidth="53.0" text="," GridPane.columnIndex="2" GridPane.rowIndex="5" />
+        <Button focusTraversable="false" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#actionButton0" prefHeight="71.0" prefWidth="110.0" text="0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+        <Button focusTraversable="false" minHeight="50.0" minWidth="106.0" mnemonicParsing="false" onAction="#actionButtonDelete" prefHeight="60.0" prefWidth="232.0" text="%Borrar" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="1" />
+        <Button focusTraversable="false" minHeight="71.0" minWidth="50.0" mnemonicParsing="false" onAction="#actionButtonX" prefHeight="193.0" prefWidth="50.0" text="x" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+        <Button focusTraversable="false" minHeight="81.0" minWidth="50.0" mnemonicParsing="false" onAction="#actionButtonOK" prefHeight="168.0" prefWidth="50.0" text="%OK" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.rowSpan="2" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="52.5" minWidth="52.5" prefWidth="52.5" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="52.55" minWidth="52.5" prefWidth="52.55" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="52.5" minWidth="52.5" prefWidth="52.55" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="52.5" minWidth="52.5" prefWidth="52.5" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="6070.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="0.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+  </children>
+  <stylesheets>
+    <URL value="@tecladonumerico.css" />
+    <URL value="@../../styles/styles.css" />
+  </stylesheets>
+</fx:root>

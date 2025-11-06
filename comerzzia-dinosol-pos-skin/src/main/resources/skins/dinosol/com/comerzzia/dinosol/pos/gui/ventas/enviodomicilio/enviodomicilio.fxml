@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.imagenArticulo.*?>
+<?import com.comerzzia.pos.core.gui.componentes.tecladonumerico.*?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet enviodomicilio.css?>
+<?scenebuilder-stylesheet ../../../../../../../../../../../../../../../../Productos/Comerzzia/branches/4.8/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1024.0" style="&#10;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.enviodomicilio.EnvioDomicilioController">
+  <children>
+    <HBox prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane prefHeight="600.0" prefWidth="549.0" style="" HBox.hgrow="ALWAYS">
+          <children>
+            <VBox fillWidth="true" prefHeight="62.0" prefWidth="549.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane fx:id="apTitulo" maxHeight="30.000099999997474" minHeight="30.0" prefHeight="30.0" prefWidth="1024.0" styleClass="titulo-ventana, cabecera-venta" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lbTitulo" alignment="CENTER" maxHeight="30.0" prefHeight="30.0" prefWidth="800.0" text="Envío a Domicilio" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0" />
+                  </children>
+                </AnchorPane>
+                <HBox prefHeight="43.0" prefWidth="1024.0" scaleX="1.0" spacing="5.0">
+                  <children>
+                    <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="801.0">
+                      <children>
+                        <Label alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="60.0" style="" text="%Cliente:" HBox.hgrow="NEVER">
+                          <rotationAxis>
+                            <Point3D />
+                          </rotationAxis>
+                          <HBox.margin>
+                            <Insets left="10.0" />
+                          </HBox.margin>
+                        </Label>
+                        <Label fx:id="lbNombre" prefHeight="-1.0" prefWidth="-1.0" style="" styleClass="lb-destacado" text="" HBox.hgrow="ALWAYS">
+                          <HBox.margin>
+                            <Insets fx:id="x1" />
+                          </HBox.margin>
+                        </Label>
+                      </children>
+                      <rotationAxis>
+                        <Point3D />
+                      </rotationAxis>
+                    </HBox>
+                    <HBox fx:id="hbPorte" alignment="CENTER_RIGHT" prefHeight="-1.0" prefWidth="218.0" spacing="10.0">
+                      <children>
+                        <Label text="%Portes:" />
+                        <Label fx:id="lbPorte" prefWidth="87.0" styleClass="lb-destacado" text="" />
+                      </children>
+                      <rotationAxis>
+                        <Point3D />
+                      </rotationAxis>
+                    </HBox>
+                  </children>
+                  <rotationAxis>
+                    <Point3D />
+                  </rotationAxis>
+                  <VBox.margin>
+                    <Insets fx:id="x6" />
+                  </VBox.margin>
+                </HBox>
+                <HBox prefHeight="180.0" prefWidth="1024.0" style="-fx-border-color: #dcdcdc;&#10;  &#10;-fx-border-width: 1px;">
+                  <children>
+                    <VBox prefHeight="350.0" prefWidth="800.0">
+                      <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                          <children>
+                            <HBox prefHeight="38.0" prefWidth="1024.0">
+                              <children>
+                                <Label prefWidth="130.0" text="%Teléfono :">
+                                  <HBox.margin>
+                                    <Insets left="20.0" top="5.0" fx:id="x3" />
+                                  </HBox.margin>
+                                </Label>
+                                <TextField id="tfTlf" fx:id="tfTelefono" prefWidth="190.0">
+                                  <HBox.margin>
+                                    <Insets top="2.0" fx:id="x2" />
+                                  </HBox.margin>
+                                </TextField>
+                                <Label prefWidth="100.0" text="%Email :">
+                                  <HBox.margin>
+                                    <Insets left="60.0" top="5.0" fx:id="x4" />
+                                  </HBox.margin>
+                                </Label>
+                                <TextField fx:id="tfEmail" prefWidth="200.0" HBox.margin="$x2" />
+                              </children>
+                              <VBox.margin>
+                                <Insets top="10.0" />
+                              </VBox.margin>
+                            </HBox>
+                            <HBox minHeight="-1.0" prefHeight="38.0" prefWidth="1024.0">
+                              <children>
+                                <Label prefWidth="130.0" text="%Dirección Entrega :" HBox.margin="$x3" />
+                                <TextField fx:id="tfDireccion" prefWidth="550.0" HBox.margin="$x2" />
+                              </children>
+                            </HBox>
+                            <HBox prefHeight="38.0" prefWidth="1024.0">
+                              <children>
+                                <Label prefWidth="130.0" text="%Población :" HBox.margin="$x3" />
+                                <TextField fx:id="tfPoblacion" prefWidth="200.0" HBox.margin="$x2" />
+                              </children>
+                            </HBox>
+                            <HBox prefHeight="38.0" prefWidth="1024.0">
+                              <children>
+                                <Label prefWidth="130.0" text="%C.P :" HBox.margin="$x3" />
+                                <TextField fx:id="tfCodigoPostal" prefWidth="190.0" HBox.margin="$x2" />
+                                <Label prefWidth="100.0" text="%Provincia :" HBox.margin="$x4" />
+                                <TextField fx:id="tfProvincia" prefWidth="200.0" HBox.margin="$x2" />
+                              </children>
+                              <VBox.margin>
+                                <Insets bottom="10.0" fx:id="x8" />
+                              </VBox.margin>
+                            </HBox>
+                          </children>
+                        </VBox>
+                      </children>
+                    </VBox>
+                    <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="224.0">
+                      <children>
+                        <Button fx:id="bCambiarDireccion" mnemonicParsing="false" onAction="#cambiarDireccion" prefHeight="45.0" prefWidth="170.0" text="%Cambiar Domicilio">
+                          <VBox.margin>
+                            <Insets bottom="10.0" top="5.0" />
+                          </VBox.margin>
+                        </Button>
+                        <Button id="b" fx:id="bAltaDireccion" mnemonicParsing="false" onAction="#altaDireccion" prefHeight="45.0" prefWidth="170.0" text="%Nuevo Domicilio">
+                          <VBox.margin>
+                            <Insets bottom="10.0" fx:id="x8" />
+                          </VBox.margin>
+                        </Button>
+                        <Button fx:id="bModificarDireccion" mnemonicParsing="false" onAction="#modificarDireccion" prefHeight="45.0" prefWidth="170.0" text="%Modificar Domicilio">
+                          <VBox.margin>
+                            <Insets bottom="5.0" />
+                          </VBox.margin>
+                        </Button>
+                      </children>
+                    </VBox>
+                  </children>
+                </HBox>
+                <HBox prefHeight="350.0" prefWidth="1024.0">
+                  <children>
+                    <VBox prefHeight="390.0" prefWidth="360.0">
+                      <children>
+                        <Label text="%Medios de Transporte :">
+                          <VBox.margin>
+                            <Insets left="20.0" fx:id="x5" />
+                          </VBox.margin>
+                        </Label>
+                        <ComboBox fx:id="cbMediosTransporte" prefHeight="35.0" prefWidth="340.0">
+                          <items>
+                            <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Item 1" />
+                              <String fx:value="Item 2" />
+                              <String fx:value="Item 3" />
+                            </FXCollections>
+                          </items>
+                          <VBox.margin>
+                            <Insets left="20.0" top="5.0" fx:id="x3" />
+                          </VBox.margin>
+                        </ComboBox>
+                        <TableView fx:id="tbBultos" prefHeight="228.0" prefWidth="335.0">
+                          <columns>
+                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="112.0" text="%Bultos" fx:id="tcNombreBulto" />
+                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="227.0" text="%Nº Bultos" fx:id="tcNumeroBulto" />
+                          </columns>
+                          <VBox.margin>
+                            <Insets left="20.0" top="20.0" />
+                          </VBox.margin>
+                        </TableView>
+                        <HBox prefHeight="29.0" prefWidth="354.0">
+                          <children>
+                            <Label prefWidth="55.0" text="%Total :">
+                              <HBox.margin>
+                                <Insets left="170.0" />
+                              </HBox.margin>
+                            </Label>
+                            <Label fx:id="lbTotalBultos" prefWidth="80.0" text="">
+                              <HBox.margin>
+                                <Insets fx:id="x6" />
+                              </HBox.margin>
+                            </Label>
+                          </children>
+                          <VBox.margin>
+                            <Insets left="20.0" top="5.0" fx:id="x3" />
+                          </VBox.margin>
+                        </HBox>
+                      </children>
+                      <HBox.margin>
+                        <Insets fx:id="x6" />
+                      </HBox.margin>
+                    </VBox>
+                    <VBox prefHeight="415.0" prefWidth="385.0">
+                      <children>
+                        <TableView fx:id="tbDisponibilidad" prefHeight="299.0" prefWidth="363.0" VBox.margin="$x5">
+                          <columns>
+                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="158.0" text="%Fecha" fx:id="tcFechaDisponible" />
+                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="205.0" text="%Tramo Disponible" fx:id="tcTramoDisponible" />
+                          </columns>
+                        </TableView>
+                      </children>
+                      <HBox.margin>
+                        <Insets fx:id="x6" />
+                      </HBox.margin>
+                    </VBox>
+                    <VBox prefHeight="415.0" prefWidth="280.0">
+                      <children>
+                        <VBox prefHeight="327.0" prefWidth="-1.0">
+                          <children>
+                            <CheckBox fx:id="cbDireccionForzada" mnemonicParsing="false" text="%Dirección forzada">
+                              <VBox.margin>
+                                <Insets left="40.0" top="15.0" />
+                              </VBox.margin>
+                            </CheckBox>
+                            <Button fx:id="btSolicitarDisponibilidad" mnemonicParsing="false" onAction="#cargarFechasDisponibles" text="%Solicitar disponibilidad">
+                              <VBox.margin>
+                                <Insets left="40.0" top="20.0" />
+                              </VBox.margin>
+                            </Button>
+                          </children>
+                        </VBox>
+                      </children>
+                      <HBox.margin>
+                        <Insets fx:id="x6" />
+                      </HBox.margin>
+                    </VBox>
+                  </children>
+                  <VBox.margin>
+                    <Insets top="15.0" />
+                  </VBox.margin>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                  <children>
+                    <VBox prefHeight="220.0" prefWidth="740.0">
+                      <children>
+                        <TextArea fx:id="taObservaciones" onKeyReleased="#keyReleased" prefHeight="60.0" prefWidth="720.0" promptText="%Observaciones" text="" wrapText="true">
+                          <VBox.margin>
+                            <Insets left="20.0" fx:id="x5" />
+                          </VBox.margin>
+                        </TextArea>
+                      </children>
+                    </VBox>
+                    <VBox prefHeight="200.0" prefWidth="284.0">
+                      <children>
+                        <TilePane alignment="BOTTOM_RIGHT" hgap="10.0" minHeight="52.0" prefHeight="63.0" prefWidth="273.0">
+                          <children>
+                            <Button mnemonicParsing="false" onAction="#accionAceptar" prefHeight="42.0" prefWidth="115.0" styleClass="btAceptar" text="%Aceptar" />
+                            <Button mnemonicParsing="false" onAction="#accionCancelar" prefHeight="42.0" prefWidth="115.0" styleClass="btCancelar" text="%Cancelar">
+                              <TilePane.margin>
+                                <Insets right="10.0" />
+                              </TilePane.margin>
+                            </Button>
+                          </children>
+                          <padding>
+                            <Insets bottom="10.0" left="10.0" top="10.0" />
+                          </padding>
+                        </TilePane>
+                      </children>
+                    </VBox>
+                  </children>
+                </HBox>
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../Vistas/Producto/Comerzzia/branches/v4.8/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css" />
+    <URL value="@enviodomicilio.css" />
+  </stylesheets>
+</AnchorPane>

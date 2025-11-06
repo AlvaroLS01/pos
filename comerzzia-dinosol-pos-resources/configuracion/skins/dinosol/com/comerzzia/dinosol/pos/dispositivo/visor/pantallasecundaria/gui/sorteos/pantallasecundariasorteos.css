@@ -1,0 +1,35 @@
+.fondo {
+	-fx-background-size: cover;
+	-fx-background-image: url('fondo_visor_sorteo.png')
+}
+
+.fondoAppTicketDigital {
+	-fx-background-size: cover;
+	-fx-background-image: url('fondo_visor_sorteo_APP_ticket_digial.png')
+}
+
+.fondoAppTicketFisico {
+	-fx-background-size: cover;
+	-fx-background-image: url('fondo_visor_sorteo_APP_ticket_fisico.png')
+}
+
+.fondoConPremio {
+	-fx-background-size: cover;
+	-fx-background-image: url('fondo_visor_sorteo_con_premio.png')
+}
+
+.fondoIncidencia {
+	-fx-background-size: cover;
+	-fx-background-image: url('fondo_visor_sorteo_incidencia.png')
+}
+
+.fondoSinPremio {
+	-fx-background-size: cover;
+	-fx-background-image: url('fondo_visor_sorteo_sin_premio.png')
+}
+
+.lbMensaje {
+	-fx-text-fill: #006342;
+	-fx-font-size: 30px;
+	-fx-font-weight: bold;
+}

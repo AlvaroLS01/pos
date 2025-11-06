@@ -1,0 +1,116 @@
+<logo></logo> 
+#set ($MATRICULA = " ")
+#foreach ($bulto in $ticket.getCabecera().getDatosSad().getListadoBultos())
+   #set ($MATRICULA = ${bulto.getMatriculaControl()})
+#end
+<linea line-size = "1">
+	<texto align="center" style ="1">${MATRICULA} - ${ticket.getCabecera().getDatosSad().getFechaEntrega()} ${ticket.getCabecera().getDatosSad().getHoraEntrega()}</texto>
+</linea>
+<codbar align="center" tipo-leyenda="2" type="QR">${ticket.getCabecera().getCodTicket()}</codbar>	
+<linea>
+	<texto align="center">${ticket.getCabecera().getCodTicket()}</texto>
+</linea>
+<linea><texto></texto></linea>
+<linea>
+	<texto style ="1">Teléfono: </texto>
+	<texto>${ticket.getCabecera().getDatosSad().getTelefono()}</texto>
+</linea>
+<linea>
+	<texto style ="1">Nombre: </texto>
+	<texto size="36" align="left">${ticket.getCabecera().getDatosSad().getNombreCompleto()}</texto>
+</linea>
+<linea>
+	<texto style ="1">Dirección: </texto>
+	<texto>${ticket.getCabecera().getDatosSad().getDireccion()}</texto>
+</linea>
+<linea>
+	<texto style ="1">CP/Población: </texto>
+	<texto>${ticket.getCabecera().getDatosSad().getCp()} ${ticket.getCabecera().getDatosSad().getPoblacion()}</texto>
+</linea>
+<linea>
+	<texto style ="1">Provincia: </texto>
+	<texto>${ticket.getCabecera().getDatosSad().getProvincia()}</texto>
+</linea>
+<linea>
+	<texto style ="1">Email: </texto>
+	<texto>${ticket.getCabecera().getDatosSad().getEmail()}</texto>
+</linea>
+<linea>
+	<texto style ="1">Importe del Pedido: </texto>
+	<texto>${ticket.getCabecera().getDatosSad().getImporteTotal()} ${euro}</texto>
+</linea>
+<linea>
+	<texto style ="1">Importe Porte: </texto>
+	<texto>${ticket.getCabecera().getDatosSad().getTotalPorte()} ${euro}</texto>
+</linea>
+<linea>
+	<texto style ="1">Fecha/Hora de Compra: </texto>
+	<texto>${ticket.getCabecera().getDatosSad().getFechaCompra()} ${ticket.getCabecera().getDatosSad().getHoraCompra()}</texto>
+</linea>
+<linea>
+	<texto style ="1">Vendedor: </texto>
+	<texto>${ticket.getCabecera().getCajero().getUsuario()}</texto>
+</linea>
+<linea>
+	<texto style ="1">Fecha/Hora de Salida: </texto>
+	<texto>${ticket.getCabecera().getDatosSad().getFechaEntrega()} ${ticket.getCabecera().getDatosSad().getHoraEntrega()}</texto>
+</linea>
+<linea>
+	<texto style ="1">Tipo de Reparto: </texto>
+	<texto style ="1">${ticket.getCabecera().getDatosSad().getMedioTransporte()}</texto>
+</linea>
+<linea>
+	<texto style ="1">Ruta/Vehículo: </texto>
+	<texto>${ticket.getCabecera().getDatosSad().getRutaVehiculo()}</texto>	
+</linea>
+<linea>
+	<texto style ="1">Bultos: </texto>
+	<texto>${ticket.getCabecera().getDatosSad().getTotalBultos()}</texto>
+</linea>
+<linea line-size = "1">
+	<texto style ="1" align="center">${ticket.getCabecera().getDatosSad().getListaBultosString()}</texto>
+</linea>
+<linea><texto></texto></linea>
+<linea><texto style ="1" align="left">Observaciones:</texto></linea>
+<linea>
+   <texto align="left">${ticket.getCabecera().getDatosSad().getObservaciones()}</texto>
+</linea>
+<linea><texto></texto></linea>
+<linea><texto align="center" fontsize="4">Firma cliente y fecha:</texto></linea>
+<linea><texto align="center">------------------------------</texto></linea>
+<linea><texto align="center">|                            |</texto></linea>
+<linea><texto align="center">|                            |</texto></linea>
+<linea><texto align="center">|                            |</texto></linea>
+<linea><texto align="center">|                            |</texto></linea>
+<linea><texto align="center">|                            |</texto></linea>
+<linea><texto align="center">------------------------------</texto></linea>
+
+	<linea><texto></texto></linea>
+	<linea><texto></texto></linea>
+	<linea><texto></texto></linea>
+	<linea><texto></texto></linea>
+	<linea><texto></texto></linea>	
+	
+#foreach ($bulto in $ticket.getCabecera().getDatosSad().getListadoBultos())
+	<linea><texto></texto></linea>
+	<linea><texto></texto></linea>	
+	<corte></corte>
+	<linea line-size = "1">
+		<texto style ="1" size="5">${bulto.getNumeroBulto()}</texto>
+		<texto> - </texto>
+		<texto style ="1">${bulto.getMatriculaControl()}</texto>
+	</linea>
+	<codbar align="center" tipo-leyenda="2" type="QR">${bulto.getCodBar()}</codbar>	
+	<linea>
+		<texto align="center">${bulto.getCodBar()}</texto>
+	</linea>
+	<linea><texto></texto></linea>
+	<linea>
+		<texto style ="1" size="14">${bulto.getNombre()}</texto>
+		<texto style ="1"> - ${ticket.getCabecera().getDatosSad().getMedioTransporte()} ${ticket.getCabecera().getDatosSad().getIdVehiculo()}</texto>
+	</linea>
+	<linea><texto></texto></linea>
+	<linea><texto></texto></linea>		
+	<linea><texto></texto></linea>			
+#end
+

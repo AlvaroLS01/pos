@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.imagenArticulo.*?>
+<?import com.comerzzia.pos.core.gui.componentes.tecladonumerico.*?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet pantallasecundariaventas.css?>
+
+<AnchorPane fx:id="PantallasVentas" maxHeight="-1.0" maxWidth="-1.0" prefHeight="700.0" prefWidth="1024.0" style="" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.pos.dispositivo.visor.pantallasecundaria.gui.ventas.PantallaSecundariaVentasController">
+  <children>
+    <VBox fx:id="vBox" prefHeight="700.0" prefWidth="-1.0" spacing="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox alignment="CENTER" minHeight="80.0" prefHeight="86.0" prefWidth="1024.0" styleClass="cabecera" VBox.vgrow="NEVER">
+          <children>
+            <AnchorPane minHeight="80.0" prefHeight="80.0" prefWidth="1024.0" HBox.hgrow="ALWAYS">
+              <children>
+                <Label alignment="CENTER" prefHeight="80.0" prefWidth="1024.0" text="%Artículos" textAlignment="LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <AnchorPane prefHeight="80.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <children>
+                    <ImageView fx:id="logoEmpresa" fitHeight="116.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                    <ImageView fitHeight="73.0" fitWidth="540.2" layoutX="0.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@cabecera-logo.png" />
+                      </image>
+                    </ImageView>
+                  </children>
+                </AnchorPane>
+              </children>
+            </AnchorPane>
+          </children>
+        </HBox>
+        <VBox fx:id="container" fillWidth="true" maxHeight="-1.0" maxWidth="-1.0" minHeight="0.0" prefHeight="557.9998779296875" prefWidth="1024.0" VBox.vgrow="ALWAYS" />
+        <HBox fx:id="pie" alignment="CENTER" fillHeight="true" prefHeight="263.0" prefWidth="1024.0" styleClass="pie" visible="true" VBox.vgrow="ALWAYS">
+          <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="163.0" prefWidth="702.0" styleClass="articulo-listado" HBox.hgrow="ALWAYS">
+              <children>
+                <AnchorPane prefHeight="134.0" prefWidth="702.0">
+                  <children>
+                    <Label fx:id="lbNArticulos" layoutX="8.0" layoutY="24.0" prefHeight="87.0" styleClass="articulo-listado" text="lbNArticulos" />
+                    <ImageView fx:id="imgQr" disable="false" fitHeight="99.84999084472656" fitWidth="133.13332112630206" layoutX="557.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" visible="true">
+                      <image>
+                        <Image url="@codigo-qr.png" />
+                      </image>
+                    </ImageView>
+                  </children>
+                </AnchorPane>
+              </children>
+            </VBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="-1.0" prefWidth="-1.0" styleClass="total-listado" HBox.hgrow="ALWAYS">
+              <children>
+                <Label fx:id="lbTotal" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" graphicTextGap="8.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="total-listado" text="lbTotal" textAlignment="LEFT" HBox.hgrow="ALWAYS">
+                  <HBox.margin>
+                    <Insets right="20.0" />
+                  </HBox.margin>
+                </Label>
+              </children>
+            </HBox>
+          </children>
+          <padding>
+            <Insets />
+          </padding>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@ventarow.css" />
+    <URL value="@pantallasecundariaventas.css" />
+  </stylesheets>
+</AnchorPane>

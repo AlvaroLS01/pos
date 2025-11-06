@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='utf-8'?>
+<operadores>
+	<operador>
+		<codart>2047447</codart>
+		<ean>D100001</ean>
+		<descripcion>RECARGA TELEFONIA MOVISTAR</descripcion>
+		<importe>5</importe>
+	</operador>
+	<operador>
+		<codart>2047447</codart>
+		<ean>D100001</ean>
+		<descripcion>RECARGA TELEFONIA MOVISTAR</descripcion>
+		<importe>10</importe>
+	</operador>
+	<operador>
+		<codart>2047447</codart>
+		<ean>D100001</ean>
+		<descripcion>RECARGA TELEFONIA MOVISTAR</descripcion>
+		<importe>15</importe>
+	</operador>
+	<operador>
+		<codart>2047447</codart>
+		<ean>D100001</ean>
+		<descripcion>RECARGA TELEFONIA MOVISTAR</descripcion>
+		<importe>20</importe>
+	</operador>
+	<operador>
+		<codart>2047447</codart>
+		<ean>D100001</ean>
+		<descripcion>RECARGA TELEFONIA MOVISTAR</descripcion>
+		<importe>25</importe>
+	</operador>
+	<operador>
+		<codart>2047447</codart>
+		<ean>D100001</ean>
+		<descripcion>RECARGA TELEFONIA MOVISTAR</descripcion>
+		<importe>30</importe>
+	</operador>
+	<operador>
+		<codart>2047447</codart>
+		<ean>D100001</ean>
+		<descripcion>RECARGA TELEFONIA MOVISTAR</descripcion>
+		<importe>35</importe>
+	</operador>
+	<operador>
+		<codart>2047447</codart>
+		<ean>D100001</ean>
+		<descripcion>RECARGA TELEFONIA MOVISTAR</descripcion>
+		<importe>40</importe>
+	</operador>
+	<operador>
+		<codart>2047447</codart>
+		<ean>D100001</ean>
+		<descripcion>RECARGA TELEFONIA MOVISTAR</descripcion>
+		<importe>45</importe>
+	</operador>
+	<operador>
+		<codart>2047447</codart>
+		<ean>D100001</ean>
+		<descripcion>RECARGA TELEFONIA MOVISTAR</descripcion>
+		<importe>50</importe>
+	</operador>
+	<operador>
+		<codart>508339</codart>
+		<ean>D200001</ean>
+		<descripcion>RECARGAS ON LINE VODAFONE</descripcion>
+		<importe>5</importe>
+	</operador>
+	<operador>
+		<codart>508339</codart>
+		<ean>D200001</ean>
+		<descripcion>RECARGAS ON LINE VODAFONE</descripcion>
+		<importe>10</importe>
+	</operador>
+	<operador>
+		<codart>508339</codart>
+		<ean>D200001</ean>
+		<descripcion>RECARGAS ON LINE VODAFONE</descripcion>
+		<importe>15</importe>
+	</operador>
+	<operador>
+		<codart>508339</codart>
+		<ean>D200001</ean>
+		<descripcion>RECARGAS ON LINE VODAFONE</descripcion>
+		<importe>20</importe>
+	</operador>
+	<operador>
+		<codart>508339</codart>
+		<ean>D200001</ean>
+		<descripcion>RECARGAS ON LINE VODAFONE</descripcion>
+		<importe>25</importe>
+	</operador>
+	<operador>
+		<codart>508339</codart>
+		<ean>D200001</ean>
+		<descripcion>RECARGAS ON LINE VODAFONE</descripcion>
+		<importe>30</importe>
+	</operador>
+	<operador>
+		<codart>508339</codart>
+		<ean>D200001</ean>
+		<descripcion>RECARGAS ON LINE VODAFONE</descripcion>
+		<importe>35</importe>
+	</operador>
+	<operador>
+		<codart>508339</codart>
+		<ean>D200001</ean>
+		<descripcion>RECARGAS ON LINE VODAFONE</descripcion>
+		<importe>40</importe>
+	</operador>
+	<operador>
+		<codart>508339</codart>
+		<ean>D200001</ean>
+		<descripcion>RECARGAS ON LINE VODAFONE</descripcion>
+		<importe>45</importe>
+	</operador>
+	<operador>
+		<codart>508339</codart>
+		<ean>D200001</ean>
+		<descripcion>RECARGAS ON LINE VODAFONE</descripcion>
+		<importe>50</importe>
+	</operador>
+	<operador>
+		<codart>1752182</codart>
+		<ean>D300001</ean>
+		<descripcion>RECARGAS ON LINE ORANGE</descripcion>
+		<importe>5</importe>
+	</operador>
+	<operador>
+		<codart>1752182</codart>
+		<ean>D300001</ean>
+		<descripcion>RECARGAS ON LINE ORANGE</descripcion>
+		<importe>10</importe>
+	</operador>
+	<operador>
+		<codart>1752182</codart>
+		<ean>D300001</ean>
+		<descripcion>RECARGAS ON LINE ORANGE</descripcion>
+		<importe>15</importe>
+	</operador>
+	<operador>
+		<codart>1752182</codart>
+		<ean>D300001</ean>
+		<descripcion>RECARGAS ON LINE ORANGE</descripcion>
+		<importe>20</importe>
+	</operador>
+	<operador>
+		<codart>1752182</codart>
+		<ean>D300001</ean>
+		<descripcion>RECARGAS ON LINE ORANGE</descripcion>
+		<importe>25</importe>
+	</operador>
+	<operador>
+		<codart>1752182</codart>
+		<ean>D300001</ean>
+		<descripcion>RECARGAS ON LINE ORANGE</descripcion>
+		<importe>30</importe>
+	</operador>
+	<operador>
+		<codart>1752182</codart>
+		<ean>D300001</ean>
+		<descripcion>RECARGAS ON LINE ORANGE</descripcion>
+		<importe>35</importe>
+	</operador>
+	<operador>
+		<codart>1752182</codart>
+		<ean>D300001</ean>
+		<descripcion>RECARGAS ON LINE ORANGE</descripcion>
+		<importe>40</importe>
+	</operador>
+	<operador>
+		<codart>1752182</codart>
+		<ean>D300001</ean>
+		<descripcion>RECARGAS ON LINE ORANGE</descripcion>
+		<importe>45</importe>
+	</operador>
+	<operador>
+		<codart>1752182</codart>
+		<ean>D300001</ean>
+		<descripcion>RECARGAS ON LINE ORANGE</descripcion>
+		<importe>50</importe>
+	</operador>
+	
+	
+
+	<operador>
+		<codart>1173888</codart>
+		<ean>RTR2749</ean>
+		<descripcion>NINTENDO 15€</descripcion>
+		<importe>15</importe>
+	</operador>
+	<operador>
+		<codart>1173888</codart>
+		<ean>RTR2749</ean>
+		<descripcion>NINTENDO 25€</descripcion>
+		<importe>25</importe>
+	</operador>
+	<operador>
+		<codart>1173819</codart>
+		<ean>RTR2750</ean>
+		<descripcion>NETFLIX PIN 25€</descripcion>
+		<importe>25,00</importe>
+	</operador>
+	<operador>
+		<codart>1173819</codart>
+		<ean>RTR2750</ean>
+		<descripcion>NETFLIX PIN 50€</descripcion>
+		<importe>50,00</importe>
+	</operador>
+
+	<operador>
+		<codart>100062</codart>
+		<ean>RTR2765</ean>
+		<descripcion>ROBLOX GIFT CARD 10€</descripcion>
+		<importe>10</importe>
+	</operador>
+</operadores>

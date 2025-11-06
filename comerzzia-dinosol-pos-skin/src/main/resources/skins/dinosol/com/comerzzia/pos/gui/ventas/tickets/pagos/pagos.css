@@ -1,0 +1,75 @@
+.btCambio {
+	-fx-background-image: url("cambio-pago.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center;
+}
+.cabecera-pago {
+	-fx-background-color: #85b037;
+	-fx-text-fill: #ffffff;
+    -fx-height: 42px;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.cabecera-devolucion {
+	-fx-text-fill: #0082aa;
+	-fx-background-color: #feee00;
+    -fx-height: 42px;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.total-cambio {
+    -fx-font-size: 30px;
+    -fx-background-color: #eee;
+    -fx-text-fill: #0082aa;
+    -fx-font-weight: bold;
+    -fx-border-color: #a0a0a0;
+    -fx-padding-right: 8px;
+}
+
+.label-cambio-pago {
+    -fx-font-size: 15px;
+    -fx-text-fill: #0082aa;
+    -fx-font-weight: bold;
+    -fx-padding-right: 8px;
+}
+
+.total-sub {
+    -fx-background-color: #eee;
+    -fx-text-fill: #0082aa;
+    -fx-font-weight: bold;
+    -fx-border-color: #a0a0a0;
+    -fx-padding-right: 8px;
+ }
+ .cambios-devolucion {
+	-fx-text-fill: #0082aa;
+	-fx-background-color: #feee00;
+    -fx-height: 42px;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+}
+.btTicketDigital {
+    -fx-background-image: url("impresora.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 5px center;
+    -fx-padding: 10 10 10 40;
+}
+.btTicketDigitalNo {
+    -fx-background-image: url("impresoraNo.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 5px center;
+    -fx-padding: 10 10 10 40;
+}
+
+.btCancelarGrande {
+    -fx-font-size: 25px;
+    -fx-background-image: url("close.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 5px center;
+    -fx-padding: 10 10 10 40;
+}
+.btOffline {
+	-fx-border-color: red; 
+	-fx-border-width: 5px;
+}

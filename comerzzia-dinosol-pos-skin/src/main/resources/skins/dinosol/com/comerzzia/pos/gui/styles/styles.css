@@ -1,0 +1,69 @@
+/** Aumentamos el tamaño de la barra de scroll **/
+
+.increment-button, .decrement-button {
+	-fx-padding: 15px;
+}
+
+.increment-button:hover, .decrement-button:hover {
+	-fx-padding: 15px;
+}
+
+.columnaBultos {
+	-fx-background-color: #fff;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #919191;
+}
+.btAtras {
+    -fx-background-image: url("../imagenes/iconos/back.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px center;
+    -fx-padding: 10 10 10 40;
+}
+
+.lb-boton-compuesto {
+	-fx-text-fill: white;
+	-fx-font-size: 14;
+	-fx-text-transform: uppercase;
+	-fx-background-color: #85b037;
+	-fx-font-weight: bold;
+}
+
+.boton-compuesto {
+    -fx-border-width: 3px;
+}
+
+.bt-categoria {
+	-fx-border-color: #85b037;
+}
+
+.bt-articulo {
+	-fx-border-color: #ffe817;
+}
+
+.bt-articulo .lb-boton-compuesto {
+	-fx-background-color: #ffe817;
+	-fx-text-fill: black;
+}
+
+.btAceptarCentrado {
+    -fx-background-image: url("../imagenes/iconos/aceptar.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:  center;
+    -fx-padding: 10 10 10 10;
+}
+
+.btCancelarCentrado {
+    -fx-background-image: url("../imagenes/iconos/cancelar.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-padding: 10 10 10 10;
+}
+
+.lbTiquesAparcados {
+	-fx-background-image: url("../imagenes/iconos/ticket_aparcar.png");
+	-fx-background-repeat: no-repeat;
+}
+
+.lbNumTiquesAparcados {
+	-fx-text-fill: #b53109;
+}

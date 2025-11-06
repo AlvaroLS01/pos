@@ -1,0 +1,16 @@
+.linea-precio-descuento{
+	-fx-font-size: 40px;	
+	-fx-text-fill: #000000;
+}
+.linea-descripcion{
+	-fx-font-size: 50px;	
+	-fx-text-fill: #000000;
+}
+.linea-venta-promocion{
+    -fx-background-color: rgba(255, 248, 33, .4);
+}
+.linea-venta-negativo{
+    -fx-background-color: rgba(220, 136, 118, .4);
+}
+
+

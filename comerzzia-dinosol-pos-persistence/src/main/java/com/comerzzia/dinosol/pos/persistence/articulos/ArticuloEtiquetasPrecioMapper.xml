@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comerzzia.dinosol.pos.persistence.articulos.ArticuloEtiquetasPrecioMapper" >
+  <resultMap id="BaseResultMap" type="com.comerzzia.pos.persistence.articulos.ArticuloBean" >
+    <id column="UID_ACTIVIDAD" property="uidActividad" jdbcType="VARCHAR" />
+    <id column="CODART" property="codArticulo" jdbcType="VARCHAR" />
+    <result column="DESART" property="desArticulo" jdbcType="VARCHAR" />
+    <result column="FORMATO" property="formato" jdbcType="VARCHAR" />
+    <result column="CODFAM" property="codFamilia" jdbcType="VARCHAR" />
+    <result column="CODSECCION" property="codseccion" jdbcType="VARCHAR" />
+    <result column="CODCAT" property="codCategorizacion" jdbcType="VARCHAR" />
+    <result column="CODPRO" property="codProveedor" jdbcType="VARCHAR" />
+    <result column="REFERENCIA_PROVEEDOR" property="referenciaProveedor" jdbcType="VARCHAR" />
+    <result column="DTO_PROVEEDOR" property="dtoProveedor" jdbcType="DECIMAL" />
+    <result column="CODFAB" property="codFabricante" jdbcType="VARCHAR" />
+    <result column="PMP" property="pmp" jdbcType="DECIMAL" />
+    <result column="ACT_AUTOMATICA_COSTO" property="actAutomaticaCosto" jdbcType="CHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+    <result column="COSTO_ACTUALIZADO" property="costoActualizado" jdbcType="TIMESTAMP" />
+    <result column="CODIMP" property="codImpuesto" jdbcType="CHAR" />
+    <result column="OBSERVACIONES" property="observaciones" jdbcType="VARCHAR" />
+    <result column="ACTIVO" property="activo" jdbcType="CHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+    <result column="NUMEROS_SERIE" property="numerosSerie" jdbcType="CHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+    <result column="DESGLOSE1" property="desglose1" jdbcType="CHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+    <result column="DESGLOSE2" property="desglose2" jdbcType="CHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+    <result column="GENERICO" property="generico" jdbcType="CHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+    <result column="ESCAPARATE" property="escaparate" jdbcType="CHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+    <result column="UNIDAD_MEDIDA_ALTERNATIVA" property="unidadMedidaAlternativa" jdbcType="VARCHAR" />
+    <result column="COD_UM_ETIQUETA" property="codUmEtiqueta" jdbcType="VARCHAR" />
+    <result column="CANTIDAD_UM_ETIQUETA" property="cantidadUmEtiqueta" jdbcType="DECIMAL" />
+    <result column="FECHA_ALTA" property="fechaAlta" jdbcType="TIMESTAMP" />
+    <result column="VERSION" property="version" jdbcType="DECIMAL" />
+    <result column="FECHA_VERSION" property="fechaVersion" jdbcType="TIMESTAMP" />
+    <result column="CODMARCA" property="codMarca" jdbcType="VARCHAR" />
+    <result column="BALANZA_PLU" property="balanzaPlu" jdbcType="DECIMAL" />
+    <result column="BALANZA_SECCION" property="balanzaSeccion" jdbcType="VARCHAR" />
+    <result column="BALANZA_TIPO_ART" property="balanzaTipoArticulo" jdbcType="CHAR" />
+    <result column="ID_TIPO_SUSTITUCION" property="idTipoSustitucion" jdbcType="DECIMAL" />
+  </resultMap>
+  <select resultMap="BaseResultMap" parameterType="java.lang.String" id="selectArticuloEtiquetaPrecios" >
+     SELECT ART.*
+     FROM D_ARTICULOS_TBL ART
+     	INNER JOIN D_ARTICULOS_CODBAR_TBL CODBAR ON ART.UID_ACTIVIDAD = CODBAR.UID_ACTIVIDAD AND ART.CODART = CODBAR.CODART
+     WHERE 
+     	ART.UID_ACTIVIDAD = #{uidActividad, jdbcType=VARCHAR} 
+     	AND CODBAR.CODIGO_BARRAS LIKE #{codbar, jdbcType=VARCHAR} 
+     	AND CODBAR.DUN14 = 'N' 
+     	AND ART.BALANZA_SECCION IS NOT NULL
+  </select>
+</mapper>

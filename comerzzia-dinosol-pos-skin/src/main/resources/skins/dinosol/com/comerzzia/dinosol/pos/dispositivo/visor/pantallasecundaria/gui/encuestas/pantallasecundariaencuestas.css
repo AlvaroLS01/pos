@@ -1,0 +1,38 @@
+.cabecera .label{
+	-fx-text-fill: rgba(0,99,66);
+	-fx-font-size: 31px;
+	-fx-border-color: rgba(0,99,66);
+	-fx-border-width: 0 0 1 0;
+	-fx-background-color: #ffffff;
+}
+.linea-aplicados .label{
+	-fx-font-size: 35px;
+	-fx-background-color: rgba(0,99,66);
+	-fx-text-fill: #ffffff;
+	-fx-padding: 0px 40px 0px 40px;
+}
+.linea-no-aplicados .label{
+	-fx-font-size: 35px;
+	-fx-background-color: rgba(175,39,10);
+	-fx-text-fill: #ffffff;
+	-fx-padding: 0px 40px 0px 40px;
+}
+.linea-tramos .label{
+	-fx-font-size: 45px;
+	-fx-text-fill: #000000;
+	-fx-padding: 5px 0px 5px 0px;
+	-fx-font-family: 'Dosis';
+}
+.letra{
+	-fx-font-family: 'Dosis';
+}
+.texto-verde {
+	-fx-font-size: 20px;
+	-fx-text-fill: #006342;
+}
+.opcion-marcada {
+	-fx-border-color: rgba(0,99,66);
+	-fx-border-width: 5px;
+	-fx-border-radius: 5px;
+	-fx-padding: 5px;
+}

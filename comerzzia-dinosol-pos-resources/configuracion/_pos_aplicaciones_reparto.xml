@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<servicios_reparto>
+	<servicio_reparto>
+		<nombre>GLOVO</nombre>
+		<codTar>GLOVO</codTar>
+		<numeroTarjeta>2360005621418</numeroTarjeta>
+		<color>#ffcd1b</color>
+		<icono>glovo.png</icono>
+		<tarjetaFidelizado>CUSGLOVO</tarjetaFidelizado>
+	</servicio_reparto>
+	<servicio_reparto>
+		<nombre>JUST EAT</nombre>
+		<codTar>JUST_EAT</codTar>
+		<numeroTarjeta>2360005628945</numeroTarjeta>
+		<color>#ff8000</color>
+		<icono>justEat.png</icono>
+		<tarjetaFidelizado>CUSJUSTEAT</tarjetaFidelizado>
+	</servicio_reparto>
+	<servicio_reparto>
+		<nombre>UBER EATS</nombre>
+		<codTar>UBER_EATS</codTar>
+		<numeroTarjeta>2360005622563</numeroTarjeta>
+		<color>#00c063</color>
+		<icono>uberEats.png</icono>
+		<tarjetaFidelizado>CUSUBEREATS</tarjetaFidelizado>
+	</servicio_reparto>
+</servicios_reparto>

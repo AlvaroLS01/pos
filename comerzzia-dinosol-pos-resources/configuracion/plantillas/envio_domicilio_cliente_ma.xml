@@ -1,0 +1,86 @@
+#if(!$dentroTicket)
+	<logo></logo>
+#end
+
+## Variables que almacenan el simbolo del euro en el charset 1252
+#set ($string = " ")
+#set ($char = $string.charAt(0))
+#set ($chars = $char.toChars(128))
+#set ($euro = $string.copyValueOf($chars))
+
+<linea><texto>--------------------------------------------</texto></linea>
+<linea line-size = "1"><texto align="center">ENTREGA A DOMICILIO</texto></linea>
+<linea><texto>--------------------------------------------</texto></linea>
+<linea><texto></texto></linea>
+<linea>
+	<texto>Teléfono: </texto>
+	<texto>${datosSAD.getTelefono()}</texto>
+</linea>
+<linea>
+	<texto>Nombre: </texto>
+	<texto size="36" align="left">${datosSAD.getNombreCompleto()}</texto>
+</linea>
+<linea>
+	<texto>Dirección: </texto>
+	<texto>${datosSAD.getDireccion()}</texto>
+</linea>
+<linea>
+	<texto>CP/Pobl: </texto>
+	<texto>${datosSAD.getCp()} ${datosSAD.getPoblacion()}</texto>
+</linea>
+<linea>
+	<texto>Provincia: </texto>
+	<texto>${datosSAD.getProvincia()}</texto>
+</linea>
+<linea>
+	<texto>Email: </texto>
+	<texto>${datosSAD.getEmail()}</texto>
+</linea>
+<linea>
+	<texto>Importe del Pedido: </texto>
+	<texto>${datosSAD.getImporteTotal()} ${euro}</texto>
+</linea>
+<linea>
+	<texto>Importe Porte: </texto>
+	<texto>${datosSAD.getTotalPorte()} ${euro}</texto>
+</linea>
+<linea>
+	<texto>Fecha/Hora de Compra: </texto>
+	<texto>${datosSAD.getFechaCompra()} ${datosSAD.getHoraCompra()}</texto>
+</linea>
+<linea>
+	<texto>Inicio tramo entrega: </texto>
+	<texto>${datosSAD.getFechaEntrega()} ${datosSAD.getHoraEntrega()}</texto>
+</linea>
+<linea>
+	<texto>Tipo de Reparto: </texto>
+	<texto>${datosSAD.getMedioTransporte()}</texto>
+</linea>
+<linea>
+	<texto>Bultos: </texto>
+	<texto>${datosSAD.getTotalBultos()}</texto>
+</linea>
+<linea><texto>Observaciones:</texto></linea>
+<linea>
+   <texto style ="1">${datosSAD.getObservaciones()}</texto>
+</linea>
+
+<linea><texto>El responsable del tratamiento de sus datos </texto></linea>
+<linea><texto>es Dinosol Supermercados, SL. La finalidad </texto></linea>
+<linea><texto>del tratamiento es la gestión del servicio </texto></linea>
+<linea><texto>de entrega a domicilio y la fidelización de </texto></linea>
+<linea><texto>clientes.La base jurídica del tratamiento </texto></linea>
+<linea><texto>es la ejecución de un contrato. Las </texto></linea>
+<linea><texto>categorías de destinatarios pueden </texto></linea>
+<linea><texto>consultarse en la información ampliada. </texto></linea>
+<linea><texto>Puede ejercitar sus derechos de acceso, </texto></linea>
+<linea><texto>rectificación, supresión, oposición, </texto></linea>
+<linea><texto>portabilidad y limitación de tratamiento </texto></linea>
+<linea><texto>conforme se indica en la información </texto></linea>
+<linea><texto>ampliada. Puede ampliar información en </texto></linea>
+<linea><texto>www.hiperdino.es y en carteles ubicados en </texto></linea>
+<linea><texto>zonas de cajas.</texto></linea>
+
+
+<linea><texto size="44" style="2"></texto></linea>
+<linea><texto></texto></linea>

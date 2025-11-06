@@ -1,0 +1,11 @@
+<linea><texto size="44">********************************************</texto></linea>
+#if (${ticket.hayParticipacionesNoSolicitadas()})
+ 	#parse("./plantillas/sorteos/participaciones_incidencia.xml")
+#else
+	#if(${ticket.getCabecera().getDatosFidelizado()})
+ 		#parse("./plantillas/sorteos/participaciones_app.xml")
+	#else
+		#parse("./plantillas/sorteos/participaciones_no_app.xml")
+	#end				
+#end
+<linea><texto size="44">********************************************</texto></linea>

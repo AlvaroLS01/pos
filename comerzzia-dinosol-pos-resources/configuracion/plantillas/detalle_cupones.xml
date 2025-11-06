@@ -1,0 +1,26 @@
+#if($ticket.getCuponesAplicados() && !$ticket.getCuponesAplicados().isEmpty())
+<linea>
+	<texto size="33" align="left" style="3">Cupones aplicados</texto>
+</linea>
+	#foreach($cupon in $ticket.getCuponesAplicados())
+	<linea>
+		<texto size="33" align="left">${cupon.getTextoPromocion()}</texto>
+		<texto size="11" align="right">${fmt.formateaImporte($cupon.getImporteTotalAhorrado())}</texto>
+	</linea>
+	#end
+#end
+
+#if($ticket.getCuponesEmitidos() && !$ticket.getCuponesEmitidos().isEmpty())
+<linea>
+	<texto size="33" align="left" style="3">Cupones emitidos</texto>
+</linea>
+	#foreach($cupon in $ticket.getCuponesEmitidos())
+	<linea>
+		<texto size="33" align="left">${cupon.getTituloCupon()}</texto>
+		#if(${cupon.getImporteCupon()})
+			<texto size="11" align="right">${fmt.formateaImporte($cupon.getImporteCupon())}</texto>
+		#end
+	</linea>
+	#end
+#end
+

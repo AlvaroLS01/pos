@@ -1,0 +1,22 @@
+
+<configuracionSorteo>
+    <configuracionSorteoVisor>
+        <textosVisorImagenesSorteos>
+            <textoVisorImagenSorteo id="conPremioSinApp">DFSFSDFSDFSDF</textoVisorImagenSorteo>
+            <textoVisorImagenSorteo id="sinPremioSinApp">FSFSFDSDFSDF</textoVisorImagenSorteo>
+            <textoVisorImagenSorteo id="identificadoTicketFisico">SDFSDFSDF</textoVisorImagenSorteo>
+            <textoVisorImagenSorteo id="identificadoTicketDigital">SFDFSDFSDFSD</textoVisorImagenSorteo>
+            <textoVisorImagenSorteo id="incidenciaTecnica">SFDFSDFSDFDFF</textoVisorImagenSorteo>
+        </textosVisorImagenesSorteos>
+    </configuracionSorteoVisor>
+    <configuracionSorteoTextoQR>
+        <textosTicketsParticipaciones>
+            <textoTicketParticipacion id="conIncidenciaTecnica">SDFSDFSDFSDFSD</textoTicketParticipacion>
+            <textoTicketParticipacion id="conFidelizadoIdentificado">SFDFYRFGDFGDG</textoTicketParticipacion>
+            <textoTicketParticipacion id="sinFidelizadoIdentificado">SDFSDFRRRSGR</textoTicketParticipacion>
+        </textosTicketsParticipaciones>
+        <enlacesQr>
+            <enlaceQR id="enlaceQr">DJFSDJNFJDNFSDFS</enlaceQR>
+        </enlacesQr>
+    </configuracionSorteoTextoQR>
+</configuracionSorteo>

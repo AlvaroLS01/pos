@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.tecladonumerico.*?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet contenidosdigitales.css?>
+<?scenebuilder-stylesheet ../../../../../../../../../../../../../../../../Productos/Comerzzia/branches/4.8/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css?>
+
+<AnchorPane id="AnchorPane" minWidth="730.0" opacity="1.0" prefHeight="473.0" prefWidth="730.0" styleClass="contenidosdigitales-window" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.contenidosdigitales.ContenidosDigitalesController">
+  <children>
+    <VBox prefHeight="700.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane minHeight="42.0" prefHeight="42.0" prefWidth="1000.0" styleClass="titulo-ventana" VBox.vgrow="NEVER">
+          <children>
+            <Label alignment="CENTER" prefHeight="52.0" prefWidth="528.0" text="%Contenidos digitales" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+          </children>
+        </AnchorPane>
+        <AnchorPane minHeight="42.0" prefHeight="516.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
+          <children>
+            <HBox alignment="TOP_CENTER" minHeight="371.0" prefHeight="371.0" prefWidth="730.0" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <VBox id="vBContenedor" fx:id="vbContenedor" prefHeight="784.0" prefWidth="722.0" spacing="8.0">
+                  <children>
+                    <VBox fx:id="vbPaso1" prefHeight="200.0" prefWidth="100.0">
+                      <children>
+                        <FlowPane hgap="5.0" prefHeight="55.0" prefWidth="200.0">
+                          <children>
+                            <Label alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="220.0" styleClass="etiqueta-titulo2" text="%Tipo de documento" />
+                            <TextField id="tfTipoDoc" fx:id="tfCodDoc" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="76.0" />
+                            <TextField id="tf" fx:id="tfDesDoc" editable="false" focusTraversable="false" prefHeight="42.0" prefWidth="250.0" />
+                            <Button id="accionBuscarTipoDoc" fx:id="btDoc" focusTraversable="false" maxWidth="51.0" minHeight="27.0" minWidth="25.0" mnemonicParsing="false" onAction="#accionBuscarTipoDoc" prefHeight="42.0" prefWidth="51.0" styleClass="btTipoDoc" text="" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                          <children>
+                            <AnchorPane prefHeight="10.0" prefWidth="200.0" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane fx:id="fpDocumento" hgap="5.0" prefHeight="55.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                          <children>
+                            <Label alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="220.0" styleClass="etiqueta-titulo2" text="%Cod. documento / Localizador" />
+                            <TextField fx:id="tfOperacion" alignment="CENTER_LEFT" onKeyReleased="#keyReleased" prefHeight="42.0" prefWidth="331.0" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                          <children>
+                            <Label id="lbMensajeError" fx:id="lbBuscarError" alignment="CENTER" prefHeight="27.0" prefWidth="616.0" styleClass="lbError" text="" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                          <children>
+                            <AnchorPane prefHeight="42.0" prefWidth="180.0" />
+                            <Button fx:id="btAceptar" mnemonicParsing="false" onAction="#accionBuscar" prefHeight="73.0" prefWidth="254.0" styleClass="btAceptar" text="%BUSCAR DOCUMENTO" wrapText="true">
+                              <FlowPane.margin>
+                                <Insets left="80.0" />
+                              </FlowPane.margin>
+                            </Button>
+                          </children>
+                        </FlowPane>
+                      </children>
+                      <VBox.margin>
+                        <Insets top="10.0" />
+                      </VBox.margin>
+                    </VBox>
+                    <VBox fx:id="vbPosa" prefHeight="517.0" prefWidth="716.0">
+                      <children>
+                        <FlowPane id="fPTicketPosacard" fx:id="fpTicketPosacard" hgap="5.0" prefHeight="50.0" prefWidth="200.0">
+                          <children>
+                            <Label id="lbNumTicketPos" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="202.0" styleClass="etiqueta-titulo2" text="%Núm. Ticket">
+                              <FlowPane.margin>
+                                <Insets left="20.0" />
+                              </FlowPane.margin>
+                            </Label>
+                            <Label fx:id="lbNumTicketPosa" prefHeight="20.0" prefWidth="256.0">
+                              <FlowPane.margin>
+                                <Insets left="10.0" fx:id="x2" />
+                              </FlowPane.margin>
+                            </Label>
+                          </children>
+                        </FlowPane>
+                        <FlowPane fx:id="fPFechaPosa" hgap="5.0" prefHeight="55.0" prefWidth="200.0">
+                          <children>
+                            <Label id="lbFecha" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="221.0" styleClass="etiqueta-titulo2" text="%Fecha" />
+                            <Label fx:id="lbFechaActivacion" prefWidth="262.0" FlowPane.margin="$x2" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane id="fPImportePosa" fx:id="fpImportePosa" hgap="5.0" prefHeight="55.0" prefWidth="200.0">
+                          <children>
+                            <Label id="lbImportePosa" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="222.0" styleClass="etiqueta-titulo2" text="%Importe de la tarjeta" />
+                            <Label fx:id="lbImportePosa" prefWidth="266.0" FlowPane.margin="$x2" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane hgap="5.0" prefHeight="200.0" prefWidth="200.0">
+                          <children>
+                            <Label id="lbCard" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="224.0" styleClass="etiqueta-titulo2" text="%Tarjeta" />
+                            <Label id="lbOperador" fx:id="lbOperadorPosCard" text="" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane id="fPPan" fx:id="fpPan" hgap="5.0" prefHeight="55.0" prefWidth="200.0">
+                          <children>
+                            <Label fx:id="lbPan" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="224.0" styleClass="etiqueta-titulo2" text="%Código PAN de la tarjeta" />
+                            <TextField fx:id="tfPan" alignment="CENTER_LEFT" onKeyReleased="#keyReleased" prefHeight="42.0" prefWidth="266.0" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane id="fPConfirmePan" hgap="5.0" prefHeight="55.0" prefWidth="200.0">
+                          <children>
+                            <Label id="lbConfirmePan" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="224.0" styleClass="etiqueta-titulo2" text="%Confirme código PAN" />
+                            <TextField fx:id="tfConfirmePan" alignment="CENTER_LEFT" onKeyReleased="#keyReleased" prefHeight="42.0" prefWidth="266.0" />
+                          </children>
+                          <VBox.margin>
+                            <Insets top="15.0" fx:id="x1" />
+                          </VBox.margin>
+                        </FlowPane>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                          <children>
+                            <Label id="lbMensajeError" alignment="CENTER" prefHeight="27.0" prefWidth="616.0" styleClass="lbError" text="" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="146.0" prefWidth="694.0">
+                          <children>
+                            <AnchorPane prefHeight="73.0" prefWidth="98.0">
+                              <padding>
+                                <Insets left="30.0" right="30.0" />
+                              </padding>
+                            </AnchorPane>
+                            <Button fx:id="btActivar" mnemonicParsing="false" onAction="#realizarAccionRecarga" prefHeight="73.0" prefWidth="237.0" styleClass="btAceptar" text="%INICIAR ACTIVACION" wrapText="true">
+                              <FlowPane.margin>
+                                <Insets left="20.0" right="12.0" />
+                              </FlowPane.margin>
+                            </Button>
+                            <Button fx:id="btCerrarPosa" mnemonicParsing="false" onAction="#accionCerrar" prefHeight="73.0" prefWidth="238.0" styleClass="btCancelar" text="%CERRAR" wrapText="true" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                          <children>
+                            <AnchorPane prefHeight="42.0" prefWidth="180.0" />
+                          </children>
+                          <padding>
+                            <Insets top="20.0" />
+                          </padding>
+                        </FlowPane>
+                      </children>
+                      <padding>
+                        <Insets left="50.0" />
+                      </padding>
+                      <VBox.margin>
+                        <Insets top="10.0" />
+                      </VBox.margin>
+                    </VBox>
+                    <VBox fx:id="vbPin" prefHeight="417.0" prefWidth="716.0">
+                      <children>
+                        <FlowPane id="fPNumTicketPin" fx:id="fpImporteRecarga1" hgap="5.0" prefHeight="50.0" prefWidth="200.0">
+                          <children>
+                            <Label id="lbNumTicketPrinting" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="202.0" styleClass="etiqueta-titulo2" text="%Núm. Ticket">
+                              <FlowPane.margin>
+                                <Insets left="20.0" />
+                              </FlowPane.margin>
+                            </Label>
+                            <Label fx:id="lbNumTicketPin" prefHeight="20.0" prefWidth="256.0">
+                              <FlowPane.margin>
+                                <Insets left="10.0" fx:id="x2" />
+                              </FlowPane.margin>
+                            </Label>
+                          </children>
+                        </FlowPane>
+                        <FlowPane id="fPFechaSol" fx:id="fpFechaSol" hgap="5.0" prefHeight="55.0" prefWidth="200.0">
+                          <children>
+                            <Label id="lbFechaSol" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="221.0" styleClass="etiqueta-titulo2" text="%Fecha" />
+                            <Label fx:id="lbFechaSolPin" prefWidth="262.0">
+                              <FlowPane.margin>
+                                <Insets left="10.0" fx:id="x2" />
+                              </FlowPane.margin>
+                            </Label>
+                          </children>
+                        </FlowPane>
+                        <FlowPane id="fPImportePin" fx:id="fpImportePin" hgap="5.0" prefHeight="55.0" prefWidth="200.0">
+                          <children>
+                            <Label id="lbImportePin" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="222.0" styleClass="etiqueta-titulo2" text="%Importe del servicio" />
+                            <Label fx:id="lbImporteSolPin" prefWidth="266.0">
+                              <FlowPane.margin>
+                                <Insets left="10.0" fx:id="x2" />
+                              </FlowPane.margin>
+                            </Label>
+                          </children>
+                        </FlowPane>
+                        <FlowPane hgap="5.0" prefHeight="200.0" prefWidth="200.0">
+                          <children>
+                            <Label id="lbService" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="224.0" styleClass="etiqueta-titulo2" text="%Servicio" />
+                            <Label fx:id="lbServicePinPrinting" text="Label" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="146.0" prefWidth="694.0">
+                          <children>
+                            <AnchorPane prefHeight="73.0" prefWidth="98.0">
+                              <padding>
+                                <Insets left="30.0" right="30.0" />
+                              </padding>
+                            </AnchorPane>
+                            <Button id="btAceptarPin" fx:id="btSolicitar" mnemonicParsing="false" onAction="#realizarAccionRecarga" prefHeight="73.0" prefWidth="237.0" styleClass="btAceptar" text="%SOLICITAR PIN" wrapText="true">
+                              <FlowPane.margin>
+                                <Insets left="20.0" right="12.0" />
+                              </FlowPane.margin>
+                            </Button>
+                            <Button fx:id="btCerrarPin" mnemonicParsing="false" onAction="#accionCerrar" prefHeight="73.0" prefWidth="238.0" styleClass="btCancelar" text="%CERRAR" wrapText="true" />
+                          </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                          <children>
+                            <AnchorPane prefHeight="42.0" prefWidth="180.0" />
+                          </children>
+                          <padding>
+                            <Insets top="20.0" />
+                          </padding>
+                        </FlowPane>
+                      </children>
+                      <VBox.margin>
+                        <Insets left="50.0" top="10.0" />
+                      </VBox.margin>
+                    </VBox>
+                    <FlowPane prefHeight="200.0" prefWidth="200.0">
+                      <children>
+                        <Label fx:id="lbMensajeError" alignment="CENTER" prefHeight="27.0" prefWidth="616.0" styleClass="lbError" text="" />
+                      </children>
+                      <VBox.margin>
+                        <Insets top="10.0" />
+                      </VBox.margin>
+                    </FlowPane>
+                  </children>
+                </VBox>
+                <VBox alignment="CENTER" prefHeight="370.0000999999975" prefWidth="100.0" />
+              </children>
+            </HBox>
+          </children>
+        </AnchorPane>
+        <AnchorPane prefHeight="159.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+          <children>
+            <HBox alignment="TOP_RIGHT" minWidth="730.0" prefHeight="51.0" prefWidth="730.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="183.0" AnchorPane.topAnchor="-14.0">
+              <children>
+                <AnchorPane minWidth="730.0" prefHeight="118.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+              </children>
+            </HBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../styles/styles.css" />
+    <URL value="@contenidosdigitales.css" />
+  </stylesheets>
+</AnchorPane>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Panel>
+    <LineaBotones>
+        <Boton>
+			<texto>APERTURA</texto>
+            <clave>abrirCaja</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido></teclaAccesoRapido>
+			<rutaImagen>iconos/abrir-caja.png</rutaImagen>
+			<visible>S</visible>
+        </Boton>  
+        <Boton>
+            <tipo>HUECO</tipo>
+        </Boton> 
+        <Boton>
+			<texto>ABRIR CAJÓN</texto>
+            <clave>abrirCajon</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido></teclaAccesoRapido>
+			<rutaImagen>iconos/abrir-caja.png</rutaImagen>
+			<visible>S</visible>
+        </Boton>
+        <Boton>
+			<texto>IMPRIMIR ULT. CIERRE</texto>
+            <clave>imprimirUltimoCierre</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido></teclaAccesoRapido>
+			<rutaImagen>iconos/imprimir-ultimo-cierre.png</rutaImagen>
+			<visible>S</visible>
+        </Boton>
+        <Boton>
+            <tipo>HUECO</tipo>
+        </Boton>
+	</LineaBotones>
+	<LineaBotones>	        
+		<Boton>
+			<texto>CIERRE</texto>
+            <clave>abrirCierreCaja</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido></teclaAccesoRapido>
+			<rutaImagen>iconos/cerrar-caja.png</rutaImagen>
+			<visible>S</visible>
+        </Boton>
+       	<Boton>
+			<texto>INSERTAR APUNTE</texto>
+            <clave>insertarApunte</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido></teclaAccesoRapido>
+			<rutaImagen>iconos/insertar-apunte.png</rutaImagen>
+			<visible>S</visible>
+        </Boton>  
+       	<Boton>
+			<texto>ARQUEO DE CAJA</texto>
+            <clave>abrirRecuentoCaja</clave>
+            <tipo>METODO</tipo>
+			<teclaAccesoRapido></teclaAccesoRapido>
+			<rutaImagen>iconos/recuento-caja.png</rutaImagen>
+			<visible>S</visible>
+        </Boton> 
+        <Boton>
+        	<tipo>HUECO</tipo>
+        </Boton> 
+       	<Boton>
+            <tipo>HUECO</tipo>
+        </Boton>     
+    </LineaBotones>
+</Panel>

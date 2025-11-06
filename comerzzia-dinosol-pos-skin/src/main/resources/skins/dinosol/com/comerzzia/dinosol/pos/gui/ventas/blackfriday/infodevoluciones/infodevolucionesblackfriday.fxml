@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-stylesheet C:/Users/DAP/Documents/styles.css?>
+
+<AnchorPane id="AnchorPane" minHeight="147.0" minWidth="930.950927734375" prefHeight="435.0" prefWidth="930.950927734375" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.blackfriday.infodevoluciones.InfoDevolucionesBlackFridayController">
+  <children>
+    <HBox prefHeight="200.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane minHeight="119.0" prefHeight="119.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
+          <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="mainFxmlClass, pantalla-detalle" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane minHeight="30.0" prefHeight="37.0" prefWidth="600.0" styleClass="titulo-ventana" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lbTitulo" alignment="CENTER" prefHeight="37.0" prefWidth="479.0" text="%IMPORTE DE DESCUENTO A APLICAR EN DEV" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  </children>
+                </AnchorPane>
+                <HBox alignment="CENTER" prefHeight="248.0" prefWidth="1062.0" VBox.vgrow="ALWAYS">
+                  <children>
+                    <ImageView fitHeight="146.88571166992188" fitWidth="916.0327445443253" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                      <image>
+                        <Image url="@devoluciones_black_friday.png" />
+                      </image>
+                    </ImageView>
+                  </children>
+                </HBox>
+                <VBox minHeight="75.0" prefHeight="89.0" prefWidth="1062.0">
+                  <children>
+                    <Label styleClass="texto-negrita, lb-destacado" text="%Condiciones generales" />
+                    <Label style="-fx-font-size:15px;" text="%· Nunca se devuelve cupón emitido en la venta" />
+                    <Label style="-fx-font-size:15px;" text="%· Resto de casos solicitar autorización a PP.OO." />
+                  </children>
+                  <padding>
+                    <Insets left="20.0" top="20.0" />
+                  </padding>
+                </VBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="65.0" prefWidth="567.0" spacing="15.0">
+                  <children>
+                    <Button mnemonicParsing="false" onAction="#accionCancelar" prefHeight="42.0" prefWidth="115.0" styleClass="btCancelar" text="%Cerrar" />
+                  </children>
+                  <padding>
+                    <Insets right="15.0" />
+                  </padding>
+                </HBox>
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../Vistas/Producto/Comerzzia/branches/v4.8/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

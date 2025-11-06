@@ -1,0 +1,24 @@
+
+<configuracionSorteo>
+    <configuracionSorteoVisor>
+        <textosVisorImagenesSorteos>
+            <textoVisorImagenSorteo id="textoVisorConPremioSinApp">Por tu compra has obtenido #NP# sello(s) para seguir completando tu cartilla.|Canjea tus Minions antes del 15 de enero de 2025.|Consulta condiciones en:|www.hiperdino.es/minions</textoVisorImagenSorteo>
+            <textoVisorImagenSorteo id="textoVisorSinPremioSinApp">Por tu compra has obtenido #NP# sello(s) para seguir completando tu cartilla.|Canjea tus Minions antes del 15 de enero de 2025.|Consulta condiciones en:|www.hiperdino.es/minions</textoVisorImagenSorteo>
+            <textoVisorImagenSorteo id="textoVisorIdentificadoTicketFisico">Por tu compra has obtenido #NP# sello(s) para seguir completando tu cartilla.|Canjea tus Minions antes del 15 de enero de 2025.|Consulta condiciones en:|www.hiperdino.es/minions</textoVisorImagenSorteo>
+            <textoVisorImagenSorteo id="textoVisorIdentificadoTicketDigital">Por tu compra has obtenido #NP# sello(s) para seguir completando tu cartilla.|Canjea tus Minions antes del 15 de enero de 2025.|Consulta condiciones en:|www.hiperdino.es/minions</textoVisorImagenSorteo>
+            <textoVisorImagenSorteo id="textoVisorIncidenciaTecnica">Por tu compra has obtenido #NP# sello(s) para seguir completando tu cartilla.|Canjea tus Minions antes del 15 de enero de 2025.|Consulta condiciones en:|www.hiperdino.es/minions</textoVisorImagenSorteo>
+        </textosVisorImagenesSorteos>
+    </configuracionSorteoVisor>
+    <configuracionSorteoTextoQR>
+        <textosTicketsParticipaciones>
+            <textoTicketParticipacion id="textoTicketSinPremioSinApp">Por tu compra has obtenido #NP# sello(s) para seguir completando tu cartilla.|Canjea tus Minions antes del 15 de enero de 2025.|Consulta condiciones en:|www.hiperdino.es/minions</textoTicketParticipacion>
+            <textoTicketParticipacion id="textoTicketConPremioSinApp">Por tu compra has obtenido #NP# sello(s) para seguir completando tu cartilla.|Canjea tus Minions antes del 15 de enero de 2025.|Consulta condiciones en:|www.hiperdino.es/minions</textoTicketParticipacion>
+            <textoTicketParticipacion id="textoTicketIdentificadoTicketDigital"></textoTicketParticipacion>
+            <textoTicketParticipacion id="textoTicketIdentificadoTicketFisico">Por tu compra has obtenido #NP# sello(s) para seguir completando tu cartilla.|Canjea tus Minions antes del 15 de enero de 2025.|Consulta condiciones en:|www.hiperdino.es/minions</textoTicketParticipacion>
+            <textoTicketParticipacion id="textoTicketIncidenciaTecnica">Por tu compra has obtenido #NP# sello(s) para seguir completando tu cartilla.|Canjea tus Minions antes del 15 de enero de 2025.|Consulta condiciones en:|www.hiperdino.es/minions</textoTicketParticipacion>
+        </textosTicketsParticipaciones>
+        <enlacesQr>
+            <enlaceQR id="enlaceQr"></enlaceQR>
+        </enlacesQr>
+    </configuracionSorteoTextoQR>
+</configuracionSorteo>

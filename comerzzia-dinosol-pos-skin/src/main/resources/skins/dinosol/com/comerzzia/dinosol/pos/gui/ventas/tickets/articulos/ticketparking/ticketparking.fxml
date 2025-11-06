@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-stylesheet ../../../../../../../../../../../../../../../../../../Productos/Comerzzia/trunk/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css?>
+<?scenebuilder-stylesheet ticketparking.css?>
+
+<AnchorPane id="AnchorPane" minHeight="147.0" prefHeight="209.0" prefWidth="569.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.tickets.articulos.ticketparking.TicketParkingController">
+  <children>
+    <HBox prefHeight="200.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane minHeight="119.0" prefHeight="119.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
+          <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="mainFxmlClass, pantalla-detalle" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane minHeight="30.0" prefHeight="37.0" prefWidth="600.0" styleClass="titulo-ventana" VBox.vgrow="NEVER">
+                  <children>
+                    <Label fx:id="lbTitulo" alignment="CENTER" prefHeight="37.0" prefWidth="479.0" text="%Introduzca o lea el código de barras del parking" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  </children>
+                </AnchorPane>
+                <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="567.0">
+                  <children>
+                    <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                      <padding>
+                        <Insets left="10.0" />
+                      </padding>
+                    </HBox>
+                    <CheckBox fx:id="cbSalidaGratuita" contentDisplay="LEFT" mnemonicParsing="false" text="%Salida gratuita">
+                      <HBox.margin>
+                        <Insets right="45.0" />
+                      </HBox.margin>
+                    </CheckBox>
+                  </children>
+                  <padding>
+                    <Insets top="10.0" />
+                  </padding>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                  <children>
+                    <TextField id="tfNumeroTarjeta" fx:id="tfCodigoParking" onKeyReleased="#aceptarIntro" prefHeight="40.0" prefWidth="476.0" />
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="65.0" prefWidth="567.0" spacing="15.0">
+                  <children>
+                    <Button mnemonicParsing="false" onAction="#introducirArticuloExtravio" prefWidth="204.0" styleClass="btExtravio" text="%Ticket extraviado">
+                      <HBox.margin>
+                        <Insets right="78.0" />
+                      </HBox.margin>
+                    </Button>
+                    <Button mnemonicParsing="false" onAction="#aceptar" prefHeight="42.0" prefWidth="115.0" styleClass="btAceptar" text="%Aceptar" />
+                    <Button mnemonicParsing="false" onAction="#accionCancelar" prefHeight="42.0" prefWidth="115.0" styleClass="btCancelar" text="%Cancelar" />
+                  </children>
+                  <padding>
+                    <Insets right="15.0" />
+                  </padding>
+                </HBox>
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../Vistas/Producto/Comerzzia/branches/v4.8/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/styles/styles.css" />
+  </stylesheets>
+</AnchorPane>

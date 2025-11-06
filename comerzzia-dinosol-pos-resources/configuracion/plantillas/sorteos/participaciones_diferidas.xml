@@ -1,0 +1,24 @@
+<plantilla>
+	<documento salida="impresora1" charset="Windows-1252" line-cols="44">
+		<logo></logo>
+		#parse("./plantillas/datos_cabecera.xml")
+		
+		<linea line-cols="56"><texto style="1">Centro Vend.   Documento            Fecha      Hora</texto></linea>                                              
+		<linea line-cols="56">
+	          <texto size="7" align="left">${ticket.getCabecera().getTienda().getCodAlmacen()}</texto>
+	          <texto size="6" align="left">${ticket.getCabecera().getCajero().getUsuario()}</texto>
+			  <texto>  </texto>
+	          <texto>${ticket.getCabecera().getCodTicket()} ${ticket.getCabecera().getFechaAsLocale()}</texto>
+	       </linea>
+		<linea><texto></texto> </linea>
+		
+		#parse("./plantillas/sorteos/participaciones_no_app.xml")
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>		
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>		
+		<linea><texto></texto></linea>
+		<corte></corte>
+	</documento>
+</plantilla>

@@ -1,0 +1,16 @@
+#if($linea.getImporteTotalPromociones().doubleValue() > 0.0)
+	#foreach($promo in $linea.getPromociones())
+		#if($promo.getImporteTotalDtoMenosMargen().doubleValue() > 0.0)
+			<linea>
+				<texto size="1" align="right"></texto>
+				#if($promo.getIdTipoPromocion()==1)
+					<texto size="35" align="left">DTO. PROMOCION</texto>
+				#else
+					<texto size="35" align="left">${ticket.getDescripcionPromocion($promo.getIdPromocion())}</texto>
+				#end
+				
+				<texto size="8" align="right">- ${fmt.formateaImporte($promo.getImporteTotalDtoMenosMargen())}</texto>
+			</linea>
+		#end
+	#end
+#end

@@ -1,0 +1,21 @@
+#set($UrlQR = ${ticket.getParticipaciones().getEnlaceQr()})
+
+#if(${ticket.getParticipaciones().getParticipacionesObtenidas()}> 0)
+	<linea>
+		<texto size="44" align="center" style="1" fontsize="4">${ticket.getParticipaciones().getNombreSorteo()}</texto>
+	</linea>
+	
+	<linea><texto></texto></linea>
+	
+	#foreach ($lineaDescripcion in $textUtils.divideLines(${ticket.getParticipaciones().getTextoTicketIdentificadoTicketFisico()}, 40, "|"))
+	<linea>
+		<texto size="40" align="center" fontsize="4">${lineaDescripcion}</texto>
+	</linea>
+	#end
+	
+	<linea><texto></texto></linea>
+	
+	#if ($UrlQR)
+		<codbar type="QR" aling="center">${UrlQR}</codbar>
+	#end
+#end

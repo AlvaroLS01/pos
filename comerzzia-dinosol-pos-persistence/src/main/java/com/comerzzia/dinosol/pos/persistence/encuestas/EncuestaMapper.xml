@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comerzzia.dinosol.pos.persistence.encuestas.EncuestaMapper">
+  <resultMap id="BaseResultMap" type="com.comerzzia.dinosol.pos.persistence.encuestas.Encuesta">
+    <id column="UID_ACTIVIDAD" jdbcType="VARCHAR" property="uidActividad" />
+    <id column="ID_ENCUESTA" jdbcType="DECIMAL" property="idEncuesta" />
+    <result column="DESCRIPCION" jdbcType="VARCHAR" property="descripcion" />
+    <result column="FECHA_INICIO" jdbcType="TIMESTAMP" property="fechaInicio" />
+    <result column="FECHA_FIN" jdbcType="TIMESTAMP" property="fechaFin" />
+    <result column="MOSTRAR_EN_VISOR" jdbcType="CHAR" property="mostrarEnVisor" />
+    <result column="ACTIVO" jdbcType="CHAR" property="activo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    UID_ACTIVIDAD, ID_ENCUESTA, DESCRIPCION, FECHA_INICIO, FECHA_FIN, MOSTRAR_EN_VISOR, 
+    ACTIVO
+  </sql>
+  <select id="selectByExample" parameterType="com.comerzzia.dinosol.pos.persistence.encuestas.EncuestaExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from X_ENCUESTAS_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.comerzzia.dinosol.pos.persistence.encuestas.EncuestaKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from X_ENCUESTAS_TBL
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and ID_ENCUESTA = #{idEncuesta,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.dinosol.pos.persistence.encuestas.EncuestaKey">
+    delete from X_ENCUESTAS_TBL
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and ID_ENCUESTA = #{idEncuesta,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.dinosol.pos.persistence.encuestas.EncuestaExample">
+    delete from X_ENCUESTAS_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.dinosol.pos.persistence.encuestas.Encuesta">
+    insert into X_ENCUESTAS_TBL (UID_ACTIVIDAD, ID_ENCUESTA, DESCRIPCION, 
+      FECHA_INICIO, FECHA_FIN, MOSTRAR_EN_VISOR, 
+      ACTIVO)
+    values (#{uidActividad,jdbcType=VARCHAR}, #{idEncuesta,jdbcType=DECIMAL}, #{descripcion,jdbcType=VARCHAR}, 
+      #{fechaInicio,jdbcType=TIMESTAMP}, #{fechaFin,jdbcType=TIMESTAMP}, #{mostrarEnVisor,jdbcType=CHAR}, 
+      #{activo,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.dinosol.pos.persistence.encuestas.Encuesta">
+    insert into X_ENCUESTAS_TBL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        UID_ACTIVIDAD,
+      </if>
+      <if test="idEncuesta != null">
+        ID_ENCUESTA,
+      </if>
+      <if test="descripcion != null">
+        DESCRIPCION,
+      </if>
+      <if test="fechaInicio != null">
+        FECHA_INICIO,
+      </if>
+      <if test="fechaFin != null">
+        FECHA_FIN,
+      </if>
+      <if test="mostrarEnVisor != null">
+        MOSTRAR_EN_VISOR,
+      </if>
+      <if test="activo != null">
+        ACTIVO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        #{uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="idEncuesta != null">
+        #{idEncuesta,jdbcType=DECIMAL},
+      </if>
+      <if test="descripcion != null">
+        #{descripcion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaInicio != null">
+        #{fechaInicio,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaFin != null">
+        #{fechaFin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mostrarEnVisor != null">
+        #{mostrarEnVisor,jdbcType=CHAR},
+      </if>
+      <if test="activo != null">
+        #{activo,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.dinosol.pos.persistence.encuestas.EncuestaExample" resultType="java.lang.Long">
+    select count(*) from X_ENCUESTAS_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update X_ENCUESTAS_TBL
+    <set>
+      <if test="row.uidActividad != null">
+        UID_ACTIVIDAD = #{row.uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="row.idEncuesta != null">
+        ID_ENCUESTA = #{row.idEncuesta,jdbcType=DECIMAL},
+      </if>
+      <if test="row.descripcion != null">
+        DESCRIPCION = #{row.descripcion,jdbcType=VARCHAR},
+      </if>
+      <if test="row.fechaInicio != null">
+        FECHA_INICIO = #{row.fechaInicio,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.fechaFin != null">
+        FECHA_FIN = #{row.fechaFin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.mostrarEnVisor != null">
+        MOSTRAR_EN_VISOR = #{row.mostrarEnVisor,jdbcType=CHAR},
+      </if>
+      <if test="row.activo != null">
+        ACTIVO = #{row.activo,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update X_ENCUESTAS_TBL
+    set UID_ACTIVIDAD = #{row.uidActividad,jdbcType=VARCHAR},
+      ID_ENCUESTA = #{row.idEncuesta,jdbcType=DECIMAL},
+      DESCRIPCION = #{row.descripcion,jdbcType=VARCHAR},
+      FECHA_INICIO = #{row.fechaInicio,jdbcType=TIMESTAMP},
+      FECHA_FIN = #{row.fechaFin,jdbcType=TIMESTAMP},
+      MOSTRAR_EN_VISOR = #{row.mostrarEnVisor,jdbcType=CHAR},
+      ACTIVO = #{row.activo,jdbcType=CHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.dinosol.pos.persistence.encuestas.Encuesta">
+    update X_ENCUESTAS_TBL
+    <set>
+      <if test="descripcion != null">
+        DESCRIPCION = #{descripcion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaInicio != null">
+        FECHA_INICIO = #{fechaInicio,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaFin != null">
+        FECHA_FIN = #{fechaFin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mostrarEnVisor != null">
+        MOSTRAR_EN_VISOR = #{mostrarEnVisor,jdbcType=CHAR},
+      </if>
+      <if test="activo != null">
+        ACTIVO = #{activo,jdbcType=CHAR},
+      </if>
+    </set>
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and ID_ENCUESTA = #{idEncuesta,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.dinosol.pos.persistence.encuestas.Encuesta">
+    update X_ENCUESTAS_TBL
+    set DESCRIPCION = #{descripcion,jdbcType=VARCHAR},
+      FECHA_INICIO = #{fechaInicio,jdbcType=TIMESTAMP},
+      FECHA_FIN = #{fechaFin,jdbcType=TIMESTAMP},
+      MOSTRAR_EN_VISOR = #{mostrarEnVisor,jdbcType=CHAR},
+      ACTIVO = #{activo,jdbcType=CHAR}
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and ID_ENCUESTA = #{idEncuesta,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.comerzzia.dinosol.pos.persistence.encuestas.EncuestaExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from X_ENCUESTAS_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

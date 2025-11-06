@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet ../../../../../../../pos/gui/styles/styles.css?>
+
+<AnchorPane id="" maxHeight="-1.0" maxWidth="-1.0" minHeight="194.260009765625" prefHeight="401.260009765625" prefWidth="540.999977929685" styleClass="mainFxmlClass, pantalla-detalle" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.tickets.articulos.anulacion.SeleccionPrecioController">
+  <children>
+    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane minHeight="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="&#10;" styleClass="titulo-ventana">
+          <children>
+            <Label fx:id="lbTitulo" alignment="CENTER" contentDisplay="CENTER" prefWidth="678.0" text="%Seleccione el precio al que quiere devolver" AnchorPane.bottomAnchor="6.26" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.74" />
+          </children>
+        </AnchorPane>
+        <HBox alignment="CENTER" prefHeight="55.0" prefWidth="625.0001220703125" spacing="15.0" VBox.vgrow="ALWAYS">
+          <children>
+            <TableView fx:id="tbPrecios" prefHeight="163.0" prefWidth="300.0">
+              <columns>
+                <TableColumn maxWidth="299.0" minWidth="299.0" prefWidth="299.0" text="%Precio" fx:id="tcPrecio" />
+              </columns>
+            </TableView>
+            <VBox fx:id="vbBotones" prefHeight="185.0" prefWidth="44.0" />
+          </children>
+          <padding>
+            <Insets bottom="10.0" top="10.0" />
+          </padding>
+          <VBox.margin>
+            <Insets />
+          </VBox.margin>
+        </HBox>
+        <VBox prefHeight="106.0" prefWidth="541.0">
+          <children>
+            <HBox alignment="CENTER_LEFT" fillHeight="true" prefHeight="62.0" prefWidth="249.0">
+              <children>
+                <Label fx:id="lbCantidad" styleClass="lbError, lb-destacado" text="%* La cantidad devuelta sera 1" visible="true">
+                  <HBox.margin>
+                    <Insets left="10.0" right="90.0" />
+                  </HBox.margin>
+                </Label>
+              </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+              <children>
+                <Button id="btVolver" mnemonicParsing="false" onAction="#aceptar" prefWidth="132.0" styleClass="btAceptar" text="%Aceptar">
+                  <HBox.margin>
+                    <Insets right="20.0" />
+                  </HBox.margin>
+                </Button>
+                <Button id="btCancelar" mnemonicParsing="false" onAction="#accionCancelar" prefWidth="112.0" styleClass="btCancelar" text="%Cancelar" />
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>

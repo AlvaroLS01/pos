@@ -1,0 +1,1 @@
+package com.comerzzia.dinosol.pos.skin;

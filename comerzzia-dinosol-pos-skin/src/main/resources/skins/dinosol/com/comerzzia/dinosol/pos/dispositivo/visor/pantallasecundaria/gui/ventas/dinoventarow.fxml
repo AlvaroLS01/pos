@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.imagenArticulo.*?>
+<?import com.comerzzia.pos.core.gui.componentes.tecladonumerico.*?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet dinoventarow.css?>
+
+<fx:root type="javafx.scene.layout.AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1024.0" minHeight="-1.0" minWidth="-1.0" opacity="1.0" prefHeight="150.0" prefWidth="972.0001220703125" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.dinosol.pos.dispositivo.visor.pantallasecundaria.gui.ventas.DinoVentaRowController">
+  <children>
+    <HBox id="lbImage" fx:id="hbox" alignment="TOP_LEFT" fillHeight="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0" styleClass="linea-borde" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <VBox prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
+          <children>
+            <HBox prefHeight="-1.0" prefWidth="-1.0">
+              <children>
+                <Label fx:id="lbDescripcion" alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" styleClass="linea-borde, linea-descripcion" text="Descripción" HBox.hgrow="ALWAYS">
+                  <HBox.margin>
+                    <Insets left="10.0" />
+                  </HBox.margin>
+                </Label>
+              </children>
+            </HBox>
+            <HBox id="lbImage" fillHeight="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="57.0" prefHeight="80.0" prefWidth="760.0" spacing="5.0" styleClass="linea-ventana-sub">
+              <children>
+                <Label fx:id="lbHueco" alignment="CENTER_RIGHT" prefHeight="86.0" prefWidth="145.0" text="-" visible="false" />
+                <Label fx:id="lbCantidadPrecio" alignment="CENTER_RIGHT" prefHeight="-1.0" prefWidth="-1.0" styleClass="linea-borde, linea-precio-descuento" text="CantidadPrecio">
+                  <HBox.margin>
+                    <Insets bottom="30.0" left="10.0" top="-20.0" />
+                  </HBox.margin>
+                </Label>
+                <Label fx:id="lbDescuento" alignment="CENTER_RIGHT" contentDisplay="LEFT" prefHeight="-1.0" prefWidth="-1.0" styleClass="linea-borde, linea-precio-descuento" text="Descuento">
+                  <HBox.margin>
+                    <Insets left="50.0" top="-20.0" />
+                  </HBox.margin>
+                </Label>
+              </children>
+              <padding>
+                <Insets bottom="30.0" top="30.0" />
+              </padding>
+            </HBox>
+          </children>
+        </VBox>
+        <Label fx:id="lbPrecioTotal" alignment="CENTER_RIGHT" contentDisplay="LEFT" minWidth="200.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="linea-borde, linea-descripcion" text="999,99 €" textAlignment="LEFT" wrapText="false" HBox.hgrow="ALWAYS">
+          <HBox.margin>
+            <Insets right="5.0" />
+          </HBox.margin>
+        </Label>
+      </children>
+      <stylesheets>
+        <URL value="@dinoventarow.css" />
+      </stylesheets>
+    </HBox>
+  </children>
+</fx:root>

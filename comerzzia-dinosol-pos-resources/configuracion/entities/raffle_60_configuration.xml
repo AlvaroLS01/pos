@@ -1,0 +1,24 @@
+
+<configuracionSorteo>
+    <configuracionSorteoVisor>
+        <textosVisorImagenesSorteos>
+            <textoVisorImagenSorteo id="textoVisorConPremioSinApp">Texto sin fidelizado identificado y con premios. Número de participaciones: #NP#. Número de participaciones extra: #NPE#. Premios: #NPP#. Participaciones:|#CP#</textoVisorImagenSorteo>
+            <textoVisorImagenSorteo id="textoVisorSinPremioSinApp">Texto sin fidelizado identificado y sin premios. Número de participaciones: #NP#. Número de participaciones extra: #NPE#. Participaciones:|#CP#</textoVisorImagenSorteo>
+            <textoVisorImagenSorteo id="textoVisorIdentificadoTicketFisico">Ticket con fidelizado identificado y con ticket físico. Número de participaciones: #NP#. Número de participaciones extra: #NPE#. Premios: #NPP#. Participaciones:|#CP#</textoVisorImagenSorteo>
+            <textoVisorImagenSorteo id="textoVisorIdentificadoTicketDigital">AA</textoVisorImagenSorteo>
+            <textoVisorImagenSorteo id="textoVisorIncidenciaTecnica">Ticket con incidencia técnica. Número de participaciones: #NP#. Número de participaciones extra: #NPE#. Premios: #NPP#. Participaciones:|#CP#</textoVisorImagenSorteo>
+        </textosVisorImagenesSorteos>
+    </configuracionSorteoVisor>
+    <configuracionSorteoTextoQR>
+        <textosTicketsParticipaciones>
+            <textoTicketParticipacion id="textoTicketSinPremioSinApp">Texto sin fidelizado identificado y sin premios. Número de participaciones: #NP#. Número de participaciones extra: #NPE#. Participaciones:|#CP#||prueba alvaro</textoTicketParticipacion>
+            <textoTicketParticipacion id="textoTicketConPremioSinApp">Texto sin fidelizado identificado y con premios. Número de participaciones: #NP#. Número de participaciones extra: #NPE#. Premios: #NPP#. Participaciones:|#CP#</textoTicketParticipacion>
+            <textoTicketParticipacion id="textoTicketIdentificadoTicketDigital"></textoTicketParticipacion>
+            <textoTicketParticipacion id="textoTicketIdentificadoTicketFisico">Ticket con fidelizado identificado y con ticket físico. Número de participaciones: #NP#. Número de participaciones extra: #NPE#. Premios: #NPP#. Participaciones:|#CP#</textoTicketParticipacion>
+            <textoTicketParticipacion id="textoTicketIncidenciaTecnica">Con esta compra has participado #NP# veces|en nuestro Aniversario.|#TPPE#Además, has conseguido #NPE# participación extra.#TPPE#|¡Has ganado #NPP# premios! ||Además, inscríbete a los sorteos semanales y|el gran sorteo final con estos códigos:|#CP#|Escanea el QR para descubrir cómo|y consultar las bases</textoTicketParticipacion>
+        </textosTicketsParticipaciones>
+        <enlacesQr>
+            <enlaceQR id="enlaceQr">Ticket con fidelizado identificado y con ticket físico. Número de participaciones: #NP#. Número de participaciones extra: #NPE#. Premios: #NPP#. Participaciones:#CP#</enlaceQR>
+        </enlacesQr>
+    </configuracionSorteoTextoQR>
+</configuracionSorteo>

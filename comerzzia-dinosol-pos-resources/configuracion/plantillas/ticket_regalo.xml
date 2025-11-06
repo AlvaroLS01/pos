@@ -1,0 +1,57 @@
+<plantilla> 
+    <documento salida="impresora1" charset="Windows-1252" line-cols="44">
+		<logo></logo>  
+		<linea> <texto> </texto> </linea>
+		#set( $imprimirDatosFacturacion =  false)
+		#parse("./plantillas/datos_cabecera.xml")
+		
+		   ## ************************************************** DATOS DEL DOCUMENTO
+		<linea line-cols="56"><texto style="1">Centro Vend.   Documento            Fecha      Hora</texto></linea>                                              
+		<linea line-cols="56">
+			  <texto size="7" align="left">${ticket.getCabecera().getTienda().getCodAlmacen()}</texto>
+			  <texto size="6" align="left">${ticket.getCabecera().getCajero().getUsuario()}</texto>
+			  <texto>  </texto>
+			  <texto>${ticket.getCabecera().getCodTicket()} ${ticket.getCabecera().getFechaAsLocale()}</texto>
+		   </linea>
+		<linea><texto></texto> </linea>
+
+		<linea> <texto> </texto> </linea>
+
+		<linea> <texto> </texto> </linea>
+		<linea> <texto style ="3">CANT. ARTICULO                              </texto> </linea>
+		## LINEAS
+		#foreach ($linea in $ticket.getLineas())   
+		#if(${linea.isImprimirTicketRegalo()}) 
+			<!-- Para entornos FOOD -->
+			<linea> 
+				 <texto size="5" align="right">${linea.getCantidadAsString()}</texto>
+				 <texto size="1" align="right"> </texto>
+				 <texto size="38" align="left">${linea.getArticulo().getDesArticulo()}</texto>
+			</linea>   
+			<!-- Para entornos NON-FOOD
+			<linea> 
+				 <texto size="2" align="right" fontsize="4">${linea.getCantidad().intValue().toString().toString()}</texto>
+				 <texto size="1" align="right"> </texto>
+				 <texto size="28" align="left">${linea.getArticulo().getDesArticulo()}</texto>
+				 <texto size="9" align="right"></texto> 
+			</linea>    
+			--> 
+			#end  
+		#end
+		<linea> <texto> </texto> </linea>
+		<linea>
+			<texto></texto>
+		</linea>
+       ## ************************************************** LOCALIZADOR
+		<codbar type="QR">${ticket.getCabecera().getLocalizador()}</codbar>
+		<linea><texto></texto></linea>
+		<linea><texto align="center" style="1">TICKET REGALO</texto></linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<linea><texto></texto></linea>
+		<corte></corte>
+	</documento>
+</plantilla>

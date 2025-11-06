@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-stylesheet ../../../../gui/styles/styles.css?>
+
+<AnchorPane id="AnchorPane" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="800.0" style="" styleClass="mainFxmlClass, pie" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.comerzzia.pos.core.gui.main.pie.PieController">
+  <children>
+    <HBox alignment="CENTER_LEFT" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <Label id="lbTienda" fx:id="lbTarifa" maxHeight="-1.0" maxWidth="1.7976931348623157E308" minWidth="111.0" prefHeight="30.0" prefWidth="125.0" />
+        <Label maxWidth="-1.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="label-pie-tienda" text="" HBox.hgrow="SOMETIMES" />
+        <Label fx:id="lbTienda" maxHeight="-1.0" maxWidth="1.7976931348623157E308" minWidth="125.0" prefHeight="30.0" prefWidth="125.0" HBox.hgrow="ALWAYS" />
+        <Label minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="label-pie-caja" text="" HBox.hgrow="SOMETIMES" />
+        <Label fx:id="lbCaja" maxWidth="1.7976931348623157E308" minWidth="30.0" prefHeight="30.0" prefWidth="60.0" HBox.hgrow="SOMETIMES" />
+        <Label maxWidth="-1.0" minWidth="29.9998779296875" prefHeight="30.0" prefWidth="29.9998779296875" styleClass="label-pie-usuario" text="" HBox.hgrow="SOMETIMES" />
+        <Label fx:id="lbUsuario" maxWidth="1.7976931348623157E308" minWidth="125.0" prefHeight="30.0" prefWidth="125.0" HBox.hgrow="ALWAYS" />
+        <Label maxWidth="-1.0" minWidth="29.9998779296875" prefHeight="30.0" prefWidth="29.9998779296875" styleClass="label-pie-version" text="" HBox.hgrow="SOMETIMES" />
+        <Label fx:id="lbVersion" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" minWidth="30.0" prefHeight="30.0" prefWidth="49.999900000002526" text="v3.0" textAlignment="LEFT" HBox.hgrow="SOMETIMES" />
+        <FlowPane alignment="CENTER_RIGHT" maxWidth="-1.0" minWidth="120.0" prefHeight="30.0" prefWidth="152.0" styleClass="pie-pos" HBox.hgrow="NEVER">
+          <children>
+            <Label maxWidth="-1.0" minWidth="29.9998779296875" prefHeight="30.0" prefWidth="30.0" styleClass="label-pie-reloj" text="" />
+            <Label fx:id="lbClock" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="30.0" prefWidth="103.0" textAlignment="RIGHT">
+              <FlowPane.margin>
+                <Insets />
+              </FlowPane.margin>
+            </Label>
+          </children>
+          <padding>
+            <Insets right="4.0" />
+          </padding>
+        </FlowPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@pie.css" />
+  </stylesheets>
+</AnchorPane>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.comerzzia.pos.core.gui.componentes.imagenArticulo.*?>
+<?import com.comerzzia.pos.core.gui.componentes.tecladonumerico.*?>
+<?import com.comerzzia.pos.core.gui.componentes.textField.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="-1.0" style="&#10;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comerzzia.dinosol.pos.gui.ventas.solicitudfacturacion.EnvioSolicitudFacturaController">
+  <children>
+    <VBox fillWidth="true" prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane maxHeight="40.0" minHeight="30.0" prefHeight="40.0" prefWidth="1024.0" styleClass="titulo-ventana, cabecera-venta" VBox.vgrow="NEVER">
+          <children>
+            <Label fx:id="lbTitulo" alignment="CENTER" maxHeight="30.0" prefHeight="30.0" prefWidth="800.0" styleClass="cabecera-venta" text="%Datos del cliente" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0" />
+          </children>
+        </AnchorPane>
+        <HBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" spacing="10.0" VBox.margin="$x1" VBox.vgrow="ALWAYS">
+          <children>
+            <Label fx:id="lbNumTicket" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefWidth="150.0" text="%Código de ticket">
+              <HBox.margin>
+                <Insets fx:id="x1" />
+              </HBox.margin>
+            </Label>
+            <TextField fx:id="tfNumeroTicket" prefHeight="40.0" prefWidth="250.0" styleClass="solo-lectura">
+              <HBox.margin>
+                <Insets fx:id="x1" />
+              </HBox.margin>
+            </TextField>
+          </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" spacing="10.0" VBox.vgrow="ALWAYS">
+          <children>
+            <Label fx:id="lbNombre" alignment="CENTER_RIGHT" prefWidth="150.0" text="%* Nombre" HBox.margin="$x1" />
+            <TextField fx:id="tfNombre" prefHeight="40.0" prefWidth="450.0" HBox.margin="$x1" />
+            <Label fx:id="lbNif" prefWidth="-1.0" text="%* NIF">
+              <HBox.margin>
+                <Insets left="50.0" fx:id="x2" />
+              </HBox.margin>
+            </Label>
+            <TextField fx:id="tfNif" prefHeight="40.0" prefWidth="168.0" HBox.margin="$x1" />
+          </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" spacing="10.0" VBox.vgrow="ALWAYS">
+          <children>
+            <Label fx:id="lbCalle" alignment="CENTER_RIGHT" prefWidth="150.0" text="%* Calle" HBox.margin="$x1" />
+            <TextField fx:id="tfCalle" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="450.0" HBox.margin="$x1" />
+          </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" spacing="10.0" VBox.vgrow="ALWAYS">
+          <children>
+            <Label id="lbPais" fx:id="lbCp" alignment="CENTER_RIGHT" prefWidth="150.0" text="%* Código postal" HBox.margin="$x1" />
+            <TextFieldImporte id="tfCP" fx:id="tfCP" prefHeight="40.0" prefWidth="72.0" />
+            <Label fx:id="lbCiudad" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="133.0" text="%* Ciudad">
+              <HBox.margin>
+                <Insets fx:id="x1" />
+              </HBox.margin>
+            </Label>
+            <TextField fx:id="tfCiudad" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="250.0">
+              <HBox.margin>
+                <Insets fx:id="x1" />
+              </HBox.margin>
+            </TextField>
+            <Label fx:id="lbProvincia" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="93.0" text="%* Provincia">
+              <HBox.margin>
+                <Insets fx:id="x1" />
+              </HBox.margin>
+            </Label>
+            <TextField fx:id="tfProvincia" prefHeight="40.0" prefWidth="250.0">
+              <HBox.margin>
+                <Insets fx:id="x1" />
+              </HBox.margin>
+            </TextField>
+          </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" spacing="10.0" VBox.vgrow="ALWAYS">
+          <children>
+            <Label fx:id="lbTelefono" alignment="CENTER_RIGHT" prefWidth="150.0" text="%Teléfono">
+              <HBox.margin>
+                <Insets fx:id="x1" />
+              </HBox.margin>
+            </Label>
+            <TextFieldImporte fx:id="tfTelefono" prefHeight="40.0" prefWidth="179.0" />
+          </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" spacing="10.0" VBox.vgrow="ALWAYS">
+          <children>
+            <Label fx:id="lbEmail" alignment="CENTER_RIGHT" prefWidth="150.0" text="%* Email">
+              <HBox.margin>
+                <Insets fx:id="x1" />
+              </HBox.margin>
+            </Label>
+            <TextField fx:id="tfEmail" prefHeight="40.0" prefWidth="250.0">
+              <HBox.margin>
+                <Insets fx:id="x1" />
+              </HBox.margin>
+            </TextField>
+            <CheckBox fx:id="cbEnviarCopiaTienda" mnemonicParsing="false" text="%Enviar copia a la tienda" />
+          </children>
+        </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+        <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="-1.0" spacing="15.0">
+          <children>
+            <Button fx:id="btAceptar" mnemonicParsing="false" onAction="#accionAceptar" prefHeight="42.0" prefWidth="115.0" styleClass="btAceptar" text="%Aceptar" />
+            <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#accionCancelar" prefHeight="42.0" prefWidth="115.0" styleClass="btCancelar" text="%Cancelar" />
+          </children>
+          <padding>
+            <Insets right="15.0" />
+          </padding>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@../../../Vistas/Producto/Comerzzia/branches/v4.8/SolucionTienda/jpos/comerzzia-pos-skin/src/main/resources/skins/standard/com/comerzzia/pos/gui/styles/styles.css" />
+    <URL value="@enviosolicitudfactura.css" />
+  </stylesheets>
+</AnchorPane>

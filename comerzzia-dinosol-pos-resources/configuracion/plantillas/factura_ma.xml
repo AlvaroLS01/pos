@@ -1,0 +1,32 @@
+<plantilla>
+
+<!-- Esta primer condición la tenemos comentada por defecto. Sirve para elegir la impresión por ticket o por A4 -->
+<!-- Si se descomenta, imprimiría por A4 si no es FS o si es una devolución y el ticket origen no es FS e imprimiría por ticket si es FS o es una devolución y el ticket origen es FS-->
+## #if( (!$ticket.getCabecera().getDatosDocOrigen() && ($ticket.getCabecera().getCodTipoDocumento() != "FS" && $ticket.getCabecera().getCodTipoDocumento() != "VC")) || ($ticket.getCabecera().getDatosDocOrigen() && ($ticket.getCabecera().getDatosDocOrigen().getCodTipoDoc() != "FS" && $ticket.getCabecera().getDatosDocOrigen().getCodTipoDoc() != "VC")) )
+<!--	 <documento salida="impresora2" procesador="JASPER" fichero="facturas/facturaA4">		
+	</documento>
+	 <documento salida="impresora1">  -->
+
+	##	#foreach ($pago in $ticket.getPagos())
+	##		#set($esBoletaCompleta = true)
+	##		#parse("./plantillas/detalle_pagos_boletas.xml")
+	##	#end
+	##	#parse("./plantillas/detalle_comprobantes_giftcard.xml")
+	 <!-- </documento> -->
+
+## #else
+	
+
+#set($Integer = 0)
+#if($Integer.parseInt(${ticket.getCabecera().getCodCaja()}) > 40 && $Integer.parseInt(${ticket.getCabecera().getCodCaja()}) <= 50)
+	## Si el codCaja esta entre 40 y 50, significa que es un SCO
+	#parse("./plantillas/factura_SCO.xml")
+#else
+	#if($ticket.getCabecera().getServicioReparto())
+		#parse("./plantillas/factura_Delivery.xml")
+	#else
+		#parse("./plantillas/factura_POS.xml")
+	#end
+#end
+	  
+</plantilla>

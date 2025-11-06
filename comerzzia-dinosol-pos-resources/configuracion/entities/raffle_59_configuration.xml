@@ -1,0 +1,24 @@
+
+<configuracionSorteo>
+    <configuracionSorteoVisor>
+        <textosVisorImagenesSorteos>
+            <textoVisorImagenSorteo id="textoVisorConPremioSinApp">EWQEQWEQW</textoVisorImagenSorteo>
+            <textoVisorImagenSorteo id="textoVisorSinPremioSinApp">EQWEQWEQWE</textoVisorImagenSorteo>
+            <textoVisorImagenSorteo id="textoVisorIdentificadoTicketFisico">QWEQWE</textoVisorImagenSorteo>
+            <textoVisorImagenSorteo id="textoVisorIdentificadoTicketDigital">EQWEQWE</textoVisorImagenSorteo>
+            <textoVisorImagenSorteo id="textoVisorIncidenciaTecnica">QWEQWEQ</textoVisorImagenSorteo>
+        </textosVisorImagenesSorteos>
+    </configuracionSorteoVisor>
+    <configuracionSorteoTextoQR>
+        <textosTicketsParticipaciones>
+            <textoTicketParticipacion id="textoTicketSinPremioSinApp">Texto sin fidelizado identificado y sin premios. Número de participaciones: #NP#. Número de participaciones extra: #NPE#. Participaciones:|#CP#</textoTicketParticipacion>
+            <textoTicketParticipacion id="textoTicketConPremioSinApp">Texto sin fidelizado identificado y con premios. Número de participaciones: #NP#. Número de participaciones extra: #NPE#. Premios: #NPP#. Participaciones:|#CP#</textoTicketParticipacion>
+            <textoTicketParticipacion id="textoTicketIdentificadoTicketDigital"></textoTicketParticipacion>
+            <textoTicketParticipacion id="textoTicketIdentificadoTicketFisico">Ticket con fidelizado identificado y con ticket físico. Número de participaciones: #NP#. Número de participaciones extra: #NPE#. Premios: #NPP#. Participaciones:|#CP#|</textoTicketParticipacion>
+            <textoTicketParticipacion id="textoTicketIncidenciaTecnica">Ticket con incidencia técnica. Número de participaciones: #NP#. Número de participaciones extra: #NPE#. Premios: #NPP#. Participaciones:|#CP#</textoTicketParticipacion>
+        </textosTicketsParticipaciones>
+        <enlacesQr>
+            <enlaceQR id="enlaceQr">QWEQWE</enlaceQR>
+        </enlacesQr>
+    </configuracionSorteoTextoQR>
+</configuracionSorteo>
