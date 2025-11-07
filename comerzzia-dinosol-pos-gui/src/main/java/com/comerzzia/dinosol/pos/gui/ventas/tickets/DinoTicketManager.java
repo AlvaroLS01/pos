@@ -2,11 +2,18 @@ package com.comerzzia.dinosol.pos.gui.ventas.tickets;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -55,6 +62,10 @@ import com.comerzzia.dinosol.pos.services.ticket.liquidacion.QRLiquidacionExcept
 import com.comerzzia.dinosol.pos.services.ticket.sad.TicketAnexoSadService;
 import com.comerzzia.dinosol.pos.services.ventas.reparto.ServiciosRepartoService;
 import com.comerzzia.dinosol.pos.services.ventas.reparto.dto.ServicioRepartoDto;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import com.comerzzia.pos.core.dispositivos.Dispositivos;
 import com.comerzzia.pos.core.dispositivos.dispositivo.balanza.BalanzaNoConfig;
 import com.comerzzia.pos.core.dispositivos.dispositivo.balanza.IBalanza;
@@ -124,9 +135,21 @@ public class DinoTicketManager extends TicketManager {
 
 	private Logger log = Logger.getLogger(DinoTicketManager.class);
 	
-	public static Long ID_TIPO_PROMO_FICITIA_CUPON = -1L;
+        public static Long ID_TIPO_PROMO_FICITIA_CUPON = -1L;
 
-	public static final String ARTICULO_UNITARIO = "U";
+        public static final String ARTICULO_UNITARIO = "U";
+
+        private static final DateTimeFormatter COUPON_REDEEM_DATE_OUTPUT_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        private static final DateTimeFormatter[] COUPON_REDEEM_DATE_OPTIONAL_FORMATTERS = new DateTimeFormatter[] {
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"),
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"),
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"),
+                        DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"),
+                        DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss.S"),
+                        DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss.SSS"),
+                        DateTimeFormatter.ofPattern("dd/MM/yyyy")
+        };
 		
 	@Autowired 
 	private DinoCodBarrasEspecialesServices dinoCodBarrasEspecialesService;
@@ -856,13 +879,23 @@ public class DinoTicketManager extends TicketManager {
 		boolean esCuponAntiguo = ((DinoCuponesService) cuponesServices).esCuponAntiguo(codArticulo);
 		
 		if(esCuponNuevo) {
-			try {
-				CouponDTO couponDto = ((DinoSesionPromociones) sesionPromociones).validateCoupon(codArticulo);
-				
-				for(CustomerCouponDTO cupon : getCuponesLeidos()) {
-					if(cupon.getCouponCode().equals(codArticulo)) {
-						// A petición de Dinosol, si es un cupón de los nuevos no se puede introducir dos veces en la venta.
-						log.debug("comprobarCupon() - Este cupón ya ha sido introducido en la venta y es un cupón de los nuevos.");
+                        try {
+                                CouponDTO couponDto = ((DinoSesionPromociones) sesionPromociones).validateCoupon(codArticulo);
+
+                                if(couponDto == null) {
+                                        DinoSesionPromociones dinoSesionPromociones = (DinoSesionPromociones) sesionPromociones;
+                                        Integer lastStatus = dinoSesionPromociones.getLastCouponValidationStatus();
+                                        if(lastStatus != null && lastStatus == 400) {
+                                                String rawMessage = dinoSesionPromociones.getLastCouponValidationMessage();
+                                                String couponRedeemedMessage = buildCouponRedeemedMessage(codArticulo, rawMessage);
+                                                throw new CuponAplicationException(couponRedeemedMessage);
+                                        }
+                                }
+
+                                for(CustomerCouponDTO cupon : getCuponesLeidos()) {
+                                        if(cupon.getCouponCode().equals(codArticulo)) {
+                                                // A petición de Dinosol, si es un cupón de los nuevos no se puede introducir dos veces en la venta.
+                                                log.debug("comprobarCupon() - Este cupón ya ha sido introducido en la venta y es un cupón de los nuevos.");
 						throw new CuponAplicationException(I18N.getTexto("Este cupón ya ha sido introducido en la venta actual."));
 					}
 				}
@@ -901,16 +934,172 @@ public class DinoTicketManager extends TicketManager {
 			getCuponesLeidos().add(coupon);
 			
 			isCupon = true;
-		}
-		
-		return isCupon;
-	}
+                }
 
-    @SuppressWarnings("unchecked")
-	private void anularTarjetaRegalo(LineaTicketAbstract lineaNueva, TarjetaRegaloDto tarjetaRegalo) {
-    	tarjetaRegalo.setEstado(TarjetaRegaloDto.ESTADO_ANULADA);
-    	for(DinoLineaTicket linea : (List<DinoLineaTicket>) ticketPrincipal.getLineas()) {
-    		TarjetaRegaloDto tarjetaRegaloLinea = linea.getTarjetaRegalo();
+                return isCupon;
+        }
+
+        private String buildCouponRedeemedMessage(String couponCode, String rawPayload) {
+                String defaultMessage = I18N.getTexto("El cupón ya ha sido redimido.");
+
+                if(StringUtils.isBlank(rawPayload)) {
+                        return defaultMessage;
+                }
+
+                JsonObject payload = parseJsonObject(rawPayload);
+                if(payload != null) {
+                        String message = getStringIgnoreCase(payload, "message", "mensaje");
+                        if(StringUtils.isNotBlank(message) && message.toUpperCase(Locale.ROOT).contains("CANJE")) {
+                                return message;
+                        }
+
+                        String errorCode = getStringIgnoreCase(payload, "errorCode", "code", "status");
+                        if(StringUtils.isNotBlank(errorCode)) {
+                                String normalizedCode = errorCode.toUpperCase(Locale.ROOT);
+                                boolean isRedeemedCode = normalizedCode.contains("REDEEM") || normalizedCode.contains("USED") || normalizedCode.contains("CANJE");
+                                if(!isRedeemedCode) {
+                                        return defaultMessage;
+                                }
+                        }
+
+                        String redeemDate = getStringIgnoreCase(payload, "redeemDate", "redemptionDate", "fechaCanje", "redeemedDate");
+                        String center = getStringIgnoreCase(payload, "center", "centerId", "store", "storeId", "storeCode", "codCentro", "codAlmacen");
+                        String ticketNumber = getStringIgnoreCase(payload, "ticketNumber", "ticket", "ticketId", "numTicket", "numeroTicket", "codigoTicket");
+
+                        String formattedDate = formatRedeemDate(redeemDate);
+                        if(StringUtils.isNotBlank(formattedDate) && StringUtils.isNotBlank(center) && StringUtils.isNotBlank(ticketNumber)) {
+                                return String.format("CUPÓN %s CANJEADO EL DIA %s EN EL CENTRO %s EN EL NÚMERO DE TICKET %s", couponCode, formattedDate, center, ticketNumber);
+                        }
+                }
+                else if(rawPayload.toUpperCase(Locale.ROOT).contains("CANJE")) {
+                        return rawPayload;
+                }
+
+                return defaultMessage;
+        }
+
+        private JsonObject parseJsonObject(String rawPayload) {
+                if(StringUtils.isBlank(rawPayload)) {
+                        return null;
+                }
+
+                try {
+                        JsonParser parser = new JsonParser();
+                        JsonElement element = parser.parse(rawPayload);
+                        if(element != null && element.isJsonObject()) {
+                                return element.getAsJsonObject();
+                        }
+                }
+                catch (JsonSyntaxException e) {
+                        log.debug("buildCouponRedeemedMessage() - No se ha podido parsear la respuesta de validación del cupón como JSON: " + e.getMessage());
+                }
+
+                return null;
+        }
+
+        private String getStringIgnoreCase(JsonObject object, String... candidateKeys) {
+                if(object == null || candidateKeys == null) {
+                        return null;
+                }
+
+                for(String candidateKey : candidateKeys) {
+                        for(Map.Entry<String, JsonElement> entry : object.entrySet()) {
+                                if(entry.getKey() != null && entry.getKey().equalsIgnoreCase(candidateKey)) {
+                                        JsonElement value = entry.getValue();
+                                        if(value != null && !value.isJsonNull()) {
+                                                String text;
+                                                if(value.isJsonPrimitive()) {
+                                                        text = value.getAsString();
+                                                }
+                                                else {
+                                                        text = value.toString();
+                                                }
+
+                                                if(StringUtils.isNotBlank(text)) {
+                                                        return text.trim();
+                                                }
+                                        }
+                                }
+                        }
+                }
+
+                return null;
+        }
+
+        private String formatRedeemDate(String rawDate) {
+                if(StringUtils.isBlank(rawDate)) {
+                        return null;
+                }
+
+                String candidate = rawDate.trim();
+
+                try {
+                        OffsetDateTime offsetDateTime = OffsetDateTime.parse(candidate);
+                        return COUPON_REDEEM_DATE_OUTPUT_FORMATTER.format(offsetDateTime.toLocalDate());
+                }
+                catch (DateTimeParseException ignored) {
+                }
+
+                try {
+                        LocalDateTime localDateTime = LocalDateTime.parse(candidate);
+                        return COUPON_REDEEM_DATE_OUTPUT_FORMATTER.format(localDateTime.toLocalDate());
+                }
+                catch (DateTimeParseException ignored) {
+                }
+
+                if(candidate.contains(" ") && !candidate.contains("T")) {
+                        try {
+                                LocalDateTime localDateTime = LocalDateTime.parse(candidate.replace(' ', 'T'));
+                                return COUPON_REDEEM_DATE_OUTPUT_FORMATTER.format(localDateTime.toLocalDate());
+                        }
+                        catch (DateTimeParseException ignored) {
+                        }
+                }
+
+                try {
+                        LocalDate localDate = LocalDate.parse(candidate);
+                        return COUPON_REDEEM_DATE_OUTPUT_FORMATTER.format(localDate);
+                }
+                catch (DateTimeParseException ignored) {
+                }
+
+                for(DateTimeFormatter formatter : COUPON_REDEEM_DATE_OPTIONAL_FORMATTERS) {
+                        String formatted = parseDateWithFormatter(candidate, formatter);
+                        if(StringUtils.isNotBlank(formatted)) {
+                                return formatted;
+                        }
+                }
+
+                if(candidate.matches("\\d{2}/\\d{2}/\\d{4}")) {
+                        return candidate;
+                }
+
+                return null;
+        }
+
+        private String parseDateWithFormatter(String candidate, DateTimeFormatter formatter) {
+                try {
+                        LocalDateTime localDateTime = LocalDateTime.parse(candidate, formatter);
+                        return COUPON_REDEEM_DATE_OUTPUT_FORMATTER.format(localDateTime.toLocalDate());
+                }
+                catch (DateTimeParseException ignored) {
+                }
+
+                try {
+                        LocalDate localDate = LocalDate.parse(candidate, formatter);
+                        return COUPON_REDEEM_DATE_OUTPUT_FORMATTER.format(localDate);
+                }
+                catch (DateTimeParseException ignored) {
+                }
+
+                return null;
+        }
+
+        @SuppressWarnings("unchecked")
+        private void anularTarjetaRegalo(LineaTicketAbstract lineaNueva, TarjetaRegaloDto tarjetaRegalo) {
+        tarjetaRegalo.setEstado(TarjetaRegaloDto.ESTADO_ANULADA);
+        for(DinoLineaTicket linea : (List<DinoLineaTicket>) ticketPrincipal.getLineas()) {
+                TarjetaRegaloDto tarjetaRegaloLinea = linea.getTarjetaRegalo();
 			if(tarjetaRegaloLinea != null && tarjetaRegaloLinea.getNumeroTarjeta().equals(tarjetaRegalo.getNumeroTarjeta())) {
 				tarjetaRegaloLinea.setEstado(TarjetaRegaloDto.ESTADO_ANULADA);
 
