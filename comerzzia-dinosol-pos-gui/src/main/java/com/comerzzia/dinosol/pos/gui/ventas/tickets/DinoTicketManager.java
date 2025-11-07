@@ -2,6 +2,14 @@ package com.comerzzia.dinosol.pos.gui.ventas.tickets;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.DateTimeException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -115,6 +123,10 @@ import com.comerzzia.pos.util.i18n.I18N;
 import com.comerzzia.pos.util.xml.MarshallUtil;
 import com.comerzzia.rest.client.tickets.ResponseGetTicketDev;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import javafx.stage.Stage;
 
 @Component
@@ -122,11 +134,17 @@ import javafx.stage.Stage;
 @Scope("prototype")
 public class DinoTicketManager extends TicketManager {
 
-	private Logger log = Logger.getLogger(DinoTicketManager.class);
-	
-	public static Long ID_TIPO_PROMO_FICITIA_CUPON = -1L;
+        private Logger log = Logger.getLogger(DinoTicketManager.class);
 
-	public static final String ARTICULO_UNITARIO = "U";
+        public static Long ID_TIPO_PROMO_FICITIA_CUPON = -1L;
+
+        public static final String ARTICULO_UNITARIO = "U";
+
+        private static final String[] COUPON_REDEEM_DATE_KEYS = { "redeemDate", "redeemedDate", "redeemedOn", "redemptionDate", "fechaCanje", "fechaRedencion", "fechaRedemption" };
+        private static final String[] COUPON_REDEEM_CENTER_KEYS = { "center", "centerCode", "store", "storeCode", "storeId", "centro", "codCentro" };
+        private static final String[] COUPON_REDEEM_TICKET_KEYS = { "ticket", "ticketNumber", "numeroTicket", "numTicket", "ticketId", "ticket_code" };
+        private static final String REDEEM_UNKNOWN_VALUE = "DESCONOCIDO";
+        private static final DateTimeFormatter REDEEM_DATE_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
 	@Autowired 
 	private DinoCodBarrasEspecialesServices dinoCodBarrasEspecialesService;
@@ -859,12 +877,12 @@ public class DinoTicketManager extends TicketManager {
 			try {
 				CouponDTO couponDto = ((DinoSesionPromociones) sesionPromociones).validateCoupon(codArticulo);
 				
-                    if(couponDto == null) {
-                            Integer lastStatus = ((DinoSesionPromociones) sesionPromociones).getLastCouponValidationStatus();
-                            if(lastStatus != null && lastStatus == 400) {
-                                    throw new CuponAplicationException(I18N.getTexto("El cupón ya ha sido redimido."));
-                            }
-                    }
+                               if(couponDto == null) {
+                                       Integer lastStatus = ((DinoSesionPromociones) sesionPromociones).getLastCouponValidationStatus();
+                                       if(lastStatus != null && lastStatus == 400) {
+                                               throw new CuponAplicationException(buildRedeemedCouponMessage(codArticulo));
+                                       }
+                               }
 
 				for(CustomerCouponDTO cupon : getCuponesLeidos()) {
 					if(cupon.getCouponCode().equals(codArticulo)) {
@@ -910,8 +928,123 @@ public class DinoTicketManager extends TicketManager {
 			isCupon = true;
 		}
 		
-		return isCupon;
-	}
+                return isCupon;
+        }
+
+        private String buildRedeemedCouponMessage(String couponCode) {
+                String sanitizedCouponCode = defaultIfBlank(couponCode, REDEEM_UNKNOWN_VALUE);
+                String rawMessage = ((DinoSesionPromociones) sesionPromociones).getLastCouponValidationMessage();
+                String[] redemptionData = parseRedeemedCouponData(rawMessage);
+                return "CUPÓN " + sanitizedCouponCode + " CANJEADO EL DIA " + redemptionData[0] + " EN EL CENTRO " + redemptionData[1] + " EN EL NÚMERO DE TICKET " + redemptionData[2];
+        }
+
+        private String[] parseRedeemedCouponData(String rawMessage) {
+                String[] defaults = new String[] { REDEEM_UNKNOWN_VALUE, REDEEM_UNKNOWN_VALUE, REDEEM_UNKNOWN_VALUE };
+                if(StringUtils.isBlank(rawMessage)) {
+                        return defaults;
+                }
+                String jsonPayload = extractJsonPayload(rawMessage);
+                if(StringUtils.isBlank(jsonPayload)) {
+                        return defaults;
+                }
+                try {
+                        JsonElement root = new JsonParser().parse(jsonPayload);
+                        String dateValue = findFirstStringValue(root, COUPON_REDEEM_DATE_KEYS);
+                        String centerValue = findFirstStringValue(root, COUPON_REDEEM_CENTER_KEYS);
+                        String ticketValue = findFirstStringValue(root, COUPON_REDEEM_TICKET_KEYS);
+                        return new String[] {
+                                        formatRedeemedDate(dateValue),
+                                        defaultIfBlank(centerValue, REDEEM_UNKNOWN_VALUE),
+                                        defaultIfBlank(ticketValue, REDEEM_UNKNOWN_VALUE)
+                        };
+                }
+                catch (JsonSyntaxException exception) {
+                        log.warn("comprobarCupon() - No se ha podido parsear la respuesta de validación del cupón: " + jsonPayload, exception);
+                        return defaults;
+                }
+        }
+
+        private String extractJsonPayload(String rawMessage) {
+                if(StringUtils.isBlank(rawMessage)) {
+                        return null;
+                }
+                int start = rawMessage.indexOf('{');
+                int end = rawMessage.lastIndexOf('}');
+                if(start >= 0 && end >= start) {
+                        return rawMessage.substring(start, end + 1);
+                }
+                return rawMessage;
+        }
+
+        private String findFirstStringValue(JsonElement element, String[] keys) {
+                if(element == null || keys == null) {
+                        return null;
+                }
+                if(element.isJsonObject()) {
+                        JsonObject jsonObject = element.getAsJsonObject();
+                        for(String key : keys) {
+                                if(jsonObject.has(key) && jsonObject.get(key) != null && jsonObject.get(key).isJsonPrimitive()) {
+                                        return jsonObject.get(key).getAsString();
+                                }
+                        }
+                        for(java.util.Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
+                                String nested = findFirstStringValue(entry.getValue(), keys);
+                                if(StringUtils.isNotBlank(nested)) {
+                                        return nested;
+                                }
+                        }
+                }
+                else if(element.isJsonArray()) {
+                        for(JsonElement child : element.getAsJsonArray()) {
+                                String nested = findFirstStringValue(child, keys);
+                                if(StringUtils.isNotBlank(nested)) {
+                                        return nested;
+                                }
+                        }
+                }
+                return null;
+        }
+
+        private String formatRedeemedDate(String value) {
+                if(StringUtils.isBlank(value)) {
+                        return REDEEM_UNKNOWN_VALUE;
+                }
+                try {
+                        return OffsetDateTime.parse(value).toLocalDate().format(REDEEM_DATE_OUTPUT_FORMAT);
+                }
+                catch (DateTimeParseException ignored) {
+                }
+                try {
+                        return LocalDateTime.parse(value).toLocalDate().format(REDEEM_DATE_OUTPUT_FORMAT);
+                }
+                catch (DateTimeParseException ignored) {
+                }
+                try {
+                        return LocalDate.parse(value).format(REDEEM_DATE_OUTPUT_FORMAT);
+                }
+                catch (DateTimeParseException ignored) {
+                }
+                try {
+                        return LocalDate.parse(value, DateTimeFormatter.ofPattern("dd/MM/yyyy")).format(REDEEM_DATE_OUTPUT_FORMAT);
+                }
+                catch (DateTimeParseException ignored) {
+                }
+                try {
+                        return LocalDate.parse(value, DateTimeFormatter.ofPattern("yyyy/MM/dd")).format(REDEEM_DATE_OUTPUT_FORMAT);
+                }
+                catch (DateTimeParseException ignored) {
+                }
+                try {
+                        return Instant.ofEpochMilli(Long.parseLong(value)).atZone(ZoneId.systemDefault()).toLocalDate().format(REDEEM_DATE_OUTPUT_FORMAT);
+                }
+                catch (NumberFormatException | DateTimeException ignored) {
+                }
+                return value;
+        }
+
+        private String defaultIfBlank(String value, String defaultValue) {
+                return StringUtils.isBlank(value) ? defaultValue : value;
+        }
 
     @SuppressWarnings("unchecked")
 	private void anularTarjetaRegalo(LineaTicketAbstract lineaNueva, TarjetaRegaloDto tarjetaRegalo) {

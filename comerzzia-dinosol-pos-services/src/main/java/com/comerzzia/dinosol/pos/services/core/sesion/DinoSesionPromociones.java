@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -342,11 +343,26 @@ public class DinoSesionPromociones extends SesionPromociones {
 			throw e;
 		}
 		catch (Exception e) {
-			if (e instanceof FeignException) {
-				FeignException feignException = (FeignException) e;
-				lastCouponValidationStatus = feignException.status();
-				lastCouponValidationMessage = feignException.getMessage();
-			}
+                        if (e instanceof FeignException) {
+                                FeignException feignException = (FeignException) e;
+                                lastCouponValidationStatus = feignException.status();
+                                String content = null;
+                                try {
+                                        byte[] contentBytes = feignException.content();
+                                        if (contentBytes != null) {
+                                                content = new String(contentBytes, StandardCharsets.UTF_8);
+                                        }
+                                }
+                                catch (Exception contentException) {
+                                        log.debug("validateCoupon() - Unable to extract coupon validation content: " + contentException.getMessage());
+                                }
+                                if (StringUtils.isNotBlank(content)) {
+                                        lastCouponValidationMessage = content;
+                                }
+                                else {
+                                        lastCouponValidationMessage = feignException.getMessage();
+                                }
+                        }
 
 			log.error("validateCoupon() - Error while validating coupon: " + e.getMessage(), e);
 
