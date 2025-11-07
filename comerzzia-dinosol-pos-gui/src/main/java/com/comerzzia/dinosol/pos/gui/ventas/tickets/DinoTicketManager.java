@@ -948,7 +948,7 @@ public class DinoTicketManager extends TicketManager {
                         return defaults;
                 }
                 try {
-                        JsonElement root = JsonParser.parseString(jsonPayload);
+                        JsonElement root = new JsonParser().parse(jsonPayload);
                         String dateValue = findFirstStringValue(root, COUPON_REDEEM_DATE_KEYS);
                         String centerValue = findFirstStringValue(root, COUPON_REDEEM_CENTER_KEYS);
                         String ticketValue = findFirstStringValue(root, COUPON_REDEEM_TICKET_KEYS);
