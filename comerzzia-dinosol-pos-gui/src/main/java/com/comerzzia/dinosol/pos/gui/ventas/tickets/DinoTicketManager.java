@@ -1,5 +1,6 @@
 package com.comerzzia.dinosol.pos.gui.ventas.tickets;
 
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -862,6 +863,19 @@ public class DinoTicketManager extends TicketManager {
                     if(couponDto == null) {
                             Integer lastStatus = ((DinoSesionPromociones) sesionPromociones).getLastCouponValidationStatus();
                             if(lastStatus != null && lastStatus == 400) {
+                                    try {
+                                            CouponDTO couponInfo = ((DinoSesionPromociones) sesionPromociones).getCoupon(codArticulo);
+                                            if(couponInfo != null && isCouponMarkedAsUsed(couponInfo.getUses())) {
+                                                    throw new CuponAplicationException(construirMensajeCuponCanjeado(couponInfo));
+                                            }
+                                    }
+                                    catch (ApiClientException apiClientException) {
+                                            if(!"Registro no encontrado".equals(apiClientException.getMessage())) {
+                                                    throw apiClientException;
+                                            }
+                                            log.debug("comprobarCupon() - El cupón no existe en la consulta de detalle tras respuesta 400 de validación.");
+                                    }
+
                                     throw new CuponAplicationException(I18N.getTexto("El cupón ya ha sido redimido."));
                             }
                     }
@@ -908,16 +922,105 @@ public class DinoTicketManager extends TicketManager {
 			getCuponesLeidos().add(coupon);
 			
 			isCupon = true;
-		}
-		
-		return isCupon;
-	}
+                }
+
+                return isCupon;
+        }
+
+        private boolean isCouponMarkedAsUsed(Object uses) {
+                Boolean used = (Boolean) invokeUsesGetter(uses, "getUsed");
+                return Boolean.TRUE.equals(used);
+        }
+
+        private String construirMensajeCuponCanjeado(CouponDTO coupon) {
+                Object uses = coupon != null ? coupon.getUses() : null;
+
+                Date redemptionDate = (Date) invokeUsesGetter(uses, "getLastUse");
+                if (redemptionDate == null) {
+                        redemptionDate = (Date) invokeUsesGetter(uses, "getFirstUse");
+                }
+
+                String formattedDate = redemptionDate != null ? FormatUtil.getInstance().formateaFecha(redemptionDate) : "-";
+
+                String codigoCupon = (coupon != null && StringUtils.isNotBlank(coupon.getCouponCode())) ? coupon.getCouponCode()
+                                : "-";
+
+                String lockByTerminalId = StringUtils.trimToNull((String) invokeUsesGetter(uses, "getLockByTerminalId"));
+                String lastTerminalId = StringUtils.trimToNull((String) invokeUsesGetter(uses, "getLastTerminalId"));
+                String uidActividad = StringUtils.trimToNull((String) invokeUsesGetter(uses, "getUidActividad"));
+                String objectId = StringUtils.trimToNull((String) invokeUsesGetter(uses, "getObjectId"));
+
+                String centro = obtenerCentro(lockByTerminalId, lastTerminalId, uidActividad);
+                String ticket = obtenerNumeroTicket(lockByTerminalId, objectId);
+
+                return "CUPÓN " + codigoCupon + " CANJEADO EL DIA " + formattedDate + " EN EL CENTRO " + centro
+                                + " EN EL NÚMERO DE TICKET " + ticket;
+        }
+
+        private String obtenerCentro(String lockByTerminalId, String lastTerminalId, String uidActividad) {
+                String centro = extraerParteTerminal(lockByTerminalId, true);
+                if (StringUtils.isBlank(centro)) {
+                        centro = extraerParteTerminal(lastTerminalId, true);
+                }
+                if (StringUtils.isBlank(centro)) {
+                        centro = uidActividad;
+                }
+                return StringUtils.isBlank(centro) ? "-" : centro;
+        }
+
+        private String obtenerNumeroTicket(String lockByTerminalId, String objectId) {
+                String ticket = extraerParteTerminal(lockByTerminalId, false);
+                if (StringUtils.isBlank(ticket)) {
+                        ticket = objectId;
+                }
+                return StringUtils.isBlank(ticket) ? "-" : ticket;
+        }
+
+        private String extraerParteTerminal(String valor, boolean primeraParte) {
+                if (StringUtils.isBlank(valor)) {
+                        return null;
+                }
+
+                String[] partes = valor.split("[\\-#/_]");
+                if (partes.length > 1) {
+                        if (primeraParte) {
+                                return StringUtils.trimToNull(partes[0]);
+                        }
+
+                        for (int indice = partes.length - 1; indice >= 0; indice--) {
+                                if (StringUtils.isNotBlank(partes[indice])) {
+                                        return StringUtils.trimToNull(partes[indice]);
+                                }
+                        }
+                        return null;
+                }
+
+                return primeraParte ? StringUtils.trimToNull(valor) : null;
+        }
+
+        private Object invokeUsesGetter(Object uses, String methodName) {
+                if (uses == null) {
+                        return null;
+                }
+
+                try {
+                        Method method = uses.getClass().getMethod(methodName);
+                        return method.invoke(uses);
+                }
+                catch (Exception e) {
+                        if (log.isDebugEnabled()) {
+                                log.debug("comprobarCupon() - No se pudo obtener el valor '" + methodName
+                                                + "' de la información de uso del cupón.", e);
+                        }
+                        return null;
+                }
+        }
 
     @SuppressWarnings("unchecked")
-	private void anularTarjetaRegalo(LineaTicketAbstract lineaNueva, TarjetaRegaloDto tarjetaRegalo) {
-    	tarjetaRegalo.setEstado(TarjetaRegaloDto.ESTADO_ANULADA);
-    	for(DinoLineaTicket linea : (List<DinoLineaTicket>) ticketPrincipal.getLineas()) {
-    		TarjetaRegaloDto tarjetaRegaloLinea = linea.getTarjetaRegalo();
+        private void anularTarjetaRegalo(LineaTicketAbstract lineaNueva, TarjetaRegaloDto tarjetaRegalo) {
+        tarjetaRegalo.setEstado(TarjetaRegaloDto.ESTADO_ANULADA);
+        for(DinoLineaTicket linea : (List<DinoLineaTicket>) ticketPrincipal.getLineas()) {
+                TarjetaRegaloDto tarjetaRegaloLinea = linea.getTarjetaRegalo();
 			if(tarjetaRegaloLinea != null && tarjetaRegaloLinea.getNumeroTarjeta().equals(tarjetaRegalo.getNumeroTarjeta())) {
 				tarjetaRegaloLinea.setEstado(TarjetaRegaloDto.ESTADO_ANULADA);
 
