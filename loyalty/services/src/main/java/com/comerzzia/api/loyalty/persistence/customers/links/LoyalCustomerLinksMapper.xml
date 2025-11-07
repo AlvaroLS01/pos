@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comerzzia.api.loyalty.persistence.customers.links.LoyalCustomerLinksMapper" >
+  <resultMap id="BaseResultMap" type="com.comerzzia.api.loyalty.persistence.customers.links.EnlaceFidelizadoBean" >
+    <id column="UID_ACTIVIDAD" property="uidActividad" jdbcType="VARCHAR" />
+    <id column="ID_CLASE" property="idClase" jdbcType="VARCHAR" />
+    <id column="ID_OBJETO" property="idObjeto" jdbcType="VARCHAR" />
+    <id column="ID_FIDELIZADO" property="idFidelizado" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UID_ACTIVIDAD, ID_CLASE, ID_OBJETO, ID_FIDELIZADO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.links.EnlaceFidelizadoBean" >
+    select 
+    <include refid="Base_Column_List" />
+    from F_FIDELIZADOS_ENL_TBL
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_CLASE = #{idClase,jdbcType=DECIMAL}
+      and ID_OBJETO = #{idObjeto,jdbcType=VARCHAR}
+      and ID_FIDELIZADO = #{idFidelizado,jdbcType=DECIMAL}
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.links.EnlaceFidelizadoExample" resultSetType="SCROLL_INSENSITIVE" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from F_FIDELIZADOS_ENL_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.customers.links.EnlaceFidelizadoBean" >
+    delete from F_FIDELIZADOS_ENL_TBL
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and ID_CLASE = #{idClase,jdbcType=VARCHAR}
+      and ID_OBJETO = #{idObjeto,jdbcType=VARCHAR}
+      and ID_FIDELIZADO = #{idFidelizado,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.api.loyalty.persistence.customers.links.EnlaceFidelizadoExample" >
+    delete from F_FIDELIZADOS_ENL_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.api.loyalty.persistence.customers.links.EnlaceFidelizadoBean" >
+    insert into F_FIDELIZADOS_ENL_TBL (UID_ACTIVIDAD, ID_CLASE, ID_OBJETO, 
+      ID_FIDELIZADO)
+    values (#{uidActividad,jdbcType=VARCHAR}, #{idClase,jdbcType=VARCHAR}, #{idObjeto,jdbcType=VARCHAR}, 
+      #{idFidelizado,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.api.loyalty.persistence.customers.links.EnlaceFidelizadoBean" >
+    insert into F_FIDELIZADOS_ENL_TBL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uidActividad != null" >
+        UID_ACTIVIDAD,
+      </if>
+      <if test="idClase != null" >
+        ID_CLASE,
+      </if>
+      <if test="idObjeto != null" >
+        ID_OBJETO,
+      </if>
+      <if test="idFidelizado != null" >
+        ID_FIDELIZADO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uidActividad != null" >
+        #{uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="idClase != null" >
+        #{idClase,jdbcType=VARCHAR},
+      </if>
+      <if test="idObjeto != null" >
+        #{idObjeto,jdbcType=VARCHAR},
+      </if>
+      <if test="idFidelizado != null" >
+        #{idFidelizado,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.api.loyalty.persistence.customers.links.EnlaceFidelizadoExample" resultType="java.lang.Integer" >
+    select count(*) from F_FIDELIZADOS_ENL_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update F_FIDELIZADOS_ENL_TBL
+    <set >
+      <if test="record.uidActividad != null" >
+        UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idClase != null" >
+        ID_CLASE = #{record.idClase,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idObjeto != null" >
+        ID_OBJETO = #{record.idObjeto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idFidelizado != null" >
+        ID_FIDELIZADO = #{record.idFidelizado,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update F_FIDELIZADOS_ENL_TBL
+    set UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      ID_CLASE = #{record.idClase,jdbcType=VARCHAR},
+      ID_OBJETO = #{record.idObjeto,jdbcType=VARCHAR},
+      ID_FIDELIZADO = #{record.idFidelizado,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.links.EnlaceFidelizadoExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from F_FIDELIZADOS_ENL_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

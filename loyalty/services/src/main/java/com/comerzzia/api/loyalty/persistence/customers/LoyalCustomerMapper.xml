@@ -1,0 +1,975 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comerzzia.api.loyalty.persistence.customers.LoyalCustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.comerzzia.api.loyalty.persistence.customers.FidelizadoBean" >
+    <id column="UID_INSTANCIA" property="uidInstancia" jdbcType="VARCHAR" />
+    <id column="ID_FIDELIZADO" property="idFidelizado" jdbcType="DECIMAL" />
+    <result column="NOMBRE" property="nombre" jdbcType="VARCHAR" />
+    <result column="APELLIDOS" property="apellidos" jdbcType="VARCHAR" />
+    <result column="DOMICILIO" property="domicilio" jdbcType="VARCHAR" />
+    <result column="POBLACION" property="poblacion" jdbcType="VARCHAR" />
+    <result column="LOCALIDAD" property="localidad" jdbcType="VARCHAR" />
+    <result column="PROVINCIA" property="provincia" jdbcType="VARCHAR" />
+    <result column="CP" property="cp" jdbcType="VARCHAR" />
+    <result column="CODPAIS" property="codPais" jdbcType="VARCHAR" />
+    <result column="CODTIPOIDEN" property="codTipoIden" jdbcType="VARCHAR" />
+    <result column="DOCUMENTO" property="documento" jdbcType="VARCHAR" />
+    <result column="OBSERVACIONES" property="observaciones" jdbcType="VARCHAR" />
+    <result column="FECHA_NACIMIENTO" property="fechaNacimiento" jdbcType="TIMESTAMP" />
+    <result column="SEXO" property="sexo" jdbcType="CHAR" />
+    <result column="CODESTCIVIL" property="codEstCivil" jdbcType="CHAR" />
+    <result column="ACTIVO" property="activo" jdbcType="VARCHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+    <result column="FECHA_ALTA" property="fechaAlta" jdbcType="TIMESTAMP" />
+    <result column="FECHA_MODIFICACION" property="fechaModificacion" jdbcType="TIMESTAMP" />
+    <result column="FECHA_BAJA" property="fechaBaja" jdbcType="TIMESTAMP" />
+    <result column="CODFIDELIZADO" property="codFidelizado" jdbcType="VARCHAR" />
+    <result column="DESPAIS" property="desPais" jdbcType="VARCHAR" />
+    <result column="DESESTCIVIL" property="desEstCivil" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="TarjetaResultMap" type="com.comerzzia.api.loyalty.persistence.customers.FidelizadoBean" >
+    <id column="UID_INSTANCIA" property="uidInstancia" jdbcType="VARCHAR" />
+    <id column="ID_FIDELIZADO" property="idFidelizado" jdbcType="DECIMAL" />
+    <result column="NOMBRE" property="nombre" jdbcType="VARCHAR" />
+    <result column="APELLIDOS" property="apellidos" jdbcType="VARCHAR" />
+    <result column="DOMICILIO" property="domicilio" jdbcType="VARCHAR" />
+    <result column="POBLACION" property="poblacion" jdbcType="VARCHAR" />
+    <result column="LOCALIDAD" property="localidad" jdbcType="VARCHAR" />
+    <result column="PROVINCIA" property="provincia" jdbcType="VARCHAR" />
+    <result column="CP" property="cp" jdbcType="VARCHAR" />
+    <result column="CODPAIS" property="codPais" jdbcType="VARCHAR" />
+    <result column="CODTIPOIDEN" property="codTipoIden" jdbcType="VARCHAR" />
+    <result column="DOCUMENTO" property="documento" jdbcType="VARCHAR" />
+    <result column="OBSERVACIONES" property="observaciones" jdbcType="VARCHAR" />
+    <result column="FECHA_NACIMIENTO" property="fechaNacimiento" jdbcType="TIMESTAMP" />
+    <result column="SEXO" property="sexo" jdbcType="CHAR" />
+    <result column="CODESTCIVIL" property="codEstCivil" jdbcType="CHAR" />
+    <result column="ACTIVO" property="activo" jdbcType="VARCHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+    <result column="FECHA_ALTA" property="fechaAlta" jdbcType="TIMESTAMP" />
+    <result column="FECHA_MODIFICACION" property="fechaModificacion" jdbcType="TIMESTAMP" />
+    <result column="FECHA_BAJA" property="fechaBaja" jdbcType="TIMESTAMP" />
+    <result column="CODFIDELIZADO" property="codFidelizado" jdbcType="VARCHAR" />
+    <result column="DESPAIS" property="desPais" jdbcType="VARCHAR" />
+    <result column="NUMERO_TARJETA" property="numeroTarjeta" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.activoCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Example_Where_Clause_Export" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.activoCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.activoCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UID_INSTANCIA, ID_FIDELIZADO, NOMBRE, APELLIDOS, DOMICILIO, POBLACION, LOCALIDAD, 
+    PROVINCIA, CP, CODPAIS, CODTIPOIDEN, DOCUMENTO, OBSERVACIONES, FECHA_NACIMIENTO, 
+    SEXO, CODESTCIVIL, ACTIVO, FECHA_ALTA, FECHA_MODIFICACION, FECHA_BAJA, CODFIDELIZADO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.FidelizadoExample" resultSetType="SCROLL_INSENSITIVE" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from F_FIDELIZADOS_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.FidelizadoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from F_FIDELIZADOS_TBL
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_FIDELIZADO = #{idFidelizado,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.customers.FidelizadoKey" >
+    delete from F_FIDELIZADOS_TBL
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_FIDELIZADO = #{idFidelizado,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.api.loyalty.persistence.customers.FidelizadoExample" >
+    delete from F_FIDELIZADOS_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.api.loyalty.persistence.customers.FidelizadoBean" >
+    insert into F_FIDELIZADOS_TBL (UID_INSTANCIA, ID_FIDELIZADO, NOMBRE, 
+      APELLIDOS, DOMICILIO, POBLACION, 
+      LOCALIDAD, PROVINCIA, CP, 
+      CODPAIS, CODTIPOIDEN, DOCUMENTO, 
+      OBSERVACIONES, FECHA_NACIMIENTO, SEXO, 
+      CODESTCIVIL, ACTIVO, 
+      FECHA_ALTA, FECHA_MODIFICACION, FECHA_BAJA, 
+      CODFIDELIZADO)
+    values (#{uidInstancia,jdbcType=VARCHAR}, #{idFidelizado,jdbcType=DECIMAL}, #{nombre,jdbcType=VARCHAR}, 
+      #{apellidos,jdbcType=VARCHAR}, #{domicilio,jdbcType=VARCHAR}, #{poblacion,jdbcType=VARCHAR}, 
+      #{localidad,jdbcType=VARCHAR}, #{provincia,jdbcType=VARCHAR}, #{cp,jdbcType=VARCHAR}, 
+      #{codPais,jdbcType=VARCHAR}, #{codTipoIden,jdbcType=VARCHAR}, #{documento,jdbcType=VARCHAR}, 
+      #{observaciones,jdbcType=VARCHAR}, #{fechaNacimiento,jdbcType=TIMESTAMP}, #{sexo,jdbcType=CHAR}, 
+      #{codEstCivil,jdbcType=CHAR}, #{activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}, 
+      #{fechaAlta,jdbcType=TIMESTAMP}, #{fechaModificacion,jdbcType=TIMESTAMP}, #{fechaBaja,jdbcType=TIMESTAMP}, 
+      #{codFidelizado,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.api.loyalty.persistence.customers.FidelizadoBean" >
+    insert into F_FIDELIZADOS_TBL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        UID_INSTANCIA,
+      </if>
+      <if test="idFidelizado != null" >
+        ID_FIDELIZADO,
+      </if>
+      <if test="nombre != null" >
+        NOMBRE,
+      </if>
+      <if test="apellidos != null" >
+        APELLIDOS,
+      </if>
+      <if test="domicilio != null" >
+        DOMICILIO,
+      </if>
+      <if test="poblacion != null" >
+        POBLACION,
+      </if>
+      <if test="localidad != null" >
+        LOCALIDAD,
+      </if>
+      <if test="provincia != null" >
+        PROVINCIA,
+      </if>
+      <if test="cp != null" >
+        CP,
+      </if>
+      <if test="codPais != null" >
+        CODPAIS,
+      </if>
+      <if test="codTipoIden != null" >
+        CODTIPOIDEN,
+      </if>
+      <if test="documento != null" >
+        DOCUMENTO,
+      </if>
+      <if test="observaciones != null" >
+        OBSERVACIONES,
+      </if>
+      <if test="fechaNacimiento != null" >
+        FECHA_NACIMIENTO,
+      </if>
+      <if test="sexo != null" >
+        SEXO,
+      </if>
+      <if test="codEstCivil != null" >
+        CODESTCIVIL,
+      </if>
+      <if test="activo != null" >
+        ACTIVO,
+      </if>
+      <if test="fechaAlta != null" >
+        FECHA_ALTA,
+      </if>
+      <if test="fechaModificacion != null" >
+        FECHA_MODIFICACION,
+      </if>
+      <if test="fechaBaja != null" >
+        FECHA_BAJA,
+      </if>
+      <if test="codFidelizado != null" >
+        CODFIDELIZADO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        #{uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="idFidelizado != null" >
+        #{idFidelizado,jdbcType=DECIMAL},
+      </if>
+      <if test="nombre != null" >
+        #{nombre,jdbcType=VARCHAR},
+      </if>
+      <if test="apellidos != null" >
+        #{apellidos,jdbcType=VARCHAR},
+      </if>
+      <if test="domicilio != null" >
+        #{domicilio,jdbcType=VARCHAR},
+      </if>
+      <if test="poblacion != null" >
+        #{poblacion,jdbcType=VARCHAR},
+      </if>
+      <if test="localidad != null" >
+        #{localidad,jdbcType=VARCHAR},
+      </if>
+      <if test="provincia != null" >
+        #{provincia,jdbcType=VARCHAR},
+      </if>
+      <if test="cp != null" >
+        #{cp,jdbcType=VARCHAR},
+      </if>
+      <if test="codPais != null" >
+        #{codPais,jdbcType=VARCHAR},
+      </if>
+      <if test="codTipoIden != null" >
+        #{codTipoIden,jdbcType=VARCHAR},
+      </if>
+      <if test="documento != null" >
+        #{documento,jdbcType=VARCHAR},
+      </if>
+      <if test="observaciones != null" >
+        #{observaciones,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaNacimiento != null" >
+        #{fechaNacimiento,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sexo != null" >
+        #{sexo,jdbcType=CHAR},
+      </if>
+      <if test="codEstCivil != null" >
+        #{codEstCivil,jdbcType=CHAR},
+      </if>
+      <if test="activo != null" >
+        #{activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="fechaAlta != null" >
+        #{fechaAlta,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaModificacion != null" >
+        #{fechaModificacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaBaja != null" >
+        #{fechaBaja,jdbcType=TIMESTAMP},
+      </if>
+      <if test="codFidelizado != null" >
+        #{codFidelizado,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.api.loyalty.persistence.customers.FidelizadoExample" resultType="java.lang.Integer" >
+    select count(*) from F_FIDELIZADOS_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update F_FIDELIZADOS_TBL
+    <set >
+      <if test="record.uidInstancia != null" >
+        UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idFidelizado != null" >
+        ID_FIDELIZADO = #{record.idFidelizado,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nombre != null" >
+        NOMBRE = #{record.nombre,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apellidos != null" >
+        APELLIDOS = #{record.apellidos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.domicilio != null" >
+        DOMICILIO = #{record.domicilio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.poblacion != null" >
+        POBLACION = #{record.poblacion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.localidad != null" >
+        LOCALIDAD = #{record.localidad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provincia != null" >
+        PROVINCIA = #{record.provincia,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cp != null" >
+        CP = #{record.cp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codPais != null" >
+        CODPAIS = #{record.codPais,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codTipoIden != null" >
+        CODTIPOIDEN = #{record.codTipoIden,jdbcType=VARCHAR},
+      </if>
+      <if test="record.documento != null" >
+        DOCUMENTO = #{record.documento,jdbcType=VARCHAR},
+      </if>
+      <if test="record.observaciones != null" >
+        OBSERVACIONES = #{record.observaciones,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fechaNacimiento != null" >
+        FECHA_NACIMIENTO = #{record.fechaNacimiento,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sexo != null" >
+        SEXO = #{record.sexo,jdbcType=CHAR},
+      </if>
+      <if test="record.codEstCivil != null" >
+        CODESTCIVIL = #{record.codEstCivil,jdbcType=CHAR},
+      </if>
+      <if test="record.activo != null" >
+        ACTIVO = #{record.activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="record.fechaAlta != null" >
+        FECHA_ALTA = #{record.fechaAlta,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fechaModificacion != null" >
+        FECHA_MODIFICACION = #{record.fechaModificacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fechaBaja != null" >
+        FECHA_BAJA = #{record.fechaBaja,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.codFidelizado != null" >
+        CODFIDELIZADO = #{record.codFidelizado,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update F_FIDELIZADOS_TBL
+    set UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      ID_FIDELIZADO = #{record.idFidelizado,jdbcType=DECIMAL},
+      NOMBRE = #{record.nombre,jdbcType=VARCHAR},
+      APELLIDOS = #{record.apellidos,jdbcType=VARCHAR},
+      DOMICILIO = #{record.domicilio,jdbcType=VARCHAR},
+      POBLACION = #{record.poblacion,jdbcType=VARCHAR},
+      LOCALIDAD = #{record.localidad,jdbcType=VARCHAR},
+      PROVINCIA = #{record.provincia,jdbcType=VARCHAR},
+      CP = #{record.cp,jdbcType=VARCHAR},
+      CODPAIS = #{record.codPais,jdbcType=VARCHAR},
+      CODTIPOIDEN = #{record.codTipoIden,jdbcType=VARCHAR},
+      DOCUMENTO = #{record.documento,jdbcType=VARCHAR},
+      OBSERVACIONES = #{record.observaciones,jdbcType=VARCHAR},
+      FECHA_NACIMIENTO = #{record.fechaNacimiento,jdbcType=TIMESTAMP},
+      SEXO = #{record.sexo,jdbcType=CHAR},
+      CODESTCIVIL = #{record.codEstCivil,jdbcType=CHAR},
+      ACTIVO = #{record.activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      FECHA_ALTA = #{record.fechaAlta,jdbcType=TIMESTAMP},
+      FECHA_MODIFICACION = #{record.fechaModificacion,jdbcType=TIMESTAMP},
+      FECHA_BAJA = #{record.fechaBaja,jdbcType=TIMESTAMP},
+      CODFIDELIZADO = #{record.codFidelizado,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.api.loyalty.persistence.customers.FidelizadoBean" >
+    update F_FIDELIZADOS_TBL
+    <set >
+      <if test="nombre != null" >
+        NOMBRE = #{nombre,jdbcType=VARCHAR},
+      </if>
+      <if test="apellidos != null" >
+        APELLIDOS = #{apellidos,jdbcType=VARCHAR},
+      </if>
+      <if test="domicilio != null" >
+        DOMICILIO = #{domicilio,jdbcType=VARCHAR},
+      </if>
+      <if test="poblacion != null" >
+        POBLACION = #{poblacion,jdbcType=VARCHAR},
+      </if>
+      <if test="localidad != null" >
+        LOCALIDAD = #{localidad,jdbcType=VARCHAR},
+      </if>
+      <if test="provincia != null" >
+        PROVINCIA = #{provincia,jdbcType=VARCHAR},
+      </if>
+      <if test="cp != null" >
+        CP = #{cp,jdbcType=VARCHAR},
+      </if>
+      <if test="codPais != null" >
+        CODPAIS = #{codPais,jdbcType=VARCHAR},
+      </if>
+      <if test="codTipoIden != null" >
+        CODTIPOIDEN = #{codTipoIden,jdbcType=VARCHAR},
+      </if>
+      <if test="documento != null" >
+        DOCUMENTO = #{documento,jdbcType=VARCHAR},
+      </if>
+      <if test="observaciones != null" >
+        OBSERVACIONES = #{observaciones,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaNacimiento != null" >
+        FECHA_NACIMIENTO = #{fechaNacimiento,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sexo != null" >
+        SEXO = #{sexo,jdbcType=CHAR},
+      </if>
+      <if test="codEstCivil != null" >
+        CODESTCIVIL = #{codEstCivil,jdbcType=CHAR},
+      </if>
+      <if test="activo != null" >
+        ACTIVO = #{activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="fechaAlta != null" >
+        FECHA_ALTA = #{fechaAlta,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaModificacion != null" >
+        FECHA_MODIFICACION = #{fechaModificacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaBaja != null" >
+        FECHA_BAJA = #{fechaBaja,jdbcType=TIMESTAMP},
+      </if>
+      <if test="codFidelizado != null" >
+        CODFIDELIZADO = #{codFidelizado,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_FIDELIZADO = #{idFidelizado,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.customers.FidelizadoBean" >
+    update F_FIDELIZADOS_TBL
+    set NOMBRE = #{nombre,jdbcType=VARCHAR},
+      APELLIDOS = #{apellidos,jdbcType=VARCHAR},
+      DOMICILIO = #{domicilio,jdbcType=VARCHAR},
+      POBLACION = #{poblacion,jdbcType=VARCHAR},
+      LOCALIDAD = #{localidad,jdbcType=VARCHAR},
+      PROVINCIA = #{provincia,jdbcType=VARCHAR},
+      CP = #{cp,jdbcType=VARCHAR},
+      CODPAIS = #{codPais,jdbcType=VARCHAR},
+      CODTIPOIDEN = #{codTipoIden,jdbcType=VARCHAR},
+      DOCUMENTO = #{documento,jdbcType=VARCHAR},
+      OBSERVACIONES = #{observaciones,jdbcType=VARCHAR},
+      FECHA_NACIMIENTO = #{fechaNacimiento,jdbcType=TIMESTAMP},
+      SEXO = #{sexo,jdbcType=CHAR},
+      CODESTCIVIL = #{codEstCivil,jdbcType=CHAR},
+      ACTIVO = #{activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      FECHA_ALTA = #{fechaAlta,jdbcType=TIMESTAMP},
+      FECHA_MODIFICACION = #{fechaModificacion,jdbcType=TIMESTAMP},
+      FECHA_BAJA = #{fechaBaja,jdbcType=TIMESTAMP},
+      CODFIDELIZADO = #{codFidelizado,jdbcType=VARCHAR}
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_FIDELIZADO = #{idFidelizado,jdbcType=DECIMAL}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.FidelizadoExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from F_FIDELIZADOS_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectFromViewByExample" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.FidelizadoExample" resultSetType="SCROLL_INSENSITIVE" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="View_Base_Column_List" />
+    from F_FIDELIZADOS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+   <select id="selectFromViewByExampleTarjeta" resultMap="TarjetaResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.FidelizadoExample" resultSetType="SCROLL_INSENSITIVE" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="View_Tarjeta_Column_List" />
+    from F_FIDELIZADOS_TBL FIDELIZADOS
+       LEFT JOIN F_TARJETAS_TBL TARJETAS
+           ON (TARJETAS.UID_INSTANCIA = FIDELIZADOS.UID_INSTANCIA
+               AND TARJETAS.ID_FIDELIZADO = FIDELIZADOS.ID_FIDELIZADO)
+       LEFT JOIN F_TARJETAS_TIPOS_TBL TIPOS
+            ON (TIPOS.UID_INSTANCIA = TARJETAS.UID_INSTANCIA
+                AND TIPOS.CODTIPOTARJ = TARJETAS.CODTIPOTARJ)
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    AND TIPOS.PERMITE_VINCULAR = 'S'
+                AND TIPOS.PERMITE_PAGO = 'N'
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>  
+  <select id="selectFromViewByExampleExportacion" resultMap="BaseResultMap" parameterType="map" resultSetType="SCROLL_INSENSITIVE" databaseId="Oracle" >
+    select
+    distinct
+    <include refid="View_Export_Column_List" />
+    from F_FIDELIZADOS FID
+    left join F_FIDELIZADOS_COLECTIVOS_TBL COL on (COL.UID_INSTANCIA = FID.UID_INSTANCIA and COL.ID_FIDELIZADO = FID.ID_FIDELIZADO)
+    <if test="paramExportarFidelizados.lstEtiquetasSeleccionadas != null and !paramExportarFidelizados.lstEtiquetasSeleccionadas.isEmpty()">
+    	inner join D_ACTIVIDADES_TBL ACT on (ACT.UID_INSTANCIA = FID.UID_INSTANCIA)
+    	<choose>
+	  		<when test="paramExportarFidelizados.operadorEtiquetas == 'and'">
+	  			
+	  			<foreach collection="paramExportarFidelizados.lstEtiquetasSeleccionadas" index="i" item="etiqueta">
+	  				left join D_ETIQUETAS_ENL_TBL ENL${i} on (ENL${i}.UID_ACTIVIDAD = ACT.UID_ACTIVIDAD and ENL${i}.ID_OBJETO = TO_CHAR(FID.ID_FIDELIZADO) and ENL${i}.ID_CLASE = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO')
+					inner join D_ETIQUETAS_TBL ETI${i} on (ETI${i}.UID_ACTIVIDAD = ENL${i}.UID_ACTIVIDAD and ETI${i}.UID_ETIQUETA = ENL${i}.UID_ETIQUETA and ETI${i}.ETIQUETA = '${etiqueta}')
+	  			</foreach>
+	  		</when>
+	  		<when test="paramExportarFidelizados.operadorEtiquetas == 'or'">
+	  			left join D_ETIQUETAS_ENL_TBL ENL on (ENL.UID_ACTIVIDAD = ACT.UID_ACTIVIDAD and ENL.ID_OBJETO = TO_CHAR(FID.ID_FIDELIZADO) and ENL.ID_CLASE = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO')
+				inner join D_ETIQUETAS_TBL ETI on (ETI.UID_ACTIVIDAD = ENL.UID_ACTIVIDAD and ETI.UID_ETIQUETA = ENL.UID_ETIQUETA)
+	  		</when>
+	  		<otherwise>  			
+	  		</otherwise>
+  		</choose>
+    </if>
+    <if test="paramExportarFidelizados.permiteNotificaciones">
+    	left join F_FIDELIZADOS_CONTACTO_TBL CON on (CON.UID_INSTANCIA = FID.UID_INSTANCIA and CON.ID_FIDELIZADO = FID.ID_FIDELIZADO)
+    </if>
+  	
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause_Export" />
+    </if>
+    
+    <if test="paramExportarFidelizados.codColectivo != null and !paramExportarFidelizados.codColectivo.isEmpty()">
+    	and COL.COD_COLECTIVO = #{paramExportarFidelizados.codColectivo}
+    </if>
+    <if test="paramExportarFidelizados.permiteNotificaciones">
+    	and CON.RECIBE_NOTIFICACIONES_COM = 'S'
+    </if>
+    <if test="paramExportarFidelizados.lstEtiquetasSeleccionadas != null and !paramExportarFidelizados.lstEtiquetasSeleccionadas.isEmpty()">
+    	and ACT.UID_ACTIVIDAD = #{paramExportarFidelizados.uidActividad}
+    	<if test="paramExportarFidelizados.operadorEtiquetas == 'or'">
+  		and 
+  		<foreach collection="paramExportarFidelizados.lstEtiquetasSeleccionadas" index="i" item="etiqueta" open="(" close=")" separator="or">
+  			ETI.ETIQUETA = '${etiqueta}'
+  		</foreach>
+  		</if>
+    </if>
+    
+    <if test="example.orderByClause != null" >
+      order by ${example.orderByClause}
+    </if>
+  </select>
+  <select id="selectFromViewByExampleExportacion" resultMap="BaseResultMap" parameterType="map" resultSetType="SCROLL_INSENSITIVE" databaseId="MySQL" >
+    select
+    distinct
+    <include refid="View_Export_Column_List" />
+    from F_FIDELIZADOS FID
+    left join F_FIDELIZADOS_COLECTIVOS_TBL COL on (COL.UID_INSTANCIA = FID.UID_INSTANCIA and COL.ID_FIDELIZADO = FID.ID_FIDELIZADO)
+    <if test="paramExportarFidelizados.lstEtiquetasSeleccionadas != null and !paramExportarFidelizados.lstEtiquetasSeleccionadas.isEmpty()">
+    	inner join D_ACTIVIDADES_TBL ACT on (ACT.UID_INSTANCIA = FID.UID_INSTANCIA)
+    	<choose>
+	  		<when test="paramExportarFidelizados.operadorEtiquetas == 'and'">
+	  			
+	  			<foreach collection="paramExportarFidelizados.lstEtiquetasSeleccionadas" index="i" item="etiqueta">
+	  				left join D_ETIQUETAS_ENL_TBL ENL${i} on (ENL${i}.UID_ACTIVIDAD = ACT.UID_ACTIVIDAD and ENL${i}.ID_OBJETO = CAST(FID.ID_FIDELIZADO AS CHAR) and ENL${i}.ID_CLASE = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO')
+					inner join D_ETIQUETAS_TBL ETI${i} on (ETI${i}.UID_ACTIVIDAD = ENL${i}.UID_ACTIVIDAD and ETI${i}.UID_ETIQUETA = ENL${i}.UID_ETIQUETA and ETI${i}.ETIQUETA = '${etiqueta}')
+	  			</foreach>
+	  		</when>
+	  		<when test="paramExportarFidelizados.operadorEtiquetas == 'or'">
+	  			left join D_ETIQUETAS_ENL_TBL ENL on (ENL.UID_ACTIVIDAD = ACT.UID_ACTIVIDAD and ENL.ID_OBJETO = CAST(FID.ID_FIDELIZADO AS CHAR) and ENL.ID_CLASE = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO')
+				inner join D_ETIQUETAS_TBL ETI on (ETI.UID_ACTIVIDAD = ENL.UID_ACTIVIDAD and ETI.UID_ETIQUETA = ENL.UID_ETIQUETA)
+	  		</when>
+	  		<otherwise>  			
+	  		</otherwise>
+  		</choose>
+    </if>
+    <if test="paramExportarFidelizados.permiteNotificaciones">
+    	left join F_FIDELIZADOS_CONTACTO_TBL CON on (CON.UID_INSTANCIA = FID.UID_INSTANCIA and CON.ID_FIDELIZADO = FID.ID_FIDELIZADO)
+    </if>
+  	
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause_Export" />
+    </if>
+    
+    <if test="paramExportarFidelizados.codColectivo != null and !paramExportarFidelizados.codColectivo.isEmpty()">
+    	and COL.COD_COLECTIVO = #{paramExportarFidelizados.codColectivo}
+    </if>
+    <if test="paramExportarFidelizados.permiteNotificaciones">
+    	and CON.RECIBE_NOTIFICACIONES_COM = 'S'
+    </if>
+    <if test="paramExportarFidelizados.lstEtiquetasSeleccionadas != null and !paramExportarFidelizados.lstEtiquetasSeleccionadas.isEmpty()">
+    	and ACT.UID_ACTIVIDAD = #{paramExportarFidelizados.uidActividad}
+    	<if test="paramExportarFidelizados.operadorEtiquetas == 'or'">
+  		and 
+  		<foreach collection="paramExportarFidelizados.lstEtiquetasSeleccionadas" index="i" item="etiqueta" open="(" close=")" separator="or">
+  			ETI.ETIQUETA = '${etiqueta}'
+  		</foreach>
+  		</if>
+    </if>
+    
+    <if test="example.orderByClause != null" >
+      order by ${example.orderByClause}
+    </if>
+  </select>
+  <select id="selectFromViewByExampleExportacion" resultMap="BaseResultMap" parameterType="map" resultSetType="SCROLL_INSENSITIVE" databaseId="Microsoft SQL Server" >
+    select
+    distinct
+    <include refid="View_Export_Column_List" />
+    from F_FIDELIZADOS FID
+    left join F_FIDELIZADOS_COLECTIVOS_TBL COL on (COL.UID_INSTANCIA = FID.UID_INSTANCIA and COL.ID_FIDELIZADO = FID.ID_FIDELIZADO)
+    <if test="paramExportarFidelizados.lstEtiquetasSeleccionadas != null and !paramExportarFidelizados.lstEtiquetasSeleccionadas.isEmpty()">
+    	inner join D_ACTIVIDADES_TBL ACT on (ACT.UID_INSTANCIA = FID.UID_INSTANCIA)
+    	<choose>
+	  		<when test="paramExportarFidelizados.operadorEtiquetas == 'and'">
+	  			
+	  			<foreach collection="paramExportarFidelizados.lstEtiquetasSeleccionadas" index="i" item="etiqueta">
+	  				left join D_ETIQUETAS_ENL_TBL ENL${i} on (ENL${i}.UID_ACTIVIDAD = ACT.UID_ACTIVIDAD and ENL${i}.ID_OBJETO = CAST(FID.ID_FIDELIZADO AS VARCHAR(10)) and ENL${i}.ID_CLASE = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO')
+					inner join D_ETIQUETAS_TBL ETI${i} on (ETI${i}.UID_ACTIVIDAD = ENL${i}.UID_ACTIVIDAD and ETI${i}.UID_ETIQUETA = ENL${i}.UID_ETIQUETA and ETI${i}.ETIQUETA = '${etiqueta}')
+	  			</foreach>
+	  		</when>
+	  		<when test="paramExportarFidelizados.operadorEtiquetas == 'or'">
+	  			left join D_ETIQUETAS_ENL_TBL ENL on (ENL.UID_ACTIVIDAD = ACT.UID_ACTIVIDAD and ENL.ID_OBJETO = CAST(FID.ID_FIDELIZADO AS VARCHAR(10)) and ENL.ID_CLASE = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO')
+				inner join D_ETIQUETAS_TBL ETI on (ETI.UID_ACTIVIDAD = ENL.UID_ACTIVIDAD and ETI.UID_ETIQUETA = ENL.UID_ETIQUETA)
+	  		</when>
+	  		<otherwise>  			
+	  		</otherwise>
+  		</choose>
+    </if>
+    <if test="paramExportarFidelizados.permiteNotificaciones">
+    	left join F_FIDELIZADOS_CONTACTO_TBL CON on (CON.UID_INSTANCIA = FID.UID_INSTANCIA and CON.ID_FIDELIZADO = FID.ID_FIDELIZADO)
+    </if>
+  	
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause_Export" />
+    </if>
+    
+    <if test="paramExportarFidelizados.codColectivo != null and !paramExportarFidelizados.codColectivo.isEmpty()">
+    	and COL.COD_COLECTIVO = #{paramExportarFidelizados.codColectivo}
+    </if>
+    <if test="paramExportarFidelizados.permiteNotificaciones">
+    	and CON.RECIBE_NOTIFICACIONES_COM = 'S'
+    </if>
+    <if test="paramExportarFidelizados.lstEtiquetasSeleccionadas != null and !paramExportarFidelizados.lstEtiquetasSeleccionadas.isEmpty()">
+    	and ACT.UID_ACTIVIDAD = #{paramExportarFidelizados.uidActividad}
+    	<if test="paramExportarFidelizados.operadorEtiquetas == 'or'">
+  		and 
+  		<foreach collection="paramExportarFidelizados.lstEtiquetasSeleccionadas" index="i" item="etiqueta" open="(" close=")" separator="or">
+  			ETI.ETIQUETA = '${etiqueta}'
+  		</foreach>
+  		</if>
+    </if>
+    
+    <if test="example.orderByClause != null" >
+      order by ${example.orderByClause}
+    </if>
+  </select>
+  <select id="selectFromViewByPrimaryKey" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.FidelizadoKey" >
+    select 
+    <include refid="View_Base_Column_List" />
+    from F_FIDELIZADOS
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_FIDELIZADO = #{idFidelizado,jdbcType=DECIMAL}
+  </select>
+  <select id="selectFidelizadosFechaCumpleanos" resultMap="BaseResultMap" parameterType="map" databaseId="Microsoft SQL Server">
+  	select
+  	<include refid="View_Base_Column_List" />
+    from F_FIDELIZADOS
+    where UID_INSTANCIA = #{uidInstancia, jdbcType=VARCHAR} and
+  	<choose>
+	    <when test="mesCumpleDesde &lt; mesCumpleHasta or (mesCumpleDesde == mesCumpleHasta and diaCumpleDesde &lt;= diaCumpleHasta)">
+		    (DATEPART(mm, FECHA_NACIMIENTO) &gt; #{mesCumpleDesde, jdbcType=DECIMAL} or (DATEPART(mm, FECHA_NACIMIENTO) = #{mesCumpleDesde, jdbcType=DECIMAL} and DATEPART(dd, FECHA_NACIMIENTO) &gt;= #{diaCumpleDesde, jdbcType=DECIMAL}))
+		    and 
+		    (DATEPART(mm, FECHA_NACIMIENTO) &lt; #{mesCumpleHasta, jdbcType=DECIMAL} or (DATEPART(mm, FECHA_NACIMIENTO) = #{mesCumpleHasta, jdbcType=DECIMAL} and DATEPART(dd, FECHA_NACIMIENTO) &lt;= #{diaCumpleHasta, jdbcType=DECIMAL}))
+	    </when>
+	    <when test="mesCumpleDesde &gt; mesCumpleHasta or (mesCumpleDesde == mesCumpleHasta and diaCumpleDesde &gt;= diaCumpleHasta)">
+	    	((DATEPART(mm, FECHA_NACIMIENTO) &gt; #{mesCumpleDesde, jdbcType=DECIMAL} or (DATEPART(mm, FECHA_NACIMIENTO) = #{mesCumpleDesde, jdbcType=DECIMAL} and DATEPART(dd, FECHA_NACIMIENTO) &gt;= #{diaCumpleDesde, jdbcType=DECIMAL}))
+		    and 
+		    (DATEPART(mm, FECHA_NACIMIENTO) &lt; 12 or (DATEPART(mm, FECHA_NACIMIENTO) = 12 and DATEPART(dd, FECHA_NACIMIENTO) &lt;= 31)))
+		    or
+		    ((DATEPART(mm, FECHA_NACIMIENTO) &gt; 1 or (DATEPART(mm, FECHA_NACIMIENTO) = 1 and DATEPART(dd, FECHA_NACIMIENTO) &gt;= 1))
+		    and 
+		    (DATEPART(mm, FECHA_NACIMIENTO) &lt; #{mesCumpleHasta, jdbcType=DECIMAL} or (DATEPART(mm, FECHA_NACIMIENTO) = #{mesCumpleHasta, jdbcType=DECIMAL} and DATEPART(dd, FECHA_NACIMIENTO) &lt;= #{diaCumpleHasta, jdbcType=DECIMAL})))
+	    </when>
+    </choose>
+  </select>
+  <select id="selectFidelizadosFechaCumpleanos" resultMap="BaseResultMap" parameterType="map">
+  	select
+  	<include refid="View_Base_Column_List" />
+    from F_FIDELIZADOS
+    where UID_INSTANCIA = #{uidInstancia, jdbcType=VARCHAR} and
+    <choose>
+	    <when test="mesCumpleDesde &lt; mesCumpleHasta or (mesCumpleDesde == mesCumpleHasta and diaCumpleDesde &lt;= diaCumpleHasta)">
+		    (EXTRACT(MONTH FROM FECHA_NACIMIENTO) &gt; #{mesCumpleDesde, jdbcType=DECIMAL} or (EXTRACT(MONTH FROM FECHA_NACIMIENTO) = #{mesCumpleDesde, jdbcType=DECIMAL} and EXTRACT(DAY FROM FECHA_NACIMIENTO) &gt;= #{diaCumpleDesde, jdbcType=DECIMAL}))
+		    and 
+		    (EXTRACT(MONTH FROM FECHA_NACIMIENTO) &lt; #{mesCumpleHasta, jdbcType=DECIMAL} or (EXTRACT(MONTH FROM FECHA_NACIMIENTO) = #{mesCumpleHasta, jdbcType=DECIMAL} and EXTRACT(DAY FROM FECHA_NACIMIENTO) &lt;= #{diaCumpleHasta, jdbcType=DECIMAL}))
+	    </when>
+	    <when test="mesCumpleDesde &gt; mesCumpleHasta or (mesCumpleDesde == mesCumpleHasta and diaCumpleDesde &gt;= diaCumpleHasta)">
+	    	((EXTRACT(MONTH FROM FECHA_NACIMIENTO) &gt; #{mesCumpleDesde, jdbcType=DECIMAL} or (EXTRACT(MONTH FROM FECHA_NACIMIENTO) = #{mesCumpleDesde, jdbcType=DECIMAL} and EXTRACT(DAY FROM FECHA_NACIMIENTO) &gt;= #{diaCumpleDesde, jdbcType=DECIMAL}))
+		    and 
+		    (EXTRACT(MONTH FROM FECHA_NACIMIENTO) &lt; 12 or (EXTRACT(MONTH FROM FECHA_NACIMIENTO) = 12 and EXTRACT(DAY FROM FECHA_NACIMIENTO) &lt;= 31)))
+		    or
+		    ((EXTRACT(MONTH FROM FECHA_NACIMIENTO) &gt; 1 or (EXTRACT(MONTH FROM FECHA_NACIMIENTO) = 1 and EXTRACT(DAY FROM FECHA_NACIMIENTO) &gt;= 1))
+		    and 
+		    (EXTRACT(MONTH FROM FECHA_NACIMIENTO) &lt; #{mesCumpleHasta, jdbcType=DECIMAL} or (EXTRACT(MONTH FROM FECHA_NACIMIENTO) = #{mesCumpleHasta, jdbcType=DECIMAL} and EXTRACT(DAY FROM FECHA_NACIMIENTO) &lt;= #{diaCumpleHasta, jdbcType=DECIMAL})))
+	    </when>
+    </choose>
+  </select>
+  <select id="selectFidelizadosPorEtiquetas" resultMap="BaseResultMap" databaseId="Oracle">
+  	select
+  	<include refid="View_Fidelizados_Etiquetas_Column_List" />
+  	FROM F_FIDELIZADOS FID
+  	INNER JOIN D_ACTIVIDADES_TBL ACT ON (ACT.UID_INSTANCIA = FID.UID_INSTANCIA)
+  	<choose>
+  		<when test="operador == 'and'">
+  			<foreach collection="etiquetasSeleccionadas" index="i" item="etiqueta">
+  				LEFT JOIN D_ETIQUETAS_ENL_TBL ENL${i} ON (ENL${i}.UID_ACTIVIDAD = ACT.UID_ACTIVIDAD AND ENL${i}.ID_OBJETO = TO_CHAR(FID.ID_FIDELIZADO) AND ENL${i}.ID_CLASE = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO')
+				INNER JOIN D_ETIQUETAS_TBL ETI${i} ON (ETI${i}.UID_ACTIVIDAD = ENL${i}.UID_ACTIVIDAD and ETI${i}.UID_ETIQUETA = ENL${i}.UID_ETIQUETA and ETI${i}.ETIQUETA = '${etiqueta}')
+  			</foreach>
+  		</when>
+  		<otherwise>
+  			LEFT JOIN D_ETIQUETAS_ENL_TBL ENL ON (ENL.UID_ACTIVIDAD = ACT.UID_ACTIVIDAD AND ENL.ID_OBJETO = TO_CHAR(FID.ID_FIDELIZADO) AND ENL.ID_CLASE = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO')
+			INNER JOIN D_ETIQUETAS_TBL ETI ON (ETI.UID_ACTIVIDAD = ENL.UID_ACTIVIDAD and ETI.UID_ETIQUETA = ENL.UID_ETIQUETA)
+  		</otherwise>
+  	</choose>
+  	where ACT.UID_INSTANCIA = #{uidInstancia, jdbcType=VARCHAR} and ACT.UID_ACTIVIDAD = #{uidActividad, jdbcType=VARCHAR}
+  	<if test="operador == 'or'">
+  		and 
+  		<foreach collection="etiquetasSeleccionadas" index="i" item="etiqueta" open="(" close=")" separator="or">
+  			ETI.ETIQUETA = '${etiqueta}'
+  		</foreach>
+  	</if>
+  </select>
+  <select id="selectFidelizadosPorEtiquetas" resultMap="BaseResultMap" databaseId="MySQL">
+  	select
+  	<include refid="View_Fidelizados_Etiquetas_Column_List" />
+  	FROM F_FIDELIZADOS FID
+  	INNER JOIN D_ACTIVIDADES_TBL ACT ON (ACT.UID_INSTANCIA = FID.UID_INSTANCIA)
+  	<choose>
+  		<when test="operador == 'and'">
+  			<foreach collection="etiquetasSeleccionadas" index="i" item="etiqueta">
+  				LEFT JOIN D_ETIQUETAS_ENL_TBL ENL${i} ON (ENL${i}.UID_ACTIVIDAD = ACT.UID_ACTIVIDAD AND ENL${i}.ID_OBJETO = CAST(FID.ID_FIDELIZADO AS CHAR) AND ENL${i}.ID_CLASE = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO')
+				INNER JOIN D_ETIQUETAS_TBL ETI${i} ON (ETI${i}.UID_ACTIVIDAD = ENL${i}.UID_ACTIVIDAD and ETI${i}.UID_ETIQUETA = ENL${i}.UID_ETIQUETA and ETI${i}.ETIQUETA = '${etiqueta}')
+  			</foreach>
+  		</when>
+  		<otherwise>
+  			LEFT JOIN D_ETIQUETAS_ENL_TBL ENL ON (ENL.UID_ACTIVIDAD = ACT.UID_ACTIVIDAD AND ENL.ID_OBJETO = CAST(FID.ID_FIDELIZADO AS CHAR) AND ENL.ID_CLASE = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO')
+			INNER JOIN D_ETIQUETAS_TBL ETI ON (ETI.UID_ACTIVIDAD = ENL.UID_ACTIVIDAD and ETI.UID_ETIQUETA = ENL.UID_ETIQUETA)
+  		</otherwise>
+  	</choose>
+  	where ACT.UID_INSTANCIA = #{uidInstancia, jdbcType=VARCHAR} and ACT.UID_ACTIVIDAD = #{uidActividad, jdbcType=VARCHAR}
+  	<if test="operador == 'or'">
+  		and 
+  		<foreach collection="etiquetasSeleccionadas" index="i" item="etiqueta" open="(" close=")" separator="or">
+  			ETI.ETIQUETA = '${etiqueta}'
+  		</foreach>
+  	</if>
+  </select>
+  <select id="selectFidelizadosPorEtiquetas" resultMap="BaseResultMap" databaseId="Microsoft SQL Server">
+  	select
+  	<include refid="View_Fidelizados_Etiquetas_Column_List" />
+  	FROM F_FIDELIZADOS FID
+  	INNER JOIN D_ACTIVIDADES_TBL ACT ON (ACT.UID_INSTANCIA = FID.UID_INSTANCIA)
+  	<choose>
+  		<when test="operador == 'and'">
+  			<foreach collection="etiquetasSeleccionadas" index="i" item="etiqueta">
+  				LEFT JOIN D_ETIQUETAS_ENL_TBL ENL${i} ON (ENL${i}.UID_ACTIVIDAD = ACT.UID_ACTIVIDAD AND ENL${i}.ID_OBJETO = CAST(FID.ID_FIDELIZADO AS VARCHAR(10)) AND ENL${i}.ID_CLASE = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO')
+				INNER JOIN D_ETIQUETAS_TBL ETI${i} ON (ETI${i}.UID_ACTIVIDAD = ENL${i}.UID_ACTIVIDAD and ETI${i}.UID_ETIQUETA = ENL${i}.UID_ETIQUETA and ETI${i}.ETIQUETA = '${etiqueta}')
+  			</foreach>
+  		</when>
+  		<otherwise>
+  			LEFT JOIN D_ETIQUETAS_ENL_TBL ENL ON (ENL.UID_ACTIVIDAD = ACT.UID_ACTIVIDAD AND ENL.ID_OBJETO = CAST(FID.ID_FIDELIZADO AS VARCHAR(10)) AND ENL.ID_CLASE = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO')
+			INNER JOIN D_ETIQUETAS_TBL ETI ON (ETI.UID_ACTIVIDAD = ENL.UID_ACTIVIDAD and ETI.UID_ETIQUETA = ENL.UID_ETIQUETA)
+  		</otherwise>
+  	</choose>
+  	where ACT.UID_INSTANCIA = #{uidInstancia, jdbcType=VARCHAR} and ACT.UID_ACTIVIDAD = #{uidActividad, jdbcType=VARCHAR}
+  	<if test="operador == 'or'">
+  		and 
+  		<foreach collection="etiquetasSeleccionadas" index="i" item="etiqueta" open="(" close=")" separator="or">
+  			ETI.ETIQUETA = '${etiqueta}'
+  		</foreach>
+  	</if>
+  </select>
+  <sql id="View_Base_Column_List" >
+    FECHA_ALTA, CODFIDELIZADO, APELLIDOS, CODPAIS, ACTIVO, ID_FIDELIZADO, CODESTCIVIL, 
+    CODTIPOIDEN, FECHA_BAJA, FECHA_NACIMIENTO, DOMICILIO, DOCUMENTO, UID_INSTANCIA, NOMBRE, 
+    CP, SEXO, PROVINCIA, FECHA_MODIFICACION, LOCALIDAD, OBSERVACIONES, DESESTCIVIL, DESPAIS, 
+    POBLACION
+  </sql>
+  <sql id="View_Export_Column_List" >
+    FID.FECHA_ALTA, FID.CODFIDELIZADO, FID.APELLIDOS, FID.CODPAIS, FID.ACTIVO, FID.ID_FIDELIZADO, FID.CODESTCIVIL, 
+    FID.CODTIPOIDEN, FID.FECHA_BAJA, FID.FECHA_NACIMIENTO, FID.DOMICILIO, FID.DOCUMENTO, FID.UID_INSTANCIA, FID.NOMBRE, 
+    FID.CP, FID.SEXO, FID.PROVINCIA, FID.FECHA_MODIFICACION, FID.LOCALIDAD, FID.OBSERVACIONES, FID.DESESTCIVIL, FID.DESPAIS, 
+    FID.POBLACION
+  </sql>
+  <sql id="View_Fidelizados_Etiquetas_Column_List" >
+    FECHA_ALTA, CODFIDELIZADO, APELLIDOS, CODPAIS, FID.ACTIVO, ID_FIDELIZADO, CODESTCIVIL, 
+    CODTIPOIDEN, FECHA_BAJA, FECHA_NACIMIENTO, DOMICILIO, DOCUMENTO, ACT.UID_INSTANCIA, NOMBRE, 
+    CP, SEXO, PROVINCIA, FECHA_MODIFICACION, LOCALIDAD, OBSERVACIONES, DESESTCIVIL, DESPAIS, 
+    POBLACION
+  </sql>
+  <sql id="View_Tarjeta_Column_List" >
+   FECHA_ALTA, CODFIDELIZADO, APELLIDOS, CODPAIS, ACTIVO, FIDELIZADOS.ID_FIDELIZADO, CODESTCIVIL, CODTIPOIDEN, 
+   FIDELIZADOS.FECHA_BAJA, FECHA_NACIMIENTO, DOMICILIO, DOCUMENTO, FIDELIZADOS.UID_INSTANCIA, NOMBRE, CP, SEXO, PROVINCIA, 
+   FECHA_MODIFICACION, LOCALIDAD, OBSERVACIONES, POBLACION, NUMERO_TARJETA
+  </sql>
+  <select id="getNumeroCuponesEmitidosPorFidelizado"  resultType="java.lang.Integer">
+  	SELECT
+  	COUNT(*)
+  	FROM D_CUPONES_ENL_TBL ENL
+  	INNER JOIN D_ACTIVIDADES_TBL ACT ON (ACT.UID_ACTIVIDAD = ENL.UID_ACTIVIDAD)
+  	INNER JOIN F_FIDELIZADOS FID ON (FID.UID_INSTANCIA = ACT.UID_INSTANCIA AND FID.ID_FIDELIZADO = ENL.ID_OBJETO)
+  	INNER JOIN D_CUPONES_TBL CUP ON(CUP.UID_ACTIVIDAD = ENL.UID_ACTIVIDAD AND CUP.COD_CUPON = ENL.COD_CUPON)
+
+  	WHERE ACT.UID_INSTANCIA = #{uidInstancia, jdbcType=VARCHAR} AND ACT.UID_ACTIVIDAD = #{uidActividad, jdbcType=VARCHAR}
+  	      AND FID.ID_FIDELIZADO = #{idFidelizado, jdbcType=DECIMAL} AND ENL.ID_CLASE = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO'  	
+  	      <if test="fechaDesde != null">
+  	      	AND CUP.FECHA_INICIO &gt;= #{fechaDesde, jdbcType=TIMESTAMP}
+  	      </if>
+  	      <if test="fechaHasta != null">
+  	      	AND CUP.FECHA_INICIO &lt;= #{fechaHasta, jdbcType=TIMESTAMP}
+  	      </if>
+  </select>
+  <select id="getNumeroCuponesCanjeadosPorFidelizado"  resultType="java.lang.Integer">
+  	SELECT
+  	COUNT(*)
+  	FROM D_CUPONES_USO_TBL USO
+  	INNER JOIN D_ACTIVIDADES_TBL ACT ON (ACT.UID_ACTIVIDAD = USO.UID_ACTIVIDAD)
+  	INNER JOIN F_FIDELIZADOS FID ON (FID.UID_INSTANCIA = ACT.UID_INSTANCIA AND FID.ID_FIDELIZADO = USO.ID_OBJETO)
+
+  	WHERE ACT.UID_INSTANCIA = #{uidInstancia, jdbcType=VARCHAR} AND ACT.UID_ACTIVIDAD = #{uidActividad, jdbcType=VARCHAR}
+  	      AND FID.ID_FIDELIZADO = #{idFidelizado, jdbcType=DECIMAL} AND USO.ID_CLASE = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO'  
+  	      <choose>
+  	      	<when test="fechaDesde != null and fechaHasta != null">
+  	      		AND ((USO.FECHA_PRIMER_USO &lt;= #{fechaDesde, jdbcType=TIMESTAMP} AND USO.FECHA_ULTIMO_USO &gt;= #{fechaDesde, jdbcType=TIMESTAMP})
+					 OR (#{fechaDesde, jdbcType=TIMESTAMP} &lt;= USO.FECHA_PRIMER_USO AND USO.FECHA_PRIMER_USO &lt;= #{fechaHasta, jdbcType=TIMESTAMP}))
+  	      	</when>
+  	      	<when test="fechaDesde != null and fechaHasta == null">
+  	      		AND ((USO.FECHA_PRIMER_USO &lt;= #{fechaDesde, jdbcType=TIMESTAMP} AND USO.FECHA_ULTIMO_USO &gt;= #{fechaDesde, jdbcType=TIMESTAMP}) OR (#{fechaDesde, jdbcType=TIMESTAMP} &lt;= USO.FECHA_PRIMER_USO))
+  	      	</when>
+  	      	<when test="fechaDesde == null and fechaHasta != null">
+  	      		AND USO.FECHA_PRIMER_USO &lt;= #{fechaHasta, jdbcType=TIMESTAMP}
+  	      	</when>
+  	      </choose>
+  </select>
+  <select id="selectByConsulta"  resultMap="BaseResultMap">
+  ${consultaSQL}
+  </select>
+</mapper>

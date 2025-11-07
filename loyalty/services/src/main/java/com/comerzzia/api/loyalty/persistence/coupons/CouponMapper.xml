@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comerzzia.api.loyalty.persistence.coupons.CouponMapper">
+  <resultMap id="BaseResultMap" type="com.comerzzia.api.loyalty.persistence.coupons.Coupon">
+    <id column="UID_ACTIVIDAD" jdbcType="VARCHAR" property="uidActividad" />
+    <id column="COUPON_ID" jdbcType="DECIMAL" property="couponId" />
+    <result column="COUPON_CODE" jdbcType="VARCHAR" property="couponCode" />
+    <result column="COUPON_NAME" jdbcType="VARCHAR" property="couponName" />
+    <result column="COUPON_DESCRIPTION" jdbcType="VARCHAR" property="couponDescription" />
+    <result column="START_DATE" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="MANUAL_SELECTION" jdbcType="DECIMAL" property="manualSelection" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler" />
+    <result column="COUPON_TYPE_CODE" jdbcType="VARCHAR" property="couponTypeCode" />
+    <result column="PROMOTION_ID" jdbcType="DECIMAL" property="promotionId" />
+    <result column="PRIORITY" jdbcType="DECIMAL" property="priority" />
+    <result column="BALANCE" jdbcType="DECIMAL" property="balance" />
+    <result column="IMAGE_URL" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="ACTIVE" jdbcType="DECIMAL" property="active" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler" />
+    <result column="CREATION_DATE" jdbcType="TIMESTAMP" property="creationtDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          AND
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.manualSelectionCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.activeCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.manualSelectionCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.activeCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    UID_ACTIVIDAD, COUPON_ID, COUPON_CODE, COUPON_NAME, COUPON_DESCRIPTION, START_DATE, 
+    END_DATE, MANUAL_SELECTION, COUPON_TYPE_CODE, PROMOTION_ID, PRIORITY, BALANCE, IMAGE_URL, 
+    ACTIVE, CREATION_DATE
+  </sql>
+  <select id="selectByExample" parameterType="com.comerzzia.api.loyalty.persistence.coupons.CouponExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from LY_COUPONS_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.coupons.CouponKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from LY_COUPONS_TBL
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and COUPON_ID = #{couponId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.coupons.CouponKey">
+    delete from LY_COUPONS_TBL
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and COUPON_ID = #{couponId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.api.loyalty.persistence.coupons.CouponExample">
+    delete from LY_COUPONS_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.api.loyalty.persistence.coupons.Coupon">
+    insert into LY_COUPONS_TBL (UID_ACTIVIDAD, COUPON_ID, COUPON_CODE, 
+      COUPON_NAME, COUPON_DESCRIPTION, START_DATE, 
+      END_DATE, MANUAL_SELECTION, 
+      COUPON_TYPE_CODE, PROMOTION_ID, PRIORITY, 
+      BALANCE, IMAGE_URL, ACTIVE, CREATION_DATE
+      )
+    values (#{uidActividad,jdbcType=VARCHAR}, #{couponId,jdbcType=DECIMAL}, #{couponCode,jdbcType=VARCHAR}, 
+      #{couponName,jdbcType=VARCHAR}, #{couponDescription,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP}, 
+      #{endDate,jdbcType=TIMESTAMP}, #{manualSelection,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}, 
+      #{couponTypeCode,jdbcType=VARCHAR}, #{promotionId,jdbcType=DECIMAL}, #{priority,jdbcType=DECIMAL}, 
+      #{balance,jdbcType=DECIMAL}, #{imageUrl,jdbcType=VARCHAR}, #{active,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      #{creationDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.api.loyalty.persistence.coupons.Coupon">
+    insert into LY_COUPONS_TBL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        UID_ACTIVIDAD,
+      </if>
+      <if test="couponId != null">
+        COUPON_ID,
+      </if>
+      <if test="couponCode != null">
+        COUPON_CODE,
+      </if>
+      <if test="couponName != null">
+        COUPON_NAME,
+      </if>
+      <if test="couponDescription != null">
+        COUPON_DESCRIPTION,
+      </if>
+      <if test="startDate != null">
+        START_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="manualSelection != null">
+        MANUAL_SELECTION,
+      </if>
+      <if test="couponTypeCode != null">
+        COUPON_TYPE_CODE,
+      </if>
+      <if test="promotionId != null">
+        PROMOTION_ID,
+      </if>
+      <if test="priority != null">
+        PRIORITY,
+      </if>
+      <if test="balance != null">
+        BALANCE,
+      </if>
+      <if test="imageUrl != null">
+        IMAGE_URL,
+      </if>
+      <if test="active != null">
+        ACTIVE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        #{uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=DECIMAL},
+      </if>
+      <if test="couponCode != null">
+        #{couponCode,jdbcType=VARCHAR},
+      </if>
+      <if test="couponName != null">
+        #{couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="couponDescription != null">
+        #{couponDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="manualSelection != null">
+        #{manualSelection,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      </if>
+      <if test="couponTypeCode != null">
+        #{couponTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionId != null">
+        #{promotionId,jdbcType=DECIMAL},
+      </if>
+      <if test="priority != null">
+        #{priority,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null">
+        #{active,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.api.loyalty.persistence.coupons.CouponExample" resultType="java.lang.Long">
+    select count(*) from LY_COUPONS_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update LY_COUPONS_TBL
+    <set>
+      <if test="record.uidActividad != null">
+        UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.couponId != null">
+        COUPON_ID = #{record.couponId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.couponCode != null">
+        COUPON_CODE = #{record.couponCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.couponName != null">
+        COUPON_NAME = #{record.couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.couponDescription != null">
+        COUPON_DESCRIPTION = #{record.couponDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startDate != null">
+        START_DATE = #{record.startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endDate != null">
+        END_DATE = #{record.endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.manualSelection != null">
+        MANUAL_SELECTION = #{record.manualSelection,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      </if>
+      <if test="record.couponTypeCode != null">
+        COUPON_TYPE_CODE = #{record.couponTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.promotionId != null">
+        PROMOTION_ID = #{record.promotionId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.priority != null">
+        PRIORITY = #{record.priority,jdbcType=DECIMAL},
+      </if>
+      <if test="record.balance != null">
+        BALANCE = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.imageUrl != null">
+        IMAGE_URL = #{record.imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.active != null">
+        ACTIVE = #{record.active,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      </if>
+      <if test="record.creationDate != null">
+        CREATION_DATE = #{creationDate,jdbcType=TIMESTAMP},
+      </if>      
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update LY_COUPONS_TBL
+    set UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      COUPON_ID = #{record.couponId,jdbcType=DECIMAL},
+      COUPON_CODE = #{record.couponCode,jdbcType=VARCHAR},
+      COUPON_NAME = #{record.couponName,jdbcType=VARCHAR},
+      COUPON_DESCRIPTION = #{record.couponDescription,jdbcType=VARCHAR},
+      START_DATE = #{record.startDate,jdbcType=TIMESTAMP},
+      END_DATE = #{record.endDate,jdbcType=TIMESTAMP},
+      MANUAL_SELECTION = #{record.manualSelection,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      COUPON_TYPE_CODE = #{record.couponTypeCode,jdbcType=VARCHAR},
+      PROMOTION_ID = #{record.promotionId,jdbcType=DECIMAL},
+      PRIORITY = #{record.priority,jdbcType=DECIMAL},
+      BALANCE = #{record.balance,jdbcType=DECIMAL},
+      IMAGE_URL = #{record.imageUrl,jdbcType=VARCHAR},
+      ACTIVE = #{record.active,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      CREATION_DATE = #{creationDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.api.loyalty.persistence.coupons.Coupon">
+    update LY_COUPONS_TBL
+    <set>
+      <if test="couponCode != null">
+        COUPON_CODE = #{couponCode,jdbcType=VARCHAR},
+      </if>
+      <if test="couponName != null">
+        COUPON_NAME = #{couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="couponDescription != null">
+        COUPON_DESCRIPTION = #{couponDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="manualSelection != null">
+        MANUAL_SELECTION = #{manualSelection,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      </if>
+      <if test="couponTypeCode != null">
+        COUPON_TYPE_CODE = #{couponTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionId != null">
+        PROMOTION_ID = #{promotionId,jdbcType=DECIMAL},
+      </if>
+      <if test="priority != null">
+        PRIORITY = #{priority,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null">
+        BALANCE = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="imageUrl != null">
+        IMAGE_URL = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null">
+        ACTIVE = #{active,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      </if>
+      <if test="creationDate != null">
+        CREATION_DATE = #{creationDate,jdbcType=TIMESTAMP}
+      </if>
+    </set>
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and COUPON_ID = #{couponId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.coupons.Coupon">
+    update LY_COUPONS_TBL
+    set COUPON_CODE = #{couponCode,jdbcType=VARCHAR},
+      COUPON_NAME = #{couponName,jdbcType=VARCHAR},
+      COUPON_DESCRIPTION = #{couponDescription,jdbcType=VARCHAR},
+      START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      MANUAL_SELECTION = #{manualSelection,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      COUPON_TYPE_CODE = #{couponTypeCode,jdbcType=VARCHAR},
+      PROMOTION_ID = #{promotionId,jdbcType=DECIMAL},
+      PRIORITY = #{priority,jdbcType=DECIMAL},
+      BALANCE = #{balance,jdbcType=DECIMAL},
+      IMAGE_URL = #{imageUrl,jdbcType=VARCHAR},
+      ACTIVE = #{active,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      CREATION_DATE = #{creationDate,jdbcType=TIMESTAMP}
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and COUPON_ID = #{couponId,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.comerzzia.api.loyalty.persistence.coupons.CouponExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from LY_COUPONS_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <update id="updateActive" parameterType="com.comerzzia.api.loyalty.persistence.coupons.Coupon">
+    update LY_COUPONS_TBL
+    set ACTIVE = #{active,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and COUPON_ID = #{couponId,jdbcType=DECIMAL}
+      and ACTIVE &lt;&gt; #{active,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+  </update>
+  <select id="selectByUk" parameterType="com.comerzzia.api.loyalty.persistence.coupons.CouponUk" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from LY_COUPONS_TBL
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and COUPON_CODE = #{couponCode,jdbcType=VARCHAR}
+  </select>
+</mapper>

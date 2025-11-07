@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comerzzia.api.loyalty.persistence.customers.addresses.LoyalCustomerAddressesMapper" >
+  <resultMap id="BaseResultMap" type="com.comerzzia.api.loyalty.persistence.customers.addresses.DireccionFidelizadoBean" >
+    <id column="UID_INSTANCIA" property="uidInstancia" jdbcType="VARCHAR" />
+    <id column="ID_FIDELIZADO" property="idFidelizado" jdbcType="DECIMAL" />
+    <id column="DESCRIPCION_DIRECCION" property="descripcionDireccion" jdbcType="VARCHAR" />
+    <result column="DOMICILIO" property="domicilio" jdbcType="VARCHAR" />
+    <result column="POBLACION" property="poblacion" jdbcType="VARCHAR" />
+    <result column="LOCALIDAD" property="localidad" jdbcType="VARCHAR" />
+    <result column="PROVINCIA" property="provincia" jdbcType="VARCHAR" />
+    <result column="CP" property="cp" jdbcType="VARCHAR" />
+    <result column="CODPAIS" property="codPais" jdbcType="VARCHAR" />
+    <result column="DESPAIS" property="desPais" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UID_INSTANCIA, ID_FIDELIZADO, DESCRIPCION_DIRECCION, DOMICILIO, POBLACION, LOCALIDAD, 
+    PROVINCIA, CP, CODPAIS, DESPAIS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.addresses.DireccionFidelizadoExample" resultSetType="SCROLL_INSENSITIVE" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from F_FIDELIZADOS_DIR
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.addresses.DireccionFidelizadoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from F_FIDELIZADOS_DIR
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_FIDELIZADO = #{idFidelizado,jdbcType=DECIMAL}
+      and DESCRIPCION_DIRECCION = #{descripcionDireccion,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.customers.addresses.DireccionFidelizadoKey" >
+    delete from F_FIDELIZADOS_DIR_TBL
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_FIDELIZADO = #{idFidelizado,jdbcType=DECIMAL}
+      and DESCRIPCION_DIRECCION = #{descripcionDireccion,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.api.loyalty.persistence.customers.addresses.DireccionFidelizadoExample" >
+    delete from F_FIDELIZADOS_DIR_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.api.loyalty.persistence.customers.addresses.DireccionFidelizadoBean" >
+    insert into F_FIDELIZADOS_DIR_TBL (UID_INSTANCIA, ID_FIDELIZADO, DESCRIPCION_DIRECCION, 
+      DOMICILIO, POBLACION, LOCALIDAD, 
+      PROVINCIA, CP, CODPAIS
+      )
+    values (#{uidInstancia,jdbcType=VARCHAR}, #{idFidelizado,jdbcType=DECIMAL}, #{descripcionDireccion,jdbcType=VARCHAR}, 
+      #{domicilio,jdbcType=VARCHAR}, #{poblacion,jdbcType=VARCHAR}, #{localidad,jdbcType=VARCHAR}, 
+      #{provincia,jdbcType=VARCHAR}, #{cp,jdbcType=VARCHAR}, #{codPais,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.api.loyalty.persistence.customers.addresses.DireccionFidelizadoBean" >
+    insert into F_FIDELIZADOS_DIR_TBL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        UID_INSTANCIA,
+      </if>
+      <if test="idFidelizado != null" >
+        ID_FIDELIZADO,
+      </if>
+      <if test="descripcionDireccion != null" >
+        DESCRIPCION_DIRECCION,
+      </if>
+      <if test="domicilio != null" >
+        DOMICILIO,
+      </if>
+      <if test="poblacion != null" >
+        POBLACION,
+      </if>
+      <if test="localidad != null" >
+        LOCALIDAD,
+      </if>
+      <if test="provincia != null" >
+        PROVINCIA,
+      </if>
+      <if test="cp != null" >
+        CP,
+      </if>
+      <if test="codPais != null" >
+        CODPAIS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        #{uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="idFidelizado != null" >
+        #{idFidelizado,jdbcType=DECIMAL},
+      </if>
+      <if test="descripcionDireccion != null" >
+        #{descripcionDireccion,jdbcType=VARCHAR},
+      </if>
+      <if test="domicilio != null" >
+        #{domicilio,jdbcType=VARCHAR},
+      </if>
+      <if test="poblacion != null" >
+        #{poblacion,jdbcType=VARCHAR},
+      </if>
+      <if test="localidad != null" >
+        #{localidad,jdbcType=VARCHAR},
+      </if>
+      <if test="provincia != null" >
+        #{provincia,jdbcType=VARCHAR},
+      </if>
+      <if test="cp != null" >
+        #{cp,jdbcType=VARCHAR},
+      </if>
+      <if test="codPais != null" >
+        #{codPais,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.api.loyalty.persistence.customers.addresses.DireccionFidelizadoExample" resultType="java.lang.Integer" >
+    select count(*) from F_FIDELIZADOS_DIR_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update F_FIDELIZADOS_DIR_TBL
+    <set >
+      <if test="record.uidInstancia != null" >
+        UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idFidelizado != null" >
+        ID_FIDELIZADO = #{record.idFidelizado,jdbcType=DECIMAL},
+      </if>
+      <if test="record.descripcionDireccion != null" >
+        DESCRIPCION_DIRECCION = #{record.descripcionDireccion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.domicilio != null" >
+        DOMICILIO = #{record.domicilio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.poblacion != null" >
+        POBLACION = #{record.poblacion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.localidad != null" >
+        LOCALIDAD = #{record.localidad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provincia != null" >
+        PROVINCIA = #{record.provincia,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cp != null" >
+        CP = #{record.cp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codPais != null" >
+        CODPAIS = #{record.codPais,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update F_FIDELIZADOS_DIR_TBL
+    set UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      ID_FIDELIZADO = #{record.idFidelizado,jdbcType=DECIMAL},
+      DESCRIPCION_DIRECCION = #{record.descripcionDireccion,jdbcType=VARCHAR},
+      DOMICILIO = #{record.domicilio,jdbcType=VARCHAR},
+      POBLACION = #{record.poblacion,jdbcType=VARCHAR},
+      LOCALIDAD = #{record.localidad,jdbcType=VARCHAR},
+      PROVINCIA = #{record.provincia,jdbcType=VARCHAR},
+      CP = #{record.cp,jdbcType=VARCHAR},
+      CODPAIS = #{record.codPais,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.api.loyalty.persistence.customers.addresses.DireccionFidelizadoBean" >
+    update F_FIDELIZADOS_DIR_TBL
+    <set >
+      <if test="domicilio != null" >
+        DOMICILIO = #{domicilio,jdbcType=VARCHAR},
+      </if>
+      <if test="poblacion != null" >
+        POBLACION = #{poblacion,jdbcType=VARCHAR},
+      </if>
+      <if test="localidad != null" >
+        LOCALIDAD = #{localidad,jdbcType=VARCHAR},
+      </if>
+      <if test="provincia != null" >
+        PROVINCIA = #{provincia,jdbcType=VARCHAR},
+      </if>
+      <if test="cp != null" >
+        CP = #{cp,jdbcType=VARCHAR},
+      </if>
+      <if test="codPais != null" >
+        CODPAIS = #{codPais,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_FIDELIZADO = #{idFidelizado,jdbcType=DECIMAL}
+      and DESCRIPCION_DIRECCION = #{descripcionDireccion,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.customers.addresses.DireccionFidelizadoBean" >
+    update F_FIDELIZADOS_DIR_TBL
+    set DOMICILIO = #{domicilio,jdbcType=VARCHAR},
+      POBLACION = #{poblacion,jdbcType=VARCHAR},
+      LOCALIDAD = #{localidad,jdbcType=VARCHAR},
+      PROVINCIA = #{provincia,jdbcType=VARCHAR},
+      CP = #{cp,jdbcType=VARCHAR},
+      CODPAIS = #{codPais,jdbcType=VARCHAR}
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_FIDELIZADO = #{idFidelizado,jdbcType=DECIMAL}
+      and DESCRIPCION_DIRECCION = #{descripcionDireccion,jdbcType=VARCHAR}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.addresses.DireccionFidelizadoExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from F_FIDELIZADOS_DIR
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <update id="updateDescripcionDireccionFidelizado" parameterType="map" >
+    update F_FIDELIZADOS_DIR_TBL
+    <set >
+      DESCRIPCION_DIRECCION = #{descripcionDireccionNew,jdbcType=VARCHAR},
+    </set>
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_FIDELIZADO = #{idFidelizado,jdbcType=DECIMAL}
+      and DESCRIPCION_DIRECCION = #{descripcionDireccionOld,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>

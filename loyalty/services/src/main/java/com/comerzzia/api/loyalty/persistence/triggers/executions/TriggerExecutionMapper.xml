@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comerzzia.api.loyalty.persistence.triggers.executions.TriggerExecutionMapper">
+  <resultMap id="BaseResultMap" type="com.comerzzia.api.loyalty.persistence.triggers.executions.TriggerExecution">
+    <id column="TEXEC_UID_ACTIVIDAD" jdbcType="VARCHAR" property="uidActividad" />
+    <id column="TEXEC_TRIGGER_EXEC_UID" jdbcType="VARCHAR" property="triggerExecUid" />
+    <result column="TEXEC_TRIGGER_UID" jdbcType="VARCHAR" property="triggerUid" />
+    <result column="TEXEC_EXECUTION_ID" jdbcType="DECIMAL" property="executionId" />
+    <result column="TEXEC_START_DATE" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="TEXEC_END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="TEXEC_USER_ID" jdbcType="DECIMAL" property="userId" />
+    <result column="TEXEC_STATUS_ID" jdbcType="DECIMAL" property="statusId" />
+    <result column="TEXEC_STATUS_TEXT" jdbcType="VARCHAR" property="statusText" />
+    <result column="TEXEC_AFFECTED_RECORDS" jdbcType="DECIMAL" property="affectedRecords" />
+    <result column="TEXEC_LAST_ACC_EXECUTION_UID" jdbcType="VARCHAR" property="lastAccExecutionUid" />
+  </resultMap>
+  
+  <sql id="Example_Where_Clause">
+    <where>
+      TEXEC.UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          AND
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    TEXEC.UID_ACTIVIDAD as TEXEC_UID_ACTIVIDAD, TEXEC.TRIGGER_EXEC_UID as TEXEC_TRIGGER_EXEC_UID, 
+    TEXEC.TRIGGER_UID as TEXEC_TRIGGER_UID, TEXEC.EXECUTION_ID as TEXEC_EXECUTION_ID, 
+    TEXEC.START_DATE as TEXEC_START_DATE, TEXEC.END_DATE as TEXEC_END_DATE, TEXEC.USER_ID as TEXEC_USER_ID, 
+    TEXEC.STATUS_ID as TEXEC_STATUS_ID, TEXEC.STATUS_TEXT as TEXEC_STATUS_TEXT, TEXEC.AFFECTED_RECORDS as TEXEC_AFFECTED_RECORDS, 
+    TEXEC.LAST_ACC_EXECUTION_UID as TEXEC_LAST_ACC_EXECUTION_UID
+  </sql>
+  <select id="selectByExample" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.TriggerExecutionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from LY_TRIGGERS_EXEC_TBL TEXEC
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.TriggerExecutionKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from LY_TRIGGERS_EXEC_TBL TEXEC
+    where TEXEC.UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and TEXEC.TRIGGER_EXEC_UID = #{triggerExecUid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.TriggerExecutionKey">
+    delete from LY_TRIGGERS_EXEC_TBL
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and TRIGGER_EXEC_UID = #{triggerExecUid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.TriggerExecutionExample">
+    delete from LY_TRIGGERS_EXEC_TBL TEXEC
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.TriggerExecution">
+    insert into LY_TRIGGERS_EXEC_TBL (UID_ACTIVIDAD, TRIGGER_EXEC_UID, TRIGGER_UID, 
+      EXECUTION_ID, START_DATE, END_DATE, 
+      USER_ID, STATUS_ID, STATUS_TEXT, 
+      AFFECTED_RECORDS, LAST_ACC_EXECUTION_UID, TRIGGER_DATA)
+    values (#{uidActividad,jdbcType=VARCHAR}, #{triggerExecUid,jdbcType=VARCHAR}, #{triggerUid,jdbcType=VARCHAR}, 
+      #{executionId,jdbcType=DECIMAL}, #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{userId,jdbcType=DECIMAL}, #{statusId,jdbcType=DECIMAL}, #{statusText,jdbcType=VARCHAR}, 
+      #{affectedRecords,jdbcType=DECIMAL}, #{lastAccExecutionUid,jdbcType=VARCHAR}, #{triggerData,jdbcType=BLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.TriggerExecution">
+    insert into LY_TRIGGERS_EXEC_TBL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        UID_ACTIVIDAD,
+      </if>
+      <if test="triggerExecUid != null">
+        TRIGGER_EXEC_UID,
+      </if>
+      <if test="triggerUid != null">
+        TRIGGER_UID,
+      </if>
+      <if test="executionId != null">
+        EXECUTION_ID,
+      </if>
+      <if test="startDate != null">
+        START_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="statusId != null">
+        STATUS_ID,
+      </if>
+      <if test="statusText != null">
+        STATUS_TEXT,
+      </if>
+      <if test="affectedRecords != null">
+        AFFECTED_RECORDS,
+      </if>
+      <if test="lastAccExecutionUid != null">
+        LAST_ACC_EXECUTION_UID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        #{uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="triggerExecUid != null">
+        #{triggerExecUid,jdbcType=VARCHAR},
+      </if>
+      <if test="triggerUid != null">
+        #{triggerUid,jdbcType=VARCHAR},
+      </if>
+      <if test="executionId != null">
+        #{executionId,jdbcType=DECIMAL},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="statusId != null">
+        #{statusId,jdbcType=DECIMAL},
+      </if>
+      <if test="statusText != null">
+        #{statusText,jdbcType=VARCHAR},
+      </if>
+      <if test="affectedRecords != null">
+        #{affectedRecords,jdbcType=DECIMAL},
+      </if>
+      <if test="lastAccExecutionUid != null">
+        #{lastAccExecutionUid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.TriggerExecutionExample" resultType="java.lang.Long">
+    select count(*) from LY_TRIGGERS_EXEC_TBL TEXEC
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update LY_TRIGGERS_EXEC_TBL TEXEC
+    <set>
+      <if test="record.uidActividad != null">
+        TEXEC.UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.triggerExecUid != null">
+        TEXEC.TRIGGER_EXEC_UID = #{record.triggerExecUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.triggerUid != null">
+        TEXEC.TRIGGER_UID = #{record.triggerUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.executionId != null">
+        TEXEC.EXECUTION_ID = #{record.executionId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startDate != null">
+        TEXEC.START_DATE = #{record.startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endDate != null">
+        TEXEC.END_DATE = #{record.endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userId != null">
+        TEXEC.USER_ID = #{record.userId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.statusId != null">
+        TEXEC.STATUS_ID = #{record.statusId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.statusText != null">
+        TEXEC.STATUS_TEXT = #{record.statusText,jdbcType=VARCHAR},
+      </if>
+      <if test="record.affectedRecords != null">
+        TEXEC.AFFECTED_RECORDS = #{record.affectedRecords,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lastAccExecutionUid != null">
+        TEXEC.LAST_ACC_EXECUTION_UID = #{record.lastAccExecutionUid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update LY_TRIGGERS_EXEC_TBL TEXEC
+    set TEXEC.UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      TEXEC.TRIGGER_EXEC_UID = #{record.triggerExecUid,jdbcType=VARCHAR},
+      TEXEC.TRIGGER_UID = #{record.triggerUid,jdbcType=VARCHAR},
+      TEXEC.EXECUTION_ID = #{record.executionId,jdbcType=DECIMAL},
+      TEXEC.START_DATE = #{record.startDate,jdbcType=TIMESTAMP},
+      TEXEC.END_DATE = #{record.endDate,jdbcType=TIMESTAMP},
+      TEXEC.USER_ID = #{record.userId,jdbcType=DECIMAL},
+      TEXEC.STATUS_ID = #{record.statusId,jdbcType=DECIMAL},
+      TEXEC.STATUS_TEXT = #{record.statusText,jdbcType=VARCHAR},
+      TEXEC.AFFECTED_RECORDS = #{record.affectedRecords,jdbcType=DECIMAL},
+      TEXEC.LAST_ACC_EXECUTION_UID = #{record.lastAccExecutionUid,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.TriggerExecution">
+    update LY_TRIGGERS_EXEC_TBL
+    <set>
+      <if test="triggerUid != null">
+        TRIGGER_UID = #{triggerUid,jdbcType=VARCHAR},
+      </if>
+      <if test="executionId != null">
+        EXECUTION_ID = #{executionId,jdbcType=DECIMAL},
+      </if>
+      <if test="startDate != null">
+        START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="statusId != null">
+        STATUS_ID = #{statusId,jdbcType=DECIMAL},
+      </if>
+      <if test="statusText != null">
+        STATUS_TEXT = #{statusText,jdbcType=VARCHAR},
+      </if>
+      <if test="affectedRecords != null">
+        AFFECTED_RECORDS = #{affectedRecords,jdbcType=DECIMAL},
+      </if>
+      <if test="lastAccExecutionUid != null">
+        LAST_ACC_EXECUTION_UID = #{lastAccExecutionUid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and TRIGGER_EXEC_UID = #{triggerExecUid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.TriggerExecution">
+    update LY_TRIGGERS_EXEC_TBL
+    set TRIGGER_UID = #{triggerUid,jdbcType=VARCHAR},
+      EXECUTION_ID = #{executionId,jdbcType=DECIMAL},
+      START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      USER_ID = #{userId,jdbcType=DECIMAL},
+      STATUS_ID = #{statusId,jdbcType=DECIMAL},
+      STATUS_TEXT = #{statusText,jdbcType=VARCHAR},
+      AFFECTED_RECORDS = #{affectedRecords,jdbcType=DECIMAL},
+      LAST_ACC_EXECUTION_UID = #{lastAccExecutionUid,jdbcType=VARCHAR}
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and TRIGGER_EXEC_UID = #{triggerExecUid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.TriggerExecutionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from LY_TRIGGERS_EXEC_TBL TEXEC
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <resultMap id="DTOResultMap" type="com.comerzzia.api.loyalty.persistence.triggers.executions.dto.TriggerExecutionDTO">
+    <id column="TEXEC_UID_ACTIVIDAD" jdbcType="VARCHAR" property="uidActividad" />
+    <id column="TEXEC_TRIGGER_EXEC_UID" jdbcType="VARCHAR" property="triggerExecUid" />
+    <result column="TEXEC_TRIGGER_UID" jdbcType="VARCHAR" property="triggerUid" />
+    <result column="TEXEC_EXECUTION_ID" jdbcType="DECIMAL" property="executionId" />
+    <result column="TEXEC_START_DATE" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="TEXEC_END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="TEXEC_USER_ID" jdbcType="DECIMAL" property="userId" />
+    <result column="TEXEC_STATUS_ID" jdbcType="DECIMAL" property="statusId" />
+    <result column="TEXEC_STATUS_TEXT" jdbcType="VARCHAR" property="statusText" />
+    <result column="TEXEC_AFFECTED_RECORDS" jdbcType="DECIMAL" property="affectedRecords" />
+    <result column="TEXEC_LAST_ACC_EXECUTION_UID" jdbcType="VARCHAR" property="lastAccExecutionUid" />
+       
+    <association property="lastActionExecution"
+             javaType="com.comerzzia.api.loyalty.persistence.triggers.actions.executions.TriggerActionExecution"                 
+             resultMap="com.comerzzia.api.loyalty.persistence.triggers.actions.executions.TriggerActionExecutionMapper.BaseResultMap"                
+    />  
+  </resultMap>
+  
+  <resultMap extends="DTOResultMap" id="DTOResultMapWithBLOBs" type="com.comerzzia.api.loyalty.persistence.triggers.executions.dto.TriggerExecutionDTO">
+    <result column="TEXEC_TRIGGER_DATA" jdbcType="BLOB" property="triggerData" />
+  </resultMap>  
+  
+  <sql id="DTO_Column_List">
+	  TEXEC.UID_ACTIVIDAD as TEXEC_UID_ACTIVIDAD, TEXEC.TRIGGER_EXEC_UID as TEXEC_TRIGGER_EXEC_UID, 
+	    TEXEC.TRIGGER_UID as TEXEC_TRIGGER_UID, TEXEC.EXECUTION_ID as TEXEC_EXECUTION_ID, 
+	    TEXEC.START_DATE as TEXEC_START_DATE, TEXEC.END_DATE as TEXEC_END_DATE, TEXEC.USER_ID as TEXEC_USER_ID, 
+	    TEXEC.STATUS_ID as TEXEC_STATUS_ID, TEXEC.STATUS_TEXT as TEXEC_STATUS_TEXT, TEXEC.AFFECTED_RECORDS as TEXEC_AFFECTED_RECORDS, 
+	    TEXEC.LAST_ACC_EXECUTION_UID as TEXEC_LAST_ACC_EXECUTION_UID,       
+       AEXEC.ACC_EXECUTION_UID, 
+       AEXEC.TRIGGER_EXEC_UID,
+       AEXEC.ACTION_UID, 
+       AEXEC.MANUAL_EXECUTION, 
+       AEXEC.START_DATE, 
+       AEXEC.END_DATE,
+       AEXEC.USER_ID, 
+       AEXEC.STATUS_ID, 
+       AEXEC.STATUS_TEXT
+  </sql>
+  
+  <sql id="Blob_DTO_Column_List">
+    TEXEC.TRIGGER_DATA as TEXEC_TRIGGER_DATA
+  </sql>  
+  
+  <select id="selectDTOByExample" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.TriggerExecutionExample" resultMap="DTOResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="DTO_Column_List" />
+FROM LY_TRIGGERS_EXEC_TBL TEXEC
+   LEFT JOIN LY_ACTIONS_EXEC_TBL AEXEC ON (AEXEC.UID_ACTIVIDAD = TEXEC.UID_ACTIVIDAD AND AEXEC.ACC_EXECUTION_UID = TEXEC.LAST_ACC_EXECUTION_UID)
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <select id="selectDTOByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.TriggerExecutionKey" resultMap="DTOResultMapWithBLOBs">
+    select 
+    <include refid="DTO_Column_List" />
+    ,
+    <include refid="Blob_DTO_Column_List" />
+FROM LY_TRIGGERS_EXEC_TBL TEXEC
+   LEFT JOIN LY_ACTIONS_EXEC_TBL AEXEC ON (AEXEC.UID_ACTIVIDAD = TEXEC.UID_ACTIVIDAD AND AEXEC.ACC_EXECUTION_UID = TEXEC.LAST_ACC_EXECUTION_UID)
+    where TEXEC.UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and TEXEC.TRIGGER_EXEC_UID = #{triggerExecUid,jdbcType=VARCHAR}
+  </select>
+     
+  <resultMap id="TriggerQueryResultMap" type="com.comerzzia.api.loyalty.persistence.triggers.executions.data.TriggerExecutionDataKey">
+    <id column="ID_FIDELIZADO" jdbcType="DECIMAL" property="idFidelizado" />
+  </resultMap>
+  
+  <select resultMap="TriggerQueryResultMap" resultSetType="FORWARD_ONLY" timeout="300" id="executeTriggerQuery" parameterType="com.comerzzia.api.loyalty.persistence.triggers.dto.TriggerData">  
+    ${sql}  
+  </select>   
+</mapper>

@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comerzzia.api.loyalty.persistence.contactsTypes.TipoContactoMapper" >
+  <resultMap id="BaseResultMap" type="com.comerzzia.api.loyalty.persistence.contactsTypes.TipoContactoBean" >
+    <id column="UID_INSTANCIA" property="uidInstancia" jdbcType="VARCHAR" />
+    <id column="CODTIPOCON" property="codTipoCon" jdbcType="VARCHAR" />
+    <result column="DESTIPOCON" property="desTipoCon" jdbcType="VARCHAR" />
+    <result column="PUEDE_RECIBIR_NOTIFICACIONES" property="puedeRecibirNotificaciones" jdbcType="CHAR" />
+    <result column="ID_BUZON" property="idBuzon" jdbcType="DECIMAL" />
+    <result column="ACTIVO" property="activo" jdbcType="VARCHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+    <result column="VISIBLE" property="visible" jdbcType="CHAR" />
+    <result column="ORDEN" property="orden" jdbcType="DECIMAL" />
+    <result column="PROTOCOLO" property="protocolo" jdbcType="VARCHAR" />
+    <result column="BUZON_DESCRIPCION" property="buzonDescripcion" jdbcType="VARCHAR" />
+    <result column="VALOR_TEST" property="valorTest" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.activoCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.activoCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UID_INSTANCIA, CODTIPOCON, DESTIPOCON, PUEDE_RECIBIR_NOTIFICACIONES, ID_BUZON, ACTIVO, 
+    VISIBLE, ORDEN, PROTOCOLO, VALOR_TEST
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.contactsTypes.TipoContactoExample" resultSetType="SCROLL_INSENSITIVE" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from D_TIPOS_CONTACTO_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.contactsTypes.TipoContactoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from D_TIPOS_CONTACTO_TBL
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and CODTIPOCON = #{codTipoCon,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.contactsTypes.TipoContactoKey" >
+    delete from D_TIPOS_CONTACTO_TBL
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and CODTIPOCON = #{codTipoCon,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.api.loyalty.persistence.contactsTypes.TipoContactoExample" >
+    delete from D_TIPOS_CONTACTO_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.api.loyalty.persistence.contactsTypes.TipoContactoBean" >
+    insert into D_TIPOS_CONTACTO_TBL (UID_INSTANCIA, CODTIPOCON, DESTIPOCON, 
+      PUEDE_RECIBIR_NOTIFICACIONES, ID_BUZON, ACTIVO, 
+      VISIBLE, ORDEN, PROTOCOLO, VALOR_TEST
+      )
+    values (#{uidInstancia,jdbcType=VARCHAR}, #{codTipoCon,jdbcType=VARCHAR}, #{desTipoCon,jdbcType=VARCHAR}, 
+      #{puedeRecibirNotificaciones,jdbcType=CHAR}, #{idBuzon,jdbcType=DECIMAL}, #{activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}, 
+      #{visible,jdbcType=CHAR}, #{orden,jdbcType=DECIMAL}, #{protocolo,jdbcType=VARCHAR}, #{valorTest,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.api.loyalty.persistence.contactsTypes.TipoContactoBean" >
+    insert into D_TIPOS_CONTACTO_TBL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        UID_INSTANCIA,
+      </if>
+      <if test="codTipoCon != null" >
+        CODTIPOCON,
+      </if>
+      <if test="desTipoCon != null" >
+        DESTIPOCON,
+      </if>
+      <if test="puedeRecibirNotificaciones != null" >
+        PUEDE_RECIBIR_NOTIFICACIONES,
+      </if>
+      <if test="idBuzon != null" >
+        ID_BUZON,
+      </if>
+      <if test="activo != null" >
+        ACTIVO,
+      </if>
+      <if test="visible != null" >
+        VISIBLE,
+      </if>
+      <if test="orden != null" >
+        ORDEN,
+      </if>
+      <if test="protocolo != null" >
+        PROTOCOLO,
+      </if>
+      <if test="valorTest != null" >
+        VALOR_TEST,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        #{uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="codTipoCon != null" >
+        #{codTipoCon,jdbcType=VARCHAR},
+      </if>
+      <if test="desTipoCon != null" >
+        #{desTipoCon,jdbcType=VARCHAR},
+      </if>
+      <if test="puedeRecibirNotificaciones != null" >
+        #{puedeRecibirNotificaciones,jdbcType=CHAR},
+      </if>
+      <if test="idBuzon != null" >
+        #{idBuzon,jdbcType=DECIMAL},
+      </if>
+      <if test="activo != null" >
+        #{activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="visible != null" >
+        #{visible,jdbcType=CHAR},
+      </if>
+      <if test="orden != null" >
+        #{orden,jdbcType=DECIMAL},
+      </if>
+      <if test="protocolo != null" >
+        #{protocolo,jdbcType=VARCHAR},
+      </if>
+      <if test="valorTest != null" >
+        #{valorTest,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.api.loyalty.persistence.contactsTypes.TipoContactoExample" resultType="java.lang.Integer" >
+    select count(*) from D_TIPOS_CONTACTO_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update D_TIPOS_CONTACTO_TBL
+    <set >
+      <if test="record.uidInstancia != null" >
+        UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codTipoCon != null" >
+        CODTIPOCON = #{record.codTipoCon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desTipoCon != null" >
+        DESTIPOCON = #{record.desTipoCon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.puedeRecibirNotificaciones != null" >
+        PUEDE_RECIBIR_NOTIFICACIONES = #{record.puedeRecibirNotificaciones,jdbcType=CHAR},
+      </if>
+      <if test="record.idBuzon != null" >
+        ID_BUZON = #{record.idBuzon,jdbcType=DECIMAL},
+      </if>
+      <if test="record.activo != null" >
+        ACTIVO = #{record.activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="record.visible != null" >
+        VISIBLE = #{record.visible,jdbcType=CHAR},
+      </if>
+      <if test="record.orden != null" >
+        ORDEN = #{record.orden,jdbcType=DECIMAL},
+      </if>
+      <if test="record.protocolo != null" >
+        PROTOCOLO = #{record.protocolo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.valorTest != null" >
+        VALOR_TEST = #{record.valorTest,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update D_TIPOS_CONTACTO_TBL
+    set UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      CODTIPOCON = #{record.codTipoCon,jdbcType=VARCHAR},
+      DESTIPOCON = #{record.desTipoCon,jdbcType=VARCHAR},
+      PUEDE_RECIBIR_NOTIFICACIONES = #{record.puedeRecibirNotificaciones,jdbcType=CHAR},
+      ID_BUZON = #{record.idBuzon,jdbcType=DECIMAL},
+      ACTIVO = #{record.activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      VISIBLE = #{record.visible,jdbcType=CHAR},
+      ORDEN = #{record.orden,jdbcType=DECIMAL},
+      PROTOCOLO = #{record.protocolo,jdbcType=VARCHAR},
+      VALOR_TEST = #{record.valorTest,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.api.loyalty.persistence.contactsTypes.TipoContactoBean" >
+    update D_TIPOS_CONTACTO_TBL
+    <set >
+      <if test="desTipoCon != null" >
+        DESTIPOCON = #{desTipoCon,jdbcType=VARCHAR},
+      </if>
+      <if test="puedeRecibirNotificaciones != null" >
+        PUEDE_RECIBIR_NOTIFICACIONES = #{puedeRecibirNotificaciones,jdbcType=CHAR},
+      </if>
+      <if test="idBuzon != null" >
+        ID_BUZON = #{idBuzon,jdbcType=DECIMAL},
+      </if>
+      <if test="activo != null" >
+        ACTIVO = #{activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="visible != null" >
+        VISIBLE = #{visible,jdbcType=CHAR},
+      </if>
+      <if test="orden != null" >
+        ORDEN = #{orden,jdbcType=DECIMAL},
+      </if>
+      <if test="protocolo != null" >
+        PROTOCOLO = #{protocolo,jdbcType=VARCHAR},
+      </if>
+      <if test="valorTest != null" >
+        VALOR_TEST = #{valorTest,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and CODTIPOCON = #{codTipoCon,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.contactsTypes.TipoContactoBean" >
+    update D_TIPOS_CONTACTO_TBL
+    set DESTIPOCON = #{desTipoCon,jdbcType=VARCHAR},
+      PUEDE_RECIBIR_NOTIFICACIONES = #{puedeRecibirNotificaciones,jdbcType=CHAR},
+      ID_BUZON = #{idBuzon,jdbcType=DECIMAL},
+      ACTIVO = #{activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      VISIBLE = #{visible,jdbcType=CHAR},
+      ORDEN = #{orden,jdbcType=DECIMAL},
+      PROTOCOLO = #{protocolo,jdbcType=VARCHAR},
+      VALOR_TEST = #{valorTest,jdbcType=VARCHAR}
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and CODTIPOCON = #{codTipoCon,jdbcType=VARCHAR}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.contactsTypes.TipoContactoExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from D_TIPOS_CONTACTO_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectFromViewByExample" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.contactsTypes.TipoContactoExample" resultSetType="SCROLL_INSENSITIVE" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="View_Base_Column_List" />
+    from D_TIPOS_CONTACTO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectFromViewByPrimaryKey" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.contactsTypes.TipoContactoKey" >
+    select 
+    <include refid="View_Base_Column_List" />
+    from D_TIPOS_CONTACTO
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and CODTIPOCON = #{codTipoCon,jdbcType=VARCHAR}
+  </select>
+  <sql id="View_Base_Column_List" >
+    ORDEN, UID_INSTANCIA, PROTOCOLO, DESTIPOCON, PUEDE_RECIBIR_NOTIFICACIONES, ACTIVO, 
+    BUZON_DESCRIPCION, VISIBLE, CODTIPOCON, ID_BUZON, VALOR_TEST
+  </sql>
+</mapper>

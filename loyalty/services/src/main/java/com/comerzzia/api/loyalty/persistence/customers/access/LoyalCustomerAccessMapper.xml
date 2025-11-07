@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comerzzia.api.loyalty.persistence.customers.access.LoyalCustomerAccessMapper" >
+  <resultMap id="BaseResultMap" type="com.comerzzia.api.loyalty.persistence.customers.access.AccesoFidelizadoBean" >
+    <id column="UID_INSTANCIA" property="uidInstancia" jdbcType="VARCHAR" />
+    <id column="USUARIO" property="usuario" jdbcType="VARCHAR" />
+    <result column="ID_FIDELIZADO" property="idFidelizado" jdbcType="DECIMAL" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="CLAVE" property="clave" jdbcType="VARCHAR" />
+    <result column="ACTIVO" property="activo" jdbcType="VARCHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+    <result column="FECHA_ALTA" property="fechaAlta" jdbcType="TIMESTAMP" />
+    <result column="FECHA_MODIFICACION" property="fechaModificacion" jdbcType="TIMESTAMP" />
+    <result column="FECHA_MODIFICACION_CLAVE" property="fechaModificacionClave" jdbcType="TIMESTAMP" />
+    <result column="FECHA_BAJA" property="fechaBaja" jdbcType="TIMESTAMP" />
+    <result column="CLAVE_RESETEADA" property="claveReseteada" jdbcType="CHAR" />
+    <result column="EMAIL_VERIFICADO" property="emailVerificado" jdbcType="CHAR" />
+    <result column="FECHA_ULTIMO_LOGIN" property="fechaUltimoLogin" jdbcType="TIMESTAMP" />
+    <result column="FECHA_ULTIMO_INTENTO_FALLIDO" property="fechaUltimoIntentoFallido" jdbcType="TIMESTAMP" />
+    <result column="NUMERO_INTENTOS_FALLIDOS" property="numeroIntentosFallidos" jdbcType="DECIMAL" />
+    <result column="RECUERDO_CLAVE_PREGUNTA" property="recuerdoClavePregunta" jdbcType="VARCHAR" />
+    <result column="RECUERDO_CLAVE_RESPUESTA" property="recuerdoClaveRespuesta" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.activoCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.activoCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UID_INSTANCIA, USUARIO, ID_FIDELIZADO, EMAIL, CLAVE, ACTIVO, FECHA_ALTA, FECHA_MODIFICACION, 
+    FECHA_MODIFICACION_CLAVE, FECHA_BAJA, CLAVE_RESETEADA, EMAIL_VERIFICADO, FECHA_ULTIMO_LOGIN, 
+    FECHA_ULTIMO_INTENTO_FALLIDO, NUMERO_INTENTOS_FALLIDOS, RECUERDO_CLAVE_PREGUNTA, 
+    RECUERDO_CLAVE_RESPUESTA
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.access.AccesoFidelizadoExample" resultSetType="SCROLL_INSENSITIVE" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from F_FIDELIZADOS_ACCESO_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.access.AccesoFidelizadoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from F_FIDELIZADOS_ACCESO_TBL
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and USUARIO = #{usuario,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.customers.access.AccesoFidelizadoKey" >
+    delete from F_FIDELIZADOS_ACCESO_TBL
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and USUARIO = #{usuario,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.api.loyalty.persistence.customers.access.AccesoFidelizadoExample" >
+    delete from F_FIDELIZADOS_ACCESO_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.api.loyalty.persistence.customers.access.AccesoFidelizadoBean" >
+    insert into F_FIDELIZADOS_ACCESO_TBL (UID_INSTANCIA, USUARIO, ID_FIDELIZADO, 
+      EMAIL, CLAVE, ACTIVO, 
+      FECHA_ALTA, FECHA_MODIFICACION, FECHA_MODIFICACION_CLAVE, 
+      FECHA_BAJA, CLAVE_RESETEADA, EMAIL_VERIFICADO, 
+      FECHA_ULTIMO_LOGIN, FECHA_ULTIMO_INTENTO_FALLIDO, 
+      NUMERO_INTENTOS_FALLIDOS, RECUERDO_CLAVE_PREGUNTA, 
+      RECUERDO_CLAVE_RESPUESTA)
+    values (#{uidInstancia,jdbcType=VARCHAR}, #{usuario,jdbcType=VARCHAR}, #{idFidelizado,jdbcType=DECIMAL}, 
+      #{email,jdbcType=VARCHAR}, #{clave,jdbcType=VARCHAR}, #{activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}, 
+      #{fechaAlta,jdbcType=TIMESTAMP}, #{fechaModificacion,jdbcType=TIMESTAMP}, #{fechaModificacionClave,jdbcType=TIMESTAMP}, 
+      #{fechaBaja,jdbcType=TIMESTAMP}, #{claveReseteada,jdbcType=CHAR}, #{emailVerificado,jdbcType=CHAR}, 
+      #{fechaUltimoLogin,jdbcType=TIMESTAMP}, #{fechaUltimoIntentoFallido,jdbcType=TIMESTAMP}, 
+      #{numeroIntentosFallidos,jdbcType=DECIMAL}, #{recuerdoClavePregunta,jdbcType=VARCHAR}, 
+      #{recuerdoClaveRespuesta,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.api.loyalty.persistence.customers.access.AccesoFidelizadoBean" >
+    insert into F_FIDELIZADOS_ACCESO_TBL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        UID_INSTANCIA,
+      </if>
+      <if test="usuario != null" >
+        USUARIO,
+      </if>
+      <if test="idFidelizado != null" >
+        ID_FIDELIZADO,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="clave != null" >
+        CLAVE,
+      </if>
+      <if test="activo != null" >
+        ACTIVO,
+      </if>
+      <if test="fechaAlta != null" >
+        FECHA_ALTA,
+      </if>
+      <if test="fechaModificacion != null" >
+        FECHA_MODIFICACION,
+      </if>
+      <if test="fechaModificacionClave != null" >
+        FECHA_MODIFICACION_CLAVE,
+      </if>
+      <if test="fechaBaja != null" >
+        FECHA_BAJA,
+      </if>
+      <if test="claveReseteada != null" >
+        CLAVE_RESETEADA,
+      </if>
+      <if test="emailVerificado != null" >
+        EMAIL_VERIFICADO,
+      </if>
+      <if test="fechaUltimoLogin != null" >
+        FECHA_ULTIMO_LOGIN,
+      </if>
+      <if test="fechaUltimoIntentoFallido != null" >
+        FECHA_ULTIMO_INTENTO_FALLIDO,
+      </if>
+      <if test="numeroIntentosFallidos != null" >
+        NUMERO_INTENTOS_FALLIDOS,
+      </if>
+      <if test="recuerdoClavePregunta != null" >
+        RECUERDO_CLAVE_PREGUNTA,
+      </if>
+      <if test="recuerdoClaveRespuesta != null" >
+        RECUERDO_CLAVE_RESPUESTA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        #{uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="usuario != null" >
+        #{usuario,jdbcType=VARCHAR},
+      </if>
+      <if test="idFidelizado != null" >
+        #{idFidelizado,jdbcType=DECIMAL},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="clave != null" >
+        #{clave,jdbcType=VARCHAR},
+      </if>
+      <if test="activo != null" >
+        #{activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="fechaAlta != null" >
+        #{fechaAlta,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaModificacion != null" >
+        #{fechaModificacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaModificacionClave != null" >
+        #{fechaModificacionClave,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaBaja != null" >
+        #{fechaBaja,jdbcType=TIMESTAMP},
+      </if>
+      <if test="claveReseteada != null" >
+        #{claveReseteada,jdbcType=CHAR},
+      </if>
+      <if test="emailVerificado != null" >
+        #{emailVerificado,jdbcType=CHAR},
+      </if>
+      <if test="fechaUltimoLogin != null" >
+        #{fechaUltimoLogin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaUltimoIntentoFallido != null" >
+        #{fechaUltimoIntentoFallido,jdbcType=TIMESTAMP},
+      </if>
+      <if test="numeroIntentosFallidos != null" >
+        #{numeroIntentosFallidos,jdbcType=DECIMAL},
+      </if>
+      <if test="recuerdoClavePregunta != null" >
+        #{recuerdoClavePregunta,jdbcType=VARCHAR},
+      </if>
+      <if test="recuerdoClaveRespuesta != null" >
+        #{recuerdoClaveRespuesta,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.api.loyalty.persistence.customers.access.AccesoFidelizadoExample" resultType="java.lang.Integer" >
+    select count(*) from F_FIDELIZADOS_ACCESO_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update F_FIDELIZADOS_ACCESO_TBL
+    <set >
+      <if test="record.uidInstancia != null" >
+        UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usuario != null" >
+        USUARIO = #{record.usuario,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idFidelizado != null" >
+        ID_FIDELIZADO = #{record.idFidelizado,jdbcType=DECIMAL},
+      </if>
+      <if test="record.email != null" >
+        EMAIL = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clave != null" >
+        CLAVE = #{record.clave,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activo != null" >
+        ACTIVO = #{record.activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="record.fechaAlta != null" >
+        FECHA_ALTA = #{record.fechaAlta,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fechaModificacion != null" >
+        FECHA_MODIFICACION = #{record.fechaModificacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fechaModificacionClave != null" >
+        FECHA_MODIFICACION_CLAVE = #{record.fechaModificacionClave,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fechaBaja != null" >
+        FECHA_BAJA = #{record.fechaBaja,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.claveReseteada != null" >
+        CLAVE_RESETEADA = #{record.claveReseteada,jdbcType=CHAR},
+      </if>
+      <if test="record.emailVerificado != null" >
+        EMAIL_VERIFICADO = #{record.emailVerificado,jdbcType=CHAR},
+      </if>
+      <if test="record.fechaUltimoLogin != null" >
+        FECHA_ULTIMO_LOGIN = #{record.fechaUltimoLogin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fechaUltimoIntentoFallido != null" >
+        FECHA_ULTIMO_INTENTO_FALLIDO = #{record.fechaUltimoIntentoFallido,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.numeroIntentosFallidos != null" >
+        NUMERO_INTENTOS_FALLIDOS = #{record.numeroIntentosFallidos,jdbcType=DECIMAL},
+      </if>
+      <if test="record.recuerdoClavePregunta != null" >
+        RECUERDO_CLAVE_PREGUNTA = #{record.recuerdoClavePregunta,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recuerdoClaveRespuesta != null" >
+        RECUERDO_CLAVE_RESPUESTA = #{record.recuerdoClaveRespuesta,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update F_FIDELIZADOS_ACCESO_TBL
+    set UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      USUARIO = #{record.usuario,jdbcType=VARCHAR},
+      ID_FIDELIZADO = #{record.idFidelizado,jdbcType=DECIMAL},
+      EMAIL = #{record.email,jdbcType=VARCHAR},
+      CLAVE = #{record.clave,jdbcType=VARCHAR},
+      ACTIVO = #{record.activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      FECHA_ALTA = #{record.fechaAlta,jdbcType=TIMESTAMP},
+      FECHA_MODIFICACION = #{record.fechaModificacion,jdbcType=TIMESTAMP},
+      FECHA_MODIFICACION_CLAVE = #{record.fechaModificacionClave,jdbcType=TIMESTAMP},
+      FECHA_BAJA = #{record.fechaBaja,jdbcType=TIMESTAMP},
+      CLAVE_RESETEADA = #{record.claveReseteada,jdbcType=CHAR},
+      EMAIL_VERIFICADO = #{record.emailVerificado,jdbcType=CHAR},
+      FECHA_ULTIMO_LOGIN = #{record.fechaUltimoLogin,jdbcType=TIMESTAMP},
+      FECHA_ULTIMO_INTENTO_FALLIDO = #{record.fechaUltimoIntentoFallido,jdbcType=TIMESTAMP},
+      NUMERO_INTENTOS_FALLIDOS = #{record.numeroIntentosFallidos,jdbcType=DECIMAL},
+      RECUERDO_CLAVE_PREGUNTA = #{record.recuerdoClavePregunta,jdbcType=VARCHAR},
+      RECUERDO_CLAVE_RESPUESTA = #{record.recuerdoClaveRespuesta,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.api.loyalty.persistence.customers.access.AccesoFidelizadoBean" >
+    update F_FIDELIZADOS_ACCESO_TBL
+    <set >
+      <if test="idFidelizado != null" >
+        ID_FIDELIZADO = #{idFidelizado,jdbcType=DECIMAL},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="clave != null" >
+        CLAVE = #{clave,jdbcType=VARCHAR},
+      </if>
+      <if test="activo != null" >
+        ACTIVO = #{activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="fechaAlta != null" >
+        FECHA_ALTA = #{fechaAlta,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaModificacion != null" >
+        FECHA_MODIFICACION = #{fechaModificacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaModificacionClave != null" >
+        FECHA_MODIFICACION_CLAVE = #{fechaModificacionClave,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaBaja != null" >
+        FECHA_BAJA = #{fechaBaja,jdbcType=TIMESTAMP},
+      </if>
+      <if test="claveReseteada != null" >
+        CLAVE_RESETEADA = #{claveReseteada,jdbcType=CHAR},
+      </if>
+      <if test="emailVerificado != null" >
+        EMAIL_VERIFICADO = #{emailVerificado,jdbcType=CHAR},
+      </if>
+      <if test="fechaUltimoLogin != null" >
+        FECHA_ULTIMO_LOGIN = #{fechaUltimoLogin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaUltimoIntentoFallido != null" >
+        FECHA_ULTIMO_INTENTO_FALLIDO = #{fechaUltimoIntentoFallido,jdbcType=TIMESTAMP},
+      </if>
+      <if test="numeroIntentosFallidos != null" >
+        NUMERO_INTENTOS_FALLIDOS = #{numeroIntentosFallidos,jdbcType=DECIMAL},
+      </if>
+      <if test="recuerdoClavePregunta != null" >
+        RECUERDO_CLAVE_PREGUNTA = #{recuerdoClavePregunta,jdbcType=VARCHAR},
+      </if>
+      <if test="recuerdoClaveRespuesta != null" >
+        RECUERDO_CLAVE_RESPUESTA = #{recuerdoClaveRespuesta,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and USUARIO = #{usuario,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.customers.access.AccesoFidelizadoBean" >
+    update F_FIDELIZADOS_ACCESO_TBL
+    set ID_FIDELIZADO = #{idFidelizado,jdbcType=DECIMAL},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      CLAVE = #{clave,jdbcType=VARCHAR},
+      ACTIVO = #{activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      FECHA_ALTA = #{fechaAlta,jdbcType=TIMESTAMP},
+      FECHA_MODIFICACION = #{fechaModificacion,jdbcType=TIMESTAMP},
+      FECHA_MODIFICACION_CLAVE = #{fechaModificacionClave,jdbcType=TIMESTAMP},
+      FECHA_BAJA = #{fechaBaja,jdbcType=TIMESTAMP},
+      CLAVE_RESETEADA = #{claveReseteada,jdbcType=CHAR},
+      EMAIL_VERIFICADO = #{emailVerificado,jdbcType=CHAR},
+      FECHA_ULTIMO_LOGIN = #{fechaUltimoLogin,jdbcType=TIMESTAMP},
+      FECHA_ULTIMO_INTENTO_FALLIDO = #{fechaUltimoIntentoFallido,jdbcType=TIMESTAMP},
+      NUMERO_INTENTOS_FALLIDOS = #{numeroIntentosFallidos,jdbcType=DECIMAL},
+      RECUERDO_CLAVE_PREGUNTA = #{recuerdoClavePregunta,jdbcType=VARCHAR},
+      RECUERDO_CLAVE_RESPUESTA = #{recuerdoClaveRespuesta,jdbcType=VARCHAR}
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and USUARIO = #{usuario,jdbcType=VARCHAR}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.access.AccesoFidelizadoExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from F_FIDELIZADOS_ACCESO_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comerzzia.api.loyalty.persistence.cardsTypes.CardsTypesMapper" >
+  <resultMap id="BaseResultMap" type="com.comerzzia.api.loyalty.persistence.cardsTypes.TipoTarjetaBean" >
+    <id column="UID_INSTANCIA" property="uidInstancia" jdbcType="VARCHAR" />
+    <id column="CODTIPOTARJ" property="codtipotarj" jdbcType="VARCHAR" />
+    <result column="DESTIPOTARJ" property="destipotarj" jdbcType="VARCHAR" />
+    <result column="PERMITE_VINCULAR" property="permiteVincular" jdbcType="VARCHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+    <result column="PREFIJO" property="prefijo" jdbcType="VARCHAR" />
+    <result column="LONGITUD_TOTAL" property="longitudTotal" jdbcType="DECIMAL" />
+    <result column="PERMITE_PAGO" property="permitePago" jdbcType="VARCHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+    <result column="VISIBLE_EN_PAGO" property="visibleEnPago" jdbcType="VARCHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.permiteVincularCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.permitePagoCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.visibleEnPagoCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.permiteVincularCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.permitePagoCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.visibleEnPagoCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    TIPO.UID_INSTANCIA, TIPO.CODTIPOTARJ, TIPO.DESTIPOTARJ, TIPO.PERMITE_VINCULAR, TIPO.PREFIJO, TIPO.LONGITUD_TOTAL, 
+    TIPO.PERMITE_PAGO, TIPO.VISIBLE_EN_PAGO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.cardsTypes.TipoTarjetaExample" resultSetType="SCROLL_INSENSITIVE" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from F_TARJETAS_TIPOS_TBL TIPO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.cardsTypes.TipoTarjetaKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from F_TARJETAS_TIPOS_TBL TIPO
+    where TIPO.UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and TIPO.CODTIPOTARJ = #{codtipotarj,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.cardsTypes.TipoTarjetaKey" >
+    delete from F_TARJETAS_TIPOS_TBL
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and CODTIPOTARJ = #{codtipotarj,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.api.loyalty.persistence.cardsTypes.TipoTarjetaExample" >
+    delete from F_TARJETAS_TIPOS_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.api.loyalty.persistence.cardsTypes.TipoTarjetaBean" >
+    insert into F_TARJETAS_TIPOS_TBL (UID_INSTANCIA, CODTIPOTARJ, DESTIPOTARJ, 
+      PERMITE_VINCULAR, 
+      PREFIJO, LONGITUD_TOTAL, PERMITE_PAGO, 
+      VISIBLE_EN_PAGO
+      )
+    values (#{uidInstancia,jdbcType=VARCHAR}, #{codtipotarj,jdbcType=VARCHAR}, #{destipotarj,jdbcType=VARCHAR}, 
+      #{permiteVincular,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}, 
+      #{prefijo,jdbcType=VARCHAR}, #{longitudTotal,jdbcType=DECIMAL}, #{permitePago,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}, 
+      #{visibleEnPago,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.api.loyalty.persistence.cardsTypes.TipoTarjetaBean" >
+    insert into F_TARJETAS_TIPOS_TBL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        UID_INSTANCIA,
+      </if>
+      <if test="codtipotarj != null" >
+        CODTIPOTARJ,
+      </if>
+      <if test="destipotarj != null" >
+        DESTIPOTARJ,
+      </if>
+      <if test="permiteVincular != null" >
+        PERMITE_VINCULAR,
+      </if>
+      <if test="prefijo != null" >
+        PREFIJO,
+      </if>
+      <if test="longitudTotal != null" >
+        LONGITUD_TOTAL,
+      </if>
+      <if test="permitePago != null" >
+        PERMITE_PAGO,
+      </if>
+      <if test="visibleEnPago != null" >
+        VISIBLE_EN_PAGO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        #{uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="codtipotarj != null" >
+        #{codtipotarj,jdbcType=VARCHAR},
+      </if>
+      <if test="destipotarj != null" >
+        #{destipotarj,jdbcType=VARCHAR},
+      </if>
+      <if test="permiteVincular != null" >
+        #{permiteVincular,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="prefijo != null" >
+        #{prefijo,jdbcType=VARCHAR},
+      </if>
+      <if test="longitudTotal != null" >
+        #{longitudTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="permitePago != null" >
+        #{permitePago,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="visibleEnPago != null" >
+        #{visibleEnPago,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.api.loyalty.persistence.cardsTypes.TipoTarjetaExample" resultType="java.lang.Integer" >
+    select count(*) from F_TARJETAS_TIPOS_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update F_TARJETAS_TIPOS_TBL
+    <set >
+      <if test="record.uidInstancia != null" >
+        UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codtipotarj != null" >
+        CODTIPOTARJ = #{record.codtipotarj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.destipotarj != null" >
+        DESTIPOTARJ = #{record.destipotarj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permiteVincular != null" >
+        PERMITE_VINCULAR = #{record.permiteVincular,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="record.prefijo != null" >
+        PREFIJO = #{record.prefijo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.longitudTotal != null" >
+        LONGITUD_TOTAL = #{record.longitudTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.permitePago != null" >
+        PERMITE_PAGO = #{record.permitePago,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="record.visibleEnPago != null" >
+        VISIBLE_EN_PAGO = #{record.visibleEnPago,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update F_TARJETAS_TIPOS_TBL
+    set UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      CODTIPOTARJ = #{record.codtipotarj,jdbcType=VARCHAR},
+      DESTIPOTARJ = #{record.destipotarj,jdbcType=VARCHAR},
+      PERMITE_VINCULAR = #{record.permiteVincular,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      PREFIJO = #{record.prefijo,jdbcType=VARCHAR},
+      LONGITUD_TOTAL = #{record.longitudTotal,jdbcType=DECIMAL},
+      PERMITE_PAGO = #{record.permitePago,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      VISIBLE_EN_PAGO = #{record.visibleEnPago,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.api.loyalty.persistence.cardsTypes.TipoTarjetaBean" >
+    update F_TARJETAS_TIPOS_TBL
+    <set >
+      <if test="destipotarj != null" >
+        DESTIPOTARJ = #{destipotarj,jdbcType=VARCHAR},
+      </if>
+      <if test="permiteVincular != null" >
+        PERMITE_VINCULAR = #{permiteVincular,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="prefijo != null" >
+        PREFIJO = #{prefijo,jdbcType=VARCHAR},
+      </if>
+      <if test="longitudTotal != null" >
+        LONGITUD_TOTAL = #{longitudTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="permitePago != null" >
+        PERMITE_PAGO = #{permitePago,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="visibleEnPago != null" >
+        VISIBLE_EN_PAGO = #{visibleEnPago,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+    </set>
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and CODTIPOTARJ = #{codtipotarj,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.cardsTypes.TipoTarjetaBean" >
+    update F_TARJETAS_TIPOS_TBL
+    set DESTIPOTARJ = #{destipotarj,jdbcType=VARCHAR},
+      PERMITE_VINCULAR = #{permiteVincular,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      PREFIJO = #{prefijo,jdbcType=VARCHAR},
+      LONGITUD_TOTAL = #{longitudTotal,jdbcType=DECIMAL},
+      PERMITE_PAGO = #{permitePago,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      VISIBLE_EN_PAGO = #{visibleEnPago,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and CODTIPOTARJ = #{codtipotarj,jdbcType=VARCHAR}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.cardsTypes.TipoTarjetaExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from F_TARJETAS_TIPOS_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

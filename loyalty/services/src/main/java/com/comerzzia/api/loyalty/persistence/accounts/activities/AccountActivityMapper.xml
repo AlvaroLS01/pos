@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comerzzia.api.loyalty.persistence.accounts.activities.AccountActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.comerzzia.api.loyalty.persistence.accounts.activities.AccountActivity" >
+    <id column="UID_INSTANCIA" property="uidInstancia" jdbcType="VARCHAR" />
+    <id column="ID_CUENTA_MOVIMIENTO" property="idCuentaMovimiento" jdbcType="DECIMAL" />
+    <result column="ID_CUENTA_TARJETA" property="idCuentaTarjeta" jdbcType="DECIMAL" />
+    <result column="FECHA" property="fecha" jdbcType="TIMESTAMP" />
+    <result column="ID_TARJETA" property="idTarjeta" jdbcType="DECIMAL" />
+    <result column="ID_USUARIO" property="idUsuario" jdbcType="DECIMAL" />
+    <result column="DOCUMENTO" property="documento" jdbcType="VARCHAR" />
+    <result column="CONCEPTO" property="concepto" jdbcType="VARCHAR" />
+    <result column="ENTRADA" property="entrada" jdbcType="DECIMAL" />
+    <result column="SALIDA" property="salida" jdbcType="DECIMAL" />
+    <result column="FECHA_PROCESO" property="fechaProceso" jdbcType="TIMESTAMP" />
+    <result column="ESTADO_MOVIMIENTO" property="estadoMovimiento" jdbcType="DECIMAL" />
+    <result column="UID_TRANSACCION" property="uidTransaccion" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="DTOResultMap" type="com.comerzzia.api.loyalty.persistence.accounts.activities.AccountActivityDTO" >
+    <id column="UID_INSTANCIA" property="uidInstancia" jdbcType="VARCHAR" />
+    <id column="ID_CUENTA_MOVIMIENTO" property="idCuentaMovimiento" jdbcType="DECIMAL" />
+    <result column="ID_CUENTA_TARJETA" property="idCuentaTarjeta" jdbcType="DECIMAL" />
+    <result column="FECHA" property="fecha" jdbcType="TIMESTAMP" />
+    <result column="ID_TARJETA" property="idTarjeta" jdbcType="DECIMAL" />
+    <result column="ID_USUARIO" property="idUsuario" jdbcType="DECIMAL" />
+    <result column="DOCUMENTO" property="documento" jdbcType="VARCHAR" />
+    <result column="CONCEPTO" property="concepto" jdbcType="VARCHAR" />
+    <result column="ENTRADA" property="entrada" jdbcType="DECIMAL" />
+    <result column="SALIDA" property="salida" jdbcType="DECIMAL" />
+    <result column="FECHA_PROCESO" property="fechaProceso" jdbcType="TIMESTAMP" />
+    <result column="ESTADO_MOVIMIENTO" property="estadoMovimiento" jdbcType="DECIMAL" />
+    <result column="UID_TRANSACCION" property="uidTransaccion" jdbcType="VARCHAR" />
+    <result column="NUMERO_TARJETA" property="numeroTarjeta" jdbcType="VARCHAR" />
+    <result column="CODTIPOTARJ" property="codTipoTarj" jdbcType="VARCHAR" />
+    <result column="DESTIPOTARJ" property="desTipoTarj" jdbcType="VARCHAR" />
+	<result column="NOMBRE" property="nombreFidelizado" jdbcType="VARCHAR" />
+	<result column="APELLIDOS" property="apellidosFidelizado" jdbcType="VARCHAR" />
+	<result column="CODTIPODOCUMENTO" property="codTipoDocumento" jdbcType="VARCHAR" />
+	<result column="DESTIPODOCUMENTO" property="desTipoDocumento" jdbcType="VARCHAR" />
+	<result column="COD_TICKET" property="codTicket" jdbcType="VARCHAR" />	
+  </resultMap>
+  <sql id="Instance_Where_Clause">
+      MOVIMIENTO.UID_INSTANCIA = #{example.uidInstancia,jdbcType=VARCHAR}
+  </sql>
+  <sql id="Instance_Where_Clause_no_alias">
+      UID_INSTANCIA = #{example.uidInstancia,jdbcType=VARCHAR}
+  </sql>  
+  <sql id="Example_Where_Clause" >
+    <where >
+      UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          AND
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <include refid="Instance_Where_Clause_no_alias" />
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          AND
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UID_INSTANCIA, ID_CUENTA_MOVIMIENTO, ID_CUENTA_TARJETA, FECHA, ID_TARJETA, ID_USUARIO, 
+    DOCUMENTO, CONCEPTO, ENTRADA, SALIDA, FECHA_PROCESO, ESTADO_MOVIMIENTO, UID_TRANSACCION
+  </sql>
+  
+   <sql id="Paginacion_Column_List" >
+	MOVIMIENTO.uid_instancia, MOVIMIENTO.id_cuenta_tarjeta, MOVIMIENTO.fecha, MOVIMIENTO.id_tarjeta, MOVIMIENTO.id_usuario, MOVIMIENTO.documento, 
+	MOVIMIENTO.concepto, MOVIMIENTO.entrada, MOVIMIENTO.salida, MOVIMIENTO.fecha_proceso, MOVIMIENTO.id_cuenta_movimiento, MOVIMIENTO.estado_movimiento, 
+	MOVIMIENTO.uid_transaccion, TARJETA.NUMERO_TARJETA, FIDELIZADOS.NOMBRE, FIDELIZADOS.APELLIDOS, TICKET.codtipodocumento, TICKET.destipodocumento, TICKET.cod_ticket
+  </sql>
+  
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.accounts.activities.AccountActivityExample" resultSetType="SCROLL_INSENSITIVE" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from F_CUENTAS_MOVIMIENTOS_TBL MOVIMIENTO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.accounts.activities.AccountActivityKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from F_CUENTAS_MOVIMIENTOS_TBL 
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_CUENTA_MOVIMIENTO = #{idCuentaMovimiento,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.accounts.activities.AccountActivityKey" >
+    delete from F_CUENTAS_MOVIMIENTOS_TBL 
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_CUENTA_MOVIMIENTO = #{idCuentaMovimiento,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.api.loyalty.persistence.accounts.activities.AccountActivityExample" >
+    delete from F_CUENTAS_MOVIMIENTOS_TBL 
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.api.loyalty.persistence.accounts.activities.AccountActivity" >
+    insert into F_CUENTAS_MOVIMIENTOS_TBL (UID_INSTANCIA, ID_CUENTA_MOVIMIENTO, 
+      ID_CUENTA_TARJETA, FECHA, ID_TARJETA, 
+      ID_USUARIO, DOCUMENTO, CONCEPTO, 
+      ENTRADA, SALIDA, FECHA_PROCESO, 
+      ESTADO_MOVIMIENTO, UID_TRANSACCION)
+    values (#{uidInstancia,jdbcType=VARCHAR}, #{idCuentaMovimiento,jdbcType=DECIMAL}, 
+      #{idCuentaTarjeta,jdbcType=DECIMAL}, #{fecha,jdbcType=TIMESTAMP}, #{idTarjeta,jdbcType=DECIMAL}, 
+      #{idUsuario,jdbcType=DECIMAL}, #{documento,jdbcType=VARCHAR}, #{concepto,jdbcType=VARCHAR}, 
+      #{entrada,jdbcType=DECIMAL}, #{salida,jdbcType=DECIMAL}, #{fechaProceso,jdbcType=TIMESTAMP}, 
+      #{estadoMovimiento,jdbcType=DECIMAL}, #{uidTransaccion,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.api.loyalty.persistence.accounts.activities.AccountActivity" >
+    insert into F_CUENTAS_MOVIMIENTOS_TBL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        UID_INSTANCIA,
+      </if>
+      <if test="idCuentaMovimiento != null" >
+        ID_CUENTA_MOVIMIENTO,
+      </if>
+      <if test="idCuentaTarjeta != null" >
+        ID_CUENTA_TARJETA,
+      </if>
+      <if test="fecha != null" >
+        FECHA,
+      </if>
+      <if test="idTarjeta != null" >
+        ID_TARJETA,
+      </if>
+      <if test="idUsuario != null" >
+        ID_USUARIO,
+      </if>
+      <if test="documento != null" >
+        DOCUMENTO,
+      </if>
+      <if test="concepto != null" >
+        CONCEPTO,
+      </if>
+      <if test="entrada != null" >
+        ENTRADA,
+      </if>
+      <if test="salida != null" >
+        SALIDA,
+      </if>
+      <if test="fechaProceso != null" >
+        FECHA_PROCESO,
+      </if>
+      <if test="estadoMovimiento != null" >
+        ESTADO_MOVIMIENTO,
+      </if>
+      <if test="uidTransaccion != null" >
+        UID_TRANSACCION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        #{uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="idCuentaMovimiento != null" >
+        #{idCuentaMovimiento,jdbcType=DECIMAL},
+      </if>
+      <if test="idCuentaTarjeta != null" >
+        #{idCuentaTarjeta,jdbcType=DECIMAL},
+      </if>
+      <if test="fecha != null" >
+        #{fecha,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idTarjeta != null" >
+        #{idTarjeta,jdbcType=DECIMAL},
+      </if>
+      <if test="idUsuario != null" >
+        #{idUsuario,jdbcType=DECIMAL},
+      </if>
+      <if test="documento != null" >
+        #{documento,jdbcType=VARCHAR},
+      </if>
+      <if test="concepto != null" >
+        #{concepto,jdbcType=VARCHAR},
+      </if>
+      <if test="entrada != null" >
+        #{entrada,jdbcType=DECIMAL},
+      </if>
+      <if test="salida != null" >
+        #{salida,jdbcType=DECIMAL},
+      </if>
+      <if test="fechaProceso != null" >
+        #{fechaProceso,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estadoMovimiento != null" >
+        #{estadoMovimiento,jdbcType=DECIMAL},
+      </if>
+      <if test="uidTransaccion != null" >
+        #{uidTransaccion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.api.loyalty.persistence.accounts.activities.AccountActivityExample" resultType="java.lang.Integer" >
+    select count(*) from F_CUENTAS_MOVIMIENTOS_TBL MOVIMIENTO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update F_CUENTAS_MOVIMIENTOS_TBL
+    <set >
+      <if test="record.uidInstancia != null" >
+        UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCuentaMovimiento != null" >
+        ID_CUENTA_MOVIMIENTO = #{record.idCuentaMovimiento,jdbcType=DECIMAL},
+      </if>
+      <if test="record.idCuentaTarjeta != null" >
+        ID_CUENTA_TARJETA = #{record.idCuentaTarjeta,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fecha != null" >
+        FECHA = #{record.fecha,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.idTarjeta != null" >
+        ID_TARJETA = #{record.idTarjeta,jdbcType=DECIMAL},
+      </if>
+      <if test="record.idUsuario != null" >
+        ID_USUARIO = #{record.idUsuario,jdbcType=DECIMAL},
+      </if>
+      <if test="record.documento != null" >
+        DOCUMENTO = #{record.documento,jdbcType=VARCHAR},
+      </if>
+      <if test="record.concepto != null" >
+        CONCEPTO = #{record.concepto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entrada != null" >
+        ENTRADA = #{record.entrada,jdbcType=DECIMAL},
+      </if>
+      <if test="record.salida != null" >
+        SALIDA = #{record.salida,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fechaProceso != null" >
+        FECHA_PROCESO = #{record.fechaProceso,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.estadoMovimiento != null" >
+        ESTADO_MOVIMIENTO = #{record.estadoMovimiento,jdbcType=DECIMAL},
+      </if>
+      <if test="record.uidTransaccion != null" >
+        UID_TRANSACCION = #{record.uidTransaccion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update F_CUENTAS_MOVIMIENTOS_TBL
+    set UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      ID_CUENTA_MOVIMIENTO = #{record.idCuentaMovimiento,jdbcType=DECIMAL},
+      ID_CUENTA_TARJETA = #{record.idCuentaTarjeta,jdbcType=DECIMAL},
+      FECHA = #{record.fecha,jdbcType=TIMESTAMP},
+      ID_TARJETA = #{record.idTarjeta,jdbcType=DECIMAL},
+      ID_USUARIO = #{record.idUsuario,jdbcType=DECIMAL},
+      DOCUMENTO = #{record.documento,jdbcType=VARCHAR},
+      CONCEPTO = #{record.concepto,jdbcType=VARCHAR},
+      ENTRADA = #{record.entrada,jdbcType=DECIMAL},
+      SALIDA = #{record.salida,jdbcType=DECIMAL},
+      FECHA_PROCESO = #{record.fechaProceso,jdbcType=TIMESTAMP},
+      ESTADO_MOVIMIENTO = #{record.estadoMovimiento,jdbcType=DECIMAL},
+      UID_TRANSACCION = #{record.uidTransaccion,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.api.loyalty.persistence.accounts.activities.AccountActivity" >
+    update F_CUENTAS_MOVIMIENTOS_TBL
+    <set >
+      <if test="idCuentaTarjeta != null" >
+        ID_CUENTA_TARJETA = #{idCuentaTarjeta,jdbcType=DECIMAL},
+      </if>
+      <if test="fecha != null" >
+        FECHA = #{fecha,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idTarjeta != null" >
+        ID_TARJETA = #{idTarjeta,jdbcType=DECIMAL},
+      </if>
+      <if test="idUsuario != null" >
+        ID_USUARIO = #{idUsuario,jdbcType=DECIMAL},
+      </if>
+      <if test="documento != null" >
+        DOCUMENTO = #{documento,jdbcType=VARCHAR},
+      </if>
+      <if test="concepto != null" >
+        CONCEPTO = #{concepto,jdbcType=VARCHAR},
+      </if>
+      <if test="entrada != null" >
+        ENTRADA = #{entrada,jdbcType=DECIMAL},
+      </if>
+      <if test="salida != null" >
+        SALIDA = #{salida,jdbcType=DECIMAL},
+      </if>
+      <if test="fechaProceso != null" >
+        FECHA_PROCESO = #{fechaProceso,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estadoMovimiento != null" >
+        ESTADO_MOVIMIENTO = #{estadoMovimiento,jdbcType=DECIMAL},
+      </if>
+      <if test="uidTransaccion != null" >
+        UID_TRANSACCION = #{uidTransaccion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_CUENTA_MOVIMIENTO = #{idCuentaMovimiento,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.accounts.activities.AccountActivity" >
+    update F_CUENTAS_MOVIMIENTOS_TBL
+    set ID_CUENTA_TARJETA = #{idCuentaTarjeta,jdbcType=DECIMAL},
+      FECHA = #{fecha,jdbcType=TIMESTAMP},
+      ID_TARJETA = #{idTarjeta,jdbcType=DECIMAL},
+      ID_USUARIO = #{idUsuario,jdbcType=DECIMAL},
+      DOCUMENTO = #{documento,jdbcType=VARCHAR},
+      CONCEPTO = #{concepto,jdbcType=VARCHAR},
+      ENTRADA = #{entrada,jdbcType=DECIMAL},
+      SALIDA = #{salida,jdbcType=DECIMAL},
+      FECHA_PROCESO = #{fechaProceso,jdbcType=TIMESTAMP},
+      ESTADO_MOVIMIENTO = #{estadoMovimiento,jdbcType=DECIMAL},
+      UID_TRANSACCION = #{uidTransaccion,jdbcType=VARCHAR}
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_CUENTA_MOVIMIENTO = #{idCuentaMovimiento,jdbcType=DECIMAL}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.accounts.activities.AccountActivityExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from F_CUENTAS_MOVIMIENTOS_TBL MOVIMIENTO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <select id="selectFromViewPaginacion" resultMap="DTOResultMap" parameterType="map" resultSetType="SCROLL_INSENSITIVE" >
+      select 
+     
+    <if test="example.distinct" >
+      example.distinct
+    </if>
+    
+    <include refid="Paginacion_Column_List" />
+    from F_CUENTAS_MOVIMIENTOS_TBL MOVIMIENTO 
+    		left join F_TARJETAS_TBL TARJETA on (TARJETA.uid_instancia = MOVIMIENTO.UID_INSTANCIA and TARJETA.id_tarjeta = MOVIMIENTO.ID_TARJETA)
+			left join F_FIDELIZADOS_TBL FIDELIZADOS on (FIDELIZADOS.uid_instancia = TARJETA.uid_instancia and FIDELIZADOS.ID_FIDELIZADO = TARJETA.ID_FIDELIZADO)
+			left join D_TICKETS TICKET on (TICKET.UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR} AND TICKET.UID_TICKET = MOVIMIENTO.documento)
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause_Paginacion" />
+    </if>
+    
+    <if test="example.orderByClause != null" >
+      order by ${example.orderByClause}
+    </if>
+  </select>
+  
+    <sql id="Example_Where_Clause_Paginacion" >
+    <where >
+      <include refid="Instance_Where_Clause" />
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          AND
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+
+  <select id="consultarTotalSalida" resultType="java.lang.Double" parameterType="map" >
+	  select sum(salida)
+     
+    <if test="example.distinct" >
+      example.distinct
+    </if>
+    
+	    from F_CUENTAS_MOVIMIENTOS_TBL MOVIMIENTO     		
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause_Paginacion" />
+    </if>
+    
+  </select>
+  
+  
+  <select id="consultarTotalEntrada" resultType="java.lang.Double" parameterType="map" resultSetType="SCROLL_INSENSITIVE" >
+	  select sum(entrada)
+     
+    <if test="example.distinct" >
+      example.distinct
+    </if>
+    
+    	from F_CUENTAS_MOVIMIENTOS_TBL MOVIMIENTO		
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause_Paginacion" />
+    </if>
+    
+  </select>
+
+  <select id="consultarTransaccion" resultMap="DTOResultMap" parameterType="map" resultSetType="SCROLL_INSENSITIVE" >
+	select 
+	   MOVIMIENTO.ID_CUENTA_TARJETA,
+       MOVIMIENTO.FECHA,
+       MOVIMIENTO.ID_TARJETA,
+       MOVIMIENTO.ID_USUARIO,
+       MOVIMIENTO.DOCUMENTO,
+       MOVIMIENTO.CONCEPTO,
+       MOVIMIENTO.ENTRADA,
+       MOVIMIENTO.SALIDA,
+       MOVIMIENTO.FECHA_PROCESO,
+       MOVIMIENTO.ID_CUENTA_MOVIMIENTO,
+       MOVIMIENTO.ESTADO_MOVIMIENTO,
+       TARJETA.NUMERO_TARJETA,
+       TARJETA.CODTIPOTARJ,
+       TARJETA.DESTIPOTARJ,
+       MOVIMIENTO.UID_INSTANCIA,
+       UID_TRANSACCION
+		from F_CUENTAS_MOVIMIENTOS_TBL MOVIMIENTO 
+			inner join F_TARJETAS TARJETA on (MOVIMIENTO.UID_INSTANCIA = TARJETA.UID_INSTANCIA and MOVIMIENTO.ID_TARJETA = TARJETA.ID_TARJETA) 
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause_Paginacion" />
+    </if>
+    
+  </select>
+  
+  
+    
+  
+</mapper>

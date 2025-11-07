@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerActionMapper">
+  <resultMap id="BaseResultMap" type="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerAction">
+    <id column="UID_ACTIVIDAD" jdbcType="VARCHAR" property="uidActividad" />
+    <id column="ACTION_UID" jdbcType="VARCHAR" property="actionUid" />
+    <result column="ACTION_TYPE" jdbcType="DECIMAL" property="actionType" />
+    <result column="MANUAL_EXECUTION" jdbcType="DECIMAL" property="manualExecution" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler" />
+    <result column="NEXT_EXECUTION_DATE" jdbcType="TIMESTAMP" property="nextExecutionDate" />
+    <result column="TIME_INTERVAL" jdbcType="VARCHAR" property="timeInterval" />
+    <result column="CRON_INTERVAL" jdbcType="VARCHAR" property="cronInterval" />
+    <result column="LAST_ACTION_EXEC_UID" jdbcType="VARCHAR" property="lastActionExecUid" />
+    <result column="TRIGGER_UID" jdbcType="VARCHAR" property="triggerUid" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerAction">
+    <result column="ACTION_DATA" jdbcType="BLOB" property="actionData" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          AND
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.manualExecutionCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.manualExecutionCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    UID_ACTIVIDAD, ACTION_UID, ACTION_TYPE, MANUAL_EXECUTION, NEXT_EXECUTION_DATE, TIME_INTERVAL, 
+    CRON_INTERVAL, LAST_ACTION_EXEC_UID, TRIGGER_UID
+  </sql>
+  <sql id="Blob_Column_List">
+    ACTION_DATA
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerActionExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from LY_ACTIONS_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerActionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from LY_ACTIONS_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerActionKey" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from LY_ACTIONS_TBL
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and ACTION_UID = #{actionUid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerActionKey">
+    delete from LY_ACTIONS_TBL
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and ACTION_UID = #{actionUid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerActionExample">
+    delete from LY_ACTIONS_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerAction">
+    insert into LY_ACTIONS_TBL (UID_ACTIVIDAD, ACTION_UID, ACTION_TYPE, 
+      MANUAL_EXECUTION, 
+      NEXT_EXECUTION_DATE, TIME_INTERVAL, CRON_INTERVAL, 
+      LAST_ACTION_EXEC_UID, ACTION_DATA, TRIGGER_UID)
+    values (#{uidActividad,jdbcType=VARCHAR}, #{actionUid,jdbcType=VARCHAR}, #{actionType,jdbcType=DECIMAL}, 
+      #{manualExecution,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}, 
+      #{nextExecutionDate,jdbcType=TIMESTAMP}, #{timeInterval,jdbcType=VARCHAR}, #{cronInterval,jdbcType=VARCHAR}, 
+      #{lastActionExecUid,jdbcType=VARCHAR}, #{actionData,jdbcType=BLOB}, #{triggerUid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerAction">
+    insert into LY_ACTIONS_TBL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        UID_ACTIVIDAD,
+      </if>
+      <if test="actionUid != null">
+        ACTION_UID,
+      </if>
+      <if test="actionType != null">
+        ACTION_TYPE,
+      </if>
+      <if test="manualExecution != null">
+        MANUAL_EXECUTION,
+      </if>
+      <if test="nextExecutionDate != null">
+        NEXT_EXECUTION_DATE,
+      </if>
+      <if test="timeInterval != null">
+        TIME_INTERVAL,
+      </if>
+      <if test="cronInterval != null">
+        CRON_INTERVAL,
+      </if>
+      <if test="lastActionExecUid != null">
+        LAST_ACTION_EXEC_UID,
+      </if>
+      <if test="actionData != null">
+        ACTION_DATA,
+      </if>
+      <if test="triggerUid != null">
+        TRIGGER_UID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        #{uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="actionUid != null">
+        #{actionUid,jdbcType=VARCHAR},
+      </if>
+      <if test="actionType != null">
+        #{actionType,jdbcType=DECIMAL},
+      </if>
+      <if test="manualExecution != null">
+        #{manualExecution,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      </if>
+      <if test="nextExecutionDate != null">
+        #{nextExecutionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeInterval != null">
+        #{timeInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="cronInterval != null">
+        #{cronInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="lastActionExecUid != null">
+        #{lastActionExecUid,jdbcType=VARCHAR},
+      </if>
+      <if test="actionData != null">
+        #{actionData,jdbcType=BLOB},
+      </if>
+      <if test="triggerUid != null">
+        #{triggerUid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerActionExample" resultType="java.lang.Long">
+    select count(*) from LY_ACTIONS_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update LY_ACTIONS_TBL
+    <set>
+      <if test="record.uidActividad != null">
+        UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actionUid != null">
+        ACTION_UID = #{record.actionUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actionType != null">
+        ACTION_TYPE = #{record.actionType,jdbcType=DECIMAL},
+      </if>
+      <if test="record.manualExecution != null">
+        MANUAL_EXECUTION = #{record.manualExecution,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      </if>
+      <if test="record.nextExecutionDate != null">
+        NEXT_EXECUTION_DATE = #{record.nextExecutionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.timeInterval != null">
+        TIME_INTERVAL = #{record.timeInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cronInterval != null">
+        CRON_INTERVAL = #{record.cronInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastActionExecUid != null">
+        LAST_ACTION_EXEC_UID = #{record.lastActionExecUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actionData != null">
+        ACTION_DATA = #{record.actionData,jdbcType=BLOB},
+      </if>
+      <if test="triggerUid != null">
+        TRIGGER_UID = #{triggerUid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update LY_ACTIONS_TBL
+    set UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      ACTION_UID = #{record.actionUid,jdbcType=VARCHAR},
+      ACTION_TYPE = #{record.actionType,jdbcType=DECIMAL},
+      MANUAL_EXECUTION = #{record.manualExecution,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      NEXT_EXECUTION_DATE = #{record.nextExecutionDate,jdbcType=TIMESTAMP},
+      TIME_INTERVAL = #{record.timeInterval,jdbcType=VARCHAR},
+      CRON_INTERVAL = #{record.cronInterval,jdbcType=VARCHAR},
+      LAST_ACTION_EXEC_UID = #{record.lastActionExecUid,jdbcType=VARCHAR},
+      ACTION_DATA = #{record.actionData,jdbcType=BLOB},
+      TRIGGER_UID = #{triggerUid,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update LY_ACTIONS_TBL
+    set UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      ACTION_UID = #{record.actionUid,jdbcType=VARCHAR},
+      ACTION_TYPE = #{record.actionType,jdbcType=DECIMAL},
+      MANUAL_EXECUTION = #{record.manualExecution,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      NEXT_EXECUTION_DATE = #{record.nextExecutionDate,jdbcType=TIMESTAMP},
+      TIME_INTERVAL = #{record.timeInterval,jdbcType=VARCHAR},
+      CRON_INTERVAL = #{record.cronInterval,jdbcType=VARCHAR},
+      LAST_ACTION_EXEC_UID = #{record.lastActionExecUid,jdbcType=VARCHAR},
+      TRIGGER_UID = #{triggerUid,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerAction">
+    update LY_ACTIONS_TBL
+    <set>
+      <if test="actionType != null">
+        ACTION_TYPE = #{actionType,jdbcType=DECIMAL},
+      </if>
+      <if test="manualExecution != null">
+        MANUAL_EXECUTION = #{manualExecution,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      </if>
+      <if test="nextExecutionDate != null">
+        NEXT_EXECUTION_DATE = #{nextExecutionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeInterval != null">
+        TIME_INTERVAL = #{timeInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="cronInterval != null">
+        CRON_INTERVAL = #{cronInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="lastActionExecUid != null">
+        LAST_ACTION_EXEC_UID = #{lastActionExecUid,jdbcType=VARCHAR},
+      </if>
+      <if test="actionData != null">
+        ACTION_DATA = #{actionData,jdbcType=BLOB},
+      </if>
+      <if test="triggerUid != null">
+        TRIGGER_UID = #{triggerUid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and ACTION_UID = #{actionUid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerAction">
+    update LY_ACTIONS_TBL
+    set ACTION_TYPE = #{actionType,jdbcType=DECIMAL},
+      MANUAL_EXECUTION = #{manualExecution,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      NEXT_EXECUTION_DATE = #{nextExecutionDate,jdbcType=TIMESTAMP},
+      TIME_INTERVAL = #{timeInterval,jdbcType=VARCHAR},
+      CRON_INTERVAL = #{cronInterval,jdbcType=VARCHAR},
+      LAST_ACTION_EXEC_UID = #{lastActionExecUid,jdbcType=VARCHAR},
+      ACTION_DATA = #{actionData,jdbcType=BLOB},
+      TRIGGER_UID = #{triggerUid,jdbcType=VARCHAR}
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and ACTION_UID = #{actionUid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerAction">
+    update LY_ACTIONS_TBL
+    set ACTION_TYPE = #{actionType,jdbcType=DECIMAL},
+      MANUAL_EXECUTION = #{manualExecution,jdbcType=DECIMAL,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler},
+      NEXT_EXECUTION_DATE = #{nextExecutionDate,jdbcType=TIMESTAMP},
+      TIME_INTERVAL = #{timeInterval,jdbcType=VARCHAR},
+      CRON_INTERVAL = #{cronInterval,jdbcType=VARCHAR},
+      LAST_ACTION_EXEC_UID = #{lastActionExecUid,jdbcType=VARCHAR},
+      TRIGGER_UID = #{triggerUid,jdbcType=VARCHAR}
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and ACTION_UID = #{actionUid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByExampleWithBLOBsWithRowbounds" parameterType="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerActionExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from LY_ACTIONS_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExampleWithRowbounds" parameterType="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerActionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from LY_ACTIONS_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <resultMap id="DTOResultMap" type="com.comerzzia.api.loyalty.persistence.triggers.actions.dto.TriggerActionDTO">
+    <id column="UID_ACTIVIDAD" jdbcType="VARCHAR" property="uidActividad" />
+    <id column="ACTION_UID" jdbcType="VARCHAR" property="actionUid" />
+    <result column="ACTION_TYPE" jdbcType="DECIMAL" property="actionType" />
+    <result column="MANUAL_EXECUTION" jdbcType="DECIMAL" property="manualExecution" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler" />
+    <result column="NEXT_EXECUTION_DATE" jdbcType="TIMESTAMP" property="nextExecutionDate" />
+    <result column="TIME_INTERVAL" jdbcType="VARCHAR" property="timeInterval" />
+    <result column="CRON_INTERVAL" jdbcType="VARCHAR" property="cronInterval" />
+    <result column="LAST_ACTION_EXEC_UID" jdbcType="VARCHAR" property="lastActionExecUid" />
+    <result column="TRIGGER_UID" jdbcType="VARCHAR" property="triggerUid" />
+      
+    <association property="lastActionExecution"
+             javaType="com.comerzzia.api.loyalty.persistence.triggers.actions.executions.TriggerActionExecution"                 
+             resultMap="com.comerzzia.api.loyalty.persistence.triggers.actions.executions.TriggerActionExecutionMapper.BaseResultMap"                
+    />  
+  </resultMap>
+  
+  <sql id="DTO_Column_List">
+       ACTION.UID_ACTIVIDAD, ACTION.ACTION_UID, ACTION.ACTION_TYPE, ACTION.MANUAL_EXECUTION,
+       ACTION.ACTION_DATA, ACTION.NEXT_EXECUTION_DATE, ACTION.TIME_INTERVAL,
+       ACTION.CRON_INTERVAL, ACTION.LAST_ACTION_EXEC_UID, ACTION.TRIGGER_UID,
+       AEXEC.ACC_EXECUTION_UID, 
+       AEXEC.TRIGGER_EXEC_UID,
+       AEXEC.MANUAL_EXECUTION, 
+       AEXEC.START_DATE, 
+       AEXEC.END_DATE,
+       AEXEC.USER_ID, 
+       AEXEC.STATUS_ID, 
+       AEXEC.STATUS_TEXT
+  </sql>
+  
+  <select id="selectDTOByExample" parameterType="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerActionExample" resultMap="DTOResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="DTO_Column_List" />
+FROM LY_ACTIONS_TBL ACTION
+   LEFT JOIN LY_ACTIONS_EXEC_TBL AEXEC ON (AEXEC.UID_ACTIVIDAD = ACTION.UID_ACTIVIDAD AND AEXEC.ACC_EXECUTION_UID = ACTION.LAST_ACTION_EXEC_UID)
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <select id="selectDTOByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.triggers.actions.TriggerActionKey" resultMap="DTOResultMap">
+    select 
+    <include refid="DTO_Column_List" />
+FROM LY_ACTIONS_TBL ACTION
+   LEFT JOIN LY_ACTIONS_EXEC_TBL AEXEC ON (AEXEC.UID_ACTIVIDAD = ACTION.UID_ACTIVIDAD AND AEXEC.ACC_EXECUTION_UID = ACTION.LAST_ACTION_EXEC_UID)
+    where ACTION.UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and ACTION.ACTION_UID = #{actionUid,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comerzzia.api.loyalty.persistence.triggers.executions.data.TriggerExecutionDataMapper">
+  <resultMap id="BaseResultMap" type="com.comerzzia.api.loyalty.persistence.triggers.executions.data.TriggerExecutionDataKey">
+    <id column="UID_ACTIVIDAD" jdbcType="VARCHAR" property="uidActividad" />
+    <id column="TRIGGER_EXEC_UID" jdbcType="VARCHAR" property="triggerExecUid" />
+    <id column="ID_FIDELIZADO" jdbcType="DECIMAL" property="idFidelizado" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      DATA.UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          AND
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    UID_ACTIVIDAD, TRIGGER_EXEC_UID, ID_FIDELIZADO
+  </sql>
+  <select id="selectByExample" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.data.TriggerExecutionDataExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from LY_TRIGGERS_EXEC_DATA_TBL DATA
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.data.TriggerExecutionDataKey">
+    delete from LY_TRIGGERS_EXEC_DATA_TBL
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and TRIGGER_EXEC_UID = #{triggerExecUid,jdbcType=VARCHAR}
+      and ID_FIDELIZADO = #{idFidelizado,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.data.TriggerExecutionDataExample">
+    delete from LY_TRIGGERS_EXEC_DATA_TBL DATA
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.data.TriggerExecutionDataKey">
+    insert into LY_TRIGGERS_EXEC_DATA_TBL (UID_ACTIVIDAD, TRIGGER_EXEC_UID, ID_FIDELIZADO
+      )
+    values (#{uidActividad,jdbcType=VARCHAR}, #{triggerExecUid,jdbcType=VARCHAR}, #{idFidelizado,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.data.TriggerExecutionDataKey">
+    insert into LY_TRIGGERS_EXEC_DATA_TBL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        UID_ACTIVIDAD,
+      </if>
+      <if test="triggerExecUid != null">
+        TRIGGER_EXEC_UID,
+      </if>
+      <if test="idFidelizado != null">
+        ID_FIDELIZADO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uidActividad != null">
+        #{uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="triggerExecUid != null">
+        #{triggerExecUid,jdbcType=VARCHAR},
+      </if>
+      <if test="idFidelizado != null">
+        #{idFidelizado,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.data.TriggerExecutionDataExample" resultType="java.lang.Long">
+    select count(*) from LY_TRIGGERS_EXEC_DATA_TBL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update LY_TRIGGERS_EXEC_DATA_TBL
+    <set>
+      <if test="record.uidActividad != null">
+        UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.triggerExecUid != null">
+        TRIGGER_EXEC_UID = #{record.triggerExecUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idFidelizado != null">
+        ID_FIDELIZADO = #{record.idFidelizado,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update LY_TRIGGERS_EXEC_DATA_TBL
+    set UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      TRIGGER_EXEC_UID = #{record.triggerExecUid,jdbcType=VARCHAR},
+      ID_FIDELIZADO = #{record.idFidelizado,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.data.TriggerExecutionDataExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from LY_TRIGGERS_EXEC_DATA_TBL DATA
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <resultMap id="DTOResultMap" type="com.comerzzia.api.loyalty.persistence.triggers.executions.data.dto.TriggerExecutionDataDTO">
+    <id column="UID_ACTIVIDAD" jdbcType="VARCHAR" property="uidActividad" />
+    <id column="TRIGGER_EXEC_UID" jdbcType="VARCHAR" property="triggerExecUid" />
+    <id column="ID_FIDELIZADO" jdbcType="DECIMAL" property="idFidelizado" />
+    <result column="NOMBRE" jdbcType="VARCHAR" property="nombre" />
+    <result column="APELLIDOS" jdbcType="VARCHAR" property="apellidos" />
+    <result column="DOMICILIO" jdbcType="VARCHAR" property="domicilio" />
+    <result column="POBLACION" jdbcType="VARCHAR" property="poblacion" />
+    <result column="LOCALIDAD" jdbcType="VARCHAR" property="localidad" />
+    <result column="PROVINCIA" jdbcType="VARCHAR" property="provincia" /> 
+    <result column="CP" jdbcType="VARCHAR" property="cp" /> 
+    <result column="CODPAIS" jdbcType="VARCHAR" property="codPais" /> 
+    <result column="DOCUMENTO" jdbcType="VARCHAR" property="documento" /> 
+    <result column="OBSERVACIONES" property="observaciones" jdbcType="VARCHAR" />
+    <result column="FECHA_NACIMIENTO" property="fechaNacimiento" jdbcType="TIMESTAMP" />
+    <result column="SEXO" property="sexo" jdbcType="CHAR" />
+    <result column="CODESTCIVIL" property="codEstCivil" jdbcType="CHAR" />
+    <result column="ACTIVO" property="activo" jdbcType="VARCHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+    <result column="FECHA_ALTA" property="fechaAlta" jdbcType="TIMESTAMP" />
+    <result column="FECHA_MODIFICACION" property="fechaModificacion" jdbcType="TIMESTAMP" />
+    <result column="FECHA_BAJA" property="fechaBaja" jdbcType="TIMESTAMP" />
+    <result column="CODFIDELIZADO" property="codFidelizado" jdbcType="VARCHAR" />
+    <result column="DESPAIS" property="desPais" jdbcType="VARCHAR" />
+    <result column="DESESTCIVIL" property="desEstCivil" jdbcType="VARCHAR" />
+    <result column="CODTIPOIDEN" property="codTipoIden" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="DTO_Column_List">
+       DATA.UID_ACTIVIDAD, DATA.TRIGGER_EXEC_UID, DATA.ID_FIDELIZADO,
+       FID.NOMBRE, FID.APELLIDOS, FID.DOMICILIO, FID.POBLACION, 
+       FID.LOCALIDAD, FID.PROVINCIA, FID.CP, FID.CODPAIS, FID.DOCUMENTO,
+       FID.FECHA_ALTA, FID.CODFIDELIZADO, FID.ACTIVO, FID.CODESTCIVIL, 
+       FID.CODTIPOIDEN, FID.FECHA_BAJA, FID.FECHA_NACIMIENTO,
+       FID.SEXO, FID.OBSERVACIONES
+  </sql>
+  
+   <select id="selectDTOByExample" parameterType="com.comerzzia.api.loyalty.persistence.triggers.executions.data.TriggerExecutionDataExample" resultMap="DTOResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="DTO_Column_List" />
+    from LY_TRIGGERS_EXEC_DATA_TBL DATA
+    inner join D_ACTIVIDADES_TBL ACT on (ACT.UID_ACTIVIDAD = DATA.UID_ACTIVIDAD)
+    inner join F_FIDELIZADOS_TBL FID on (FID.UID_INSTANCIA = ACT.UID_INSTANCIA and FID.ID_FIDELIZADO = DATA.ID_FIDELIZADO)
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

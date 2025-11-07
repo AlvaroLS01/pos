@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comerzzia.api.loyalty.persistence.coupons.dto.CouponDTOMapper">
+  <resultMap id="BaseResultMap" type="com.comerzzia.api.loyalty.persistence.coupons.dto.CouponDTO">
+    <id column="UID_ACTIVIDAD" jdbcType="VARCHAR" property="uidActividad" />
+    <id column="COUPON_ID" jdbcType="DECIMAL" property="couponId" />
+    <result column="COUPON_CODE" jdbcType="VARCHAR" property="couponCode" />
+    <result column="COUPON_NAME" jdbcType="VARCHAR" property="couponName" />
+    <result column="COUPON_DESCRIPTION" jdbcType="VARCHAR" property="couponDescription" />
+    <result column="START_DATE" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="MANUAL_SELECTION" jdbcType="DECIMAL" property="manualSelection" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler" />
+    <result column="COUPON_TYPE_CODE" jdbcType="VARCHAR" property="couponTypeCode" />
+    <result column="PROMOTION_ID" jdbcType="DECIMAL" property="promotionId" />
+    <result column="PRIORITY" jdbcType="DECIMAL" property="priority" />
+    <result column="BALANCE" jdbcType="DECIMAL" property="balance" />
+    <result column="IMAGE_URL" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="ACTIVE" jdbcType="DECIMAL" property="active" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler" />
+    <result column="LOYAL_CUSTOMER_ID" jdbcType="VARCHAR" property="loyalCustomerId" />
+    <result column="CREATION_DATE" jdbcType="TIMESTAMP" property="creationtDate" />
+         
+    <result column="UID_ACTIVIDAD" jdbcType="VARCHAR" property="uses.uidActividad" />
+    <result column="COUPON_ID" jdbcType="DECIMAL" property="uses.couponId" />
+    <result column="USE_CLASS_ID" jdbcType="VARCHAR" property="uses.classId" />
+    <result column="USE_OBJECT_ID" jdbcType="VARCHAR" property="uses.objectId" />
+    <result column="MAX_USES" jdbcType="DECIMAL" property="uses.maxUses" />
+    <result column="USES" jdbcType="DECIMAL" property="uses.uses" />
+    <result column="USED" jdbcType="DECIMAL" property="uses.used" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler" />
+    <result column="TOTAL_DISCOUNT" jdbcType="DECIMAL" property="uses.totalDiscount" />
+    <result column="TOTAL_SALE" jdbcType="DECIMAL" property="uses.totalSale" />
+    <result column="FIRST_USE" jdbcType="TIMESTAMP" property="uses.firstUse" />
+    <result column="LAST_USE" jdbcType="TIMESTAMP" property="uses.lastUse" />
+    
+    <result column="PROMOTION_ID" jdbcType="DECIMAL" property="promotion.promotionId" />
+    <result column="PROM_DESCRIPTION" jdbcType="VARCHAR" property="promotion.description" />
+    <result column="PROM_START_DATE" jdbcType="TIMESTAMP" property="promotion.startDate" />
+    <result column="PROM_END_DATE" jdbcType="TIMESTAMP" property="promotion.endDate" />
+  </resultMap>
+  
+  <resultMap id="CouponCustomerUseDTOResultMap" type="com.comerzzia.api.loyalty.persistence.coupons.dto.CouponCustomerUseDTO">
+    <id column="UID_ACTIVIDAD" jdbcType="VARCHAR" property="uidActividad" />
+    <id column="COUPON_ID" jdbcType="DECIMAL" property="couponId" />
+    <result column="COUPON_CODE" jdbcType="VARCHAR" property="couponCode" />
+    <result column="COUPON_NAME" jdbcType="VARCHAR" property="couponName" />
+    <result column="COUPON_DESCRIPTION" jdbcType="VARCHAR" property="couponDescription" />
+    <result column="START_DATE" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="MANUAL_SELECTION" jdbcType="DECIMAL" property="manualSelection" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler" />
+    <result column="COUPON_TYPE_CODE" jdbcType="VARCHAR" property="couponTypeCode" />
+    <result column="PROMOTION_ID" jdbcType="DECIMAL" property="promotionId" />
+    <result column="PRIORITY" jdbcType="DECIMAL" property="priority" />
+    <result column="BALANCE" jdbcType="DECIMAL" property="balance" />
+    <result column="IMAGE_URL" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="ACTIVE" jdbcType="DECIMAL" property="active" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler" />
+    <result column="CREATION_DATE" jdbcType="TIMESTAMP" property="creationtDate" />
+    <result column="LOYAL_CUSTOMER_ID" jdbcType="VARCHAR" property="loyalCustomerId" />
+    
+    <result column="UID_ACTIVIDAD" jdbcType="VARCHAR" property="uses.uidActividad" />
+    <result column="COUPON_ID" jdbcType="DECIMAL" property="uses.couponId" />
+    <result column="USE_CLASS_ID" jdbcType="VARCHAR" property="uses.classId" />
+    <result column="USE_OBJECT_ID" jdbcType="VARCHAR" property="uses.objectId" />
+    <result column="MAX_USES" jdbcType="DECIMAL" property="uses.maxUses" />
+    <result column="USES" jdbcType="DECIMAL" property="uses.uses" />
+    <result column="USED" jdbcType="DECIMAL" property="uses.used" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler" />
+    <result column="TOTAL_DISCOUNT" jdbcType="DECIMAL" property="uses.totalDiscount" />
+    <result column="FIRST_USE" jdbcType="TIMESTAMP" property="uses.firstUse" />
+    <result column="LAST_USE" jdbcType="TIMESTAMP" property="uses.lastUse" />
+
+    <result column="UID_ACTIVIDAD" jdbcType="VARCHAR" property="customerUses.uidActividad" />
+    <result column="COUPON_ID" jdbcType="DECIMAL" property="customerUses.couponId" />
+    <result column="CUS_CLASS_ID" jdbcType="VARCHAR" property="customerUses.classId" />
+    <result column="CUS_OBJECT_ID" jdbcType="VARCHAR" property="customerUses.objectId" />
+    <result column="CUS_MAX_USES" jdbcType="DECIMAL" property="customerUses.maxUses" />
+    <result column="CUS_USES" jdbcType="DECIMAL" property="customerUses.uses" />
+    <result column="CUS_USED" jdbcType="DECIMAL" property="customerUses.used" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler" />
+    <result column="CUS_TOTAL_DISCOUNT" jdbcType="DECIMAL" property="customerUses.totalDiscount" />
+    <result column="CUS_FIRST_USE" jdbcType="TIMESTAMP" property="customerUses.firstUse" />
+    <result column="CUS_LAST_USE" jdbcType="TIMESTAMP" property="customerUses.lastUse" />
+    <result column="CUS_LAST_TERMINAL_ID" jdbcType="VARCHAR" property="customerUses.lastTerminalId" />
+    <result column="CUS_LOCK_BY_TERMINAL_ID" jdbcType="VARCHAR" property="customerUses.lockByTerminalId" />
+    <result column="CUS_LOCK_DATE" jdbcType="TIMESTAMP" property="customerUses.lockDate" />
+  </resultMap>  
+  
+  <sql id="Example_Where_Clause">
+    <where>
+      CUP.UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR} 
+      <if test="filter.loyalCustomerId != null">
+         AND ( 
+              ENL.OBJECT_ID = '${filter.loyalCustomerId}'
+         <if test="filter.includeAnonymousCoupons == true">
+              OR (ENL.OBJECT_ID = '0' AND CUP.MANUAL_SELECTION = 1)
+         </if>
+         )                  
+      </if>
+      <if test="filter.active != null">
+         AND CUP.ACTIVE = #{filter.active,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+      </if>
+      <if test="filter.manualSelection != null">
+         AND CUP.MANUAL_SELECTION = #{filter.manualSelection,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+      </if>      
+      <if test="filter.used != null">
+         <if test="filter.used">
+         AND CUPUSE.USED = #{filter.used,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+         </if>
+         <if test="!filter.used">
+         AND (CUPUSE.USED IS NULL OR CUPUSE.USED = #{filter.used,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler})
+         </if>
+      </if>
+      <if test="filter.valid != null">
+         AND
+         <if test="filter.valid == false">
+            NOT
+         </if>          
+            ( 
+               (CUP.START_DATE IS NULL AND CUP.END_DATE IS NULL) OR               
+               (CUP.START_DATE &lt;= #{filter.validDate,jdbcType=TIMESTAMP} AND CUP.END_DATE IS NULL) OR
+               (CUP.END_DATE &gt;= #{filter.validDate,jdbcType=TIMESTAMP} AND CUP.START_DATE IS NULL) OR
+               (#{filter.validDate,jdbcType=TIMESTAMP} BETWEEN CUP.START_DATE AND CUP.END_DATE)
+               <if test="filter.validInFuture == true">
+                  OR (CUP.START_DATE > #{filter.validDate,jdbcType=TIMESTAMP})
+               </if>
+             )
+      </if>
+      <if test="filter.links != null">
+         AND CUP.COUPON_ID IN 
+          (
+             SELECT COUPON_ID FROM LY_COUPONS_LINKS_TBL WHERE UID_ACTIVIDAD =  #{uidActividad,jdbcType=VARCHAR} AND
+             (
+             <trim prefix="(" prefixOverrides="or" suffix=")">
+                <foreach collection="filter.links" item="link">
+                   or (CLASS_ID = #{link.classId,jdbcType=STRING} AND OBJECT_ID = #{link.objectId,jdbcType=STRING})
+                </foreach>
+             </trim>
+             )             
+          )
+      </if>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          AND
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.manualSelectionCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.activeCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>      
+    </where>
+  </sql>
+  
+  <sql id="Base_Column_List">
+    CUP.UID_ACTIVIDAD, CUP.COUPON_ID, CUP.COUPON_CODE, 
+    (CASE WHEN I18NNAME.VALOR IS NULL THEN CUP.COUPON_NAME ELSE I18NNAME.VALOR END) AS COUPON_NAME,
+    (CASE WHEN I18NDES.VALOR IS NULL THEN CUP.COUPON_DESCRIPTION ELSE I18NDES.VALOR END) AS COUPON_DESCRIPTION, 
+    CUP.START_DATE, CUP.END_DATE,
+    CUP.MANUAL_SELECTION, CUP.COUPON_TYPE_CODE, CUP.PROMOTION_ID,
+    CUP.PRIORITY, CUP.BALANCE, CUP.IMAGE_URL, CUP.ACTIVE, CUP.CREATION_DATE,  
+    ENL.OBJECT_ID AS LOYAL_CUSTOMER_ID,
+    CUPUSE.CLASS_ID AS USE_CLASS_ID,
+    CUPUSE.OBJECT_ID AS USE_OBJECT_ID,
+    CUPUSE.MAX_USES, 
+    CUPUSE.USES, 
+    CUPUSE.USED, 
+    CUPUSE.TOTAL_DISCOUNT, 
+    CUPUSE.FIRST_USE,
+    CUPUSE.LAST_USE, 
+    CUPUSE.LAST_TERMINAL_ID,
+    CUPUSE.TOTAL_SALE,
+    PROM.DESCRIPCION AS PROM_DESCRIPTION,
+    PROM.FECHA_INICIO AS PROM_START_DATE,
+    PROM.FECHA_FIN AS PROM_END_DATE
+  </sql>  
+  
+  <sql id="CouponCustomerUseDTO_Column_List">
+    CUP.UID_ACTIVIDAD, CUP.COUPON_ID, CUP.COUPON_CODE, 
+    (CASE WHEN I18NNAME.VALOR IS NULL THEN CUP.COUPON_NAME ELSE I18NNAME.VALOR END) AS COUPON_NAME,
+    (CASE WHEN I18NDES.VALOR IS NULL THEN CUP.COUPON_DESCRIPTION ELSE I18NDES.VALOR END) AS COUPON_DESCRIPTION, 
+    CUP.START_DATE, CUP.END_DATE,
+    CUP.MANUAL_SELECTION, CUP.COUPON_TYPE_CODE, CUP.PROMOTION_ID,
+    CUP.PRIORITY, CUP.BALANCE, CUP.IMAGE_URL, CUP.ACTIVE, CUP.CREATION_DATE, 
+    ENL.OBJECT_ID AS LOYAL_CUSTOMER_ID,
+    CUPUSE.CLASS_ID AS USE_CLASS_ID,
+    CUPUSE.OBJECT_ID AS USE_OBJECT_ID,
+    CUPUSE.MAX_USES, 
+    CUPUSE.USES, 
+    CUPUSE.USED, 
+    CUPUSE.TOTAL_DISCOUNT, 
+    CUPUSE.FIRST_USE,
+    CUPUSE.LAST_USE, 
+    CUPUSE.LAST_TERMINAL_ID, 
+    CUSUSE.CLASS_ID AS CUS_CLASS_ID,
+    CUSUSE.OBJECT_ID AS CUS_OBJECT_ID,
+    CUSUSE.MAX_USES AS CUS_MAX_USES, 
+    CUSUSE.USES AS CUS_USES, 
+    CUSUSE.USED AS CUS_USED, 
+    CUSUSE.TOTAL_DISCOUNT AS CUS_TOTAL_DISCOUNT, 
+    CUSUSE.FIRST_USE AS CUS_FIRST_USE,
+    CUSUSE.LAST_USE AS CUS_LAST_USE, 
+    CUSUSE.LAST_TERMINAL_ID AS CUS_LAST_TERMINAL_ID, 
+    CUSUSE.LOCK_BY_TERMINAL_ID AS CUS_LOCK_BY_TERMINAL_ID,
+    CUSUSE.LOCK_DATE AS CUS_LOCK_DATE
+  </sql>   
+  <select id="selectByExample" parameterType="com.comerzzia.api.loyalty.persistence.coupons.dto.CouponDTOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from LY_COUPONS_TBL CUP
+       LEFT JOIN D_PROMOCIONES_CAB_TBL PROM ON (PROM.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND PROM.ID_PROMOCION = CUP.PROMOTION_ID)
+       INNER JOIN LY_COUPONS_USES_TBL CUPUSE ON (CUPUSE.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND CUPUSE.CLASS_ID = 'LY_COUPONS_TBL.COUPON_ID' AND CUPUSE.OBJECT_ID = CUP.COUPON_ID AND CUPUSE.COUPON_ID = CUP.COUPON_ID)
+       LEFT JOIN LY_COUPONS_LINKS_TBL ENL ON (ENL.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND ENL.CLASS_ID = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO' AND ENL.COUPON_ID = CUP.COUPON_ID)       
+       LEFT JOIN D_I18N_TBL I18NNAME ON (I18NNAME.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND I18NNAME.ID_CLASE = 'LY_COUPONS_TBL.COUPON_NAME' AND I18NNAME.ID_OBJETO = CUP.COUPON_ID AND I18NNAME.CODLENGUA = #{filter.languageCode,jdbcType=VARCHAR}) 
+       LEFT JOIN D_I18N_TBL I18NDES ON (I18NDES.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND I18NDES.ID_CLASE = 'LY_COUPONS_TBL.COUPON_DESCRIPTION' AND I18NDES.ID_OBJETO = CUP.COUPON_ID AND I18NDES.CODLENGUA = #{filter.languageCode,jdbcType=VARCHAR})       
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByUk" parameterType="com.comerzzia.api.loyalty.persistence.coupons.CouponUk" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from LY_COUPONS_TBL CUP
+       LEFT JOIN D_PROMOCIONES_CAB_TBL PROM ON (PROM.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND PROM.ID_PROMOCION = CUP.PROMOTION_ID)
+       INNER JOIN LY_COUPONS_USES_TBL CUPUSE ON (CUPUSE.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND CUPUSE.CLASS_ID = 'LY_COUPONS_TBL.COUPON_ID' AND CUPUSE.OBJECT_ID = CUP.COUPON_ID AND CUPUSE.COUPON_ID = CUP.COUPON_ID)
+       LEFT JOIN LY_COUPONS_LINKS_TBL ENL ON (ENL.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND ENL.CLASS_ID = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO' AND ENL.COUPON_ID = CUP.COUPON_ID) 
+       LEFT JOIN D_I18N_TBL I18NNAME ON (I18NNAME.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND I18NNAME.ID_CLASE = 'LY_COUPONS_TBL.COUPON_NAME' AND I18NNAME.ID_OBJETO = CUP.COUPON_ID AND I18NNAME.CODLENGUA = #{languageCode,jdbcType=VARCHAR}) 
+       LEFT JOIN D_I18N_TBL I18NDES ON (I18NDES.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND I18NDES.ID_CLASE = 'LY_COUPONS_TBL.COUPON_DESCRIPTION' AND I18NDES.ID_OBJETO = CUP.COUPON_ID AND I18NDES.CODLENGUA = #{languageCode,jdbcType=VARCHAR})             
+    where CUP.UID_ACTIVIDAD = #{key.uidActividad,jdbcType=VARCHAR}
+      and CUP.COUPON_CODE = #{key.couponCode,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByCustomer" parameterType="com.comerzzia.api.loyalty.persistence.coupons.dto.CouponDTOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+  	<include refid="Base_Column_List" />
+       FROM LY_COUPONS_LINKS_TBL ENL
+       INNER JOIN LY_COUPONS_TBL CUP ON ENL.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND ENL.COUPON_ID = CUP.COUPON_ID
+       LEFT JOIN D_PROMOCIONES_CAB_TBL PROM ON (PROM.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND PROM.ID_PROMOCION = CUP.PROMOTION_ID)
+       LEFT JOIN LY_COUPONS_USES_TBL CUPUSE ON (CUPUSE.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD 
+                                                AND CUPUSE.CLASS_ID = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO' 
+                                                AND CUPUSE.OBJECT_ID = '${filter.loyalCustomerId}' 
+                                                AND CUPUSE.COUPON_ID = CUP.COUPON_ID)   
+       LEFT JOIN D_I18N_TBL I18NNAME ON (I18NNAME.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND I18NNAME.ID_CLASE = 'LY_COUPONS_TBL.COUPON_NAME' AND I18NNAME.ID_OBJETO = CUP.COUPON_ID AND I18NNAME.CODLENGUA = #{filter.languageCode,jdbcType=VARCHAR}) 
+       LEFT JOIN D_I18N_TBL I18NDES ON (I18NDES.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND I18NDES.ID_CLASE = 'LY_COUPONS_TBL.COUPON_DESCRIPTION' AND I18NDES.ID_OBJETO = CUP.COUPON_ID AND I18NDES.CODLENGUA = #{filter.languageCode,jdbcType=VARCHAR})       
+
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause_Customer" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <sql id="Example_Where_Clause_Customer">
+    <where>
+      ENL.UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR} 
+      AND ENL.CLASS_ID = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO'
+      <if test="filter.loyalCustomerId != null">
+         AND ( 
+              ENL.OBJECT_ID = '${filter.loyalCustomerId}'
+         <if test="filter.includeAnonymousCoupons == true">
+              OR (ENL.OBJECT_ID = '0' AND CUP.MANUAL_SELECTION = 1)
+         </if>
+         )                  
+      </if>
+      <if test="filter.active != null">
+         AND CUP.ACTIVE = #{filter.active,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+      </if>
+      <if test="filter.manualSelection != null">
+         AND CUP.MANUAL_SELECTION = #{filter.manualSelection,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+      </if>      
+      <if test="filter.used != null">
+         <if test="filter.used">
+         AND CUPUSE.USED = #{filter.used,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+         </if>
+         <if test="!filter.used">
+         AND (CUPUSE.USED IS NULL OR CUPUSE.USED = #{filter.used,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler})
+         </if>
+      </if>
+      <if test="filter.valid != null">
+         AND
+         <if test="filter.valid == false">
+            NOT
+         </if>          
+            ( 
+               (CUP.START_DATE IS NULL AND CUP.END_DATE IS NULL) OR               
+               (CUP.START_DATE &lt;= #{filter.validDate,jdbcType=TIMESTAMP} AND CUP.END_DATE IS NULL) OR
+               (CUP.END_DATE &gt;= #{filter.validDate,jdbcType=TIMESTAMP} AND CUP.START_DATE IS NULL) OR
+               (#{filter.validDate,jdbcType=TIMESTAMP} BETWEEN CUP.START_DATE AND CUP.END_DATE)
+               <if test="filter.validInFuture == true">
+                  OR (CUP.START_DATE > #{filter.validDate,jdbcType=TIMESTAMP})
+               </if>
+             )
+      </if>
+      <if test="filter.links != null">
+         AND CUP.COUPON_ID IN 
+          (
+             SELECT COUPON_ID FROM LY_COUPONS_LINKS_TBL WHERE UID_ACTIVIDAD =  #{uidActividad,jdbcType=VARCHAR} AND
+             (
+             <trim prefix="(" prefixOverrides="or" suffix=")">
+                <foreach collection="filter.links" item="link">
+                   or (CLASS_ID = #{link.classId,jdbcType=STRING} AND OBJECT_ID = #{link.objectId,jdbcType=STRING})
+                </foreach>
+             </trim>
+             )             
+          )
+      </if>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          AND
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.manualSelectionCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.activeCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanNumberTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>      
+    </where>
+  </sql>
+  
+  
+  <select id="selectByUkAndCustomer" parameterType="map" resultMap="CouponCustomerUseDTOResultMap">
+    select 
+    <include refid="CouponCustomerUseDTO_Column_List" />
+    from LY_COUPONS_TBL CUP
+       INNER JOIN LY_COUPONS_USES_TBL CUPUSE ON (CUPUSE.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND CUPUSE.CLASS_ID = 'LY_COUPONS_TBL.COUPON_ID' AND CUPUSE.OBJECT_ID = CUP.COUPON_ID AND CUPUSE.COUPON_ID = CUP.COUPON_ID)
+       LEFT JOIN LY_COUPONS_LINKS_TBL ENL ON (ENL.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND ENL.CLASS_ID = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO' AND ENL.COUPON_ID = CUP.COUPON_ID)
+       LEFT JOIN LY_COUPONS_USES_TBL CUSUSE ON (CUSUSE.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD 
+                                                AND CUSUSE.CLASS_ID = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO' 
+                                                AND CUSUSE.OBJECT_ID = '${loyalCustomerId}' 
+                                                AND CUSUSE.COUPON_ID = CUP.COUPON_ID)
+       LEFT JOIN D_I18N_TBL I18NNAME ON (I18NNAME.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND I18NNAME.ID_CLASE = 'LY_COUPONS_TBL.COUPON_NAME' AND I18NNAME.ID_OBJETO = CUP.COUPON_ID AND I18NNAME.CODLENGUA = #{languageCode,jdbcType=VARCHAR}) 
+       LEFT JOIN D_I18N_TBL I18NDES ON (I18NDES.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD AND I18NDES.ID_CLASE = 'LY_COUPONS_TBL.COUPON_DESCRIPTION' AND I18NDES.ID_OBJETO = CUP.COUPON_ID AND I18NDES.CODLENGUA = #{languageCode,jdbcType=VARCHAR})       
+    where CUP.UID_ACTIVIDAD = #{key.uidActividad,jdbcType=VARCHAR}
+      and CUP.COUPON_CODE = #{key.couponCode,jdbcType=VARCHAR}
+  </select>
+
+  <resultMap id="KPIResultMap" type="com.comerzzia.api.loyalty.persistence.coupons.dto.CouponsKpiDTO">
+    <result column="ISSUED" jdbcType="DECIMAL" property="issued" />
+    <result column="ISSUED_AMOUNT" jdbcType="DECIMAL" property="issuedAmount" />
+    <result column="VALID" jdbcType="DECIMAL" property="valid" />
+    <result column="VALID_AMOUNT" jdbcType="DECIMAL" property="validAmount" />
+    <result column="REDEEMED" jdbcType="DECIMAL" property="redeemed" />
+    <result column="REDEEMED_AMOUNT" jdbcType="DECIMAL" property="redeemedAmount" />
+    <result column="EXPIRED" jdbcType="DECIMAL" property="expired" />
+    <result column="EXPIRED_AMOUNT" jdbcType="DECIMAL" property="expiredAmount" />
+    <result column="TOTAL_SALE" jdbcType="DECIMAL" property="totalSale" />
+    <result column="TOTAL_DISCOUNT" jdbcType="DECIMAL" property="totalDiscount" />
+    <result column="TOTAL_CUSTOMERS" jdbcType="DECIMAL" property="totalCustomers" />    
+    <result column="COUPONS_WITH_BALANCE" jdbcType="DECIMAL" property="totalCouponsWithBalance" />    
+    <result column="LAST_USE" jdbcType="TIMESTAMP" property="lastUse" />
+  </resultMap>
+    
+  <select id="selectKPIS" parameterType="map" resultMap="KPIResultMap">
+		select 
+		   COUNT(*) AS ISSUED, 
+		   SUM(CUP.BALANCE) AS ISSUED_AMOUNT,
+		   SUM(CASE 
+		   	   WHEN CUPUSE.USED = 0 AND #{currentDate,jdbcType=TIMESTAMP} BETWEEN CUP.START_DATE AND CUP.END_DATE THEN 1 
+		   	   ELSE 0 
+		   	   END) AS VALID,
+           SUM(CASE 
+               WHEN CUPUSE.USED = 0 AND #{currentDate,jdbcType=TIMESTAMP} BETWEEN CUP.START_DATE AND CUP.END_DATE THEN CUP.BALANCE 
+               ELSE 0 
+               END) AS VALID_AMOUNT,  
+		   SUM(CUPUSE.USES) AS REDEEMED,
+	      SUM(CASE
+		      WHEN CUPUSE.USED = 1 AND CUP.BALANCE &gt; 0 THEN CUPUSE.TOTAL_DISCOUNT
+		      ELSE 0
+		      END) AS REDEEMED_AMOUNT,      
+		   SUM(CASE
+		      WHEN CUPUSE.USED = 0 AND CUP.END_DATE &lt; #{currentDate,jdbcType=TIMESTAMP} THEN 1
+		      ELSE 0
+		      END) AS EXPIRED,      
+		   SUM(CASE
+		      WHEN CUPUSE.USED = 0 AND CUP.END_DATE &lt; #{currentDate,jdbcType=TIMESTAMP} THEN CUP.BALANCE
+		      ELSE 0
+		      END) AS EXPIRED_AMOUNT,
+         SUM(CASE
+            WHEN CUP.BALANCE &gt; 0 THEN 1
+            ELSE 0
+            END) AS COUPONS_WITH_BALANCE,		               
+		   SUM(CUPUSE.TOTAL_SALE) AS TOTAL_SALE,
+		   SUM(CUPUSE.TOTAL_DISCOUNT) AS TOTAL_DISCOUNT,
+		   MAX(CUPUSE.LAST_USE) AS LAST_USE,
+      <choose>
+       <when test="loyalCustomerId != null">
+         1 AS TOTAL_CUSTOMERS
+       </when>
+       <otherwise>
+         SUM(CUPLINK.CUSTOMERS) AS TOTAL_CUSTOMERS
+       </otherwise>
+      </choose>       		         
+		from LY_COUPONS_TBL CUP
+		<choose>
+	    <when test="loyalCustomerId != null">
+	      INNER JOIN LY_COUPONS_USES_TBL CUPUSE ON (CUPUSE.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD 
+                                                AND CUPUSE.CLASS_ID = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO' 
+                                                AND CUPUSE.OBJECT_ID = '${loyalCustomerId}' 
+                                                AND CUPUSE.COUPON_ID = CUP.COUPON_ID)
+	    </when>
+	    <otherwise>
+         INNER JOIN LY_COUPONS_USES_TBL CUPUSE ON (CUPUSE.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD 
+                                                AND CUPUSE.CLASS_ID = 'LY_COUPONS_TBL.COUPON_ID' 
+                                                AND CUPUSE.OBJECT_ID = CUP.COUPON_ID
+                                                AND CUPUSE.COUPON_ID = CUP.COUPON_ID)
+         LEFT JOIN (
+                    SELECT UID_ACTIVIDAD, CLASS_ID, COUPON_ID, COUNT(DISTINCT OBJECT_ID) AS CUSTOMERS
+                    FROM LY_COUPONS_LINKS_TBL
+                    GROUP BY UID_ACTIVIDAD, CLASS_ID, COUPON_ID
+                    )  CUPLINK ON (CUPLINK.UID_ACTIVIDAD = CUP.UID_ACTIVIDAD 
+                                   AND CUPLINK.CLASS_ID = 'F_FIDELIZADOS_TBL.ID_FIDELIZADO' 
+                                   AND CUPLINK.COUPON_ID = CUP.COUPON_ID)                                                
+	    </otherwise>
+	  </choose>                                                		   
+		where CUP.UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+		      and CUP.CREATION_DATE BETWEEN #{startDate,jdbcType=TIMESTAMP} AND #{endDate,jdbcType=TIMESTAMP}  
+  </select>
+</mapper>

@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comerzzia.api.loyalty.persistence.cards.CardMapper" >
+  <resultMap id="BaseResultMap" type="com.comerzzia.api.loyalty.persistence.cards.Card" >
+    <id column="UID_INSTANCIA" property="uidInstancia" jdbcType="VARCHAR" />
+    <id column="ID_TARJETA" property="idTarjeta" jdbcType="DECIMAL" />
+    <result column="NUMERO_TARJETA" property="numeroTarjeta" jdbcType="VARCHAR" />
+    <result column="FECHA_EMISION" property="fechaEmision" jdbcType="TIMESTAMP" />
+    <result column="ID_CUENTA_TARJETA" property="idCuentaTarjeta" jdbcType="DECIMAL" />
+    <result column="FECHA_ACTIVACION" property="fechaActivacion" jdbcType="TIMESTAMP" />
+    <result column="FECHA_ULTIMO_USO" property="fechaUltimoUso" jdbcType="TIMESTAMP" />
+    <result column="FECHA_BAJA" property="fechaBaja" jdbcType="TIMESTAMP" />
+    <result column="ID_FIDELIZADO" property="idFidelizado" jdbcType="DECIMAL" />
+    <result column="FECHA_ASIGNACION_FIDELIZADO" property="fechaAsignacionFidelizado" jdbcType="TIMESTAMP" />
+    <result column="CODTIPOTARJ" property="codTipoTarj" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="DTOResultMap" type="com.comerzzia.api.loyalty.persistence.cards.CardDTO" >
+    <id column="UID_INSTANCIA" property="uidInstancia" jdbcType="VARCHAR" />
+    <id column="ID_TARJETA" property="idTarjeta" jdbcType="DECIMAL" />
+    <result column="NUMERO_TARJETA" property="numeroTarjeta" jdbcType="VARCHAR" />
+    <result column="FECHA_EMISION" property="fechaEmision" jdbcType="TIMESTAMP" />
+    <result column="FECHA_ACTIVACION" property="fechaActivacion" jdbcType="TIMESTAMP" />
+    <result column="FECHA_ULTIMO_USO" property="fechaUltimoUso" jdbcType="TIMESTAMP" />
+    <result column="FECHA_BAJA" property="fechaBaja" jdbcType="TIMESTAMP" />
+    <result column="FECHA_ASIGNACION_FIDELIZADO" property="fechaAsignacionFidelizado" jdbcType="TIMESTAMP" />
+        
+    <association property="cuenta"
+        column="{uidInstancia=UID_INSTANCIA, idCuentaTarjeta=ID_CUENTA_TARJETA" 
+        javaType="com.comerzzia.api.loyalty.persistence.accounts.Account"
+        select="com.comerzzia.api.loyalty.persistence.accounts.AccountMapper.selectByPrimaryKey"
+        fetchType="eager" />
+        
+    <association property="tipoTarjeta"
+        column="{uidInstancia=UID_INSTANCIA, codtipotarj=CODTIPOTARJ" 
+        javaType="com.comerzzia.api.loyalty.persistence.cardsTypes.TipoTarjetaBean"
+        select="com.comerzzia.api.loyalty.persistence.cardsTypes.CardsTypesMapper.selectByPrimaryKey"
+        fetchType="eager" />
+        
+    <association property="fidelizado"
+        column="{uidInstancia=UID_INSTANCIA, idFidelizado=ID_FIDELIZADO" 
+        javaType="com.comerzzia.api.loyalty.persistence.customers.FidelizadoBean"
+        select="com.comerzzia.api.loyalty.persistence.customers.LoyalCustomerMapper.selectByPrimaryKey"
+        fetchType="eager" />
+  </resultMap>  
+  <sql id="Instance_Where_Clause">
+      UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+  </sql>  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <include refid="Instance_Where_Clause" />
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          AND
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <include refid="Instance_Where_Clause" />
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          AND
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UID_INSTANCIA, ID_TARJETA, NUMERO_TARJETA, FECHA_EMISION, ID_CUENTA_TARJETA, FECHA_ACTIVACION, 
+    FECHA_ULTIMO_USO, FECHA_BAJA, ID_FIDELIZADO, FECHA_ASIGNACION_FIDELIZADO, CODTIPOTARJ
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.cards.CardExample" resultSetType="SCROLL_INSENSITIVE" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from F_TARJETAS_TBL T
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>  
+  <select id="selectDTOByExample" resultMap="DTOResultMap" parameterType="com.comerzzia.api.loyalty.persistence.cards.CardExample" resultSetType="SCROLL_INSENSITIVE" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from F_TARJETAS_TBL T
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.cards.CardKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from F_TARJETAS_TBL T
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_TARJETA = #{idTarjeta,jdbcType=DECIMAL}
+  </select>
+  <select id="selectDTOByPrimaryKey" resultMap="DTOResultMap" parameterType="com.comerzzia.api.loyalty.persistence.cards.CardKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from F_TARJETAS_TBL T
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_TARJETA = #{idTarjeta,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.cards.CardKey" >
+    delete from F_TARJETAS_TBL
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_TARJETA = #{idTarjeta,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.api.loyalty.persistence.cards.CardExample" >
+    delete from F_TARJETAS_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.api.loyalty.persistence.cards.Card" >
+    insert into F_TARJETAS_TBL (UID_INSTANCIA, ID_TARJETA, NUMERO_TARJETA, 
+      FECHA_EMISION, ID_CUENTA_TARJETA, FECHA_ACTIVACION, 
+      FECHA_ULTIMO_USO, FECHA_BAJA, ID_FIDELIZADO, 
+      FECHA_ASIGNACION_FIDELIZADO, CODTIPOTARJ
+      )
+    values (#{uidInstancia,jdbcType=VARCHAR}, #{idTarjeta,jdbcType=DECIMAL}, #{numeroTarjeta,jdbcType=VARCHAR}, 
+      #{fechaEmision,jdbcType=TIMESTAMP}, #{idCuentaTarjeta,jdbcType=DECIMAL}, #{fechaActivacion,jdbcType=TIMESTAMP}, 
+      #{fechaUltimoUso,jdbcType=TIMESTAMP}, #{fechaBaja,jdbcType=TIMESTAMP}, #{idFidelizado,jdbcType=DECIMAL}, 
+      #{fechaAsignacionFidelizado,jdbcType=TIMESTAMP}, #{codTipoTarj,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.api.loyalty.persistence.cards.Card" >
+    insert into F_TARJETAS_TBL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        UID_INSTANCIA,
+      </if>
+      <if test="idTarjeta != null" >
+        ID_TARJETA,
+      </if>
+      <if test="numeroTarjeta != null" >
+        NUMERO_TARJETA,
+      </if>
+      <if test="fechaEmision != null" >
+        FECHA_EMISION,
+      </if>
+      <if test="idCuentaTarjeta != null" >
+        ID_CUENTA_TARJETA,
+      </if>
+      <if test="fechaActivacion != null" >
+        FECHA_ACTIVACION,
+      </if>
+      <if test="fechaUltimoUso != null" >
+        FECHA_ULTIMO_USO,
+      </if>
+      <if test="fechaBaja != null" >
+        FECHA_BAJA,
+      </if>
+      <if test="idFidelizado != null" >
+        ID_FIDELIZADO,
+      </if>
+      <if test="fechaAsignacionFidelizado != null" >
+        FECHA_ASIGNACION_FIDELIZADO,
+      </if>
+      <if test="codTipoTarj != null" >
+        CODTIPOTARJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        #{uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="idTarjeta != null" >
+        #{idTarjeta,jdbcType=DECIMAL},
+      </if>
+      <if test="numeroTarjeta != null" >
+        #{numeroTarjeta,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaEmision != null" >
+        #{fechaEmision,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idCuentaTarjeta != null" >
+        #{idCuentaTarjeta,jdbcType=DECIMAL},
+      </if>
+      <if test="fechaActivacion != null" >
+        #{fechaActivacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaUltimoUso != null" >
+        #{fechaUltimoUso,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaBaja != null" >
+        #{fechaBaja,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idFidelizado != null" >
+        #{idFidelizado,jdbcType=DECIMAL},
+      </if>
+      <if test="fechaAsignacionFidelizado != null" >
+        #{fechaAsignacionFidelizado,jdbcType=TIMESTAMP},
+      </if>
+      <if test="codTipoTarj != null" >
+        #{codTipoTarj,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.api.loyalty.persistence.cards.CardExample" resultType="java.lang.Integer" >
+    select count(*) from F_TARJETAS_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update F_TARJETAS_TBL
+    <set >
+      <if test="record.uidInstancia != null" >
+        UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idTarjeta != null" >
+        ID_TARJETA = #{record.idTarjeta,jdbcType=DECIMAL},
+      </if>
+      <if test="record.numeroTarjeta != null" >
+        NUMERO_TARJETA = #{record.numeroTarjeta,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fechaEmision != null" >
+        FECHA_EMISION = #{record.fechaEmision,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.idCuentaTarjeta != null" >
+        ID_CUENTA_TARJETA = #{record.idCuentaTarjeta,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fechaActivacion != null" >
+        FECHA_ACTIVACION = #{record.fechaActivacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fechaUltimoUso != null" >
+        FECHA_ULTIMO_USO = #{record.fechaUltimoUso,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fechaBaja != null" >
+        FECHA_BAJA = #{record.fechaBaja,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.idFidelizado != null" >
+        ID_FIDELIZADO = #{record.idFidelizado,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fechaAsignacionFidelizado != null" >
+        FECHA_ASIGNACION_FIDELIZADO = #{record.fechaAsignacionFidelizado,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.codTipoTarj != null" >
+        CODTIPOTARJ = #{record.codTipoTarj,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update F_TARJETAS_TBL
+    set UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      ID_TARJETA = #{record.idTarjeta,jdbcType=DECIMAL},
+      NUMERO_TARJETA = #{record.numeroTarjeta,jdbcType=VARCHAR},
+      FECHA_EMISION = #{record.fechaEmision,jdbcType=TIMESTAMP},
+      ID_CUENTA_TARJETA = #{record.idCuentaTarjeta,jdbcType=DECIMAL},
+      FECHA_ACTIVACION = #{record.fechaActivacion,jdbcType=TIMESTAMP},
+      FECHA_ULTIMO_USO = #{record.fechaUltimoUso,jdbcType=TIMESTAMP},
+      FECHA_BAJA = #{record.fechaBaja,jdbcType=TIMESTAMP},
+      ID_FIDELIZADO = #{record.idFidelizado,jdbcType=DECIMAL},
+      FECHA_ASIGNACION_FIDELIZADO = #{record.fechaAsignacionFidelizado,jdbcType=TIMESTAMP},
+      CODTIPOTARJ = #{record.codTipoTarj,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.api.loyalty.persistence.cards.Card" >
+    update F_TARJETAS_TBL
+    <set >
+      <if test="numeroTarjeta != null" >
+        NUMERO_TARJETA = #{numeroTarjeta,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaEmision != null" >
+        FECHA_EMISION = #{fechaEmision,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idCuentaTarjeta != null" >
+        ID_CUENTA_TARJETA = #{idCuentaTarjeta,jdbcType=DECIMAL},
+      </if>
+      <if test="fechaActivacion != null" >
+        FECHA_ACTIVACION = #{fechaActivacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaUltimoUso != null" >
+        FECHA_ULTIMO_USO = #{fechaUltimoUso,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaBaja != null" >
+        FECHA_BAJA = #{fechaBaja,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idFidelizado != null" >
+        ID_FIDELIZADO = #{idFidelizado,jdbcType=DECIMAL},
+      </if>
+      <if test="fechaAsignacionFidelizado != null" >
+        FECHA_ASIGNACION_FIDELIZADO = #{fechaAsignacionFidelizado,jdbcType=TIMESTAMP},
+      </if>
+      <if test="codTipoTarj != null" >
+        CODTIPOTARJ = #{codTipoTarj,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_TARJETA = #{idTarjeta,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.cards.Card" >
+    update F_TARJETAS_TBL
+    set NUMERO_TARJETA = #{numeroTarjeta,jdbcType=VARCHAR},
+      FECHA_EMISION = #{fechaEmision,jdbcType=TIMESTAMP},
+      ID_CUENTA_TARJETA = #{idCuentaTarjeta,jdbcType=DECIMAL},
+      FECHA_ACTIVACION = #{fechaActivacion,jdbcType=TIMESTAMP},
+      FECHA_ULTIMO_USO = #{fechaUltimoUso,jdbcType=TIMESTAMP},
+      FECHA_BAJA = #{fechaBaja,jdbcType=TIMESTAMP},
+      ID_FIDELIZADO = #{idFidelizado,jdbcType=DECIMAL},
+      FECHA_ASIGNACION_FIDELIZADO = #{fechaAsignacionFidelizado,jdbcType=TIMESTAMP},
+      CODTIPOTARJ = #{codTipoTarj,jdbcType=VARCHAR}
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and ID_TARJETA = #{idTarjeta,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByExampleWithRowbounds" resultMap="DTOResultMap" parameterType="com.comerzzia.api.loyalty.persistence.cards.CardExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from F_TARJETAS_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByUniqueKey" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.cards.CardUK" >
+    select 
+    <include refid="Base_Column_List" />
+    from F_TARJETAS_TBL T
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and NUMERO_TARJETA = #{numeroTarjeta,jdbcType=VARCHAR}
+  </select>
+  <select id="selectDTOByUniqueKey" resultMap="DTOResultMap" parameterType="com.comerzzia.api.loyalty.persistence.cards.CardUK" >
+    select 
+    <include refid="Base_Column_List" />
+    from F_TARJETAS_TBL T
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and NUMERO_TARJETA = #{numeroTarjeta,jdbcType=VARCHAR}
+  </select>
+</mapper>

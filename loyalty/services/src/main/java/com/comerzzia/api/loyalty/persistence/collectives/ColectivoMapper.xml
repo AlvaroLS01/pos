@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comerzzia.api.loyalty.persistence.collectives.ColectivoMapper" >
+  <resultMap id="BaseResultMap" type="com.comerzzia.api.loyalty.persistence.collectives.ColectivoBean" >
+    <id column="UID_INSTANCIA" property="uidInstancia" jdbcType="VARCHAR" />
+    <id column="COD_COLECTIVO" property="codColectivo" jdbcType="VARCHAR" />
+    <result column="DES_COLECTIVO" property="desColectivo" jdbcType="VARCHAR" />
+    <result column="ACTIVO" property="activo" jdbcType="VARCHAR" typeHandler="com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler" />
+    <result column="AMBITO_APLICACION" property="ambitoAplicacion" jdbcType="VARCHAR" />
+    <result column="CODTIPCOLECTIVO" property="codtipcolectivo" jdbcType="VARCHAR" />
+    <result column="DESTIPCOLECTIVO" property="destipcolectivo" jdbcType="VARCHAR" />
+    <result column="PRIVADO" property="privado" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.activoCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.activoCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler} and #{criterion.secondValue,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UID_INSTANCIA, COD_COLECTIVO, DES_COLECTIVO, ACTIVO, AMBITO_APLICACION, CODTIPCOLECTIVO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.collectives.ColectivoExample" resultSetType="SCROLL_INSENSITIVE" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from D_COLECTIVOS_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.collectives.ColectivoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from D_COLECTIVOS_TBL
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and COD_COLECTIVO = #{codColectivo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.collectives.ColectivoKey" >
+    delete from D_COLECTIVOS_TBL
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and COD_COLECTIVO = #{codColectivo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.api.loyalty.persistence.collectives.ColectivoExample" >
+    delete from D_COLECTIVOS_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.api.loyalty.persistence.collectives.ColectivoBean" >
+    insert into D_COLECTIVOS_TBL (UID_INSTANCIA, COD_COLECTIVO, DES_COLECTIVO, 
+      ACTIVO, 
+      AMBITO_APLICACION, CODTIPCOLECTIVO)
+    values (#{uidInstancia,jdbcType=VARCHAR}, #{codColectivo,jdbcType=VARCHAR}, #{desColectivo,jdbcType=VARCHAR}, 
+      #{activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler}, 
+      #{ambitoAplicacion,jdbcType=VARCHAR}, #{codtipcolectivo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.api.loyalty.persistence.collectives.ColectivoBean" >
+    insert into D_COLECTIVOS_TBL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        UID_INSTANCIA,
+      </if>
+      <if test="codColectivo != null" >
+        COD_COLECTIVO,
+      </if>
+      <if test="desColectivo != null" >
+        DES_COLECTIVO,
+      </if>
+      <if test="activo != null" >
+        ACTIVO,
+      </if>
+      <if test="ambitoAplicacion != null" >
+        AMBITO_APLICACION,
+      </if>
+      <if test="codtipcolectivo != null" >
+        CODTIPCOLECTIVO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        #{uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="codColectivo != null" >
+        #{codColectivo,jdbcType=VARCHAR},
+      </if>
+      <if test="desColectivo != null" >
+        #{desColectivo,jdbcType=VARCHAR},
+      </if>
+      <if test="activo != null" >
+        #{activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="ambitoAplicacion != null" >
+        #{ambitoAplicacion,jdbcType=VARCHAR},
+      </if>
+      <if test="codtipcolectivo != null" >
+        #{codtipcolectivo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.api.loyalty.persistence.collectives.ColectivoExample" resultType="java.lang.Integer" >
+    select count(*) from D_COLECTIVOS_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update D_COLECTIVOS_TBL
+    <set >
+      <if test="record.uidInstancia != null" >
+        UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codColectivo != null" >
+        COD_COLECTIVO = #{record.codColectivo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desColectivo != null" >
+        DES_COLECTIVO = #{record.desColectivo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activo != null" >
+        ACTIVO = #{record.activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="record.ambitoAplicacion != null" >
+        AMBITO_APLICACION = #{record.ambitoAplicacion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codtipcolectivo != null" >
+        CODTIPCOLECTIVO = #{record.codtipcolectivo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update D_COLECTIVOS_TBL
+    set UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      COD_COLECTIVO = #{record.codColectivo,jdbcType=VARCHAR},
+      DES_COLECTIVO = #{record.desColectivo,jdbcType=VARCHAR},
+      ACTIVO = #{record.activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      AMBITO_APLICACION = #{record.ambitoAplicacion,jdbcType=VARCHAR},
+      CODTIPCOLECTIVO = #{record.codtipcolectivo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.api.loyalty.persistence.collectives.ColectivoBean" >
+    update D_COLECTIVOS_TBL
+    <set >
+      <if test="desColectivo != null" >
+        DES_COLECTIVO = #{desColectivo,jdbcType=VARCHAR},
+      </if>
+      <if test="activo != null" >
+        ACTIVO = #{activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      </if>
+      <if test="ambitoAplicacion != null" >
+        AMBITO_APLICACION = #{ambitoAplicacion,jdbcType=VARCHAR},
+      </if>
+      <if test="codtipcolectivo != null" >
+        CODTIPCOLECTIVO = #{codtipcolectivo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and COD_COLECTIVO = #{codColectivo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.collectives.ColectivoBean" >
+    update D_COLECTIVOS_TBL
+    set DES_COLECTIVO = #{desColectivo,jdbcType=VARCHAR},
+      ACTIVO = #{activo,jdbcType=VARCHAR,typeHandler=com.comerzzia.core.util.mybatis.typehandlers.BooleanStringTypeHandler},
+      AMBITO_APLICACION = #{ambitoAplicacion,jdbcType=VARCHAR},
+      CODTIPCOLECTIVO = #{codtipcolectivo,jdbcType=VARCHAR}
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and COD_COLECTIVO = #{codColectivo,jdbcType=VARCHAR}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.collectives.ColectivoExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from D_COLECTIVOS_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectFromViewByExample" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.collectives.ColectivoExample" resultSetType="SCROLL_INSENSITIVE" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="View_Base_Column_List" />
+    from D_COLECTIVOS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectFromViewByPrimaryKey" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.collectives.ColectivoKey" >
+    select 
+    <include refid="View_Base_Column_List" />
+    from D_COLECTIVOS
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and COD_COLECTIVO = #{codColectivo,jdbcType=VARCHAR}
+  </select>
+  <sql id="View_Base_Column_List" >
+    UID_INSTANCIA, DESTIPCOLECTIVO, COD_COLECTIVO, ACTIVO, CODTIPCOLECTIVO, DES_COLECTIVO, 
+    PRIVADO, AMBITO_APLICACION
+  </sql>
+</mapper>

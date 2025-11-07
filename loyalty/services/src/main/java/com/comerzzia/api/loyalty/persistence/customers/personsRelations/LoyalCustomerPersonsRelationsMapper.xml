@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comerzzia.api.loyalty.persistence.customers.personsRelations.LoyalCustomerPersonsRelationsMapper" >
+  <resultMap id="BaseResultMap" type="com.comerzzia.api.loyalty.persistence.customers.personsRelations.PersonaRelacionadaBean" >
+    <id column="UID_INSTANCIA" property="uidInstancia" jdbcType="VARCHAR" />
+    <id column="UID_RELACION_FIDELIZADO" property="uidRelacionFidelizado" jdbcType="VARCHAR" />
+    <result column="ID_FIDELIZADO_ORIGEN" property="idFidelizadoOrigen" jdbcType="DECIMAL" />
+    <result column="ID_FIDELIZADO_DESTINO" property="idFidelizadoDestino" jdbcType="DECIMAL" />
+    <result column="CODTIPO_RELACION" property="codTipoRelacion" jdbcType="VARCHAR" />
+    <result column="NOMBRE" property="nombre" jdbcType="VARCHAR" />
+    <result column="APELLIDOS" property="apellidos" jdbcType="VARCHAR" />
+    <result column="SEXO" property="sexo" jdbcType="CHAR" />
+    <result column="FECHA_NACIMIENTO" property="fechaNacimiento" jdbcType="TIMESTAMP" />
+    <result column="DESTIPO_RELACION" property="desTipoRelacion" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UID_INSTANCIA, UID_RELACION_FIDELIZADO, ID_FIDELIZADO_ORIGEN, ID_FIDELIZADO_DESTINO, 
+    CODTIPO_RELACION, NOMBRE, APELLIDOS, SEXO, FECHA_NACIMIENTO, DESTIPO_RELACION
+  </sql>  
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.personsRelations.PersonaRelacionadaExample" resultSetType="SCROLL_INSENSITIVE" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from F_FIDELIZADOS_RELACION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.personsRelations.PersonaRelacionadaKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from F_FIDELIZADOS_RELACION
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and UID_RELACION_FIDELIZADO = #{uidRelacionFidelizado,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.customers.personsRelations.PersonaRelacionadaKey" >
+    delete from F_FIDELIZADOS_RELACION_TBL
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and UID_RELACION_FIDELIZADO = #{uidRelacionFidelizado,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.api.loyalty.persistence.customers.personsRelations.PersonaRelacionadaExample" >
+    delete from F_FIDELIZADOS_RELACION_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.api.loyalty.persistence.customers.personsRelations.PersonaRelacionadaBean" >
+    insert into F_FIDELIZADOS_RELACION_TBL (UID_INSTANCIA, UID_RELACION_FIDELIZADO, 
+      ID_FIDELIZADO_ORIGEN, ID_FIDELIZADO_DESTINO, 
+      CODTIPO_RELACION)
+    values (#{uidInstancia,jdbcType=VARCHAR}, #{uidRelacionFidelizado,jdbcType=VARCHAR}, 
+      #{idFidelizadoOrigen,jdbcType=DECIMAL}, #{idFidelizadoDestino,jdbcType=DECIMAL}, 
+      #{codTipoRelacion,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.api.loyalty.persistence.customers.personsRelations.PersonaRelacionadaBean" >
+    insert into F_FIDELIZADOS_RELACION_TBL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        UID_INSTANCIA,
+      </if>
+      <if test="uidRelacionFidelizado != null" >
+        UID_RELACION_FIDELIZADO,
+      </if>
+      <if test="idFidelizadoOrigen != null" >
+        ID_FIDELIZADO_ORIGEN,
+      </if>
+      <if test="idFidelizadoDestino != null" >
+        ID_FIDELIZADO_DESTINO,
+      </if>
+      <if test="codTipoRelacion != null" >
+        CODTIPO_RELACION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uidInstancia != null" >
+        #{uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="uidRelacionFidelizado != null" >
+        #{uidRelacionFidelizado,jdbcType=VARCHAR},
+      </if>
+      <if test="idFidelizadoOrigen != null" >
+        #{idFidelizadoOrigen,jdbcType=DECIMAL},
+      </if>
+      <if test="idFidelizadoDestino != null" >
+        #{idFidelizadoDestino,jdbcType=DECIMAL},
+      </if>
+      <if test="codTipoRelacion != null" >
+        #{codTipoRelacion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.api.loyalty.persistence.customers.personsRelations.PersonaRelacionadaExample" resultType="java.lang.Integer" >
+    select count(*) from F_FIDELIZADOS_RELACION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update F_FIDELIZADOS_RELACION_TBL
+    <set >
+      <if test="record.uidInstancia != null" >
+        UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uidRelacionFidelizado != null" >
+        UID_RELACION_FIDELIZADO = #{record.uidRelacionFidelizado,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idFidelizadoOrigen != null" >
+        ID_FIDELIZADO_ORIGEN = #{record.idFidelizadoOrigen,jdbcType=DECIMAL},
+      </if>
+      <if test="record.idFidelizadoDestino != null" >
+        ID_FIDELIZADO_DESTINO = #{record.idFidelizadoDestino,jdbcType=DECIMAL},
+      </if>
+      <if test="record.codTipoRelacion != null" >
+        CODTIPO_RELACION = #{record.codTipoRelacion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update F_FIDELIZADOS_RELACION_TBL
+    set UID_INSTANCIA = #{record.uidInstancia,jdbcType=VARCHAR},
+      UID_RELACION_FIDELIZADO = #{record.uidRelacionFidelizado,jdbcType=VARCHAR},
+      ID_FIDELIZADO_ORIGEN = #{record.idFidelizadoOrigen,jdbcType=DECIMAL},
+      ID_FIDELIZADO_DESTINO = #{record.idFidelizadoDestino,jdbcType=DECIMAL},
+      CODTIPO_RELACION = #{record.codTipoRelacion,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.api.loyalty.persistence.customers.personsRelations.PersonaRelacionadaBean" >
+    update F_FIDELIZADOS_RELACION_TBL
+    <set >
+      <if test="idFidelizadoOrigen != null" >
+        ID_FIDELIZADO_ORIGEN = #{idFidelizadoOrigen,jdbcType=DECIMAL},
+      </if>
+      <if test="idFidelizadoDestino != null" >
+        ID_FIDELIZADO_DESTINO = #{idFidelizadoDestino,jdbcType=DECIMAL},
+      </if>
+      <if test="codTipoRelacion != null" >
+        CODTIPO_RELACION = #{codTipoRelacion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and UID_RELACION_FIDELIZADO = #{uidRelacionFidelizado,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.customers.personsRelations.PersonaRelacionadaBean" >
+    update F_FIDELIZADOS_RELACION_TBL
+    set ID_FIDELIZADO_ORIGEN = #{idFidelizadoOrigen,jdbcType=DECIMAL},
+      ID_FIDELIZADO_DESTINO = #{idFidelizadoDestino,jdbcType=DECIMAL},
+      CODTIPO_RELACION = #{codTipoRelacion,jdbcType=VARCHAR}
+    where UID_INSTANCIA = #{uidInstancia,jdbcType=VARCHAR}
+      and UID_RELACION_FIDELIZADO = #{uidRelacionFidelizado,jdbcType=VARCHAR}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.personsRelations.PersonaRelacionadaExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from F_FIDELIZADOS_RELACION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

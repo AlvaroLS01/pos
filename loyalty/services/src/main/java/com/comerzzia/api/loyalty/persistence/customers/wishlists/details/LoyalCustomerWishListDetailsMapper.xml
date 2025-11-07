@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comerzzia.api.loyalty.persistence.customers.wishlists.details.LoyalCustomerWishListDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.comerzzia.api.loyalty.persistence.customers.wishlists.details.ArticuloListaDeseosFidelizadoBean" >
+    <id column="UID_ACTIVIDAD" property="uidActividad" jdbcType="VARCHAR" />
+    <id column="UID_LISTA_DESEOS" property="uidListaDeseos" jdbcType="VARCHAR" />
+    <id column="LINEA" property="linea" jdbcType="DECIMAL" />
+    <id column="CODART" property="codart" jdbcType="VARCHAR" />
+    <id column="DESGLOSE1" property="desglose1" jdbcType="VARCHAR" />
+    <id column="DESGLOSE2" property="desglose2" jdbcType="VARCHAR" />
+    <result column="CANTIDAD" property="cantidad" jdbcType="DECIMAL" />
+    <result column="UNIDAD_MEDIDA" property="unidadMedida" jdbcType="VARCHAR" />
+    <result column="CANTIDAD_MEDIDA" property="cantidadMedida" jdbcType="DECIMAL" />
+    <result column="DESART" property="desArt" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UID_ACTIVIDAD, UID_LISTA_DESEOS, LINEA, CODART, DESGLOSE1, DESGLOSE2, CANTIDAD, UNIDAD_MEDIDA, 
+    CANTIDAD_MEDIDA, DESART
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.wishlists.details.ArticuloListaDeseosFidelizadoExample" resultSetType="SCROLL_INSENSITIVE" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from TV_LISTAS_DESEOS_DET_TBL LISTAS
+    	INNER JOIN D_ARTICULOS_TBL ARTICULOS on (ARTICULOS.UID_ACTIVIDAD = LISTAS.UID_ACTIVIDAD AND ARTICULOS.CODART = LISTAS.CODART)
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.wishlists.details.ArticuloListaDeseosFidelizadoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from TV_LISTAS_DESEOS_DET_TBL LISTAS
+    	INNER JOIN D_ARTICULOS_TBL ARTICULOS on (ARTICULOS.UID_ACTIVIDAD = LISTAS.UID_ACTIVIDAD AND ARTICULOS.CODART = LISTAS.CODART)
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and UID_LISTA_DESEOS = #{uidListaDeseos,jdbcType=VARCHAR}
+      and LINEA = #{linea,jdbcType=DECIMAL}
+      and CODART = #{codart,jdbcType=VARCHAR}
+      and DESGLOSE1 = #{desglose1,jdbcType=VARCHAR}
+      and DESGLOSE2 = #{desglose2,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.customers.wishlists.details.ArticuloListaDeseosFidelizadoKey" >
+    delete from TV_LISTAS_DESEOS_DET_TBL
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and UID_LISTA_DESEOS = #{uidListaDeseos,jdbcType=VARCHAR}
+      and LINEA = #{linea,jdbcType=DECIMAL}
+      and CODART = #{codart,jdbcType=VARCHAR}
+      and DESGLOSE1 = #{desglose1,jdbcType=VARCHAR}
+      and DESGLOSE2 = #{desglose2,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.comerzzia.api.loyalty.persistence.customers.wishlists.details.ArticuloListaDeseosFidelizadoExample" >
+    delete from TV_LISTAS_DESEOS_DET_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.comerzzia.api.loyalty.persistence.customers.wishlists.details.ArticuloListaDeseosFidelizadoBean" >
+    insert into TV_LISTAS_DESEOS_DET_TBL (UID_ACTIVIDAD, UID_LISTA_DESEOS, LINEA, 
+      CODART, DESGLOSE1, DESGLOSE2, 
+      CANTIDAD, UNIDAD_MEDIDA, CANTIDAD_MEDIDA
+      )
+    values (#{uidActividad,jdbcType=VARCHAR}, #{uidListaDeseos,jdbcType=VARCHAR}, #{linea,jdbcType=DECIMAL}, 
+      #{codart,jdbcType=VARCHAR}, #{desglose1,jdbcType=VARCHAR}, #{desglose2,jdbcType=VARCHAR}, 
+      #{cantidad,jdbcType=DECIMAL}, #{unidadMedida,jdbcType=VARCHAR}, #{cantidadMedida,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.comerzzia.api.loyalty.persistence.customers.wishlists.details.ArticuloListaDeseosFidelizadoBean" >
+    insert into TV_LISTAS_DESEOS_DET_TBL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uidActividad != null" >
+        UID_ACTIVIDAD,
+      </if>
+      <if test="uidListaDeseos != null" >
+        UID_LISTA_DESEOS,
+      </if>
+      <if test="linea != null" >
+        LINEA,
+      </if>
+      <if test="codart != null" >
+        CODART,
+      </if>
+      <if test="desglose1 != null" >
+        DESGLOSE1,
+      </if>
+      <if test="desglose2 != null" >
+        DESGLOSE2,
+      </if>
+      <if test="cantidad != null" >
+        CANTIDAD,
+      </if>
+      <if test="unidadMedida != null" >
+        UNIDAD_MEDIDA,
+      </if>
+      <if test="cantidadMedida != null" >
+        CANTIDAD_MEDIDA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uidActividad != null" >
+        #{uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="uidListaDeseos != null" >
+        #{uidListaDeseos,jdbcType=VARCHAR},
+      </if>
+      <if test="linea != null" >
+        #{linea,jdbcType=DECIMAL},
+      </if>
+      <if test="codart != null" >
+        #{codart,jdbcType=VARCHAR},
+      </if>
+      <if test="desglose1 != null" >
+        #{desglose1,jdbcType=VARCHAR},
+      </if>
+      <if test="desglose2 != null" >
+        #{desglose2,jdbcType=VARCHAR},
+      </if>
+      <if test="cantidad != null" >
+        #{cantidad,jdbcType=DECIMAL},
+      </if>
+      <if test="unidadMedida != null" >
+        #{unidadMedida,jdbcType=VARCHAR},
+      </if>
+      <if test="cantidadMedida != null" >
+        #{cantidadMedida,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.comerzzia.api.loyalty.persistence.customers.wishlists.details.ArticuloListaDeseosFidelizadoExample" resultType="java.lang.Integer" >
+    select count(*) from TV_LISTAS_DESEOS_DET_TBL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update TV_LISTAS_DESEOS_DET_TBL
+    <set >
+      <if test="record.uidActividad != null" >
+        UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uidListaDeseos != null" >
+        UID_LISTA_DESEOS = #{record.uidListaDeseos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linea != null" >
+        LINEA = #{record.linea,jdbcType=DECIMAL},
+      </if>
+      <if test="record.codart != null" >
+        CODART = #{record.codart,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desglose1 != null" >
+        DESGLOSE1 = #{record.desglose1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desglose2 != null" >
+        DESGLOSE2 = #{record.desglose2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cantidad != null" >
+        CANTIDAD = #{record.cantidad,jdbcType=DECIMAL},
+      </if>
+      <if test="record.unidadMedida != null" >
+        UNIDAD_MEDIDA = #{record.unidadMedida,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cantidadMedida != null" >
+        CANTIDAD_MEDIDA = #{record.cantidadMedida,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update TV_LISTAS_DESEOS_DET_TBL
+    set UID_ACTIVIDAD = #{record.uidActividad,jdbcType=VARCHAR},
+      UID_LISTA_DESEOS = #{record.uidListaDeseos,jdbcType=VARCHAR},
+      LINEA = #{record.linea,jdbcType=DECIMAL},
+      CODART = #{record.codart,jdbcType=VARCHAR},
+      DESGLOSE1 = #{record.desglose1,jdbcType=VARCHAR},
+      DESGLOSE2 = #{record.desglose2,jdbcType=VARCHAR},
+      CANTIDAD = #{record.cantidad,jdbcType=DECIMAL},
+      UNIDAD_MEDIDA = #{record.unidadMedida,jdbcType=VARCHAR},
+      CANTIDAD_MEDIDA = #{record.cantidadMedida,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comerzzia.api.loyalty.persistence.customers.wishlists.details.ArticuloListaDeseosFidelizadoBean" >
+    update TV_LISTAS_DESEOS_DET_TBL
+    <set >
+      <if test="cantidad != null" >
+        CANTIDAD = #{cantidad,jdbcType=DECIMAL},
+      </if>
+      <if test="unidadMedida != null" >
+        UNIDAD_MEDIDA = #{unidadMedida,jdbcType=VARCHAR},
+      </if>
+      <if test="cantidadMedida != null" >
+        CANTIDAD_MEDIDA = #{cantidadMedida,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and UID_LISTA_DESEOS = #{uidListaDeseos,jdbcType=VARCHAR}
+      and LINEA = #{linea,jdbcType=DECIMAL}
+      and CODART = #{codart,jdbcType=VARCHAR}
+      and DESGLOSE1 = #{desglose1,jdbcType=VARCHAR}
+      and DESGLOSE2 = #{desglose2,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comerzzia.api.loyalty.persistence.customers.wishlists.details.ArticuloListaDeseosFidelizadoBean" >
+    update TV_LISTAS_DESEOS_DET_TBL
+    set CANTIDAD = #{cantidad,jdbcType=DECIMAL},
+      UNIDAD_MEDIDA = #{unidadMedida,jdbcType=VARCHAR},
+      CANTIDAD_MEDIDA = #{cantidadMedida,jdbcType=DECIMAL}
+    where UID_ACTIVIDAD = #{uidActividad,jdbcType=VARCHAR}
+      and UID_LISTA_DESEOS = #{uidListaDeseos,jdbcType=VARCHAR}
+      and LINEA = #{linea,jdbcType=DECIMAL}
+      and CODART = #{codart,jdbcType=VARCHAR}
+      and DESGLOSE1 = #{desglose1,jdbcType=VARCHAR}
+      and DESGLOSE2 = #{desglose2,jdbcType=VARCHAR}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.comerzzia.api.loyalty.persistence.customers.wishlists.details.ArticuloListaDeseosFidelizadoExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from TV_LISTAS_DESEOS_DET_TBL LISTAS
+    	INNER JOIN D_ARTICULOS_TBL ARTICULOS on (ARTICULOS.UID_ACTIVIDAD = LISTAS.UID_ACTIVIDAD AND ARTICULOS.CODART = LISTAS.CODART)
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <sql id="DesArt_Column_List" >
+    LISTAS.UID_ACTIVIDAD, UID_LISTA_DESEOS, LINEA, ARTICULOS.CODART, LISTAS.DESGLOSE1, LISTAS.DESGLOSE2, CANTIDAD, UNIDAD_MEDIDA, 
+    CANTIDAD_MEDIDA, DESART
+  </sql>
+</mapper>
