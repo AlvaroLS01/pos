@@ -1,6 +1,7 @@
 package com.comerzzia.dinosol.pos.services.core.sesion;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -67,7 +68,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
 
-import system.io.IOException;
 
 @Component
 @Primary
@@ -345,12 +345,7 @@ public class DinoSesionPromociones extends SesionPromociones {
                     if (e instanceof FeignException) {
                             FeignException feignException = (FeignException) e;
                             lastCouponValidationStatus = feignException.status();
-                            try {
-                                    lastCouponValidationMessage = feignException.contentUTF8();
-                            }
-                            catch (Exception ignored) {
-                                    lastCouponValidationMessage = feignException.getMessage();
-                            }
+                            lastCouponValidationMessage = extractContentFromFeignException(feignException);
                     }
 
                     log.error("validateCoupon() - Error while validating coupon: " + e.getMessage(), e);
@@ -365,6 +360,28 @@ public class DinoSesionPromociones extends SesionPromociones {
 
     public String getLastCouponValidationMessage() {
             return lastCouponValidationMessage;
+    }
+
+    private String extractContentFromFeignException(FeignException feignException) {
+            if (feignException == null) {
+                    return null;
+            }
+
+            String message = feignException.getMessage();
+            if (StringUtils.isBlank(message)) {
+                    return null;
+            }
+
+            final String marker = "; content:";
+            int markerIndex = message.indexOf(marker);
+            if (markerIndex >= 0) {
+                    String content = message.substring(markerIndex + marker.length()).trim();
+                    if (StringUtils.isNotBlank(content)) {
+                            return content;
+                    }
+            }
+
+            return message;
     }
 
 	protected Promocion getPromocionAplicacionCupon(CustomerCouponDTO coupon) throws CuponUseException, CuponesServiceException {
