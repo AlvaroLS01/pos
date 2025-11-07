@@ -859,6 +859,13 @@ public class DinoTicketManager extends TicketManager {
 			try {
 				CouponDTO couponDto = ((DinoSesionPromociones) sesionPromociones).validateCoupon(codArticulo);
 				
+                    if(couponDto == null) {
+                            Integer lastStatus = ((DinoSesionPromociones) sesionPromociones).getLastCouponValidationStatus();
+                            if(lastStatus != null && lastStatus == 400) {
+                                    throw new CuponAplicationException(I18N.getTexto("El cupón ya ha sido redimido."));
+                            }
+                    }
+
 				for(CustomerCouponDTO cupon : getCuponesLeidos()) {
 					if(cupon.getCouponCode().equals(codArticulo)) {
 						// A petición de Dinosol, si es un cupón de los nuevos no se puede introducir dos veces en la venta.

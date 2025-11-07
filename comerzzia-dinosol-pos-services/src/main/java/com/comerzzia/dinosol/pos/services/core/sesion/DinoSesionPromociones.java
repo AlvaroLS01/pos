@@ -58,6 +58,7 @@ import com.comerzzia.pos.services.ticket.promociones.PromocionLineaCandidataTick
 import com.comerzzia.pos.services.ticket.promociones.PromocionTicket;
 import com.comerzzia.pos.util.bigdecimal.BigDecimalUtil;
 import com.comerzzia.pos.util.config.AppConfig;
+import feign.FeignException;
 import com.comerzzia.pos.util.format.FormatUtil;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -77,6 +78,9 @@ public class DinoSesionPromociones extends SesionPromociones {
 	
 	@Autowired
 	private ComerzziaApiManager apiManager;
+
+    private Integer lastCouponValidationStatus;
+    private String lastCouponValidationMessage;
 	
 	@Autowired
 	private OpcionesPromocionService opcionesPromocionService;
@@ -315,17 +319,20 @@ public class DinoSesionPromociones extends SesionPromociones {
 	}
 
 	public CouponDTO validateCoupon(String code) throws ApiClientException {
+		lastCouponValidationStatus = null;
+		lastCouponValidationMessage = null;
+
 		try {
 			DatosSesionBean datosSesion = new DatosSesionBean();
 			datosSesion.setUidActividad(sesion.getAplicacion().getUidActividad());
 			datosSesion.setUidInstancia(sesion.getAplicacion().getUidInstancia());
 			datosSesion.setLocale(new Locale(AppConfig.idioma, AppConfig.pais));
 			CouponsApi api = apiManager.getClient(datosSesion, "CouponsApi");
-			
+
 			log.debug("validateCoupon() - Consultando en la API el cupón: " + code);
 
 			CouponDTO validation = api.validateCoupon(code, "0");
-			
+
 			log.debug("validateCoupon() - Resultado de la API: " + validation);
 
 			return validation;
@@ -335,10 +342,24 @@ public class DinoSesionPromociones extends SesionPromociones {
 			throw e;
 		}
 		catch (Exception e) {
+			if (e instanceof FeignException) {
+				FeignException feignException = (FeignException) e;
+				lastCouponValidationStatus = feignException.status();
+				lastCouponValidationMessage = feignException.getMessage();
+			}
+
 			log.error("validateCoupon() - Error while validating coupon: " + e.getMessage(), e);
 
 			return null;
 		}
+	}
+
+	public Integer getLastCouponValidationStatus() {
+		return lastCouponValidationStatus;
+	}
+
+	public String getLastCouponValidationMessage() {
+		return lastCouponValidationMessage;
 	}
 
 	protected Promocion getPromocionAplicacionCupon(CustomerCouponDTO coupon) throws CuponUseException, CuponesServiceException {
