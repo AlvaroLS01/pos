@@ -342,11 +342,23 @@ public class DinoSesionPromociones extends SesionPromociones {
 			throw e;
 		}
 		catch (Exception e) {
-			if (e instanceof FeignException) {
-				FeignException feignException = (FeignException) e;
-				lastCouponValidationStatus = feignException.status();
-				lastCouponValidationMessage = feignException.getMessage();
-			}
+                        if (e instanceof FeignException) {
+                                FeignException feignException = (FeignException) e;
+                                lastCouponValidationStatus = feignException.status();
+                                String content = null;
+                                try {
+                                        content = feignException.contentUTF8();
+                                }
+                                catch (Exception contentException) {
+                                        log.debug("validateCoupon() - Unable to extract coupon validation content: " + contentException.getMessage());
+                                }
+                                if (StringUtils.isNotBlank(content)) {
+                                        lastCouponValidationMessage = content;
+                                }
+                                else {
+                                        lastCouponValidationMessage = feignException.getMessage();
+                                }
+                        }
 
 			log.error("validateCoupon() - Error while validating coupon: " + e.getMessage(), e);
 
