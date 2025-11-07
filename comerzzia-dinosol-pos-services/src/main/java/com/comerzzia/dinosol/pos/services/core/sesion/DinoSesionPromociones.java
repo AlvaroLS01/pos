@@ -345,7 +345,12 @@ public class DinoSesionPromociones extends SesionPromociones {
                     if (e instanceof FeignException) {
                             FeignException feignException = (FeignException) e;
                             lastCouponValidationStatus = feignException.status();
-                            lastCouponValidationMessage = feignException.getMessage();
+                            try {
+                                    lastCouponValidationMessage = feignException.contentUTF8();
+                            }
+                            catch (Exception ignored) {
+                                    lastCouponValidationMessage = feignException.getMessage();
+                            }
                     }
 
                     log.error("validateCoupon() - Error while validating coupon: " + e.getMessage(), e);
