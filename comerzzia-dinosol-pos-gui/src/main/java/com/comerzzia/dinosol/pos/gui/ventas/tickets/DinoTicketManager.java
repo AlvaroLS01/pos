@@ -958,12 +958,20 @@ public class DinoTicketManager extends TicketManager {
                 String codigoCupon = (coupon != null && StringUtils.isNotBlank(coupon.getCouponCode())) ? coupon.getCouponCode()
                                 : "-";
 
-                String centroClassValue = obtenerValorPorClassId(uses, CLASS_ID_STORE);
+                Object storeIdValue = invokeGetter(coupon, "getStoreId");
+                String centroClassValue = storeIdValue != null ? StringUtils.trimToNull(storeIdValue.toString()) : null;
+                if (StringUtils.isBlank(centroClassValue)) {
+                        centroClassValue = obtenerValorPorClassId(uses, CLASS_ID_STORE);
+                }
                 if (StringUtils.isBlank(centroClassValue)) {
                         centroClassValue = obtenerValorPorClassId(coupon, CLASS_ID_STORE);
                 }
 
-                String ticketClassValue = obtenerValorPorClassId(uses, CLASS_ID_TICKET);
+                Object ticketUidValue = invokeGetter(coupon, "getTicketUid");
+                String ticketClassValue = ticketUidValue != null ? StringUtils.trimToNull(ticketUidValue.toString()) : null;
+                if (StringUtils.isBlank(ticketClassValue)) {
+                        ticketClassValue = obtenerValorPorClassId(uses, CLASS_ID_TICKET);
+                }
                 if (StringUtils.isBlank(ticketClassValue)) {
                         ticketClassValue = obtenerValorPorClassId(coupon, CLASS_ID_TICKET);
                 }
