@@ -1,13 +1,16 @@
 package com.comerzzia.dinosol.pos.gui.ventas.tickets;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -932,6 +935,9 @@ public class DinoTicketManager extends TicketManager {
                 return Boolean.TRUE.equals(used);
         }
 
+        private static final String CLASS_ID_STORE = "D_ALMACENES_TBL.CODALM";
+        private static final String CLASS_ID_TICKET = "D_TICKETS_TBL.UID_TICKET";
+
         private String construirMensajeCuponCanjeado(CouponDTO coupon) {
                 Object uses = coupon != null ? coupon.getUses() : null;
 
@@ -945,33 +951,34 @@ public class DinoTicketManager extends TicketManager {
                 String codigoCupon = (coupon != null && StringUtils.isNotBlank(coupon.getCouponCode())) ? coupon.getCouponCode()
                                 : "-";
 
+                String centroClassValue = obtenerValorPorClassId(coupon, CLASS_ID_STORE);
+                String ticketClassValue = obtenerValorPorClassId(coupon, CLASS_ID_TICKET);
+
                 String lockByTerminalId = StringUtils.trimToNull((String) invokeUsesGetter(uses, "getLockByTerminalId"));
                 String lastTerminalId = StringUtils.trimToNull((String) invokeUsesGetter(uses, "getLastTerminalId"));
-                String uidActividad = StringUtils.trimToNull((String) invokeUsesGetter(uses, "getUidActividad"));
-                String objectId = StringUtils.trimToNull((String) invokeUsesGetter(uses, "getObjectId"));
 
-                String centro = obtenerCentro(lockByTerminalId, lastTerminalId, uidActividad);
-                String ticket = obtenerNumeroTicket(lockByTerminalId, objectId);
+                String centro = obtenerCentro(centroClassValue, lockByTerminalId, lastTerminalId);
+                String ticket = obtenerNumeroTicket(ticketClassValue, lockByTerminalId);
 
                 return "CUPÓN " + codigoCupon + " CANJEADO EL DIA " + formattedDate + " EN EL CENTRO " + centro
                                 + " EN EL NÚMERO DE TICKET " + ticket;
         }
 
-        private String obtenerCentro(String lockByTerminalId, String lastTerminalId, String uidActividad) {
-                String centro = extraerParteTerminal(lockByTerminalId, true);
+        private String obtenerCentro(String centroClassValue, String lockByTerminalId, String lastTerminalId) {
+                String centro = StringUtils.trimToNull(centroClassValue);
                 if (StringUtils.isBlank(centro)) {
-                        centro = extraerParteTerminal(lastTerminalId, true);
+                        centro = extraerParteTerminal(lockByTerminalId, true);
                 }
                 if (StringUtils.isBlank(centro)) {
-                        centro = uidActividad;
+                        centro = extraerParteTerminal(lastTerminalId, true);
                 }
                 return StringUtils.isBlank(centro) ? "-" : centro;
         }
 
-        private String obtenerNumeroTicket(String lockByTerminalId, String objectId) {
-                String ticket = extraerParteTerminal(lockByTerminalId, false);
+        private String obtenerNumeroTicket(String ticketClassValue, String lockByTerminalId) {
+                String ticket = StringUtils.trimToNull(ticketClassValue);
                 if (StringUtils.isBlank(ticket)) {
-                        ticket = objectId;
+                        ticket = extraerParteTerminal(lockByTerminalId, false);
                 }
                 return StringUtils.isBlank(ticket) ? "-" : ticket;
         }
@@ -999,21 +1006,119 @@ public class DinoTicketManager extends TicketManager {
         }
 
         private Object invokeUsesGetter(Object uses, String methodName) {
-                if (uses == null) {
+                return invokeGetter(uses, methodName);
+        }
+
+        private Object invokeGetter(Object target, String methodName) {
+                if (target == null) {
                         return null;
                 }
 
                 try {
-                        Method method = uses.getClass().getMethod(methodName);
-                        return method.invoke(uses);
+                        Method method = target.getClass().getMethod(methodName);
+                        return method.invoke(target);
                 }
                 catch (Exception e) {
                         if (log.isDebugEnabled()) {
                                 log.debug("comprobarCupon() - No se pudo obtener el valor '" + methodName
-                                                + "' de la información de uso del cupón.", e);
+                                                + "' del objeto de tipo " + target.getClass().getName(), e);
                         }
                         return null;
                 }
+        }
+
+        private String obtenerValorPorClassId(Object coupon, String classId) {
+                if (coupon == null || StringUtils.isBlank(classId)) {
+                        return null;
+                }
+
+                String valor = extraerValorPorClassId(invokeGetter(coupon, "getLinks"), classId);
+                if (StringUtils.isNotBlank(valor)) {
+                        return valor;
+                }
+
+                valor = extraerValorPorClassId(invokeGetter(coupon, "getRestrictions"), classId);
+                if (StringUtils.isNotBlank(valor)) {
+                        return valor;
+                }
+
+                valor = extraerValorPorClassId(invokeGetter(coupon, "getUsesList"), classId);
+                if (StringUtils.isNotBlank(valor)) {
+                        return valor;
+                }
+
+                valor = extraerValorPorClassId(invokeGetter(coupon, "getUses"), classId);
+                if (StringUtils.isNotBlank(valor)) {
+                        return valor;
+                }
+
+                valor = extraerValorPorClassId(invokeGetter(coupon, "getCouponUses"), classId);
+                if (StringUtils.isNotBlank(valor)) {
+                        return valor;
+                }
+
+                valor = extraerValorPorClassId(invokeGetter(coupon, "getCustomerUses"), classId);
+                if (StringUtils.isNotBlank(valor)) {
+                        return valor;
+                }
+
+                valor = extraerValorPorClassId(invokeGetter(coupon, "getCouponLinks"), classId);
+                if (StringUtils.isNotBlank(valor)) {
+                        return valor;
+                }
+
+                return null;
+        }
+
+        private String extraerValorPorClassId(Object data, String classId) {
+                if (data == null || StringUtils.isBlank(classId)) {
+                        return null;
+                }
+
+                if (data instanceof Collection<?>) {
+                        for (Object elemento : (Collection<?>) data) {
+                                String valor = extraerValorPorClassId(elemento, classId);
+                                if (StringUtils.isNotBlank(valor)) {
+                                        return valor;
+                                }
+                        }
+                        return null;
+                }
+
+                if (data instanceof Map<?, ?>) {
+                        return extraerValorPorClassId(((Map<?, ?>) data).values(), classId);
+                }
+
+                if (data.getClass().isArray()) {
+                        int length = Array.getLength(data);
+                        for (int i = 0; i < length; i++) {
+                                Object elemento = Array.get(data, i);
+                                String valor = extraerValorPorClassId(elemento, classId);
+                                if (StringUtils.isNotBlank(valor)) {
+                                        return valor;
+                                }
+                        }
+                        return null;
+                }
+
+                String classIdValue = StringUtils.trimToNull((String) invokeGetter(data, "getClassId"));
+                if (classIdValue == null) {
+                        classIdValue = StringUtils.trimToNull((String) invokeGetter(data, "getIdClase"));
+                }
+
+                if (!StringUtils.equalsIgnoreCase(classId, classIdValue)) {
+                        return null;
+                }
+
+                Object objectId = invokeGetter(data, "getObjectId");
+                if (objectId == null) {
+                        objectId = invokeGetter(data, "getIdObjeto");
+                }
+                if (objectId == null) {
+                        objectId = invokeGetter(data, "getValue");
+                }
+
+                return objectId != null ? StringUtils.trimToNull(objectId.toString()) : null;
         }
 
     @SuppressWarnings("unchecked")
