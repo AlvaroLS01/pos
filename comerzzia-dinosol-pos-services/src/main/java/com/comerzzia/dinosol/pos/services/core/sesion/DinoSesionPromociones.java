@@ -318,11 +318,11 @@ public class DinoSesionPromociones extends SesionPromociones {
 		}
 	}
 
-	public CouponDTO validateCoupon(String code) throws ApiClientException {
-		lastCouponValidationStatus = null;
-		lastCouponValidationMessage = null;
+        public CouponDTO validateCoupon(String code) throws ApiClientException {
+                lastCouponValidationStatus = null;
+                lastCouponValidationMessage = null;
 
-		try {
+                try {
 			DatosSesionBean datosSesion = new DatosSesionBean();
 			datosSesion.setUidActividad(sesion.getAplicacion().getUidActividad());
 			datosSesion.setUidInstancia(sesion.getAplicacion().getUidInstancia());
@@ -351,8 +351,35 @@ public class DinoSesionPromociones extends SesionPromociones {
 			log.error("validateCoupon() - Error while validating coupon: " + e.getMessage(), e);
 
 			return null;
-		}
-	}
+                }
+        }
+
+        public CouponDTO getCoupon(String code) throws ApiClientException {
+                try {
+                        DatosSesionBean datosSesion = new DatosSesionBean();
+                        datosSesion.setUidActividad(sesion.getAplicacion().getUidActividad());
+                        datosSesion.setUidInstancia(sesion.getAplicacion().getUidInstancia());
+                        datosSesion.setLocale(new Locale(AppConfig.idioma, AppConfig.pais));
+
+                        CouponsApi api = apiManager.getClient(datosSesion, "CouponsApi");
+
+                        log.debug("getCoupon() - Consultando en la API el cupón: " + code);
+
+                        CouponDTO coupon = api.getCoupon(code);
+
+                        log.debug("getCoupon() - Resultado de la API: " + coupon);
+
+                        return coupon;
+                }
+                catch (ApiClientException e) {
+                        log.error("getCoupon() - Error al recuperar el cupón: " + e.getMessage(), e);
+                        throw e;
+                }
+                catch (Exception e) {
+                        log.error("getCoupon() - Error al recuperar el cupón: " + e.getMessage(), e);
+                        return null;
+                }
+        }
 
 	public Integer getLastCouponValidationStatus() {
 		return lastCouponValidationStatus;

@@ -1,5 +1,6 @@
 package com.comerzzia.dinosol.pos.gui.ventas.tickets;
 
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -114,7 +116,6 @@ import com.comerzzia.pos.util.format.FormatUtil;
 import com.comerzzia.pos.util.i18n.I18N;
 import com.comerzzia.pos.util.xml.MarshallUtil;
 import com.comerzzia.rest.client.tickets.ResponseGetTicketDev;
-
 import javafx.stage.Stage;
 
 @Component
@@ -862,6 +863,19 @@ public class DinoTicketManager extends TicketManager {
                     if(couponDto == null) {
                             Integer lastStatus = ((DinoSesionPromociones) sesionPromociones).getLastCouponValidationStatus();
                             if(lastStatus != null && lastStatus == 400) {
+                                    try {
+                                            CouponDTO couponInfo = ((DinoSesionPromociones) sesionPromociones).getCoupon(codArticulo);
+                                            if(couponInfo != null && isCouponMarkedAsUsed(couponInfo.getUses())) {
+                                                    throw new CuponAplicationException(construirMensajeCuponCanjeado(couponInfo));
+                                            }
+                                    }
+                                    catch (ApiClientException apiClientException) {
+                                            if(!"Registro no encontrado".equals(apiClientException.getMessage())) {
+                                                    throw apiClientException;
+                                            }
+                                            log.debug("comprobarCupon() - El cupón no existe en la consulta de detalle tras respuesta 400 de validación.");
+                                    }
+
                                     throw new CuponAplicationException(I18N.getTexto("El cupón ya ha sido redimido."));
                             }
                     }
@@ -908,16 +922,149 @@ public class DinoTicketManager extends TicketManager {
 			getCuponesLeidos().add(coupon);
 			
 			isCupon = true;
-		}
-		
-		return isCupon;
-	}
+                }
+
+                return isCupon;
+        }
+
+        private boolean isCouponMarkedAsUsed(Object uses) {
+                Boolean used = (Boolean) invokeUsesGetter(uses, "getUsed");
+                return Boolean.TRUE.equals(used);
+        }
+
+        private String construirMensajeCuponCanjeado(CouponDTO coupon) {
+                Object uses = coupon != null ? coupon.getUses() : null;
+
+                Date redemptionDate = (Date) invokeUsesGetter(uses, "getLastUse");
+                if (redemptionDate == null) {
+                        redemptionDate = (Date) invokeUsesGetter(uses, "getFirstUse");
+                }
+
+                String formattedDate = redemptionDate != null ? FormatUtil.getInstance().formateaFecha(redemptionDate) : "-";
+
+                String codigoCupon = (coupon != null && StringUtils.isNotBlank(coupon.getCouponCode())) ? coupon.getCouponCode()
+                                : "-";
+
+                Object storeIdValue = invokeGetter(coupon, "getStoreId");
+                String centroClassValue = storeIdValue != null ? StringUtils.trimToNull(storeIdValue.toString()) : null;
+
+                Object ticketUidValue = invokeGetter(coupon, "getTicketUid");
+                String ticketClassValue = ticketUidValue != null ? StringUtils.trimToNull(ticketUidValue.toString()) : null;
+
+                String lockByTerminalId = StringUtils.trimToNull((String) invokeUsesGetter(uses, "getLockByTerminalId"));
+                String lastTerminalId = StringUtils.trimToNull((String) invokeUsesGetter(uses, "getLastTerminalId"));
+
+                String centro = obtenerCentro(centroClassValue, lockByTerminalId, lastTerminalId);
+                String ticket = obtenerNumeroTicket(ticketClassValue, lockByTerminalId);
+
+                return "CUPÓN " + codigoCupon + " CANJEADO EL DIA " + formattedDate + " EN EL CENTRO " + centro
+                                + " EN EL NÚMERO DE TICKET " + ticket;
+        }
+
+        private String obtenerCentro(String centroClassValue, String lockByTerminalId, String lastTerminalId) {
+                String centro = StringUtils.trimToNull(centroClassValue);
+                if (StringUtils.isBlank(centro)) {
+                        centro = extraerParteTerminal(lockByTerminalId, true);
+                }
+                if (StringUtils.isBlank(centro)) {
+                        centro = extraerParteTerminal(lastTerminalId, true);
+                }
+                return StringUtils.isBlank(centro) ? "-" : centro;
+        }
+
+        private String obtenerNumeroTicket(String ticketClassValue, String lockByTerminalId) {
+                String ticket = buscarNumeroTicketPorUid(ticketClassValue);
+                if (StringUtils.isBlank(ticket)) {
+                        ticket = StringUtils.trimToNull(ticketClassValue);
+                }
+                if (StringUtils.isBlank(ticket)) {
+                        ticket = extraerParteTerminal(lockByTerminalId, false);
+                }
+                return StringUtils.isBlank(ticket) ? "-" : ticket;
+        }
+
+        private String buscarNumeroTicketPorUid(String ticketUid) {
+                String uid = StringUtils.trimToNull(ticketUid);
+                if (StringUtils.isBlank(uid)) {
+                        return null;
+                }
+
+                try {
+                        TicketBean ticketBean = ticketsService.consultarTicket(uid, sesion.getAplicacion().getUidActividad());
+                        if (ticketBean != null) {
+                                String codTicket = StringUtils.trimToNull(ticketBean.getCodTicket());
+                                if (StringUtils.isNotBlank(codTicket)) {
+                                        return codTicket;
+                                }
+
+                                if (ticketBean.getIdTicket() != null) {
+                                        return StringUtils.trimToNull(ticketBean.getIdTicket().toString());
+                                }
+                        }
+                }
+                catch (TicketsServiceException e) {
+                        if (log.isDebugEnabled()) {
+                                log.debug("buscarNumeroTicketPorUid() - No se pudo recuperar el ticket con UID " + uid, e);
+                        }
+                }
+                catch (Exception e) {
+                        if (log.isDebugEnabled()) {
+                                log.debug("buscarNumeroTicketPorUid() - Error inesperado al recuperar el ticket con UID " + uid, e);
+                        }
+                }
+
+                return null;
+        }
+
+        private String extraerParteTerminal(String valor, boolean primeraParte) {
+                if (StringUtils.isBlank(valor)) {
+                        return null;
+                }
+
+                String[] partes = valor.split("[\\-#/_]");
+                if (partes.length > 1) {
+                        if (primeraParte) {
+                                return StringUtils.trimToNull(partes[0]);
+                        }
+
+                        for (int indice = partes.length - 1; indice >= 0; indice--) {
+                                if (StringUtils.isNotBlank(partes[indice])) {
+                                        return StringUtils.trimToNull(partes[indice]);
+                                }
+                        }
+                        return null;
+                }
+
+                return primeraParte ? StringUtils.trimToNull(valor) : null;
+        }
+
+        private Object invokeUsesGetter(Object uses, String methodName) {
+                return invokeGetter(uses, methodName);
+        }
+
+        private Object invokeGetter(Object target, String methodName) {
+                if (target == null) {
+                        return null;
+                }
+
+                try {
+                        Method method = target.getClass().getMethod(methodName);
+                        return method.invoke(target);
+                }
+                catch (Exception e) {
+                        if (log.isDebugEnabled()) {
+                                log.debug("comprobarCupon() - No se pudo obtener el valor '" + methodName
+                                                + "' del objeto de tipo " + target.getClass().getName(), e);
+                        }
+                        return null;
+                }
+        }
 
     @SuppressWarnings("unchecked")
-	private void anularTarjetaRegalo(LineaTicketAbstract lineaNueva, TarjetaRegaloDto tarjetaRegalo) {
-    	tarjetaRegalo.setEstado(TarjetaRegaloDto.ESTADO_ANULADA);
-    	for(DinoLineaTicket linea : (List<DinoLineaTicket>) ticketPrincipal.getLineas()) {
-    		TarjetaRegaloDto tarjetaRegaloLinea = linea.getTarjetaRegalo();
+        private void anularTarjetaRegalo(LineaTicketAbstract lineaNueva, TarjetaRegaloDto tarjetaRegalo) {
+        tarjetaRegalo.setEstado(TarjetaRegaloDto.ESTADO_ANULADA);
+        for(DinoLineaTicket linea : (List<DinoLineaTicket>) ticketPrincipal.getLineas()) {
+                TarjetaRegaloDto tarjetaRegaloLinea = linea.getTarjetaRegalo();
 			if(tarjetaRegaloLinea != null && tarjetaRegaloLinea.getNumeroTarjeta().equals(tarjetaRegalo.getNumeroTarjeta())) {
 				tarjetaRegaloLinea.setEstado(TarjetaRegaloDto.ESTADO_ANULADA);
 
