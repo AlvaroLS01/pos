@@ -1,21 +1,22 @@
 package com.comerzzia.dinosol.pos.gui.ventas.tickets;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.node.POJONode;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -1040,136 +1041,82 @@ public class DinoTicketManager extends TicketManager {
                 }
         }
 
+        private static final ObjectMapper LOYALTY_OBJECT_MAPPER = new ObjectMapper()
+                        .setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY)
+                        .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+
         private String obtenerValorPorClassId(Object source, String classId) {
                 if (source == null || StringUtils.isBlank(classId)) {
                         return null;
                 }
 
-                Object match = findNodeByClassId(source, classId, new IdentityHashMap<>());
+                JsonNode tree = toJsonNode(source);
+                if (tree == null || tree.isMissingNode()) {
+                        return null;
+                }
+
+                JsonNode match = findNodeByClassId(tree, classId);
                 if (match == null) {
                         return null;
                 }
 
-                Object objectId = getPropertyValue(match, OBJECT_ID_FIELD_CANDIDATES);
-                if (objectId == null && match instanceof Map<?, ?>) {
-                        objectId = getFromMapIgnoreCase((Map<?, ?>) match, OBJECT_ID_FIELD_CANDIDATES);
-                }
-
-                if (objectId instanceof Optional<?>) {
-                        objectId = ((Optional<?>) objectId).orElse(null);
-                }
-
-                if (objectId == null) {
+                JsonNode objectIdNode = findFieldIgnoreCase(match, OBJECT_ID_FIELD_CANDIDATES);
+                if (objectIdNode == null || objectIdNode.isNull()) {
                         return null;
                 }
 
-                String value = StringUtils.trimToNull(String.valueOf(objectId));
+                String value = StringUtils.trimToNull(objectIdNode.asText());
                 return value;
         }
 
-        private Object findNodeByClassId(Object node, String classId, IdentityHashMap<Object, Boolean> visited) {
-                if (node == null || StringUtils.isBlank(classId)) {
-                        return null;
-                }
-
-                Object value = unwrapOptional(node);
+        private JsonNode toJsonNode(Object value) {
                 if (value == null) {
                         return null;
                 }
 
-                if (isSimpleValue(value)) {
+                try {
+                        JsonNode node = LOYALTY_OBJECT_MAPPER.valueToTree(value);
+                        if (node != null && node.isPojo() && node instanceof POJONode) {
+                                Object embedded = ((POJONode) node).getPojo();
+                                if (embedded != null && embedded != value) {
+                                        return toJsonNode(embedded);
+                                }
+                                return null;
+                        }
+                        return node;
+                }
+                catch (IllegalArgumentException exception) {
+                        if (log.isDebugEnabled()) {
+                                log.debug("construirMensajeCuponCanjeado() - No se pudo serializar el objeto loyalty a JSON", exception);
+                        }
+                        return null;
+                }
+        }
+
+        private JsonNode findNodeByClassId(JsonNode node, String classId) {
+                if (node == null || node.isNull() || node.isMissingNode() || StringUtils.isBlank(classId)) {
                         return null;
                 }
 
-                if (visited.containsKey(value)) {
-                        return null;
-                }
-                visited.put(value, Boolean.TRUE);
+                if (node.isObject()) {
+                        if (matchesClassId(node, classId)) {
+                                return node;
+                        }
 
-                if (matchesClassId(value, classId)) {
-                        return value;
-                }
-
-                if (value instanceof Map<?, ?>) {
-                        for (Object entryValue : ((Map<?, ?>) value).values()) {
-                                Object match = findNodeByClassId(entryValue, classId, visited);
+                        Iterator<Map.Entry<String, JsonNode>> fields = node.fields();
+                        while (fields.hasNext()) {
+                                Map.Entry<String, JsonNode> entry = fields.next();
+                                JsonNode match = findNodeByClassId(entry.getValue(), classId);
                                 if (match != null) {
                                         return match;
                                 }
                         }
-                        return null;
                 }
-
-                if (value instanceof Collection<?>) {
-                        for (Object element : (Collection<?>) value) {
-                                Object match = findNodeByClassId(element, classId, visited);
+                else if (node.isArray()) {
+                        for (JsonNode element : node) {
+                                JsonNode match = findNodeByClassId(element, classId);
                                 if (match != null) {
                                         return match;
-                                }
-                        }
-                        return null;
-                }
-
-                if (value.getClass().isArray()) {
-                        int length = Array.getLength(value);
-                        for (int index = 0; index < length; index++) {
-                                Object element = Array.get(value, index);
-                                Object match = findNodeByClassId(element, classId, visited);
-                                if (match != null) {
-                                        return match;
-                                }
-                        }
-                        return null;
-                }
-
-                // Explore declared fields
-                Class<?> currentType = value.getClass();
-                while (currentType != null && !Object.class.equals(currentType)) {
-                        Field[] fields = currentType.getDeclaredFields();
-                        for (Field field : fields) {
-                                if (Modifier.isStatic(field.getModifiers())) {
-                                        continue;
-                                }
-                                try {
-                                        field.setAccessible(true);
-                                        Object fieldValue = field.get(value);
-                                        Object match = findNodeByClassId(fieldValue, classId, visited);
-                                        if (match != null) {
-                                                return match;
-                                        }
-                                }
-                                catch (IllegalAccessException exception) {
-                                        if (log.isDebugEnabled()) {
-                                                log.debug("construirMensajeCuponCanjeado() - No se pudo acceder al campo '"
-                                                                + field.getName() + "' de la clase " + currentType.getName(),
-                                                                exception);
-                                        }
-                                }
-                        }
-                        currentType = currentType.getSuperclass();
-                }
-
-                // Explore zero-arg getters as a last resort
-                Method[] methods = value.getClass().getMethods();
-                for (Method method : methods) {
-                        if (method.getParameterCount() != 0 || method.getReturnType().equals(Void.TYPE)) {
-                                continue;
-                        }
-                        String methodName = method.getName();
-                        if ("getClass".equals(methodName)) {
-                                continue;
-                        }
-                        try {
-                                Object result = method.invoke(value);
-                                Object match = findNodeByClassId(result, classId, visited);
-                                if (match != null) {
-                                        return match;
-                                }
-                        }
-                        catch (Exception exception) {
-                                if (log.isDebugEnabled()) {
-                                        log.debug("construirMensajeCuponCanjeado() - No se pudo invocar el método '"
-                                                        + methodName + "' de la clase " + value.getClass().getName(), exception);
                                 }
                         }
                 }
@@ -1177,171 +1124,36 @@ public class DinoTicketManager extends TicketManager {
                 return null;
         }
 
-        private boolean matchesClassId(Object node, String classId) {
-                Object classIdValue = getPropertyValue(node, CLASS_ID_FIELD_CANDIDATES);
-                if (classIdValue == null && node instanceof Map<?, ?>) {
-                        classIdValue = getFromMapIgnoreCase((Map<?, ?>) node, CLASS_ID_FIELD_CANDIDATES);
-                }
-
-                if (classIdValue instanceof Optional<?>) {
-                        classIdValue = ((Optional<?>) classIdValue).orElse(null);
-                }
-
-                if (classIdValue == null) {
+        private boolean matchesClassId(JsonNode node, String classId) {
+                if (node == null || !node.isObject() || StringUtils.isBlank(classId)) {
                         return false;
                 }
 
-                String value = StringUtils.trimToNull(String.valueOf(classIdValue));
+                JsonNode classIdNode = findFieldIgnoreCase(node, CLASS_ID_FIELD_CANDIDATES);
+                if (classIdNode == null || classIdNode.isNull()) {
+                        return false;
+                }
+
+                String value = StringUtils.trimToNull(classIdNode.asText());
                 return StringUtils.equalsIgnoreCase(classId, value);
         }
 
-        private Object getPropertyValue(Object target, String... candidateNames) {
-                if (target == null || candidateNames == null) {
+        private JsonNode findFieldIgnoreCase(JsonNode node, String... candidateNames) {
+                if (node == null || !node.isObject() || candidateNames == null) {
                         return null;
                 }
 
-                if (target instanceof Map<?, ?>) {
-                        return getFromMapIgnoreCase((Map<?, ?>) target, candidateNames);
-                }
-
-                for (String candidate : candidateNames) {
-                        Object value = invokeCandidateGetter(target, candidate);
-                        if (value != null) {
-                                return value;
-                        }
-                }
-
-                for (String candidate : candidateNames) {
-                        Object value = readFieldValue(target, candidate);
-                        if (value != null) {
-                                return value;
-                        }
-                }
-
-                return null;
-        }
-
-        private Object getFromMapIgnoreCase(Map<?, ?> map, String... candidateNames) {
-                if (map == null || candidateNames == null) {
-                        return null;
-                }
-
-                for (Map.Entry<?, ?> entry : map.entrySet()) {
-                        if (!(entry.getKey() instanceof String)) {
-                                continue;
-                        }
-                        String key = (String) entry.getKey();
+                Iterator<Map.Entry<String, JsonNode>> fields = node.fields();
+                while (fields.hasNext()) {
+                        Map.Entry<String, JsonNode> entry = fields.next();
                         for (String candidate : candidateNames) {
-                                if (StringUtils.equalsIgnoreCase(key, candidate)) {
+                                if (StringUtils.equalsIgnoreCase(entry.getKey(), candidate)) {
                                         return entry.getValue();
                                 }
                         }
                 }
 
                 return null;
-        }
-
-        private Object invokeCandidateGetter(Object target, String candidate) {
-                if (target == null || StringUtils.isBlank(candidate)) {
-                        return null;
-                }
-
-                String normalized = candidate.trim();
-                String pascal = toPascalCase(normalized);
-                String camel = StringUtils.uncapitalize(pascal);
-
-                String[] possibleNames = { normalized, camel, pascal, "get" + pascal, "is" + pascal };
-
-                Method[] methods = target.getClass().getMethods();
-                for (Method method : methods) {
-                        if (method.getParameterCount() != 0 || method.getReturnType().equals(Void.TYPE)) {
-                                continue;
-                        }
-
-                        String methodName = method.getName();
-                        if ("getClass".equals(methodName)) {
-                                continue;
-                        }
-
-                        for (String expected : possibleNames) {
-                                if (StringUtils.equalsIgnoreCase(methodName, expected)) {
-                                        try {
-                                                return method.invoke(target);
-                                        }
-                                        catch (Exception exception) {
-                                                if (log.isDebugEnabled()) {
-                                                        log.debug("construirMensajeCuponCanjeado() - No se pudo invocar el método '"
-                                                                        + methodName + "' de la clase " + target.getClass().getName(),
-                                                                        exception);
-                                                }
-                                        }
-                                }
-                        }
-                }
-
-                return null;
-        }
-
-        private Object readFieldValue(Object target, String candidate) {
-                if (target == null || StringUtils.isBlank(candidate)) {
-                        return null;
-                }
-
-                Class<?> currentType = target.getClass();
-                while (currentType != null && !Object.class.equals(currentType)) {
-                        Field[] fields = currentType.getDeclaredFields();
-                        for (Field field : fields) {
-                                if (Modifier.isStatic(field.getModifiers())) {
-                                        continue;
-                                }
-                                if (!StringUtils.equalsIgnoreCase(field.getName(), candidate)) {
-                                        continue;
-                                }
-                                try {
-                                        field.setAccessible(true);
-                                        return field.get(target);
-                                }
-                                catch (IllegalAccessException exception) {
-                                        if (log.isDebugEnabled()) {
-                                                log.debug("construirMensajeCuponCanjeado() - No se pudo acceder al campo '"
-                                                                + field.getName() + "' de la clase " + currentType.getName(),
-                                                                exception);
-                                        }
-                                }
-                        }
-                        currentType = currentType.getSuperclass();
-                }
-
-                return null;
-        }
-
-        private Object unwrapOptional(Object value) {
-                if (value instanceof Optional<?>) {
-                        return ((Optional<?>) value).orElse(null);
-                }
-                return value;
-        }
-
-        private boolean isSimpleValue(Object value) {
-                return value == null || value instanceof CharSequence || value instanceof Number || value instanceof Boolean
-                                || value.getClass().isEnum();
-        }
-
-        private String toPascalCase(String value) {
-                if (StringUtils.isBlank(value)) {
-                        return "";
-                }
-
-                String cleaned = value.replaceAll("[^A-Za-z0-9]", " ");
-                String[] parts = cleaned.trim().split("\\s+");
-                StringBuilder builder = new StringBuilder();
-                for (String part : parts) {
-                        if (part.isEmpty()) {
-                                continue;
-                        }
-                        builder.append(StringUtils.capitalize(part.toLowerCase()));
-                }
-                return builder.toString();
         }
 
     @SuppressWarnings("unchecked")
