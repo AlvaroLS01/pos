@@ -7,16 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.node.POJONode;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -940,11 +932,6 @@ public class DinoTicketManager extends TicketManager {
                 return Boolean.TRUE.equals(used);
         }
 
-        private static final String CLASS_ID_STORE = "D_ALMACENES_TBL.CODALM";
-        private static final String CLASS_ID_TICKET = "D_TICKETS_TBL.UID_TICKET";
-        private static final String[] CLASS_ID_FIELD_CANDIDATES = { "classId", "idClase", "class_id", "idclase", "useClassId" };
-        private static final String[] OBJECT_ID_FIELD_CANDIDATES = { "objectId", "idObjeto", "value", "object_id", "idobjeto", "useObjectId" };
-
         private String construirMensajeCuponCanjeado(CouponDTO coupon) {
                 Object uses = coupon != null ? coupon.getUses() : null;
 
@@ -960,21 +947,9 @@ public class DinoTicketManager extends TicketManager {
 
                 Object storeIdValue = invokeGetter(coupon, "getStoreId");
                 String centroClassValue = storeIdValue != null ? StringUtils.trimToNull(storeIdValue.toString()) : null;
-                if (StringUtils.isBlank(centroClassValue)) {
-                        centroClassValue = obtenerValorPorClassId(uses, CLASS_ID_STORE);
-                }
-                if (StringUtils.isBlank(centroClassValue)) {
-                        centroClassValue = obtenerValorPorClassId(coupon, CLASS_ID_STORE);
-                }
 
                 Object ticketUidValue = invokeGetter(coupon, "getTicketUid");
                 String ticketClassValue = ticketUidValue != null ? StringUtils.trimToNull(ticketUidValue.toString()) : null;
-                if (StringUtils.isBlank(ticketClassValue)) {
-                        ticketClassValue = obtenerValorPorClassId(uses, CLASS_ID_TICKET);
-                }
-                if (StringUtils.isBlank(ticketClassValue)) {
-                        ticketClassValue = obtenerValorPorClassId(coupon, CLASS_ID_TICKET);
-                }
 
                 String lockByTerminalId = StringUtils.trimToNull((String) invokeUsesGetter(uses, "getLockByTerminalId"));
                 String lastTerminalId = StringUtils.trimToNull((String) invokeUsesGetter(uses, "getLastTerminalId"));
@@ -1047,121 +1022,6 @@ public class DinoTicketManager extends TicketManager {
                         }
                         return null;
                 }
-        }
-
-        private static final ObjectMapper LOYALTY_OBJECT_MAPPER = new ObjectMapper()
-                        .setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY)
-                        .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-
-        private String obtenerValorPorClassId(Object source, String classId) {
-                if (source == null || StringUtils.isBlank(classId)) {
-                        return null;
-                }
-
-                JsonNode tree = toJsonNode(source);
-                if (tree == null || tree.isMissingNode()) {
-                        return null;
-                }
-
-                JsonNode match = findNodeByClassId(tree, classId);
-                if (match == null) {
-                        return null;
-                }
-
-                JsonNode objectIdNode = findFieldIgnoreCase(match, OBJECT_ID_FIELD_CANDIDATES);
-                if (objectIdNode == null || objectIdNode.isNull()) {
-                        return null;
-                }
-
-                String value = StringUtils.trimToNull(objectIdNode.asText());
-                return value;
-        }
-
-        private JsonNode toJsonNode(Object value) {
-                if (value == null) {
-                        return null;
-                }
-
-                try {
-                        JsonNode node = LOYALTY_OBJECT_MAPPER.valueToTree(value);
-                        if (node != null && node.isPojo() && node instanceof POJONode) {
-                                Object embedded = ((POJONode) node).getPojo();
-                                if (embedded != null && embedded != value) {
-                                        return toJsonNode(embedded);
-                                }
-                                return null;
-                        }
-                        return node;
-                }
-                catch (IllegalArgumentException exception) {
-                        if (log.isDebugEnabled()) {
-                                log.debug("construirMensajeCuponCanjeado() - No se pudo serializar el objeto loyalty a JSON", exception);
-                        }
-                        return null;
-                }
-        }
-
-        private JsonNode findNodeByClassId(JsonNode node, String classId) {
-                if (node == null || node.isNull() || node.isMissingNode() || StringUtils.isBlank(classId)) {
-                        return null;
-                }
-
-                if (node.isObject()) {
-                        if (matchesClassId(node, classId)) {
-                                return node;
-                        }
-
-                        Iterator<Map.Entry<String, JsonNode>> fields = node.fields();
-                        while (fields.hasNext()) {
-                                Map.Entry<String, JsonNode> entry = fields.next();
-                                JsonNode match = findNodeByClassId(entry.getValue(), classId);
-                                if (match != null) {
-                                        return match;
-                                }
-                        }
-                }
-                else if (node.isArray()) {
-                        for (JsonNode element : node) {
-                                JsonNode match = findNodeByClassId(element, classId);
-                                if (match != null) {
-                                        return match;
-                                }
-                        }
-                }
-
-                return null;
-        }
-
-        private boolean matchesClassId(JsonNode node, String classId) {
-                if (node == null || !node.isObject() || StringUtils.isBlank(classId)) {
-                        return false;
-                }
-
-                JsonNode classIdNode = findFieldIgnoreCase(node, CLASS_ID_FIELD_CANDIDATES);
-                if (classIdNode == null || classIdNode.isNull()) {
-                        return false;
-                }
-
-                String value = StringUtils.trimToNull(classIdNode.asText());
-                return StringUtils.equalsIgnoreCase(classId, value);
-        }
-
-        private JsonNode findFieldIgnoreCase(JsonNode node, String... candidateNames) {
-                if (node == null || !node.isObject() || candidateNames == null) {
-                        return null;
-                }
-
-                Iterator<Map.Entry<String, JsonNode>> fields = node.fields();
-                while (fields.hasNext()) {
-                        Map.Entry<String, JsonNode> entry = fields.next();
-                        for (String candidate : candidateNames) {
-                                if (StringUtils.equalsIgnoreCase(entry.getKey(), candidate)) {
-                                        return entry.getValue();
-                                }
-                        }
-                }
-
-                return null;
         }
 
     @SuppressWarnings("unchecked")
