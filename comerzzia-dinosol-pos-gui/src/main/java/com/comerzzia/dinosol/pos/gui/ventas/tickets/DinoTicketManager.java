@@ -1,14 +1,21 @@
 package com.comerzzia.dinosol.pos.gui.ventas.tickets;
 
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -116,12 +123,6 @@ import com.comerzzia.pos.util.format.FormatUtil;
 import com.comerzzia.pos.util.i18n.I18N;
 import com.comerzzia.pos.util.xml.MarshallUtil;
 import com.comerzzia.rest.client.tickets.ResponseGetTicketDev;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-
 import javafx.stage.Stage;
 
 @Component
@@ -940,9 +941,8 @@ public class DinoTicketManager extends TicketManager {
 
         private static final String CLASS_ID_STORE = "D_ALMACENES_TBL.CODALM";
         private static final String CLASS_ID_TICKET = "D_TICKETS_TBL.UID_TICKET";
-        private static final ObjectMapper LOYALTY_COUPON_MAPPER = createLoyaltyCouponMapper();
-        private static final String[] CLASS_ID_FIELD_CANDIDATES = { "classId", "idClase", "class_id", "idclase" };
-        private static final String[] OBJECT_ID_FIELD_CANDIDATES = { "objectId", "idObjeto", "value", "object_id", "idobjeto" };
+        private static final String[] CLASS_ID_FIELD_CANDIDATES = { "classId", "idClase", "class_id", "idclase", "useClassId" };
+        private static final String[] OBJECT_ID_FIELD_CANDIDATES = { "objectId", "idObjeto", "value", "object_id", "idobjeto", "useObjectId" };
 
         private String construirMensajeCuponCanjeado(CouponDTO coupon) {
                 Object uses = coupon != null ? coupon.getUses() : null;
@@ -957,9 +957,15 @@ public class DinoTicketManager extends TicketManager {
                 String codigoCupon = (coupon != null && StringUtils.isNotBlank(coupon.getCouponCode())) ? coupon.getCouponCode()
                                 : "-";
 
-                JsonNode couponNode = convertCouponToJsonNode(coupon);
-                String centroClassValue = obtenerValorPorClassId(couponNode, CLASS_ID_STORE);
-                String ticketClassValue = obtenerValorPorClassId(couponNode, CLASS_ID_TICKET);
+                String centroClassValue = obtenerValorPorClassId(uses, CLASS_ID_STORE);
+                if (StringUtils.isBlank(centroClassValue)) {
+                        centroClassValue = obtenerValorPorClassId(coupon, CLASS_ID_STORE);
+                }
+
+                String ticketClassValue = obtenerValorPorClassId(uses, CLASS_ID_TICKET);
+                if (StringUtils.isBlank(ticketClassValue)) {
+                        ticketClassValue = obtenerValorPorClassId(coupon, CLASS_ID_TICKET);
+                }
 
                 String lockByTerminalId = StringUtils.trimToNull((String) invokeUsesGetter(uses, "getLockByTerminalId"));
                 String lastTerminalId = StringUtils.trimToNull((String) invokeUsesGetter(uses, "getLastTerminalId"));
@@ -1012,30 +1018,6 @@ public class DinoTicketManager extends TicketManager {
                 return primeraParte ? StringUtils.trimToNull(valor) : null;
         }
 
-        private static ObjectMapper createLoyaltyCouponMapper() {
-                ObjectMapper mapper = new ObjectMapper();
-                mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-                mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-                return mapper;
-        }
-
-        private JsonNode convertCouponToJsonNode(Object coupon) {
-                if (coupon == null) {
-                        return null;
-                }
-
-                try {
-                        return LOYALTY_COUPON_MAPPER.valueToTree(coupon);
-                }
-                catch (IllegalArgumentException exception) {
-                        if (log.isDebugEnabled()) {
-                                log.debug("construirMensajeCuponCanjeado() - No se pudo convertir el cupón a JSON: "
-                                                + exception.getMessage(), exception);
-                        }
-                        return null;
-                }
-        }
-
         private Object invokeUsesGetter(Object uses, String methodName) {
                 return invokeGetter(uses, methodName);
         }
@@ -1058,52 +1040,136 @@ public class DinoTicketManager extends TicketManager {
                 }
         }
 
-        private String obtenerValorPorClassId(JsonNode couponNode, String classId) {
-                if (couponNode == null || StringUtils.isBlank(classId)) {
+        private String obtenerValorPorClassId(Object source, String classId) {
+                if (source == null || StringUtils.isBlank(classId)) {
                         return null;
                 }
 
-                JsonNode match = findNodeByClassId(couponNode, classId);
+                Object match = findNodeByClassId(source, classId, new IdentityHashMap<>());
                 if (match == null) {
                         return null;
                 }
 
-                JsonNode objectIdNode = getFieldIgnoreCase(match, OBJECT_ID_FIELD_CANDIDATES);
-                if (objectIdNode == null || objectIdNode.isNull()) {
+                Object objectId = getPropertyValue(match, OBJECT_ID_FIELD_CANDIDATES);
+                if (objectId == null && match instanceof Map<?, ?>) {
+                        objectId = getFromMapIgnoreCase((Map<?, ?>) match, OBJECT_ID_FIELD_CANDIDATES);
+                }
+
+                if (objectId instanceof Optional<?>) {
+                        objectId = ((Optional<?>) objectId).orElse(null);
+                }
+
+                if (objectId == null) {
                         return null;
                 }
 
-                String value = StringUtils.trimToNull(objectIdNode.asText());
+                String value = StringUtils.trimToNull(String.valueOf(objectId));
                 return value;
         }
 
-        private JsonNode findNodeByClassId(JsonNode node, String classId) {
+        private Object findNodeByClassId(Object node, String classId, IdentityHashMap<Object, Boolean> visited) {
                 if (node == null || StringUtils.isBlank(classId)) {
                         return null;
                 }
 
-                if (node.isObject()) {
-                        JsonNode classIdNode = getFieldIgnoreCase(node, CLASS_ID_FIELD_CANDIDATES);
-                        if (classIdNode != null && !classIdNode.isNull()) {
-                                String value = StringUtils.trimToNull(classIdNode.asText());
-                                if (StringUtils.equalsIgnoreCase(classId, value)) {
-                                        return node;
-                                }
-                        }
-
-                        Iterator<JsonNode> values = node.elements();
-                        while (values.hasNext()) {
-                                JsonNode match = findNodeByClassId(values.next(), classId);
-                                if (match != null) {
-                                        return match;
-                                }
-                        }
+                Object value = unwrapOptional(node);
+                if (value == null) {
+                        return null;
                 }
-                else if (node.isArray()) {
-                        for (JsonNode element : node) {
-                                JsonNode match = findNodeByClassId(element, classId);
+
+                if (isSimpleValue(value)) {
+                        return null;
+                }
+
+                if (visited.containsKey(value)) {
+                        return null;
+                }
+                visited.put(value, Boolean.TRUE);
+
+                if (matchesClassId(value, classId)) {
+                        return value;
+                }
+
+                if (value instanceof Map<?, ?>) {
+                        for (Object entryValue : ((Map<?, ?>) value).values()) {
+                                Object match = findNodeByClassId(entryValue, classId, visited);
                                 if (match != null) {
                                         return match;
+                                }
+                        }
+                        return null;
+                }
+
+                if (value instanceof Collection<?>) {
+                        for (Object element : (Collection<?>) value) {
+                                Object match = findNodeByClassId(element, classId, visited);
+                                if (match != null) {
+                                        return match;
+                                }
+                        }
+                        return null;
+                }
+
+                if (value.getClass().isArray()) {
+                        int length = Array.getLength(value);
+                        for (int index = 0; index < length; index++) {
+                                Object element = Array.get(value, index);
+                                Object match = findNodeByClassId(element, classId, visited);
+                                if (match != null) {
+                                        return match;
+                                }
+                        }
+                        return null;
+                }
+
+                // Explore declared fields
+                Class<?> currentType = value.getClass();
+                while (currentType != null && !Object.class.equals(currentType)) {
+                        Field[] fields = currentType.getDeclaredFields();
+                        for (Field field : fields) {
+                                if (Modifier.isStatic(field.getModifiers())) {
+                                        continue;
+                                }
+                                try {
+                                        field.setAccessible(true);
+                                        Object fieldValue = field.get(value);
+                                        Object match = findNodeByClassId(fieldValue, classId, visited);
+                                        if (match != null) {
+                                                return match;
+                                        }
+                                }
+                                catch (IllegalAccessException exception) {
+                                        if (log.isDebugEnabled()) {
+                                                log.debug("construirMensajeCuponCanjeado() - No se pudo acceder al campo '"
+                                                                + field.getName() + "' de la clase " + currentType.getName(),
+                                                                exception);
+                                        }
+                                }
+                        }
+                        currentType = currentType.getSuperclass();
+                }
+
+                // Explore zero-arg getters as a last resort
+                Method[] methods = value.getClass().getMethods();
+                for (Method method : methods) {
+                        if (method.getParameterCount() != 0 || method.getReturnType().equals(Void.TYPE)) {
+                                continue;
+                        }
+                        String methodName = method.getName();
+                        if ("getClass".equals(methodName)) {
+                                continue;
+                        }
+                        try {
+                                Object result = method.invoke(value);
+                                Object match = findNodeByClassId(result, classId, visited);
+                                if (match != null) {
+                                        return match;
+                                }
+                        }
+                        catch (Exception exception) {
+                                if (log.isDebugEnabled()) {
+                                        log.debug("construirMensajeCuponCanjeado() - No se pudo invocar el método '"
+                                                        + methodName + "' de la clase " + value.getClass().getName(), exception);
                                 }
                         }
                 }
@@ -1111,32 +1177,171 @@ public class DinoTicketManager extends TicketManager {
                 return null;
         }
 
-        private JsonNode getFieldIgnoreCase(JsonNode node, String... candidateNames) {
-                if (node == null || !node.isObject() || candidateNames == null) {
+        private boolean matchesClassId(Object node, String classId) {
+                Object classIdValue = getPropertyValue(node, CLASS_ID_FIELD_CANDIDATES);
+                if (classIdValue == null && node instanceof Map<?, ?>) {
+                        classIdValue = getFromMapIgnoreCase((Map<?, ?>) node, CLASS_ID_FIELD_CANDIDATES);
+                }
+
+                if (classIdValue instanceof Optional<?>) {
+                        classIdValue = ((Optional<?>) classIdValue).orElse(null);
+                }
+
+                if (classIdValue == null) {
+                        return false;
+                }
+
+                String value = StringUtils.trimToNull(String.valueOf(classIdValue));
+                return StringUtils.equalsIgnoreCase(classId, value);
+        }
+
+        private Object getPropertyValue(Object target, String... candidateNames) {
+                if (target == null || candidateNames == null) {
                         return null;
                 }
 
+                if (target instanceof Map<?, ?>) {
+                        return getFromMapIgnoreCase((Map<?, ?>) target, candidateNames);
+                }
+
                 for (String candidate : candidateNames) {
-                        if (candidate == null) {
-                                continue;
-                        }
-                        JsonNode direct = node.get(candidate);
-                        if (direct != null) {
-                                return direct;
+                        Object value = invokeCandidateGetter(target, candidate);
+                        if (value != null) {
+                                return value;
                         }
                 }
 
-                Iterator<String> fieldNames = node.fieldNames();
-                while (fieldNames.hasNext()) {
-                        String fieldName = fieldNames.next();
+                for (String candidate : candidateNames) {
+                        Object value = readFieldValue(target, candidate);
+                        if (value != null) {
+                                return value;
+                        }
+                }
+
+                return null;
+        }
+
+        private Object getFromMapIgnoreCase(Map<?, ?> map, String... candidateNames) {
+                if (map == null || candidateNames == null) {
+                        return null;
+                }
+
+                for (Map.Entry<?, ?> entry : map.entrySet()) {
+                        if (!(entry.getKey() instanceof String)) {
+                                continue;
+                        }
+                        String key = (String) entry.getKey();
                         for (String candidate : candidateNames) {
-                                if (StringUtils.equalsIgnoreCase(fieldName, candidate)) {
-                                        return node.get(fieldName);
+                                if (StringUtils.equalsIgnoreCase(key, candidate)) {
+                                        return entry.getValue();
                                 }
                         }
                 }
 
                 return null;
+        }
+
+        private Object invokeCandidateGetter(Object target, String candidate) {
+                if (target == null || StringUtils.isBlank(candidate)) {
+                        return null;
+                }
+
+                String normalized = candidate.trim();
+                String pascal = toPascalCase(normalized);
+                String camel = StringUtils.uncapitalize(pascal);
+
+                String[] possibleNames = { normalized, camel, pascal, "get" + pascal, "is" + pascal };
+
+                Method[] methods = target.getClass().getMethods();
+                for (Method method : methods) {
+                        if (method.getParameterCount() != 0 || method.getReturnType().equals(Void.TYPE)) {
+                                continue;
+                        }
+
+                        String methodName = method.getName();
+                        if ("getClass".equals(methodName)) {
+                                continue;
+                        }
+
+                        for (String expected : possibleNames) {
+                                if (StringUtils.equalsIgnoreCase(methodName, expected)) {
+                                        try {
+                                                return method.invoke(target);
+                                        }
+                                        catch (Exception exception) {
+                                                if (log.isDebugEnabled()) {
+                                                        log.debug("construirMensajeCuponCanjeado() - No se pudo invocar el método '"
+                                                                        + methodName + "' de la clase " + target.getClass().getName(),
+                                                                        exception);
+                                                }
+                                        }
+                                }
+                        }
+                }
+
+                return null;
+        }
+
+        private Object readFieldValue(Object target, String candidate) {
+                if (target == null || StringUtils.isBlank(candidate)) {
+                        return null;
+                }
+
+                Class<?> currentType = target.getClass();
+                while (currentType != null && !Object.class.equals(currentType)) {
+                        Field[] fields = currentType.getDeclaredFields();
+                        for (Field field : fields) {
+                                if (Modifier.isStatic(field.getModifiers())) {
+                                        continue;
+                                }
+                                if (!StringUtils.equalsIgnoreCase(field.getName(), candidate)) {
+                                        continue;
+                                }
+                                try {
+                                        field.setAccessible(true);
+                                        return field.get(target);
+                                }
+                                catch (IllegalAccessException exception) {
+                                        if (log.isDebugEnabled()) {
+                                                log.debug("construirMensajeCuponCanjeado() - No se pudo acceder al campo '"
+                                                                + field.getName() + "' de la clase " + currentType.getName(),
+                                                                exception);
+                                        }
+                                }
+                        }
+                        currentType = currentType.getSuperclass();
+                }
+
+                return null;
+        }
+
+        private Object unwrapOptional(Object value) {
+                if (value instanceof Optional<?>) {
+                        return ((Optional<?>) value).orElse(null);
+                }
+                return value;
+        }
+
+        private boolean isSimpleValue(Object value) {
+                return value == null || value instanceof CharSequence || value instanceof Number || value instanceof Boolean
+                                || value.getClass().isEnum();
+        }
+
+        private String toPascalCase(String value) {
+                if (StringUtils.isBlank(value)) {
+                        return "";
+                }
+
+                String cleaned = value.replaceAll("[^A-Za-z0-9]", " ");
+                String[] parts = cleaned.trim().split("\\s+");
+                StringBuilder builder = new StringBuilder();
+                for (String part : parts) {
+                        if (part.isEmpty()) {
+                                continue;
+                        }
+                        builder.append(StringUtils.capitalize(part.toLowerCase()));
+                }
+                return builder.toString();
         }
 
     @SuppressWarnings("unchecked")
