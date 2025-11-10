@@ -973,11 +973,40 @@ public class DinoTicketManager extends TicketManager {
         }
 
         private String obtenerNumeroTicket(String ticketClassValue, String lockByTerminalId) {
-                String ticket = StringUtils.trimToNull(ticketClassValue);
+                String ticket = buscarNumeroTicketPorUid(ticketClassValue);
+                if (StringUtils.isBlank(ticket)) {
+                        ticket = StringUtils.trimToNull(ticketClassValue);
+                }
                 if (StringUtils.isBlank(ticket)) {
                         ticket = extraerParteTerminal(lockByTerminalId, false);
                 }
                 return StringUtils.isBlank(ticket) ? "-" : ticket;
+        }
+
+        private String buscarNumeroTicketPorUid(String ticketUid) {
+                String uid = StringUtils.trimToNull(ticketUid);
+                if (StringUtils.isBlank(uid)) {
+                        return null;
+                }
+
+                try {
+                        TicketBean ticketBean = ticketsService.consultarTicket(uid, sesion.getAplicacion().getUidActividad());
+                        if (ticketBean != null && ticketBean.getIdTicket() != null) {
+                                return StringUtils.trimToNull(ticketBean.getIdTicket().toString());
+                        }
+                }
+                catch (TicketsServiceException e) {
+                        if (log.isDebugEnabled()) {
+                                log.debug("buscarNumeroTicketPorUid() - No se pudo recuperar el ticket con UID " + uid, e);
+                        }
+                }
+                catch (Exception e) {
+                        if (log.isDebugEnabled()) {
+                                log.debug("buscarNumeroTicketPorUid() - Error inesperado al recuperar el ticket con UID " + uid, e);
+                        }
+                }
+
+                return null;
         }
 
         private String extraerParteTerminal(String valor, boolean primeraParte) {
