@@ -991,8 +991,15 @@ public class DinoTicketManager extends TicketManager {
 
                 try {
                         TicketBean ticketBean = ticketsService.consultarTicket(uid, sesion.getAplicacion().getUidActividad());
-                        if (ticketBean != null && ticketBean.getIdTicket() != null) {
-                                return StringUtils.trimToNull(ticketBean.getIdTicket().toString());
+                        if (ticketBean != null) {
+                                String codTicket = StringUtils.trimToNull(ticketBean.getCodTicket());
+                                if (StringUtils.isNotBlank(codTicket)) {
+                                        return codTicket;
+                                }
+
+                                if (ticketBean.getIdTicket() != null) {
+                                        return StringUtils.trimToNull(ticketBean.getIdTicket().toString());
+                                }
                         }
                 }
                 catch (TicketsServiceException e) {
